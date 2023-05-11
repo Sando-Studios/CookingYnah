@@ -20,21 +20,21 @@ jobs:
           path: path/to/your/project/Library
           key: Library-MyProjectName-TargetPlatform
           restore-keys: |
-            Library-HelpfulLibrarian-
+            Library-CookingYnah-
             Library-
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Android Build
+      - name: Windows Build
         uses: game-ci/unity-builder@v2.2.0
         env:
             UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
             UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
             UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          targetPlatform: Android
-          buildName: Helpful Librarian
+          targetPlatform: StandaloneWindows64
+          buildName: Cooking Ynah
       - name: Upload artifacts
         uses: actions/upload-artifact@v3.1.2
         with:
-            path: build/Android/Helpful Librarian.apk
-            name: Android Build
+            path: build/
+            name: Windows Build

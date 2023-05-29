@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     [Header("SFX")]
     public Material redMaterial;
     public Material greenMaterial;
-    public Renderer renderer;
 
     [Header("Invetory")]
     [SerializeField] private PlayerInventory invetory;
@@ -111,8 +110,13 @@ public class Player : MonoBehaviour
 
     IEnumerator Hit()// To be replaced by animations
     {
-        renderer.material = redMaterial;
+        GetComponent<Renderer>().material = redMaterial;
         yield return new WaitForSeconds(0.5f);
-        renderer.material = greenMaterial;
+        GetComponent<Renderer>().material = greenMaterial;
+    }
+
+    public PlayerInventory GetInventory()
+    {
+        return invetory;
     }
 }

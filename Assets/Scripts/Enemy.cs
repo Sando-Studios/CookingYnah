@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     [Header("SFX")]
     public Material redMaterial;
     public Material greenMaterial;
-    public Renderer renderer;
+    
 
     [Header("Health UI")]
     public Image hpBar;
@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         enemyDataInstance = new EnemyUnitData();
+
+        enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>(); 
         enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
         enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
         enemyDataInstance.UnitName = enemyUnitData.UnitName;
@@ -108,9 +110,9 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Hit()// To be replaced by animations
     {
-        renderer.material = redMaterial;
+        GetComponentInChildren<Renderer>().material = redMaterial;
         yield return new WaitForSeconds(0.5f);
-        renderer.material = greenMaterial;
+        GetComponentInChildren<Renderer>().material = greenMaterial;
     }
 
     void Death()

@@ -660,7 +660,6 @@ MonoBehaviour:
   targetUnit: {fileID: 0}
   redMaterial: {fileID: 2100000, guid: 369077c2621799f469c0e1af06a20ac5, type: 2}
   greenMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  renderer: {fileID: 163747736}
   hpBar: {fileID: 106921753}
 --- !u!1 &420721574
 GameObject:
@@ -1114,7 +1113,7 @@ Transform:
   m_Children:
   - {fileID: 1625195045}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 34.388, y: 0, z: 0}
 --- !u!1 &1101373262
 GameObject:
@@ -1429,6 +1428,7 @@ GameObject:
   - component: {fileID: 1426414664}
   - component: {fileID: 1426414665}
   - component: {fileID: 1426414666}
+  - component: {fileID: 1426414667}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -1513,7 +1513,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1426414664
 Rigidbody:
@@ -1548,8 +1548,7 @@ MonoBehaviour:
   targetUnit: {fileID: 0}
   redMaterial: {fileID: 2100000, guid: 369077c2621799f469c0e1af06a20ac5, type: 2}
   greenMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  renderer: {fileID: 1426414661}
-  invetory: {fileID: 0}
+  invetory: {fileID: 1426414667}
 --- !u!135 &1426414666
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1563,6 +1562,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1426414667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426414659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc91d9a752316f4daf24c42c395ecb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxInventory: 20
 --- !u!1 &1531604180
 GameObject:
   m_ObjectHideFlags: 0

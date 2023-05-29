@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]private float health = 10;
+
+    public Material redMaterial;
+    public Material greenMaterial;
+    public Renderer renderer;
+
     private Rigidbody rb;
     public float force;
     
@@ -27,5 +33,18 @@ public class Player : MonoBehaviour
             var val = Input.GetAxis("Vertical");
             rb.AddForce(new Vector3(0, 0, val) * force, ForceMode.Force);
         }
+    }
+
+    public void TakeDamage(float damageValue)
+    {
+        health -= damageValue;
+        StartCoroutine(Hit());
+    }
+
+    IEnumerator Hit()
+    {
+        renderer.material = redMaterial;
+        yield return new WaitForSeconds(0.5f);
+        renderer.material = greenMaterial;
     }
 }

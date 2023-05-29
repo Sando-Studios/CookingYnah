@@ -6,7 +6,8 @@ using UnityEngine;
 public class UnitData : ScriptableObject
 {
     [SerializeField] private string unitName;
-    [SerializeField] private int health;
+    [SerializeField] private int maxHealth;
+    private int currentHealth;
     [SerializeField] private float moveSpeed;
 
     public string UnitName 
@@ -14,10 +15,15 @@ public class UnitData : ScriptableObject
         get { return unitName; } 
         set { unitName = value; }
     }
-    public int Health 
+    public int MaxHealth 
     { 
-        get { return health; } 
-        set { health = value; }
+        get { return maxHealth; } 
+        set { maxHealth = value; }
+    }
+    public int CurrentHealth 
+    { 
+        get { return currentHealth; } 
+        set { currentHealth = value; }
     }
     public float MoveSpeed 
     {

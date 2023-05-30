@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using Asyncoroutine;
 
 public class Player : MonoBehaviour
 {
@@ -22,13 +24,19 @@ public class Player : MonoBehaviour
     [Header("Invetory")]
     [SerializeField] private PlayerInventory invetory;
 
+    private void Awake()
+    {
+        playerDataInstance = new PlayerUnitData();
+        SetInitalValues();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
-        playerDataInstance = new PlayerUnitData();
-        SetInitalValues();
+        UIManager.instance.UpdateHpUI();
+        BuffManager.instance.SetPlayer(playerDataInstance);
     }
 
     void SetInitalValues()
@@ -54,7 +62,8 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && canAttack && targetUnit && !isAttacking)
             {
                 isAttacking = true;
-                StartCoroutine(Attack());
+                Attack();
+
             }
         }
         
@@ -91,10 +100,12 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damageValue)// Move to a seperate damage handler maybe
     {
         playerDataInstance.CurrentHealth -= damageValue;
+        UIManager.instance.UpdateHpUI();
         StartCoroutine(Hit());
     }
 
-    IEnumerator Attack()
+
+    private async void Attack()
     {
         canAttack = false;
         
@@ -102,7 +113,7 @@ public class Player : MonoBehaviour
         {
             targetUnit.GetComponent<Enemy>().TakeDamage(1);
         }
-        yield return new WaitForSeconds(3.0f);
+        await new WaitForSeconds(3.0f);
 
         isAttacking = false;
         canAttack = true;
@@ -118,5 +129,9 @@ public class Player : MonoBehaviour
     public PlayerInventory GetInventory()
     {
         return invetory;
+    }
+    public PlayerUnitData GetPlayerData()
+    {
+        return playerDataInstance;
     }
 }

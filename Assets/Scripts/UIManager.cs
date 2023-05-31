@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Runtime.ExceptionServices;
 
 public class UIManager : MonoBehaviour
 {
@@ -34,7 +35,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dexText;
 
     [SerializeField] private TextMeshProUGUI itemUIText;
-    //[SerializeField] private TextMeshProUGUI itemValueText;
+    [SerializeField] private GameObject itemNodePrefab;
+    [SerializeField] private GameObject itemPannel;
 
 
     private void Start()
@@ -62,12 +64,21 @@ public class UIManager : MonoBehaviour
     {
         List<InventorySlot> list = playerInventory.GetInventoryList();
 
-        itemUIText.text = "";
+        if (itemPannel.transform.childCount > 0)
+        {
+            for (int i = 0; i < itemPannel.transform.childCount; i++)
+            {
+                Destroy(itemPannel.transform.GetChild(i).gameObject);
+            }
+        }
 
         foreach (InventorySlot slot in list)
         {
-            itemUIText.text += "\n" + slot.itemName + ": " + slot.itemQuantity;
+            GameObject clone = Instantiate(itemNodePrefab, transform);
+            clone.transform.parent = itemPannel.transform;
+            clone.transform.SetAsLastSibling();
+            clone.GetComponent<InventoryNode>().SetData(slot.itemName, slot.itemQuantity);
         }
     }
-    
+
 }

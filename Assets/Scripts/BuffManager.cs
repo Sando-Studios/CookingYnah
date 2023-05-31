@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BuffManager : MonoBehaviour
 {
     public static BuffManager instance;
     private PlayerUnitData player;
-    
+
     private void Awake()
     {
         if (instance == null)
@@ -25,36 +26,49 @@ public class BuffManager : MonoBehaviour
         player = unit;
     }
 
-    public void ApplyVitalityBuff(int value)
+    public void ApplyBuff(TargetStat stat, int value)
+    {
+        if      (stat == TargetStat.VitStat) { ApplyVitalityBuff(value); }
+        else if (stat == TargetStat.AgiStat) { ApplyAgilityBuff(value); }
+        else if (stat == TargetStat.StrStat) { ApplyStrengthBuff(value); }
+        else if (stat == TargetStat.VigStat) { ApplyVigorBuff(value); }
+        else if (stat == TargetStat.IntStat) { ApplyIntelligenceBuff(value); }
+        else if (stat == TargetStat.EndStat) { ApplyEnduranceBuff(value); }
+        else if (stat == TargetStat.DexStat) { ApplyDexterityBuff(value); }
+
+        UIManager.instance.UpdateStatsUI();
+    }
+
+    void ApplyVitalityBuff(int value)
     {
         player.Vitality += value;
     }
-    public void ApplyAgilityBuff(int value)
+    void ApplyAgilityBuff(int value)
     {
         player.Agility += value;
     }
 
-    public void ApplyStrengthBuff(int value)
+    void ApplyStrengthBuff(int value)
     {
         player.Strength += value;
     }
 
-    public void ApplyVigorBuff(int value)
+    void ApplyVigorBuff(int value)
     {
         player.Vigor += value;
     }
 
-    public void ApplyIntelligenceBuff(int value)
+    void ApplyIntelligenceBuff(int value)
     {
         player.Intelligence += value;
     }
 
-    public void ApplyEnduranceBuff(int value)
+    void ApplyEnduranceBuff(int value)
     {
         player.Endurance += value;
     }
 
-    public void ApplyDexterityBuff(int value)
+    void ApplyDexterityBuff(int value)
     {
         player.Dexterity += value;
     }

@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Drop Thing
+  itemBuffData: {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
 --- !u!1 &8957071437278031943
 GameObject:
   m_ObjectHideFlags: 0

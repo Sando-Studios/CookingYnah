@@ -4,12 +4,14 @@ using System;
 using UnityEngine;
 using TMPro;
 using System.Linq;
-using static UnityEditor.Progress;
+
+using UnityEngine.Rendering;
 
 public struct InventorySlot
 {
     public string itemName;
     public int itemQuantity;
+    public DropItemData itemBuffData;
 }
 public class PlayerInventory : MonoBehaviour
 {
@@ -19,6 +21,15 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemValueText;
+
+    private void OnEnable()
+    {
+        InventoryNode.OnUseItem += UseItem;
+    }
+    private void OnDisable()
+    {
+        InventoryNode.OnUseItem -= UseItem;
+    }
 
     public void AddItem(Item itemToAdd)
     {
@@ -46,7 +57,8 @@ public class PlayerInventory : MonoBehaviour
                 InventorySlot newItem = new InventorySlot
                 {
                     itemName = dropItemName,
-                    itemQuantity = 1
+                    itemQuantity = 1,
+                    itemBuffData = itemToAdd.GetItemBuffData()
                 };
                 invetoryList.Add(newItem);
                 Destroy(itemToAdd.gameObject);
@@ -66,7 +78,20 @@ public class PlayerInventory : MonoBehaviour
 
         if (result.itemName != null)
         {
-            invetoryList.Remove(result);
+            if (result.itemQuantity > 1)
+            {
+                int i = invetoryList.IndexOf(result);
+
+                InventorySlot s = invetoryList[i];
+                s.itemQuantity -= 1;
+
+                invetoryList[i] = s;
+            }
+            else
+            {
+                invetoryList.Remove(result);
+            }
+            
         }
         UIManager.instance.UpdateInventoryUI();
     }
@@ -83,11 +108,17 @@ public class PlayerInventory : MonoBehaviour
         return 0;
     }
 
-    public void UpdateItemCount()
+    public void UseItem(string name)
     {
-        InventorySlot result = invetoryList.Find(item => item.itemName == "Drop Item(Clone)");
+        InventorySlot result = invetoryList.Find(item => item.itemName == name);
 
-        itemValueText.text = result.itemQuantity.ToString();
+        Dictionary<TargetStat, int> pairs = result.itemBuffData.DropBuffs;
+
+        foreach (var item in pairs)
+        {
+            BuffManager.instance.ApplyBuff(item.Key, item.Value);
+        }
+        RemoveItem(result.itemName);
     }
 
     public List<InventorySlot> GetInventoryList()

@@ -4,60 +4,94 @@ using System;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using static UnityEditor.Progress;
 
 public struct InventorySlot
 {
     public string itemName;
-    public int itemNum;
+    public int itemQuantity;
 }
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private int maxInventory = 20;
-    private Dictionary<string, int> itemDictionary = new Dictionary<string, int>();
 
-    private List<InventorySlot> invetorySlot = new List<InventorySlot>();
+    private List<InventorySlot> invetoryList = new List<InventorySlot>();
 
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemValueText;
 
-    public void AddItem(GameObject dropItem)
+    public void AddItem(Item itemToAdd)
     {
-        InventorySlot result = invetorySlot.Find(item => item.itemName == dropItem.name);
+        string dropItemName = itemToAdd.GetItemName();
 
-        if(result.itemName == null && invetorySlot.Count <= maxInventory) 
+        InventorySlot result = invetoryList.Find(item => item.itemName == dropItemName);
+
+        if (result.itemName != null)
         {
-            invetorySlot.Add(new InventorySlot {itemName = dropItem.name, itemNum = 1});
-            Destroy(dropItem);
+            //Debug.Log("Add Item");
+            int i = invetoryList.IndexOf(result);
+
+            InventorySlot s = invetoryList[i];
+            s.itemQuantity += 1;
+
+            invetoryList[i] = s;
+
+            Destroy(itemToAdd.gameObject);
         }
-        else if (result.itemName != null && invetorySlot.Count <= maxInventory)
+        else
         {
-            result.itemNum += 1;
-            Destroy(dropItem);
+            if (invetoryList.Count <= maxInventory)
+            {
+                //Debug.Log("Add New Item");
+                InventorySlot newItem = new InventorySlot
+                {
+                    itemName = dropItemName,
+                    itemQuantity = 1
+                };
+                invetoryList.Add(newItem);
+                Destroy(itemToAdd.gameObject);
+            }
+            else
+            {
+                //Debug.Log("Inventory Full");
+            }
         }
 
-        UpdateItemCount();
+        UIManager.instance.UpdateInventoryUI();
     }
 
     public void RemoveItem(string itemToRemove)
     {
-        InventorySlot result = invetorySlot.Find(item => item.itemName == itemToRemove);
+        InventorySlot result = invetoryList.Find(item => item.itemName == itemToRemove);
 
         if (result.itemName != null)
         {
-            invetorySlot.Remove(result);
+            invetoryList.Remove(result);
         }
-        UpdateItemCount();
+        UIManager.instance.UpdateInventoryUI();
+    }
+
+    public int GetItemQuantity(string itemToGet)
+    {
+        InventorySlot result = invetoryList.Find(item => item.itemName == itemToGet);
+
+        if (result.itemName != null)
+        {
+            return result.itemQuantity;
+        }
+        //Debug.Log("Item " + itemToGet + " is not in the inventory");
+        return 0;
     }
 
     public void UpdateItemCount()
     {
-        itemNameText.enabled = true;
-        itemValueText.enabled = true;
+        InventorySlot result = invetoryList.Find(item => item.itemName == "Drop Item(Clone)");
 
-        InventorySlot result = invetorySlot.Find(item => item.itemName == "Drop Item(Clone)");
-
-        itemValueText.text = result.itemNum.ToString();
+        itemValueText.text = result.itemQuantity.ToString();
     }
 
-
+    public List<InventorySlot> GetInventoryList()
+    {
+        return invetoryList;
+    }
 }

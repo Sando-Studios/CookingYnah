@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7677577386287100317}
   - component: {fileID: 1423575849336512078}
   m_Layer: 0
-  m_Name: Drop Item
+  m_Name: Drop Item 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09de5ba7f062704882e4d3f6a62149f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Thing Drop
+  itemName: Drop Thing
 --- !u!1 &8957071437278031943
 GameObject:
   m_ObjectHideFlags: 0

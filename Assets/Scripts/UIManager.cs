@@ -33,6 +33,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endText;
     [SerializeField] private TextMeshProUGUI dexText;
 
+    [SerializeField] private TextMeshProUGUI itemUIText;
+    //[SerializeField] private TextMeshProUGUI itemValueText;
+
+
     private void Start()
     {
         playerData = player.GetPlayerData();
@@ -56,7 +60,14 @@ public class UIManager : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
-        playerInventory.RemoveItem("Drop Item(Clone)");
+        List<InventorySlot> list = playerInventory.GetInventoryList();
+
+        itemUIText.text = "";
+
+        foreach (InventorySlot slot in list)
+        {
+            itemUIText.text += "\n" + slot.itemName + ": " + slot.itemQuantity;
+        }
     }
     
 }

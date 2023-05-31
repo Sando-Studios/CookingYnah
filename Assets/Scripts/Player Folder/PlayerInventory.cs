@@ -91,7 +91,7 @@ public class PlayerInventory : MonoBehaviour
             {
                 invetoryList.Remove(result);
             }
-            
+
         }
         UIManager.instance.UpdateInventoryUI();
     }
@@ -112,12 +112,25 @@ public class PlayerInventory : MonoBehaviour
     {
         InventorySlot result = invetoryList.Find(item => item.itemName == name);
 
-        Dictionary<TargetStat, int> pairs = result.itemBuffData.DropBuffs;
+        Dictionary<TargetStat, int> permaBuffs = result.itemBuffData.PermanentBuffs;
+        Dictionary<TargetStat, int> tempBuffs = result.itemBuffData.TemporaryBuffs;
 
-        foreach (var item in pairs)
+        if (permaBuffs.Count > 0)
         {
-            BuffManager.instance.ApplyBuff(item.Key, item.Value);
+            foreach (var item in permaBuffs)
+            {
+                BuffManager.instance.ApplyBuff(item.Key, item.Value);
+            }
         }
+
+        if (tempBuffs.Count > 0)
+        {
+            foreach (var item in tempBuffs)
+            {
+                BuffManager.instance.ApplyTempBuffs(item.Key, item.Value, result.itemBuffData.Duration);
+            }
+        }
+
         RemoveItem(result.itemName);
     }
 

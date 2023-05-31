@@ -12,9 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafc290cc78e0f541bc6dd37190ea6cc, type: 3}
   m_Name: NewDropItem 1
   m_EditorClassIdentifier: 
-  DropBuffsDictionary:
+  itemName: Thing 1
+  itemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  PermaBuffDictionary:
     _serializedList:
     - Key: 0
+      Value: 5
+    - Key: 1
+      Value: 5
+  tempBuffDurration: 5
+  TempBuffsDictionary:
+    _serializedList:
+    - Key: 5
       Value: 6
-    - Key: 4
-      Value: 3

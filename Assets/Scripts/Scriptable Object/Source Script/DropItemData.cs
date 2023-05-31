@@ -17,11 +17,33 @@ public enum TargetStat
 [CreateAssetMenu(fileName = "NewDropItem", menuName = "Item/Drop")]
 public class DropItemData : ScriptableObject
 {
-    [SerializeField] private SerializedDictionary<TargetStat, int> DropBuffsDictionary = new SerializedDictionary<TargetStat, int>();
+    [SerializeField] private string itemName;
+    [SerializeField] private Sprite itemSprite;
+    [SerializeField] private SerializedDictionary<TargetStat, int> PermaBuffDictionary = new SerializedDictionary<TargetStat, int>();
+    [SerializeField] private float tempBuffDurration;
+    [SerializeField] private SerializedDictionary<TargetStat, int> TempBuffsDictionary= new SerializedDictionary<TargetStat, int>();
 
-    public SerializedDictionary<TargetStat, int> DropBuffs
+    public string Name
     {
-        get { return DropBuffsDictionary; }
+        get { return itemName; }
+    }
+    public Sprite SpriteToRender
+    {
+        get { return itemSprite; }
+    }
+    public float Duration
+    {
+        get { return tempBuffDurration; }
+    }
+
+    public SerializedDictionary<TargetStat, int> TemporaryBuffs
+    {
+        get { return TempBuffsDictionary; }
+    }
+
+    public SerializedDictionary<TargetStat, int> PermanentBuffs
+    {
+        get { return PermaBuffDictionary; }
     }
 
 }

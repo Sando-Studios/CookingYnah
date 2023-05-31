@@ -16,4 +16,5 @@ MonoBehaviour:
   maxHealth: 2
   moveSpeed: 20
   drop: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
+  data: {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
   aggroRange: 7

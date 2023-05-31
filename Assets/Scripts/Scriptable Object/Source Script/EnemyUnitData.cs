@@ -6,12 +6,18 @@ using UnityEngine;
 public class EnemyUnitData : UnitData
 {
     [SerializeField] private GameObject drop;
+    [SerializeField] private DropItemData data;
     [SerializeField] private float aggroRange;
 
     public GameObject Drop
     {
         get { return drop; }
         set { drop = value; }
+    }
+    public DropItemData Data
+    {
+        get { return data; }
+        set { data = value; }
     }
     public float AggroRange 
     { 

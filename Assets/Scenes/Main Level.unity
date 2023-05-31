@@ -4899,6 +4899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe599f780388ce4499e283419152f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tempEffectHandlerPrefab: {fileID: 2965219360917005181, guid: 2b84e71d0c56ef64f8cb97f7b89dbeca, type: 3}
 --- !u!4 &1791486804
 Transform:
   m_ObjectHideFlags: 0

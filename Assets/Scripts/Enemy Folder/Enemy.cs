@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
         enemyDataInstance.UnitName = enemyUnitData.UnitName;
         enemyDataInstance.MoveSpeed = enemyUnitData.MoveSpeed;
         enemyDataInstance.Drop = enemyUnitData.Drop;
+        enemyDataInstance.Data = enemyUnitData.Data;
         enemyDataInstance.AggroRange = enemyUnitData.AggroRange;
 
         aggroTrigger.radius = enemyDataInstance.AggroRange;
@@ -117,8 +118,9 @@ public class Enemy : MonoBehaviour
 
     void Death()
     {
-        Instantiate(enemyDataInstance.Drop, transform.position, Quaternion.identity);
-        
+        GameObject clone = Instantiate(enemyDataInstance.Drop, transform.position, Quaternion.identity);
+        clone.GetComponent<Item>().SetData(enemyDataInstance.Data);
+
         Vector3 position = transform.position;
         position.y -= 40f;
         transform.position = position;

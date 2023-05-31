@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] private string itemName;
-    [SerializeField] private DropItemData itemBuffData;
+    private string itemName;
+    private DropItemData itemData;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
+    public void SetData(DropItemData data)
+    {
+        itemData = data;
+
+        itemName = itemData.Name;
+        spriteRenderer.sprite = itemData.SpriteToRender;
+    }
     public string GetItemName()
     {
         return itemName;
     }
     public DropItemData GetItemBuffData()
     {
-        return itemBuffData;
+        return itemData;
     }
 
     private void OnTriggerEnter(Collider other)

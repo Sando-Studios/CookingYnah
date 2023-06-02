@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Asyncoroutine;
 
 public class Enemy : MonoBehaviour
 {
@@ -23,12 +25,27 @@ public class Enemy : MonoBehaviour
     [Header("Health UI")]
     public Image hpBar;
 
+    private void OnEnable()
+    {
+        DamageHandler.OnEnemyUnitDeath += Death;
+    }
+    private void OnDisable()
+    {
+        DamageHandler.OnEnemyUnitDeath -= Death;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         enemyDataInstance = new EnemyUnitData();
 
-        enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>(); 
+        SetData(10001); // To be called and set by spawner 
+    }
+
+    public void SetData(int enemyID)
+    {
+        //enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
+        enemyDataInstance.UnitID = enemyID;
         enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
         enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
         enemyDataInstance.UnitName = enemyUnitData.UnitName;
@@ -67,7 +84,7 @@ public class Enemy : MonoBehaviour
             }
             else if (distanceToTarget <= 5 && canAttack)
             {
-                StartCoroutine(Attack());
+                Attack();
             }
         }
     }
@@ -79,12 +96,12 @@ public class Enemy : MonoBehaviour
         isAttacking = false;
     }
 
-    IEnumerator Attack()
+    private async void Attack()
     {
         canAttack = false;
         isAttacking = true;
 
-        yield return new WaitForSeconds(3.0f);
+        await new WaitForSeconds(3.0f);
 
         if (targetUnit)
         {  
@@ -92,32 +109,28 @@ public class Enemy : MonoBehaviour
 
             if (distanceToTarget < 5)
             {
-                targetUnit.GetComponent<Player>().TakeDamage(1);
+                DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), 1);
             }
         }
         canAttack = true;
     }
 
-    public void TakeDamage(int damageValue)// Move to a seperate damage handler maybe
+    public EnemyUnitData GetEnemyUnitData()
     {
-        enemyDataInstance.CurrentHealth -= damageValue;
-        StartCoroutine(Hit());
-
-        if (enemyDataInstance.CurrentHealth <= 0)
-        {
-            Death();
-        }
+        return enemyDataInstance;
     }
 
-    IEnumerator Hit()// To be replaced by animations
+    public async void Hit()// To be replaced by animations and converted to a trigger
     {
         GetComponentInChildren<Renderer>().material = redMaterial;
-        yield return new WaitForSeconds(0.5f);
+        await new WaitForSeconds(0.5f);
         GetComponentInChildren<Renderer>().material = greenMaterial;
     }
 
-    void Death()
+    void Death(int id)
     {
+        if(id != enemyDataInstance.UnitID) { return; }
+
         GameObject clone = Instantiate(enemyDataInstance.Drop, transform.position, Quaternion.identity);
         clone.GetComponent<Item>().SetData(enemyDataInstance.Data);
 

@@ -278,9 +278,8 @@ MonoBehaviour:
   intText: {fileID: 633196370}
   endText: {fileID: 2042094797}
   dexText: {fileID: 1784408332}
-  itemUIText: {fileID: 0}
   itemNodePrefab: {fileID: 4776285220750145439, guid: 2c546acc0f0e44f4589e1310cba01c64, type: 3}
-  itemPannel: {fileID: 1527389231}
+  itemPanel: {fileID: 1527389231}
 --- !u!1 &101031262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3672,7 +3671,7 @@ MonoBehaviour:
   targetUnit: {fileID: 0}
   redMaterial: {fileID: 2100000, guid: 369077c2621799f469c0e1af06a20ac5, type: 2}
   greenMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  invetory: {fileID: 1426414667}
+  inventory: {fileID: 1426414667}
 --- !u!135 &1426414666
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3699,8 +3698,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxInventory: 20
-  itemNameText: {fileID: 0}
-  itemValueText: {fileID: 0}
 --- !u!1 &1527389231
 GameObject:
   m_ObjectHideFlags: 0
@@ -3911,7 +3908,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1599342684
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5321,7 +5318,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1937686694
 SphereCollider:
   m_ObjectHideFlags: 0

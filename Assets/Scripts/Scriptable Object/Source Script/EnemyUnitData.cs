@@ -5,10 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewEnemyUnit", menuName = "Unit/Enemy")]
 public class EnemyUnitData : UnitData
 {
+    [SerializeField] private int unitID = -1;
     [SerializeField] private GameObject drop;
     [SerializeField] private DropItemData data;
     [SerializeField] private float aggroRange;
 
+    public int UnitID
+    {
+        get { return unitID; }
+        set { unitID = value; }
+    }
     public GameObject Drop
     {
         get { return drop; }

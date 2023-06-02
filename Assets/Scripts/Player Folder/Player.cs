@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
     {
         playerDataInstance.CurrentHealth -= damageValue;
         UIManager.instance.UpdateHpUI();
-        StartCoroutine(Hit());
+        Hit();
     }
 
 
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
         
         if (targetUnit)
         {
-            targetUnit.GetComponent<Enemy>().TakeDamage(1);
+            DamageHandler.ApplyDamage(targetUnit.GetComponent<Enemy>(), 1);
         }
         await new WaitForSeconds(3.0f);
 
@@ -120,10 +120,10 @@ public class Player : MonoBehaviour
         canAttack = true;
     }
 
-    IEnumerator Hit()// To be replaced by animations
+    public async void Hit()// To be replaced by animations
     {
         GetComponent<Renderer>().material = redMaterial;
-        yield return new WaitForSeconds(0.5f);
+        await new WaitForSeconds(0.5f);
         GetComponent<Renderer>().material = greenMaterial;
     }
 

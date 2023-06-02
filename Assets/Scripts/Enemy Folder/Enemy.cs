@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Asyncoroutine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,9 +14,7 @@ public class Enemy : MonoBehaviour
     private EnemyUnitData enemyDataInstance;
     [SerializeField] private SphereCollider aggroTrigger;
     [SerializeField] private GameObject targetUnit;
-
-    private bool isAttacking = false;
-    private bool canAttack = true;
+    [SerializeField] private Vector3 home;
 
     [Header("SFX")]
     public Material redMaterial;
@@ -40,11 +39,12 @@ public class Enemy : MonoBehaviour
         enemyDataInstance = new EnemyUnitData();
 
         SetData(10001); // To be called and set by spawner 
+
+        transform.GetComponent<EnemyAI>().StartAI();
     }
 
     public void SetData(int enemyID)
     {
-        //enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
         enemyDataInstance.UnitID = enemyID;
         enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
         enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
@@ -53,6 +53,12 @@ public class Enemy : MonoBehaviour
         enemyDataInstance.Drop = enemyUnitData.Drop;
         enemyDataInstance.Data = enemyUnitData.Data;
         enemyDataInstance.AggroRange = enemyUnitData.AggroRange;
+        enemyDataInstance.BasicAttackDamage = enemyUnitData.BasicAttackDamage;
+        enemyDataInstance.ChaseRange = enemyUnitData.ChaseRange;
+        enemyDataInstance.AttackRange = enemyUnitData.AttackRange;
+        enemyDataInstance.WanderSpeed = enemyUnitData.WanderSpeed;
+        enemyDataInstance.ChaseSpeed = enemyUnitData.ChaseSpeed;
+        enemyDataInstance.AttackSpeed = enemyUnitData.AttackSpeed;
 
         aggroTrigger.radius = enemyDataInstance.AggroRange;
     }
@@ -74,47 +80,22 @@ public class Enemy : MonoBehaviour
         float normalized = a / b;
 
         hpBar.fillAmount = normalized;
-
-        if (targetUnit)
-        {
-            float distanceToTarget = Vector3.Distance(transform.position, targetUnit.transform.position);
-            if (distanceToTarget > 20) 
-            { 
-                ResetAggro(); 
-            }
-            else if (distanceToTarget <= 5 && canAttack)
-            {
-                Attack();
-            }
-        }
     }
 
-    void ResetAggro()
+    public void ResetAggro()
     {
         targetUnit = null;
         aggroTrigger.enabled = true;
-        isAttacking = false;
     }
 
-    private async void Attack()
+    public Vector3 GetHome()
     {
-        canAttack = false;
-        isAttacking = true;
-
-        await new WaitForSeconds(3.0f);
-
-        if (targetUnit)
-        {  
-            float distanceToTarget = Vector3.Distance(transform.position, targetUnit.transform.position);
-
-            if (distanceToTarget < 5)
-            {
-                DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), 1);
-            }
-        }
-        canAttack = true;
+        return home;
     }
-
+    public GameObject GetTargetUnit()
+    {
+        return targetUnit;
+    }
     public EnemyUnitData GetEnemyUnitData()
     {
         return enemyDataInstance;
@@ -133,6 +114,9 @@ public class Enemy : MonoBehaviour
 
         GameObject clone = Instantiate(enemyDataInstance.Drop, transform.position, Quaternion.identity);
         clone.GetComponent<Item>().SetData(enemyDataInstance.Data);
+
+        transform.GetComponent<NavMeshAgent>().enabled = false;
+        transform.GetComponent<EnemyAI>().FlipIsActive();
 
         Vector3 position = transform.position;
         position.y -= 40f;

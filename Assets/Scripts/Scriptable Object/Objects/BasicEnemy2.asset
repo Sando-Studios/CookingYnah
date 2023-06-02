@@ -15,6 +15,13 @@ MonoBehaviour:
   unitName: Basic Enemy 2
   maxHealth: 3
   moveSpeed: 20
-  drop: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
+  unitID: -1
+  dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   data: {fileID: 11400000, guid: 20b12f8b08aed6b4dbe75767903dd13e, type: 2}
+  basicAttackDmg: 1
+  wanderSpeed: 1
+  chaseSpeed: 2
+  attackSpeed: 2
   aggroRange: 5
+  chaseRange: 6
+  attackRange: 3

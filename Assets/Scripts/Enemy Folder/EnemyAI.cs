@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Enemy enemy;
+    private MonsterStateMachine stateMachine;
+    private bool isActive = false;
+
+    private void Start()
     {
-        
+        stateMachine = ScriptableObject.CreateInstance<MonsterStateMachine>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartAI()
     {
-        
+        stateMachine.Initialize(enemy);
+        FlipIsActive();
+    }
+
+    public void FlipIsActive()
+    {
+        isActive = !isActive;
+    }
+
+    private void Update()
+    {
+        if (isActive)
+        {
+            stateMachine.UpdateState();
+        }
+
     }
 }

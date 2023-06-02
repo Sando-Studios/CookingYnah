@@ -58,7 +58,7 @@ public class EnemyUnitData : UnitData
         set { attackRange = value; }
     }
 
-    public float WanderSpeed
+    public float PatrolSpeed
     {
         get { return wanderSpeed; }
         set { wanderSpeed = value; }

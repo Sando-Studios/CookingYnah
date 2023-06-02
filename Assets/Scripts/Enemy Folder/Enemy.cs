@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
 
         SetData(10001); // To be called and set by spawner 
 
-        transform.GetComponent<EnemyAI>().StartAI();
+        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
     }
 
     public void SetData(int enemyID)
@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
         enemyDataInstance.BasicAttackDamage = enemyUnitData.BasicAttackDamage;
         enemyDataInstance.ChaseRange = enemyUnitData.ChaseRange;
         enemyDataInstance.AttackRange = enemyUnitData.AttackRange;
-        enemyDataInstance.WanderSpeed = enemyUnitData.WanderSpeed;
+        enemyDataInstance.PatrolSpeed = enemyUnitData.PatrolSpeed;
         enemyDataInstance.ChaseSpeed = enemyUnitData.ChaseSpeed;
         enemyDataInstance.AttackSpeed = enemyUnitData.AttackSpeed;
 
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.CompareTag("Player"))
         {
             targetUnit = other.gameObject;
             aggroTrigger.enabled = false;
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
         return enemyDataInstance;
     }
 
-    public async void Hit()// To be replaced by animations and converted to a trigger
+    public async void Hit()// To be replaced by animations 
     {
         GetComponentInChildren<Renderer>().material = redMaterial;
         await new WaitForSeconds(0.5f);
@@ -116,7 +116,6 @@ public class Enemy : MonoBehaviour
         clone.GetComponent<Item>().SetData(enemyDataInstance.Data);
 
         transform.GetComponent<NavMeshAgent>().enabled = false;
-        transform.GetComponent<EnemyAI>().FlipIsActive();
 
         Vector3 position = transform.position;
         position.y -= 40f;
@@ -124,4 +123,59 @@ public class Enemy : MonoBehaviour
 
         Destroy(gameObject, 3.0f);
     }
+
+    public void DealDamage()
+    {
+        if (targetUnit)
+        {
+            float distanceToTarget = Vector3.Distance(transform.position, targetUnit.transform.position);
+
+            if (distanceToTarget <= enemyDataInstance.AttackRange)
+            {
+                DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
+            }
+        }
+    }
+
+    public void PlayIdleAnimation()
+    {
+        // Idle.Play()
+    }
+
+    public void StopIdleAnimation()
+    {
+        // Idle.Stop()
+    }
+
+    public void PlayPatrolAnimation()
+    {
+        // Walk.Play()
+    }
+
+    public void StopPatrolAnimation()
+    {
+        // Walk.Stop()
+    }
+
+    public void PlayChaseAnimation()
+    {
+        // Run.Play()
+    }
+
+    public void StopChaseAnimation()
+    {
+        // Run.Stop()
+    }
+
+    public void PlayAttackAnimation()
+    {
+        // Attack.Play()
+    }
+
+    public void StopAttackAnimation()
+    {
+        // Attack.Stop()
+    }
+
+
 }

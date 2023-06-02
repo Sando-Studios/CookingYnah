@@ -1,13 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class MonsterState
 {
-    protected MonsterStateMachine stateMachine;
     protected NavMeshAgent agent;
-    public abstract void EnterState(MonsterStateMachine stateMachine);
-    public abstract void UpdateState();
-    public abstract void ExitState();
+
+    protected MonsterStateManager statManager;
+    protected Enemy enemy;
+
+    public MonsterState(MonsterStateManager manager, Enemy enemy)
+    {
+        statManager = manager;
+        this.enemy = enemy;
+    }
+
+    public virtual void Enter() { }
+
+    public virtual void Update(float deltaTime) { }
+
+    public virtual void Exit() { }
 }

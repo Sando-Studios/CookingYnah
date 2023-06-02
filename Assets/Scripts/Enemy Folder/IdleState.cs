@@ -4,57 +4,40 @@ using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 using Asyncoroutine;
 using UnityEngine.AI;
+using System.Threading;
 
 public class IdleState : MonsterState
 {
-    private static IdleState instance;
-    public static IdleState Instance
+    private float animationDuration;
+    private float animationTimer;
+    public IdleState(MonsterStateManager manager, Enemy enemy) : base(manager, enemy) { }
+
+    public override void Enter()
     {
-        get
+        animationDuration = Random.Range(1f, 4f);
+        animationTimer = 0f;
+
+        enemy.PlayIdleAnimation();
+    }
+
+    public override void Update(float deltaTime)
+    {
+        animationTimer += deltaTime;
+
+        if (enemy.GetTargetUnit())
         {
-            if (instance == null)
-                instance = new IdleState();
-            return instance;
+            statManager.ChangeState(enemy, new ChaseState(statManager, enemy));
+            return;
+        }
+
+        if (animationTimer >= animationDuration)
+        {
+            statManager.ChangeState(enemy, new PatrolState(statManager, enemy));
         }
     }
-    private Enemy self;
-    private GameObject target;
-    private float idleTimer;
-    private bool isDone = false;
 
-    public override void EnterState(MonsterStateMachine stateMachine)
+    public override void Exit()
     {
-        Debug.Log("Idle Enter");
-        this.stateMachine = stateMachine;
-
-        self = stateMachine.self;
-
-        agent = self.gameObject.GetComponent<NavMeshAgent>();
-        agent.isStopped = true;
-        idleTimer = Random.Range(1.0f, 4.0f);
-        IdleWait();
-    }
-
-    public override void UpdateState()
-    {
-        // Do Idle animations a few times
-
-        if (self.GetTargetUnit() != null)
-            stateMachine.TransitionToState(ChasingState.Instance);
-        else if (isDone)
-            stateMachine.TransitionToState(WanderingState.Instance);
-    }
-
-    private async void IdleWait()
-    {
-        await new WaitForSeconds(idleTimer);
-        isDone = true;
-        Debug.Log("Idle Done");
-    }
-
-    public override void ExitState()
-    {
-        isDone = false;
-        agent.isStopped = false;
+        enemy.StopIdleAnimation();
     }
 }

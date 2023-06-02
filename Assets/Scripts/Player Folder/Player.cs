@@ -22,12 +22,12 @@ public class Player : MonoBehaviour
     public Material greenMaterial;
 
     [Header("Invetory")]
-    [SerializeField] private PlayerInventory invetory;
+    [SerializeField] private PlayerInventory inventory;
 
     private void Awake()
     {
         playerDataInstance = new PlayerUnitData();
-        SetInitalValues();
+        SetInitialValues();
     }
 
     // Start is called before the first frame update
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         BuffManager.instance.SetPlayer(playerDataInstance);
     }
 
-    void SetInitalValues()
+    void SetInitialValues()
     {
         playerDataInstance.MaxHealth = playerUnitData.MaxHealth;
         playerDataInstance.CurrentHealth = playerDataInstance.MaxHealth;
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
 
     public PlayerInventory GetInventory()
     {
-        return invetory;
+        return inventory;
     }
     public PlayerUnitData GetPlayerData()
     {

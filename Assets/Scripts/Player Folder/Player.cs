@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public Material redMaterial;
     public Material greenMaterial;
 
-    [Header("Invetory")]
+    [Header("Inventory")]
     [SerializeField] private PlayerInventory inventory;
 
     private void Awake()
@@ -59,7 +59,8 @@ public class Player : MonoBehaviour
     {
         if (targetUnit)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && canAttack && targetUnit && !isAttacking)
+            
+            if (Input.GetButtonDown("Fire1") && canAttack && targetUnit && !isAttacking)
             {
                 isAttacking = true;
                 Attack();

@@ -19,9 +19,6 @@ public class PlayerInventory : MonoBehaviour
 
     private List<InventorySlot> invetoryList = new List<InventorySlot>();
 
-    [SerializeField] private TextMeshProUGUI itemNameText;
-    [SerializeField] private TextMeshProUGUI itemValueText;
-
     private void OnEnable()
     {
         InventoryNode.OnUseItem += UseItem;

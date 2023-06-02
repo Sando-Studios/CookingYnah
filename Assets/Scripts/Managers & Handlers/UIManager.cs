@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
         foreach (InventorySlot slot in list)
         {
             GameObject clone = Instantiate(itemNodePrefab, transform);
-            clone.transform.parent = itemPannel.transform;
+            clone.transform.SetParent(itemPannel.transform);
             clone.transform.SetAsLastSibling();
             clone.GetComponent<InventoryNode>().SetData(slot.itemName, slot.itemQuantity);
         }

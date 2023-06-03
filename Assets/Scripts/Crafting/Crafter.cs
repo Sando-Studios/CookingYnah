@@ -49,6 +49,7 @@ namespace Crafting
 
             foreach (var (name, recipe) in recipes)
             {
+                // Checking
                 foreach (var v in recipe.slots)
                 {
                     Debug.Log($"rec {v.item}");
@@ -62,7 +63,7 @@ namespace Crafting
             return false;
         }
 
-        private bool CompareSlots(CraftingSlot[] a, CraftingSlot[] b)
+        private  bool CompareSlots(CraftingSlot[] a, CraftingSlot[] b)
         {
             if (a == b) return true;
             
@@ -73,7 +74,7 @@ namespace Crafting
                 var aa = a[i];
                 var bb = b[i];
 
-                if (aa.item.name != bb.item.name) return false;
+                if (aa != bb) return false;
             }
 
             return true;
@@ -85,6 +86,22 @@ namespace Crafting
     {
         [Range(0, 64)] public uint amount;
         public Ingredient item;
-        
+
+        public override bool Equals(object obj)
+        {
+            if (obj is not CraftingSlot) return false;
+
+            return item.name == ((CraftingSlot)obj).item.name;
+        }
+
+        public static bool operator ==(CraftingSlot a, CraftingSlot b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(CraftingSlot a, CraftingSlot b)
+        {
+            return !a.Equals(b);
+        }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 namespace Crafting
 {

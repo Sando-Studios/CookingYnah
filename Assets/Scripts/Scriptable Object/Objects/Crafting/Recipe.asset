@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4faae73c9aa58dd449a35816dfa4c740, type: 3}
   m_Name: Recipe
   m_EditorClassIdentifier: 
-  slots: []
+  slots:
+  - amount: 0
+    item: {fileID: 11400000, guid: 407350be3ea1e954e8ed547acb3a3d22, type: 2}
+  - amount: 0
+    item: {fileID: 11400000, guid: 05de9f4f3f36e144abdcd11e135e6fdb, type: 2}
+  - amount: 0
+    item: {fileID: 11400000, guid: 05de9f4f3f36e144abdcd11e135e6fdb, type: 2}
+  - amount: 0
+    item: {fileID: 11400000, guid: 05de9f4f3f36e144abdcd11e135e6fdb, type: 2}

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Sprites.Packer;
+
 
 [CreateAssetMenu(fileName = "NewPlayerUnit", menuName = "Unit/Player")]
 public class PlayerUnitData : UnitData

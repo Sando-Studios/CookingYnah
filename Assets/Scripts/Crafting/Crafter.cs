@@ -14,13 +14,19 @@ namespace Crafting
 
         public Slot output;
 
+        [SerializeField] private Ingredient empty;
+
         public void Listen()
         {
-            Debug.Log(CheckIfValid());
-            Debug.Log(GetHashCode());
+            Debug.Log(GetOutput() != empty);
         }
 
-        public bool CheckIfValid()
+        public void CraftToOutput()
+        {
+            
+        }
+
+        public Ingredient GetOutput()
         {
             var inSlots = new List<CraftingSlot>(4);
 
@@ -36,33 +42,22 @@ namespace Crafting
                 inSlots.Add(new CraftingSlot()
                 {
                     amount = s.amount,
-                    item = s.inSlot.associatedIngredient,
+                    item = s.GetIngredientInSlot(),
                 });
-            }
-
-            // Checking 
-            foreach (var v in inSlots)
-            {
-                Debug.Log($"inslo {v.item}");
             }
 
             foreach (var (name, recipe) in recipes)
             {
-                // Checking
-                foreach (var v in recipe.slots)
-                {
-                    Debug.Log($"rec {v.item}");
-                }
                 if (CompareSlots(recipe.slots, inSlots.ToArray()))
                 {
-                    return true;
+                    return recipe.output;
                 }
             }
 
-            return false;
+            return empty;
         }
 
-        private  bool CompareSlots(CraftingSlot[] a, CraftingSlot[] b)
+        private static bool CompareSlots(CraftingSlot[] a, CraftingSlot[] b)
         {
             if (a == b) return true;
             

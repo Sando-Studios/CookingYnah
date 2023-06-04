@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,14 +6,27 @@ using UnityEngine.EventSystems;
 
 namespace Crafting
 {
-    public class Slot : MonoBehaviour, IPointerUpHandler
+    public class Slot : MonoBehaviour
     {
-        public IngredientItem inSlot;
+        [SerializeField]
+        private IngredientItem inSlot;
         public uint amount;
 
-        public void OnPointerUp(PointerEventData eventData)
+        public GameObject emptySlot;
+
+        public Ingredient GetIngredientInSlot()
         {
-            throw new System.NotImplementedException();
+            return inSlot.associatedIngredient;
         }
+
+        public IngredientItem Replace(IngredientItem newItem)
+        {
+            // inSlot.StartFollowMouse();
+            
+            inSlot = newItem;
+            newItem.refSlot = this;
+            throw new NotImplementedException();
+        }
+
     }
 }

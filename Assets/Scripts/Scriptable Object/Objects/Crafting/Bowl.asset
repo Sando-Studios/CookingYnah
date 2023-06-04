@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Bowl
   m_EditorClassIdentifier: 
   name: bowl
-  prefab: {fileID: 0}
+  prefab: {fileID: 2440300233578835016, guid: 88d3aec9ff04c4244843ad0fd1f3473c, type: 3}

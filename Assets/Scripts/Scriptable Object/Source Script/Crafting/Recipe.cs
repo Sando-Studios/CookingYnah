@@ -12,5 +12,7 @@ namespace Crafting
     {
         [Tooltip("Only the first 4 slots will be used")]
         public CraftingSlot[] slots;
+
+        public Ingredient output;
     }
 }

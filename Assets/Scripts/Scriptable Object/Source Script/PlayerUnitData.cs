@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Sprites.Packer;
 
 [CreateAssetMenu(fileName = "NewPlayerUnit", menuName = "Unit/Player")]
 public class PlayerUnitData : UnitData
@@ -15,44 +16,121 @@ public class PlayerUnitData : UnitData
 
     [SerializeField] private float attackRange;
 
-    public float Vitality 
-    { 
-        get { return vitality; } 
+    private float currentSprintStamina;
+    private float currentBlockMeter;
+
+    public override int MaxHealth
+    {
+        get { return (int)(Vitality * 10); }
+    }
+    public override int CurrentHealth
+    {
+        get { return base.CurrentHealth; }
+    }
+
+    // Main Stats
+    public float Vitality
+    {
+        get { return vitality; }
         set { vitality = value; }
     }
-    public float Agility 
-    { 
-        get { return agility; } 
+    public float Agility
+    {
+        get { return agility; }
         set { agility = value; }
     }
-    public float Strength 
-    { 
-        get { return strength; } 
+    public float Strength
+    {
+        get { return strength; }
         set { strength = value; }
     }
-    public float Vigor 
-    { 
-        get { return vigor; } 
+    public float Vigor
+    {
+        get { return vigor; }
         set { vigor = value; }
     }
-    public float Intelligence 
-    { 
-        get { return intelligence; } 
+    public float Intelligence
+    {
+        get { return intelligence; }
         set { intelligence = value; }
     }
-    public float Endurance 
-    { 
-        get { return endurance; } 
+    public float Endurance
+    {
+        get { return endurance; }
         set { endurance = value; }
     }
-    public float Dexterity 
-    { 
-        get { return dexterity; } 
+    public float Dexterity
+    {
+        get { return dexterity; }
         set { dexterity = value; }
     }
-    public float AttackRange 
-    { 
-        get { return attackRange; } 
+
+    // Derived Stats
+    public float AttackRange
+    {
+        get { return attackRange; }
         set { attackRange = value; }
+    }
+    public float Resistance
+    {
+        get { return (Vitality * 0.4f) + (Vigor * 0.2f) + (Endurance * 0.3f); }
+    }
+    public override float MoveSpeed
+    {
+        get { return Agility * 1.5f; }
+    }
+    public float EvadeDistance
+    {
+        get { return Agility * 0.2f; }
+    }
+    public float RawDamage
+    {
+        get { return Strength * 5.0f; }
+    }
+    public float Blocking
+    {
+        get { return Strength * 0.2f; }
+    }
+    public float ComboDelay
+    {
+        get { return 1.0f - (Vigor * 0.02f); }
+    }
+    public float DamageMultiplier
+    {
+        get { return Vigor * 0.1f; }
+    }
+    public float EnemyAttackExecutionTime
+    {
+        get { return 1.0f + (Intelligence * 0.05f); }
+    }
+    public float RangeMissChance
+    {
+        get { return 10.0f - (Intelligence * 0.5f); }
+    }
+    public float MaxSprintMeter
+    {
+        get { return Endurance * 10.0f; }
+    }
+    public float CurrentSprintMeter
+    {
+        get { return currentSprintStamina; }
+        set { currentSprintStamina = value; }
+    }
+    public float MaxBlockMeter
+    {
+        get { return Endurance * 5.0f; }
+    }
+    public float CurrentBlockMeter
+    {
+        get { return currentBlockMeter; }
+        set { currentBlockMeter = value; }
+    }
+    public float Accuracy
+    {
+        get { return Dexterity * 2.0f; }
+    }
+    public float AttackInterval
+    {
+        get { return Dexterity * 0.1f; }
     }
 }

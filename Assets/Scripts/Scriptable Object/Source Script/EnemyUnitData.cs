@@ -9,6 +9,11 @@ public class EnemyUnitData : UnitData
     [SerializeField] private DropItemData data;
     [SerializeField] private float aggroRange;
 
+    public override int MaxHealth { get => base.MaxHealth; set => base.MaxHealth = value; }
+    public override int CurrentHealth { get => base.CurrentHealth; set => base.CurrentHealth = value; }
+    public override float MoveSpeed { get => base.MoveSpeed; set => base.MoveSpeed = value; }
+
+
     public GameObject Drop
     {
         get { return drop; }

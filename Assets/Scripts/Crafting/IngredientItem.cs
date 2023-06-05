@@ -29,7 +29,6 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
         
         if (routine != null) return;
         
-        Debug.Log("Follwing");
         routine = StartCoroutine(_followMouse());
         // refSlot
         // refSlot?.transform.SetAsLastSibling();
@@ -42,14 +41,12 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
         {
             yield return new WaitForEndOfFrame();
             gameObject.transform.position = Input.mousePosition;
-            Debug.Log("transfer");
         }
     }
 
     public void StopFollowMouse()
     {
         isHovering = false;
-        Debug.Log("stop follow");
         StopCoroutine(routine);
         routine = null;
         transform.position = referencePosition;
@@ -61,10 +58,7 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
         
         if (!isHovering)
         {
-            if (refSlot)
-            {
-                refSlot.Remove();
-            }
+            refSlot?.Remove();
             StartFollowMouse();
             return;
         }

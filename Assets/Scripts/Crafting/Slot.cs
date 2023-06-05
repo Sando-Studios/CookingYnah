@@ -26,13 +26,13 @@ namespace Crafting
 
         private IngredientItem Replace(IngredientItem newItem)
         {
-            // inSlot.StartFollowMouse();
             var oldItem = inSlot;
             
-            inSlot = newItem;
+            inSlot.StartFollowMouse();
+            inSlot.refSlot = null; // Might change when closing the crafting tab (might not despawn or shit)
             newItem.refSlot = this;
-
             newItem.transform.position = transform.position;
+            inSlot = newItem;
             
             return oldItem;
         }
@@ -55,11 +55,7 @@ namespace Crafting
             
             // Not Empty (Replace)
 
-            inSlot.StartFollowMouse();
-            inSlot.refSlot = null; // Might change when closing the crafting tab (might not despawn or shit)
-            newItem.refSlot = this;
-            newItem.transform.position = transform.position;
-            inSlot = newItem;
+            Replace(newItem);
 
         }
 

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace Crafting
 {
-    public class Slot : MonoBehaviour
+    public class Slot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField]
         private IngredientItem inSlot;
@@ -18,15 +18,63 @@ namespace Crafting
         {
             return inSlot.associatedIngredient;
         }
+        
+        // Possible actions
+        // Put on empty
+        // Remove Something
+        // Replace
 
-        public IngredientItem Replace(IngredientItem newItem)
+        private IngredientItem Replace(IngredientItem newItem)
         {
             // inSlot.StartFollowMouse();
+            var oldItem = inSlot;
             
             inSlot = newItem;
             newItem.refSlot = this;
-            throw new NotImplementedException();
+
+            newItem.transform.position = transform.position;
+            
+            return oldItem;
         }
 
+        public void Put(IngredientItem newItem)
+        {
+            // Put on empty
+            if (inSlot.associatedIngredient.name == "empty")
+            {
+                inSlot.gameObject.SetActive(false);
+
+                newItem.refSlot = this;
+
+                newItem.transform.position = transform.position;
+
+                inSlot = newItem;
+
+                return;
+            }
+            
+            // Not Empty (Replace)
+
+            inSlot.StartFollowMouse();
+            inSlot.refSlot = null; // Might change when closing the crafting tab (might not despawn or shit)
+            newItem.refSlot = this;
+            newItem.transform.position = transform.position;
+            inSlot = newItem;
+
+        }
+
+        public void Remove()
+        {
+            // inSlot.StartFollowMouse();
+            
+            inSlot.refSlot = null;
+            emptySlot.gameObject.SetActive(true);
+            inSlot = emptySlot.GetComponent<IngredientItem>();
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

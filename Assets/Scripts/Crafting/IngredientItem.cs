@@ -16,6 +16,8 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
     
     public Crafting.Slot refSlot;
 
+    private Crafting.Slot focusedSlot;
+
     private void Start()
     {
         referencePosition = transform.position;
@@ -23,8 +25,15 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
 
     public void StartFollowMouse()
     {
+        isHovering = true;
+        
+        if (routine != null) return;
+        
+        Debug.Log("Follwing");
         routine = StartCoroutine(_followMouse());
-        refSlot?.transform.SetAsLastSibling();
+        // refSlot
+        // refSlot?.transform.SetAsLastSibling();
+        transform.SetAsLastSibling();
     }
 
     private IEnumerator _followMouse()
@@ -33,12 +42,16 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
         {
             yield return new WaitForEndOfFrame();
             gameObject.transform.position = Input.mousePosition;
+            Debug.Log("transfer");
         }
     }
 
     public void StopFollowMouse()
     {
+        isHovering = false;
+        Debug.Log("stop follow");
         StopCoroutine(routine);
+        routine = null;
         transform.position = referencePosition;
     }
 
@@ -48,13 +61,17 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
         
         if (!isHovering)
         {
-            isHovering = true;
+            if (refSlot)
+            {
+                refSlot.Remove();
+            }
             StartFollowMouse();
             return;
         }
-
-        isHovering = false;
+        
         StopFollowMouse();
+
+        focusedSlot?.Put(this);
     }
 
     public void OnPointerMove(PointerEventData eventData)
@@ -66,13 +83,15 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
     {
         var slot = other.gameObject.GetComponent<Crafting.Slot>();
         if (!slot) return;
-        
-        
+
+        focusedSlot = slot;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // other.gameObject.GetComponent<Crafting.Slot>();
-        // Debug.Log("ing");
+        // var slot = other.gameObject.GetComponent<Crafting.Slot>();
+        // if (!slot) return;
+        //
+        // focusedSlot = slot;
     }
 }

@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyDataInstance = new EnemyUnitData();
+        // enemyDataInstance = new EnemyUnitData();
 
         enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>(); 
         enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;

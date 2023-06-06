@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        playerDataInstance = new PlayerUnitData();
+        playerDataInstance = ScriptableObject.CreateInstance<PlayerUnitData>();
         SetInitialValues();
     }
 

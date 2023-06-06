@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyDataInstance = new EnemyUnitData();
+        // enemyDataInstance = new EnemyUnitData();
 
         SetData(10001); // To be called and set by spawner 
 

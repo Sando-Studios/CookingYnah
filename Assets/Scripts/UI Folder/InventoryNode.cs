@@ -3,14 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryNode : MonoBehaviour
+public class InventoryNode : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemQuantityText;
     [SerializeField] private Button useButton;
     private string itemName;
+
+    [SerializeField] private GameObject craftingItemEquivalent;
 
     public static event Action<string> OnUseItem;
 
@@ -39,5 +42,11 @@ public class InventoryNode : MonoBehaviour
         itemNameText.text = itemID;
         itemName = itemID;
         itemQuantityText.text = itemQuantity.ToString();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        // var item = Instantiate(craftingItemEquivalent, eventData.position, Quaternion.identity).GetComponent<IngredientItem>();
+        // item.StartFollowMouse();
     }
 }

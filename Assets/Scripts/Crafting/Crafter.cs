@@ -23,7 +23,18 @@ namespace Crafting
 
         public void CraftToOutput()
         {
+            var ing = GetOutput();
+
+            if (ing.name == "empty")
+            {
+                return;
+            }
+
+            var obj = Instantiate(ing.prefab, output.transform.parent).GetComponent<IngredientItem>();
+
+            // obj.transform.SetAsLastSibling();
             
+            output.Put(obj);
         }
 
         public Ingredient GetOutput()

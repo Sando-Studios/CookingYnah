@@ -27,6 +27,11 @@ public class AttackState : MonsterState
 
         float distanceToTarget = Vector3.Distance(enemy.transform.position, enemy.GetTargetUnit().transform.position);
 
+        if (!enemy.IsAlive())
+        {
+            statManager.ChangeState(enemy, new DeathState(statManager, enemy));
+            return;
+        }
         if (distanceToTarget > enemy.GetEnemyUnitData().AttackRange)
             statManager.ChangeState(enemy, new ChaseState(statManager, enemy));
         else

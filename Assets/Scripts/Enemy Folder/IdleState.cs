@@ -21,6 +21,12 @@ public class IdleState : MonsterState
     {
         animationTimer += deltaTime;
 
+        if (!enemy.IsAlive())
+        {
+            statManager.ChangeState(enemy, new DeathState(statManager, enemy));
+            return;
+        }
+
         if (enemy.GetTargetUnit())
         {
             statManager.ChangeState(enemy, new ChaseState(statManager, enemy));

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum MonsterStates
@@ -8,6 +9,7 @@ public enum MonsterStates
     Attack,
     Chase,
     Patrol,
+    Dead
 }
 public class MonsterStateManager : MonoBehaviour
 {
@@ -44,8 +46,14 @@ public class MonsterStateManager : MonoBehaviour
     {
         var enemyKeys = new List<Enemy>(monsterStates.Keys);
 
-        foreach (Enemy enemy in enemyKeys)
+        foreach (Enemy enemy in monsterStates.Keys.ToList())
         {
+            if (enemy == null || enemy.gameObject == null)
+            {
+                monsterStates.Remove(enemy);
+                continue;
+            }
+
             monsterStates[enemy].Update(Time.deltaTime);
         }
     }

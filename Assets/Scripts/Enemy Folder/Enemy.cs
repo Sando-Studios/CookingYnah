@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     public Image hpBar;
 
     private NavMeshAgent agent;
+    private bool isAlive = true;
 
     private void OnEnable()
     {
@@ -72,6 +73,10 @@ public class Enemy : MonoBehaviour
         enemyDataInstance.Animations = enemyUnitData.Animations;
     }
 
+    public bool IsAlive()
+    {
+        return isAlive;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -128,6 +133,8 @@ public class Enemy : MonoBehaviour
     {
         if (id != enemyDataInstance.UnitID) { return; }
 
+        isAlive = false;
+
         GameObject clone = Instantiate(enemyDataInstance.DropObject, transform.position, Quaternion.identity);
         clone.GetComponent<Item>().SetData(enemyDataInstance.DropData);
 
@@ -155,13 +162,21 @@ public class Enemy : MonoBehaviour
 
     public void ControlAnimations(MonsterStates animationName, bool isPlaying)
     {
-        if (isPlaying)
+        Animation animation = enemyDataInstance.Animations[animationName];
+        if (animation != null)
         {
-            enemyDataInstance.Animations[animationName]?.Play();
+            if (isPlaying)
+            {
+                animation.Play();
+            }
+            else
+            {
+                animation.Stop();
+            }
         }
         else
         {
-            enemyDataInstance.Animations[animationName]?.Stop();
+            Debug.LogWarning("Animation is null for animation name: " + animationName);
         }
     }
 }

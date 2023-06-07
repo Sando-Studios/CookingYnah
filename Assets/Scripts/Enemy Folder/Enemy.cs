@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Asyncoroutine;
 using UnityEngine.AI;
 using AYellowpaper.SerializedCollections;
-using UnityEditor.Animations;
+
 
 public class Enemy : MonoBehaviour
 {

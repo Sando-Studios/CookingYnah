@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Asyncoroutine;
 using UnityEngine.AI;
 using AYellowpaper.SerializedCollections;
+using System.Reflection;
 
 
 public class Enemy : MonoBehaviour
@@ -154,20 +155,13 @@ public class Enemy : MonoBehaviour
 
     public void ControlAnimations(MonsterStates animationName, bool isPlaying)
     {
-        SerializedDictionary<MonsterStates, Animation> clips = enemyDataInstance.Animations;
-
-        Animation aniClip;
-        clips.TryGetValue(animationName, out aniClip);
-
-        if (aniClip == null) return;
-
         if (isPlaying)
         {
-            aniClip.Play();
+            enemyDataInstance.Animations[animationName]?.Play();
         }
         else
         {
-            aniClip.Stop();
+            enemyDataInstance.Animations[animationName]?.Stop();
         }
     }
 }

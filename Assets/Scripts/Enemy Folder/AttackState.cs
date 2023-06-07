@@ -12,8 +12,7 @@ public class AttackState : MonsterState
 
     public override void Enter()
     {
-        attackTimer = 0f;
-        hasAttacked = false;
+        ResetVariables();
 
         enemy.ControlAnimations(MonsterStates.Attack, true);
     }
@@ -36,12 +35,19 @@ public class AttackState : MonsterState
 
             if (!hasAttacked && attackTimer >= enemy.GetEnemyUnitData().AttackSpeed)
             {
-                enemy.DealDamage();
                 hasAttacked = true;
+                enemy.DealDamage();
+
+                ResetVariables();
             }
         }
     }
 
+    void ResetVariables()
+    {
+        hasAttacked = false;
+        attackTimer = 0f;
+    }
     public override void Exit()
     {
         enemy.ControlAnimations(MonsterStates.Attack, true);

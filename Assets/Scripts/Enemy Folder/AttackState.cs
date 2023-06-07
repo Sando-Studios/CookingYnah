@@ -15,7 +15,7 @@ public class AttackState : MonsterState
         attackTimer = 0f;
         hasAttacked = false;
 
-        enemy.PlayAttackAnimation();
+        enemy.ControlAnimations(MonsterStates.Attack, true);
     }
 
     public override void Update(float deltaTime)
@@ -44,6 +44,6 @@ public class AttackState : MonsterState
 
     public override void Exit()
     {
-        enemy.StopAttackAnimation();
+        enemy.ControlAnimations(MonsterStates.Attack, true);
     }
 }

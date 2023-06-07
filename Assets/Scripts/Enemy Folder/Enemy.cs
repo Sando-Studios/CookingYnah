@@ -5,10 +5,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using Asyncoroutine;
 using UnityEngine.AI;
+using AYellowpaper.SerializedCollections;
+using UnityEditor.Animations;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Unit Data")]
+    [Header("Unit DropData")]
     [SerializeField] private EnemyUnitData enemyUnitData;
 
     private EnemyUnitData enemyDataInstance;
@@ -19,10 +21,11 @@ public class Enemy : MonoBehaviour
     [Header("SFX")]
     public Material redMaterial;
     public Material greenMaterial;
-    
 
     [Header("Health UI")]
     public Image hpBar;
+
+    private NavMeshAgent agent;
 
     private void OnEnable()
     {
@@ -41,17 +44,20 @@ public class Enemy : MonoBehaviour
         SetData(10001); // To be called and set by spawner 
 
         MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
+        agent = GetComponent<NavMeshAgent>();
+
     }
 
     public void SetData(int enemyID)
     {
+        enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
         enemyDataInstance.UnitID = enemyID;
         enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
         enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
         enemyDataInstance.UnitName = enemyUnitData.UnitName;
         enemyDataInstance.MoveSpeed = enemyUnitData.MoveSpeed;
-        enemyDataInstance.Drop = enemyUnitData.Drop;
-        enemyDataInstance.Data = enemyUnitData.Data;
+        enemyDataInstance.DropObject = enemyUnitData.DropObject;
+        enemyDataInstance.DropData = enemyUnitData.DropData;
         enemyDataInstance.AggroRange = enemyUnitData.AggroRange;
         enemyDataInstance.BasicAttackDamage = enemyUnitData.BasicAttackDamage;
         enemyDataInstance.ChaseRange = enemyUnitData.ChaseRange;
@@ -61,11 +67,13 @@ public class Enemy : MonoBehaviour
         enemyDataInstance.AttackSpeed = enemyUnitData.AttackSpeed;
 
         aggroTrigger.radius = enemyDataInstance.AggroRange;
+
+        enemyDataInstance.Animations = enemyUnitData.Animations;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             targetUnit = other.gameObject;
             aggroTrigger.enabled = false;
@@ -80,6 +88,13 @@ public class Enemy : MonoBehaviour
         float normalized = a / b;
 
         hpBar.fillAmount = normalized;
+
+        if (agent.hasPath)
+        {
+            Vector3 direction = agent.velocity.normalized;
+
+            //For the animation direction(to be added)
+        }
     }
 
     public void ResetAggro()
@@ -110,10 +125,10 @@ public class Enemy : MonoBehaviour
 
     void Death(int id)
     {
-        if(id != enemyDataInstance.UnitID) { return; }
+        if (id != enemyDataInstance.UnitID) { return; }
 
-        GameObject clone = Instantiate(enemyDataInstance.Drop, transform.position, Quaternion.identity);
-        clone.GetComponent<Item>().SetData(enemyDataInstance.Data);
+        GameObject clone = Instantiate(enemyDataInstance.DropObject, transform.position, Quaternion.identity);
+        clone.GetComponent<Item>().SetData(enemyDataInstance.DropData);
 
         transform.GetComponent<NavMeshAgent>().enabled = false;
 
@@ -137,45 +152,22 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void PlayIdleAnimation()
+    public void ControlAnimations(MonsterStates animationName, bool isPlaying)
     {
-        // Idle.Play()
+        SerializedDictionary<MonsterStates, Animation> clips = enemyDataInstance.Animations;
+
+        Animation aniClip;
+        clips.TryGetValue(animationName, out aniClip);
+
+        if (aniClip == null) return;
+
+        if (isPlaying)
+        {
+            aniClip.Play();
+        }
+        else
+        {
+            aniClip.Stop();
+        }
     }
-
-    public void StopIdleAnimation()
-    {
-        // Idle.Stop()
-    }
-
-    public void PlayPatrolAnimation()
-    {
-        // Walk.Play()
-    }
-
-    public void StopPatrolAnimation()
-    {
-        // Walk.Stop()
-    }
-
-    public void PlayChaseAnimation()
-    {
-        // Run.Play()
-    }
-
-    public void StopChaseAnimation()
-    {
-        // Run.Stop()
-    }
-
-    public void PlayAttackAnimation()
-    {
-        // Attack.Play()
-    }
-
-    public void StopAttackAnimation()
-    {
-        // Attack.Stop()
-    }
-
-
 }

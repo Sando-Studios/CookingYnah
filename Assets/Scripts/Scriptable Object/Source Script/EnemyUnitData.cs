@@ -1,3 +1,5 @@
+using AYellowpaper.SerializedCollections;
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +9,7 @@ public class EnemyUnitData : UnitData
 {
     [SerializeField] private int unitID = -1;
     [SerializeField] private GameObject dropPrefab;
-    [SerializeField] private DropItemData data;
+    [SerializeField] private DropItemData dropData;
     [SerializeField] private int basicAttackDmg;
 
     [Header("Speeds")]
@@ -20,20 +22,30 @@ public class EnemyUnitData : UnitData
     [SerializeField] private float chaseRange;
     [SerializeField] private float attackRange;
 
+    [Header("Animations")]
+    [SerializeField]
+    private SerializedDictionary<MonsterStates, Animation> animationClips;
+
     public int UnitID
     {
         get { return unitID; }
         set { unitID = value; }
     }
-    public GameObject Drop
+    public GameObject DropObject
     {
         get { return dropPrefab; }
         set { dropPrefab = value; }
     }
-    public DropItemData Data
+    public DropItemData DropData
     {
-        get { return data; }
-        set { data = value; }
+        get { return dropData; }
+        set { dropData = value; }
+    }
+
+    public SerializedDictionary<MonsterStates, Animation> Animations
+    {
+        get { return animationClips; }
+        set { animationClips = value; }
     }
 
     public int BasicAttackDamage
@@ -42,9 +54,9 @@ public class EnemyUnitData : UnitData
         set { basicAttackDmg = value; }
     }
 
-    public float AggroRange 
-    { 
-        get { return aggroRange; } 
+    public float AggroRange
+    {
+        get { return aggroRange; }
         set { aggroRange = value; }
     }
     public float ChaseRange

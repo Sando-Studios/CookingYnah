@@ -6,7 +6,7 @@ using Asyncoroutine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Unit Data")]
+    [Header("Unit DropData")]
     [SerializeField] private PlayerUnitData playerUnitData;
     private PlayerUnitData playerDataInstance;
     private Rigidbody rb;

@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
+public enum MonsterStates
+{
+    Idle,
+    Attack,
+    Chase,
+    Patrol,
+}
 public class MonsterStateManager : MonoBehaviour
 {
     private static MonsterStateManager instance;

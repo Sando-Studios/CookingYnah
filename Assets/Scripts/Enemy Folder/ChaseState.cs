@@ -17,7 +17,7 @@ public class ChaseState : MonsterState
     {
         navMeshAgent.speed = enemy.GetEnemyUnitData().ChaseSpeed;
 
-        enemy.PlayChaseAnimation();
+        enemy.ControlAnimations(MonsterStates.Chase, true);
     }
 
     public override void Update(float deltaTime)
@@ -40,6 +40,6 @@ public class ChaseState : MonsterState
 
     public override void Exit()
     {
-        enemy.StopChaseAnimation();
+        enemy.ControlAnimations(MonsterStates.Chase, false);
     }
 }

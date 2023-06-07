@@ -16,7 +16,7 @@ public class IdleState : MonsterState
         animationDuration = Random.Range(1f, 4f);
         animationTimer = 0f;
 
-        enemy.PlayIdleAnimation();
+        enemy.ControlAnimations(MonsterStates.Idle, true);
     }
 
     public override void Update(float deltaTime)
@@ -37,6 +37,6 @@ public class IdleState : MonsterState
 
     public override void Exit()
     {
-        enemy.StopIdleAnimation();
+        enemy.ControlAnimations(MonsterStates.Idle, false);
     }
 }

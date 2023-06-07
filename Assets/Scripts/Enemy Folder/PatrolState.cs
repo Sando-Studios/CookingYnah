@@ -19,7 +19,7 @@ public class PatrolState : MonsterState
 
         agent.speed = enemy.GetEnemyUnitData().PatrolSpeed;
 
-        enemy.PlayPatrolAnimation();
+        enemy.ControlAnimations(MonsterStates.Patrol, true);
     }
 
     public override void Update(float deltaTime)
@@ -38,7 +38,7 @@ public class PatrolState : MonsterState
 
     public override void Exit()
     {
-        enemy.StopPatrolAnimation();
+        enemy.ControlAnimations(MonsterStates.Patrol, false);
     }
 
     private Vector3 GetRandomPatrolPoint()

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BuffManager : MonoBehaviour
@@ -36,28 +35,67 @@ public class BuffManager : MonoBehaviour
 
     public void ApplyBuff(TargetStat stat, int value)
     {
-        if (stat == TargetStat.VitStat) player.Vitality += value;
-        else if (stat == TargetStat.AgiStat) player.Agility += value;
-        else if (stat == TargetStat.StrStat) player.Strength += value;
-        else if (stat == TargetStat.VigStat) player.Vigor += value;
-        else if (stat == TargetStat.IntStat) player.Intelligence += value;
-        else if (stat == TargetStat.EndStat) player.Endurance += value;
-        else if (stat == TargetStat.DexStat) player.Dexterity += value;
-        else Debug.Log("Invalid stat: " + stat);
+        var s = stat;
+        switch(s){
+            case TargetStat.VitStat:
+                player.Vitality += value;
+                break;
+            case TargetStat.AgiStat:
+                player.Agility += value;
+                break;
+            case TargetStat.StrStat:
+                player.Strength += value;
+                break;
+            case TargetStat.VigStat:
+                player.Vigor += value;
+                break;
+            case TargetStat.IntStat:
+                player.Intelligence += value;
+                break;
+            case TargetStat.EndStat:
+                player.Endurance += value;
+                break;
+            case TargetStat.DexStat:
+                player.Dexterity += value;
+                break;
+            default:
+                Debug.Log("Invalid stat: " + stat);
+                break;
+        }
 
         UIManager.instance.UpdateStatsUI();
     }
 
     public void RemoveBuff(TargetStat stat, int value)
     {
-        if (stat == TargetStat.VitStat) player.Vitality -= value;
-        else if (stat == TargetStat.AgiStat) player.Agility -= value;
-        else if (stat == TargetStat.StrStat) player.Strength -= value;
-        else if (stat == TargetStat.VigStat) player.Vigor -= value;
-        else if (stat == TargetStat.IntStat) player.Intelligence -= value;
-        else if (stat == TargetStat.EndStat) player.Endurance -= value;
-        else if (stat == TargetStat.DexStat) player.Dexterity -= value;
-        else Debug.Log("Invalid stat: " + stat);
+        var s = stat;
+        switch (s)
+        {
+            case TargetStat.VitStat:
+                player.Vitality -= value;
+                break;
+            case TargetStat.AgiStat:
+                player.Agility -= value;
+                break;
+            case TargetStat.StrStat:
+                player.Strength -= value;
+                break;
+            case TargetStat.VigStat:
+                player.Vigor -= value;
+                break;
+            case TargetStat.IntStat:
+                player.Intelligence -= value;
+                break;
+            case TargetStat.EndStat:
+                player.Endurance -= value;
+                break;
+            case TargetStat.DexStat:
+                player.Dexterity -= value;
+                break;
+            default:
+                Debug.Log("Invalid stat: " + stat);
+                break;
+        }
 
         UIManager.instance.UpdateStatsUI();
     }

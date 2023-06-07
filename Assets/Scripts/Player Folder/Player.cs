@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
+        inventory = GetComponent<PlayerInventory>();
+
         UIManager.instance.UpdateHpUI();
         BuffManager.instance.SetPlayer(playerDataInstance);
     }

@@ -24,6 +24,12 @@ public class PatrolState : MonsterState
 
     public override void Update(float deltaTime)
     {
+        if (!enemy.IsAlive())
+        {
+            statManager.ChangeState(enemy, new DeathState(statManager, enemy));
+            return;
+        }
+
         if (enemy.GetTargetUnit())
         {
             statManager.ChangeState(enemy, new ChaseState(statManager, enemy));

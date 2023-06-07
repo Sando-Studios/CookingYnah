@@ -1,0 +1,3 @@
+﻿pub async fn boot() {
+    
+}

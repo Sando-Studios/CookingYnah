@@ -21,6 +21,16 @@ namespace Crafting
             Debug.Log(GetOutput() != empty);
         }
 
+        private void Update()
+        {
+            Thing();
+        }
+
+        private unsafe void Thing()
+        {
+            CsBindgen.TwitchRustRaw.init_runtime();
+        }
+
         public void CraftToOutput()
         {
             var ing = GetOutput();

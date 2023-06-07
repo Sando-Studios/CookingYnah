@@ -9,6 +9,8 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
+tokio = { version = "1.28.2", features = ["full"] }
+twitch-irc = "5.0.0"
 
 [build-dependencies]
 csbindgen = "1.7.0"

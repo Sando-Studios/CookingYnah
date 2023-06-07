@@ -34,9 +34,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endText;
     [SerializeField] private TextMeshProUGUI dexText;
 
-    [SerializeField] private TextMeshProUGUI itemUIText;
     [SerializeField] private GameObject itemNodePrefab;
-    [SerializeField] private GameObject itemPannel;
+    [SerializeField] private GameObject itemPanel;
 
 
     private void Start()
@@ -64,18 +63,18 @@ public class UIManager : MonoBehaviour
     {
         List<InventorySlot> list = playerInventory.GetInventoryList();
 
-        if (itemPannel.transform.childCount > 0)
+        if (itemPanel.transform.childCount > 0)
         {
-            for (int i = 0; i < itemPannel.transform.childCount; i++)
+            for (int i = 0; i < itemPanel.transform.childCount; i++)
             {
-                Destroy(itemPannel.transform.GetChild(i).gameObject);
+                Destroy(itemPanel.transform.GetChild(i).gameObject);
             }
         }
 
         foreach (InventorySlot slot in list)
         {
             GameObject clone = Instantiate(itemNodePrefab, transform);
-            clone.transform.SetParent(itemPannel.transform);
+            clone.transform.SetParent(itemPanel.transform);
             clone.transform.SetAsLastSibling();
             clone.GetComponent<InventoryNode>().SetData(slot.itemName, slot.itemQuantity);
         }

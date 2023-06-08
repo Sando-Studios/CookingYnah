@@ -14,7 +14,7 @@ public enum TargetStat
     DexStat,
 }
 
-[CreateAssetMenu(fileName = "NewDropItem", menuName = "Item/Drop")]
+[CreateAssetMenu(fileName = "NewDropItem", menuName = "Item/DropObject")]
 public class DropItemData : ScriptableObject
 {
     [SerializeField] private string itemName;

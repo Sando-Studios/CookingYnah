@@ -1,48 +1,85 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Asyncoroutine;
+using UnityEngine.AI;
+using AYellowpaper.SerializedCollections;
+using System.Reflection;
+
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Unit Data")]
+    [Header("Unit DropData")]
     [SerializeField] private EnemyUnitData enemyUnitData;
 
     private EnemyUnitData enemyDataInstance;
     [SerializeField] private SphereCollider aggroTrigger;
     [SerializeField] private GameObject targetUnit;
-
-    private bool isAttacking = false;
-    private bool canAttack = true;
+    [SerializeField] private Vector3 home;
 
     [Header("SFX")]
     public Material redMaterial;
     public Material greenMaterial;
-    
 
     [Header("Health UI")]
     public Image hpBar;
+
+    private NavMeshAgent agent;
+    private bool isAlive = true;
+
+    private void OnEnable()
+    {
+        DamageHandler.OnEnemyUnitDeath += Death;
+    }
+    private void OnDisable()
+    {
+        DamageHandler.OnEnemyUnitDeath -= Death;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         // enemyDataInstance = new EnemyUnitData();
 
-        enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>(); 
+        SetData(10001); // To be called and set by spawner 
+
+        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
+        agent = GetComponent<NavMeshAgent>();
+
+    }
+
+    public void SetData(int enemyID)
+    {
+        enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
+        enemyDataInstance.UnitID = enemyID;
         enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
         enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
         enemyDataInstance.UnitName = enemyUnitData.UnitName;
         enemyDataInstance.MoveSpeed = enemyUnitData.MoveSpeed;
-        enemyDataInstance.Drop = enemyUnitData.Drop;
-        enemyDataInstance.Data = enemyUnitData.Data;
+        enemyDataInstance.DropObject = enemyUnitData.DropObject;
+        enemyDataInstance.DropData = enemyUnitData.DropData;
         enemyDataInstance.AggroRange = enemyUnitData.AggroRange;
+        enemyDataInstance.BasicAttackDamage = enemyUnitData.BasicAttackDamage;
+        enemyDataInstance.ChaseRange = enemyUnitData.ChaseRange;
+        enemyDataInstance.AttackRange = enemyUnitData.AttackRange;
+        enemyDataInstance.PatrolSpeed = enemyUnitData.PatrolSpeed;
+        enemyDataInstance.ChaseSpeed = enemyUnitData.ChaseSpeed;
+        enemyDataInstance.AttackSpeed = enemyUnitData.AttackSpeed;
 
         aggroTrigger.radius = enemyDataInstance.AggroRange;
+
+        enemyDataInstance.Animations = enemyUnitData.Animations;
     }
 
+    public bool IsAlive()
+    {
+        return isAlive;
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             targetUnit = other.gameObject;
             aggroTrigger.enabled = false;
@@ -58,73 +95,88 @@ public class Enemy : MonoBehaviour
 
         hpBar.fillAmount = normalized;
 
-        if (targetUnit)
+        if (agent.hasPath)
         {
-            float distanceToTarget = Vector3.Distance(transform.position, targetUnit.transform.position);
-            if (distanceToTarget > 20) 
-            { 
-                ResetAggro(); 
-            }
-            else if (distanceToTarget <= 5 && canAttack)
-            {
-                StartCoroutine(Attack());
-            }
+            Vector3 direction = agent.velocity.normalized;
+
+            //For the animation direction(to be added)
         }
     }
 
-    void ResetAggro()
+    public void ResetAggro()
     {
         targetUnit = null;
         aggroTrigger.enabled = true;
-        isAttacking = false;
     }
 
-    IEnumerator Attack()
+    public Vector3 GetHome()
     {
-        canAttack = false;
-        isAttacking = true;
-
-        yield return new WaitForSeconds(3.0f);
-
-        if (targetUnit)
-        {  
-            float distanceToTarget = Vector3.Distance(transform.position, targetUnit.transform.position);
-
-            if (distanceToTarget < 5)
-            {
-                targetUnit.GetComponent<Player>().TakeDamage(1);
-            }
-        }
-        canAttack = true;
+        return home;
     }
-
-    public void TakeDamage(int damageValue)// Move to a seperate damage handler maybe
+    public GameObject GetTargetUnit()
     {
-        enemyDataInstance.CurrentHealth -= damageValue;
-        StartCoroutine(Hit());
-
-        if (enemyDataInstance.CurrentHealth <= 0)
-        {
-            Death();
-        }
+        return targetUnit;
+    }
+    public EnemyUnitData GetEnemyUnitData()
+    {
+        return enemyDataInstance;
     }
 
-    IEnumerator Hit()// To be replaced by animations
+    public async void Hit()// To be replaced by animations 
     {
         GetComponentInChildren<Renderer>().material = redMaterial;
-        yield return new WaitForSeconds(0.5f);
+        await new WaitForSeconds(0.5f);
         GetComponentInChildren<Renderer>().material = greenMaterial;
     }
 
-    void Death()
+    void Death(int id)
     {
-        GameObject clone = Instantiate(enemyDataInstance.Drop, transform.position, Quaternion.identity);
-        clone.GetComponent<Item>().SetData(enemyDataInstance.Data);
+        if (id != enemyDataInstance.UnitID) { return; }
+
+        isAlive = false;
+
+        GameObject clone = Instantiate(enemyDataInstance.DropObject, transform.position, Quaternion.identity);
+        clone.GetComponent<Item>().SetData(enemyDataInstance.DropData);
+
+        transform.GetComponent<NavMeshAgent>().enabled = false;
 
         Vector3 position = transform.position;
         position.y -= 40f;
         transform.position = position;
 
         Destroy(gameObject, 3.0f);
+    }
+
+    public void DealDamage()
+    {
+        if (targetUnit)
+        {
+            float distanceToTarget = Vector3.Distance(transform.position, targetUnit.transform.position);
+
+            if (distanceToTarget <= enemyDataInstance.AttackRange)
+            {
+                DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
+            }
+        }
+    }
+
+    public void ControlAnimations(MonsterStates animationName, bool isPlaying)
+    {
+        Animation animation = enemyDataInstance.Animations[animationName];
+        if (animation != null)
+        {
+            if (isPlaying)
+            {
+                animation.Play();
+            }
+            else
+            {
+                animation.Stop();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Animation is null for animation name: " + animationName);
+        }
     }
 }

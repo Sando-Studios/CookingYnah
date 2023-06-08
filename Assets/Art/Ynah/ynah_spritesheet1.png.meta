@@ -1,0 +1,531 @@
+fileFormatVersion: 2
+guid: 0e2eab991fcb45b468332a9ebb90d929
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ynah_spritesheet1_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 550
+        width: 270
+        height: 78
+      alignment: 9
+      pivot: {x: 0.38764614, y: 0.47119063}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 770d9e1073d0c4849b508d88c531628b
+      internalID: 1943891053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_1
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 547
+        width: 201
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b5564ca7ab3a804ba51c217118f845c
+      internalID: 609549289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_2
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 517
+        width: 230
+        height: 111
+      alignment: 9
+      pivot: {x: 0.5390795, y: 0.58097553}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3b07942104df564ca5a818d618222d5
+      internalID: -1489222743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_3
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 525
+        width: 80
+        height: 108
+      alignment: 9
+      pivot: {x: 0.47191086, y: 0.70806265}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 883468a612f9da340be7fd71527dd6f7
+      internalID: 594342372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_4
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 522
+        width: 73
+        height: 125
+      alignment: 9
+      pivot: {x: 0.36148196, y: 0.7696489}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c60a3caa2f219a34f9b3175085fdff7a
+      internalID: 25492301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_5
+      rect:
+        serializedVersion: 2
+        x: 1150
+        y: 538
+        width: 54
+        height: 89
+      alignment: 9
+      pivot: {x: 0.45838758, y: 0.66411185}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff138eb413f079c4e812bb1540526dc9
+      internalID: 658148800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_6
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 298
+        width: 209
+        height: 189
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee9e18502870a86449718c754347d962
+      internalID: -1489039900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_7
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 301
+        width: 207
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10fe01da792189b43bcd798e768b2f21
+      internalID: -1462602102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_8
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 304
+        width: 195
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 072d27fb42e00f048bbe89c89b880069
+      internalID: 919298741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_9
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 309
+        width: 200
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a605cad102bfcfc49b8688a9307fca21
+      internalID: -1378117116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_10
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 312
+        width: 209
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a445c8dde54fd964f9d80ae135ce9143
+      internalID: 1309682692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_11
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 313
+        width: 207
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cec1b261b38d0e47bc9c1f418717350
+      internalID: 425318682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_12
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 81
+        width: 157
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1295cc3484a5e9442b95214df3ac4a9c
+      internalID: 1625287240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_13
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 79
+        width: 165
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2526e3fe6ebe2ff489b82045d2207de0
+      internalID: 2106129113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_14
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 86
+        width: 160
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 715d24d046e34714994189ca46feeb8a
+      internalID: -424773962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_15
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 79
+        width: 167
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f81a0c8bf59388c4c8013002b488cc9b
+      internalID: 679462059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_16
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 81
+        width: 157
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bfc10ef1f7401149b5b6cea173a3840
+      internalID: 1046998275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ynah_spritesheet1_17
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 26
+        width: 98
+        height: 242
+      alignment: 9
+      pivot: {x: 0.5, y: 0.27714926}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92e81a980eb8c4f43ac1442d6f8b1331
+      internalID: 459544668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 7bf4e1a5477a31c45823a8d050bd5e23
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ynah_spritesheet1_15: 679462059
+      ynah_spritesheet1_11: 425318682
+      ynah_spritesheet1_12: 1625287240
+      ynah_spritesheet1_17: 459544668
+      ynah_spritesheet1_5: 658148800
+      ynah_spritesheet1_1: 609549289
+      ynah_spritesheet1_3: 594342372
+      ynah_spritesheet1_10: 1309682692
+      ynah_spritesheet1_8: 919298741
+      ynah_spritesheet1_14: -424773962
+      ynah_spritesheet1_4: 25492301
+      ynah_spritesheet1_6: -1489039900
+      ynah_spritesheet1_0: 1943891053
+      ynah_spritesheet1_16: 1046998275
+      ynah_spritesheet1_7: -1462602102
+      ynah_spritesheet1_9: -1378117116
+      ynah_spritesheet1_2: -1489222743
+      ynah_spritesheet1_13: 2106129113
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -7,6 +7,7 @@ edition = "2021"
 
 [lib]
 crate-type = ["cdylib"]
+name = "libtwitch_irc"
 
 [dependencies]
 tokio = { version = "1.28.2", features = ["full"] }

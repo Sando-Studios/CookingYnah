@@ -11,7 +11,7 @@ namespace CsBindgen
 {
     internal static unsafe partial class TwitchRustRaw
     {
-        const string __DllName = "libtwitch-irc";
+        const string __DllName = "Assets/Natives/libtwitch-irc/target/release/libtwitch_irc.dll";
 
         [DllImport(__DllName, EntryPoint = "init_runtime", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void* init_runtime();
@@ -20,7 +20,7 @@ namespace CsBindgen
         public static extern void free_handle(void* handle);
 
         [DllImport(__DllName, EntryPoint = "join_channel", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void join_channel(void* ctx, byte* s_ptr, int s_len);
+        public static extern void join_channel(void* ctx, ushort* s_ptr, int s_len);
 
 
     }

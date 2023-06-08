@@ -28,7 +28,8 @@ namespace Crafting
 
         private unsafe void Thing()
         {
-            CsBindgen.TwitchRustRaw.init_runtime();
+            var rn = CsBindgen.TwitchRustRaw.init_runtime();
+            CsBindgen.TwitchRustRaw.free_handle(rn);
         }
 
         public void CraftToOutput()

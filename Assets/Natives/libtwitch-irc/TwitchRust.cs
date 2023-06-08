@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace CsBindgen
+namespace RustFFI
 {
     internal static unsafe partial class TwitchRustRaw
     {
@@ -21,6 +21,12 @@ namespace CsBindgen
 
         [DllImport(__DllName, EntryPoint = "join_channel", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void join_channel(void* ctx, ushort* s_ptr, int s_len);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate void register_chat_callback_callback_delegate();
+
+        [DllImport(__DllName, EntryPoint = "register_chat_callback", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern void register_chat_callback(void* ctx, register_chat_callback_callback_delegate callback);
 
 
     }

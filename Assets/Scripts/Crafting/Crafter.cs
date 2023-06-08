@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AOT;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
@@ -28,8 +29,15 @@ namespace Crafting
 
         private unsafe void Thing()
         {
-            var rn = CsBindgen.TwitchRustRaw.init_runtime();
-            CsBindgen.TwitchRustRaw.free_handle(rn);
+            var rn = RustFFI.TwitchRustRaw.init_runtime();
+            RustFFI.TwitchRustRaw.free_handle(rn);
+            RustFFI.TwitchRustRaw.register_chat_callback(rn, Test);
+        }
+
+        [MonoPInvokeCallback(typeof(RustFFI.TwitchRustRaw.register_chat_callback_callback_delegate))]
+        private static void Test()
+        {
+            
         }
 
         public void CraftToOutput()

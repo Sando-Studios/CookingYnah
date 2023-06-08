@@ -15,17 +15,17 @@ public class UnitData : ScriptableObject
         get { return unitName; } 
         set { unitName = value; }
     }
-    public int MaxHealth 
+    public virtual int MaxHealth 
     { 
         get { return maxHealth; } 
         set { maxHealth = value; }
     }
-    public int CurrentHealth 
+    public virtual int CurrentHealth 
     { 
         get { return currentHealth; } 
         set { currentHealth = value; }
     }
-    public float MoveSpeed 
+    public virtual float MoveSpeed 
     {
         get { return moveSpeed; } 
         set { moveSpeed = value; }

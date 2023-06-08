@@ -41,6 +41,10 @@ public class EnemyUnitData : UnitData
         set { dropData = value; }
     }
 
+    public override int MaxHealth { get => base.MaxHealth; set => base.MaxHealth = value; }
+    public override int CurrentHealth { get => base.CurrentHealth; set => base.CurrentHealth = value; }
+    public override float MoveSpeed { get => base.MoveSpeed; set => base.MoveSpeed = value; }
+
     public SerializedDictionary<MonsterStates, Animation> Animations
     {
         get { return animationClips; }

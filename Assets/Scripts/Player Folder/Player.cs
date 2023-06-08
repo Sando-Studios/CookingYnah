@@ -6,7 +6,7 @@ using Asyncoroutine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Unit Data")]
+    [Header("Unit DropData")]
     [SerializeField] private PlayerUnitData playerUnitData;
     private PlayerUnitData playerDataInstance;
     private Rigidbody rb;
@@ -21,13 +21,13 @@ public class Player : MonoBehaviour
     public Material redMaterial;
     public Material greenMaterial;
 
-    [Header("Invetory")]
-    [SerializeField] private PlayerInventory invetory;
+    [Header("Inventory")]
+    [SerializeField] private PlayerInventory inventory;
 
     private void Awake()
     {
-        playerDataInstance = new PlayerUnitData();
-        SetInitalValues();
+        playerDataInstance = ScriptableObject.CreateInstance<PlayerUnitData>();
+        SetInitialValues();
     }
 
     // Start is called before the first frame update
@@ -35,11 +35,13 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
+        inventory = GetComponent<PlayerInventory>();
+
         UIManager.instance.UpdateHpUI();
         BuffManager.instance.SetPlayer(playerDataInstance);
     }
 
-    void SetInitalValues()
+    void SetInitialValues()
     {
         playerDataInstance.MaxHealth = playerUnitData.MaxHealth;
         playerDataInstance.CurrentHealth = playerDataInstance.MaxHealth;
@@ -59,7 +61,8 @@ public class Player : MonoBehaviour
     {
         if (targetUnit)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && canAttack && targetUnit && !isAttacking)
+            
+            if (Input.GetButtonDown("Fire1") && canAttack && targetUnit && !isAttacking)
             {
                 isAttacking = true;
                 Attack();
@@ -101,7 +104,7 @@ public class Player : MonoBehaviour
     {
         playerDataInstance.CurrentHealth -= damageValue;
         UIManager.instance.UpdateHpUI();
-        StartCoroutine(Hit());
+        Hit();
     }
 
 
@@ -111,7 +114,7 @@ public class Player : MonoBehaviour
         
         if (targetUnit)
         {
-            targetUnit.GetComponent<Enemy>().TakeDamage(1);
+            DamageHandler.ApplyDamage(targetUnit.GetComponent<Enemy>(), 1);
         }
         await new WaitForSeconds(3.0f);
 
@@ -119,16 +122,16 @@ public class Player : MonoBehaviour
         canAttack = true;
     }
 
-    IEnumerator Hit()// To be replaced by animations
+    public async void Hit()// To be replaced by animations
     {
         GetComponent<Renderer>().material = redMaterial;
-        yield return new WaitForSeconds(0.5f);
+        await new WaitForSeconds(0.5f);
         GetComponent<Renderer>().material = greenMaterial;
     }
 
     public PlayerInventory GetInventory()
     {
-        return invetory;
+        return inventory;
     }
     public PlayerUnitData GetPlayerData()
     {

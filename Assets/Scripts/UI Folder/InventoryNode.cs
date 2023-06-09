@@ -10,6 +10,7 @@ public class InventoryNode : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemQuantityText;
+    [SerializeField] private Image itemIconImage;
     [SerializeField] private Button useButton;
     private string itemName;
 
@@ -37,11 +38,12 @@ public class InventoryNode : MonoBehaviour, IPointerDownHandler
         OnUseItem?.Invoke(itemName);
     }
 
-    public void SetData(string itemID, int itemQuantity)
+    public void SetData(string itemID, int itemQuantity, Sprite itemSprite)
     {
         itemNameText.text = itemID;
         itemName = itemID;
         itemQuantityText.text = itemQuantity.ToString();
+        itemIconImage.sprite = itemSprite;
     }
 
     public void OnPointerDown(PointerEventData eventData)

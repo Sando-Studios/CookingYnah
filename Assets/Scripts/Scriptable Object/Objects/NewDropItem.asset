@@ -20,7 +20,7 @@ MonoBehaviour:
       Value: 10
     - Key: 3
       Value: 10
-  tempBuffDurration: 3
+  tempBuffDuration: 5
   TempBuffsDictionary:
     _serializedList:
     - Key: 6

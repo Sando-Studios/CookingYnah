@@ -5,13 +5,14 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     private string itemName;
-    private DropItemData itemData;
+    private ItemData itemData;
+    private Sprite itemSprite; 
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    public void SetData(DropItemData data)
+    public void SetData(ItemData data)
     {
         itemData = data;
-
+        itemSprite = itemData.SpriteToRender;
         itemName = itemData.Name;
         spriteRenderer.sprite = itemData.SpriteToRender;
     }
@@ -19,7 +20,7 @@ public class Item : MonoBehaviour
     {
         return itemName;
     }
-    public DropItemData GetItemBuffData()
+    public ItemData GetItemBuffData()
     {
         return itemData;
     }

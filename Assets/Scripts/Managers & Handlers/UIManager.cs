@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     private PlayerUnitData playerData;
     private PlayerInventory playerInventory;
 
-    [Header("Stats Texts")]
+    [Header("Stats UI")]
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private TextMeshProUGUI vitText;
     [SerializeField] private TextMeshProUGUI agiText;
@@ -34,8 +34,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endText;
     [SerializeField] private TextMeshProUGUI dexText;
 
+    [Header("Inventory UI")]
     [SerializeField] private GameObject itemNodePrefab;
     [SerializeField] private GameObject itemPanel;
+    [SerializeField] private GameObject itemSlotParent;
 
 
     private void Start()
@@ -44,6 +46,20 @@ public class UIManager : MonoBehaviour
         playerInventory = player.GetInventory();
         UpdateStatsUI();
     }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Inventory"))
+        {
+            itemPanel.SetActive(!itemPanel.activeInHierarchy);
+            UpdateInventoryUI();
+        }
+        if (Input.GetButtonDown("Crafting"))
+        {
+
+        }
+    }
+
     public void UpdateHpUI()
     {
         hpText.text = playerData.CurrentHealth.ToString() + " / " + playerData.MaxHealth.ToString();
@@ -63,20 +79,20 @@ public class UIManager : MonoBehaviour
     {
         List<InventorySlot> list = playerInventory.GetInventoryList();
 
-        if (itemPanel.transform.childCount > 0)
+        if (itemSlotParent.transform.childCount > 0)
         {
-            for (int i = 0; i < itemPanel.transform.childCount; i++)
+            for (int i = 0; i < itemSlotParent.transform.childCount; i++)
             {
-                Destroy(itemPanel.transform.GetChild(i).gameObject);
+                Destroy(itemSlotParent.transform.GetChild(i).gameObject);
             }
         }
 
         foreach (InventorySlot slot in list)
         {
             GameObject clone = Instantiate(itemNodePrefab, transform);
-            clone.transform.SetParent(itemPanel.transform);
+            clone.transform.SetParent(itemSlotParent.transform);
             clone.transform.SetAsLastSibling();
-            clone.GetComponent<InventoryNode>().SetData(slot.itemName, slot.itemQuantity);
+            clone.GetComponent<InventoryNode>().SetData(slot.itemName, slot.itemQuantity, slot.itemSprite);
         }
     }
 

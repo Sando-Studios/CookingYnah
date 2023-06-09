@@ -8,7 +8,7 @@ public class EnemyUnitData : UnitData
 {
     [SerializeField] private int unitID = -1;
     [SerializeField] private GameObject dropPrefab;
-    [SerializeField] private DropItemData dropData;
+    [SerializeField] private ItemData dropData;
     [SerializeField] private int basicAttackDmg;
 
     [Header("Speeds")]
@@ -35,7 +35,7 @@ public class EnemyUnitData : UnitData
         get { return dropPrefab; }
         set { dropPrefab = value; }
     }
-    public DropItemData DropData
+    public ItemData DropData
     {
         get { return dropData; }
         set { dropData = value; }

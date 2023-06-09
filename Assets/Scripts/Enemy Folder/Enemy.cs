@@ -12,12 +12,12 @@ using System.Reflection;
 public class Enemy : MonoBehaviour
 {
     [Header("Unit DropData")]
-    [SerializeField] private EnemyUnitData enemyUnitData;
+    private EnemyUnitData enemyUnitData;
 
     private EnemyUnitData enemyDataInstance;
     [SerializeField] private SphereCollider aggroTrigger;
     [SerializeField] private GameObject targetUnit;
-    [SerializeField] private Vector3 home;
+    private Vector3 home;
 
     [Header("SFX")]
     public Material redMaterial;
@@ -38,21 +38,11 @@ public class Enemy : MonoBehaviour
         DamageHandler.OnEnemyUnitDeath -= Death;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // enemyDataInstance = new EnemyUnitData();
-
-        SetData(10001); // To be called and set by spawner 
-
-        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
-        agent = GetComponent<NavMeshAgent>();
-
-    }
-
-    public void SetData(int enemyID)
+    public void SetData(int enemyID, EnemyUnitData enemyTemplate, Vector3 homeBase)
     {
         enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
+        enemyUnitData = enemyTemplate;
+        home = homeBase;
         enemyDataInstance.UnitID = enemyID;
         enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
         enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
@@ -71,6 +61,9 @@ public class Enemy : MonoBehaviour
         aggroTrigger.radius = enemyDataInstance.AggroRange;
 
         enemyDataInstance.Animations = enemyUnitData.Animations;
+        
+        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
+        agent = GetComponent<NavMeshAgent>();
     }
 
     public bool IsAlive()
@@ -162,6 +155,7 @@ public class Enemy : MonoBehaviour
 
     public void ControlAnimations(MonsterStates animationName, bool isPlaying)
     {
+        return;
         Animation animation = enemyDataInstance.Animations[animationName];
         if (animation != null)
         {

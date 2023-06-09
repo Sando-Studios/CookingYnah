@@ -43,10 +43,9 @@ public class Player : MonoBehaviour
 
     void SetInitialValues()
     {
-        playerDataInstance.MaxHealth = playerUnitData.MaxHealth;
-        playerDataInstance.CurrentHealth = playerDataInstance.MaxHealth;
+
         playerDataInstance.UnitName = playerUnitData.UnitName;
-        playerDataInstance.MoveSpeed = playerUnitData.MoveSpeed;
+
         playerDataInstance.Vitality = playerUnitData.Vitality;
         playerDataInstance.Agility = playerUnitData.Agility;
         playerDataInstance.Strength = playerUnitData.Strength;
@@ -54,6 +53,9 @@ public class Player : MonoBehaviour
         playerDataInstance.Intelligence = playerUnitData.Intelligence;
         playerDataInstance.Endurance = playerUnitData.Endurance;
         playerDataInstance.Dexterity = playerUnitData.Dexterity;
+        playerDataInstance.MoveSpeed = playerUnitData.MoveSpeed;
+        playerDataInstance.MaxHealth = playerUnitData.MaxHealth;
+        playerDataInstance.CurrentHealth = playerDataInstance.MaxHealth;
     }
 
     // Update is called once per frame

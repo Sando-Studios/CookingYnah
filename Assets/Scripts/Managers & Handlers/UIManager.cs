@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Runtime.ExceptionServices;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -23,9 +24,11 @@ public class UIManager : MonoBehaviour
     public Player player;
     private PlayerUnitData playerData;
     private PlayerInventory playerInventory;
-
-    [Header("Stats UI")]
     [SerializeField] private TextMeshProUGUI hpText;
+
+    [Header("Character Stats UI")]
+    [SerializeField] private GameObject statsPanel;
+    [SerializeField] private GameObject characterImage;
     [SerializeField] private TextMeshProUGUI vitText;
     [SerializeField] private TextMeshProUGUI agiText;
     [SerializeField] private TextMeshProUGUI strText;
@@ -33,6 +36,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI intText;
     [SerializeField] private TextMeshProUGUI endText;
     [SerializeField] private TextMeshProUGUI dexText;
+    [SerializeField] private GameObject statPopupToolTip;
+    [SerializeField] private TextMeshProUGUI statDescText;
+    [SerializeField] private StatDescriptions statDescriptions;
+    private bool isOverStat = false;
 
     [Header("Inventory UI")]
     [SerializeField] private GameObject itemNodePrefab;
@@ -44,7 +51,6 @@ public class UIManager : MonoBehaviour
     {
         playerData = player.GetPlayerData();
         playerInventory = player.GetInventory();
-        UpdateStatsUI();
     }
 
     private void Update()
@@ -57,6 +63,17 @@ public class UIManager : MonoBehaviour
         if (Input.GetButtonDown("Crafting"))
         {
 
+        }
+        if (Input.GetButtonDown("Stats"))
+        {
+            statsPanel.SetActive(!statsPanel.activeInHierarchy);
+            characterImage.SetActive(!characterImage.activeInHierarchy);
+            UpdateStatsUI();
+        }
+
+        if (isOverStat)
+        {
+            statPopupToolTip.transform.position = Input.mousePosition;
         }
     }
 
@@ -96,4 +113,45 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void OnCursorOver(TargetStat targetStat)
+    {
+        var s = targetStat;
+
+        switch (s)
+        {
+            case TargetStat.VitStat:
+                statDescText.text = statDescriptions.Vitality;
+                break;
+            case TargetStat.AgiStat:
+                statDescText.text = statDescriptions.Agility;
+                break;
+            case TargetStat.StrStat:
+                statDescText.text = statDescriptions.Strength;
+                break;
+            case TargetStat.VigStat:
+                statDescText.text = statDescriptions.Vigor;
+                break;
+            case TargetStat.IntStat:
+                statDescText.text = statDescriptions.Intelligence;
+                break;
+            case TargetStat.EndStat:
+                statDescText.text = statDescriptions.Endurance;
+                break;
+            case TargetStat.DexStat:
+                statDescText.text = statDescriptions.Dexterity;
+                break;
+            default:
+                Debug.Log("Unknown Stat");
+                break;
+        }
+
+        isOverStat = true;
+        statPopupToolTip.SetActive(true);
+    }
+
+    public void OnCursorOff()
+    {
+        isOverStat = true;
+        statPopupToolTip.SetActive(false);
+    }
 }

@@ -56,6 +56,7 @@ public class PlayerInventory : MonoBehaviour
                 {
                     itemName = dropItemName,
                     itemQuantity = 1,
+                    itemSprite = itemToAdd.GetItemSprite(),
                     itemBuffData = itemToAdd.GetItemBuffData()
                 };
                 inventoryList.Add(newItem);

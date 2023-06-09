@@ -12,9 +12,11 @@ public class Item : MonoBehaviour
     public void SetData(ItemData data)
     {
         itemData = data;
-        itemSprite = itemData.SpriteToRender;
+        
         itemName = itemData.Name;
-        spriteRenderer.sprite = itemData.SpriteToRender;
+        itemSprite = itemData.SpriteToRender;
+        spriteRenderer.sprite = itemSprite;
+        
     }
     public string GetItemName()
     {
@@ -23,6 +25,10 @@ public class Item : MonoBehaviour
     public ItemData GetItemBuffData()
     {
         return itemData;
+    }
+    public Sprite GetItemSprite()
+    {
+        return itemSprite;
     }
 
     private void OnTriggerEnter(Collider other)

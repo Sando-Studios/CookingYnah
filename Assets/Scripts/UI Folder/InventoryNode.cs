@@ -18,12 +18,6 @@ public class InventoryNode : MonoBehaviour, IPointerDownHandler
 
     public static event Action<string> OnUseItem;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     private void OnEnable()
     {
         useButton.onClick.AddListener(OnButtonClick);

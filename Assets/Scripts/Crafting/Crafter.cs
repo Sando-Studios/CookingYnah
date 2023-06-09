@@ -22,22 +22,23 @@ namespace Crafting
             Debug.Log(GetOutput() != empty);
         }
 
-        private void Update()
+        private void Start()
         {
             Thing();
         }
 
         private unsafe void Thing()
         {
+            RustFFI.TwitchRustRaw.switch_listener_raw(Test);
             var rn = RustFFI.TwitchRustRaw.init_runtime();
+            // RustFFI.TwitchRustRaw.register_chat_callback(rn, Test);
             RustFFI.TwitchRustRaw.free_handle(rn);
-            RustFFI.TwitchRustRaw.register_chat_callback(rn, Test);
         }
 
         [MonoPInvokeCallback(typeof(RustFFI.TwitchRustRaw.register_chat_callback_callback_delegate))]
         private static void Test()
         {
-            
+            Debug.Log("ayo");
         }
 
         public void CraftToOutput()

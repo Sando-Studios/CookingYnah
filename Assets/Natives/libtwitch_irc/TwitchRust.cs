@@ -11,7 +11,7 @@ namespace RustFFI
 {
     internal static unsafe partial class TwitchRustRaw
     {
-        const string __DllName = "Assets/Natives/libtwitch-irc/target/release/libtwitch_irc.dll";
+        const string __DllName = "Assets/Natives/libtwitch_irc/target/release/libtwitch_irc.dll";
 
         [DllImport(__DllName, EntryPoint = "init_runtime", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void* init_runtime();
@@ -27,6 +27,12 @@ namespace RustFFI
 
         [DllImport(__DllName, EntryPoint = "register_chat_callback", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void register_chat_callback(void* ctx, register_chat_callback_callback_delegate callback);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate void switch_listener_raw_callback_delegate();
+
+        [DllImport(__DllName, EntryPoint = "switch_listener_raw", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern void switch_listener_raw(switch_listener_raw_callback_delegate callback);
 
 
     }

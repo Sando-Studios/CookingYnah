@@ -1,4 +1,5 @@
 using AYellowpaper.SerializedCollections;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,19 @@ public class MonsterSpawnManager : MonoBehaviour
 
     [SerializeField] private GameObject spawnHandlerPrefab;
 
-    private int monsterID = 1000;
+    private int monsterID = 1;
 
+    public static event Action<int> SpawnNewGroup;
+
+    private void OnEnable()
+    {
+        SpawningHandler.OnEnemyGroupDeath += SpawnNextWave;
+
+    }
+    private void OnDisable()
+    {
+        SpawningHandler.OnEnemyGroupDeath -= SpawnNextWave;
+    }
     private void Start()
     {
         foreach (KeyValuePair<Transform, Transform> pair in spawnBaseDictionary)
@@ -27,7 +39,7 @@ public class MonsterSpawnManager : MonoBehaviour
         SpawnAllMonsters();
     }
 
-    void SpawnAllMonsters()
+    private void SpawnAllMonsters()
     {
         for (int i = 0; i < spawnPointList.Count; i++)
         {
@@ -35,11 +47,11 @@ public class MonsterSpawnManager : MonoBehaviour
         }
     }
 
-    void SpawnInitialMonsters(int index)
+    private void SpawnInitialMonsters(int index)
     {
         GameObject clone = Instantiate(spawnHandlerPrefab, transform);
         SpawningHandler sH = clone.GetComponent<SpawningHandler>();
-        sH.SetData(monsterPrefab, spawnPointList[index], basePointList[index]);
+        sH.SetData(index, monsterPrefab, spawnPointList[index], basePointList[index]);
 
         Dictionary<EnemyUnitData, int> mGDictionary = monsterGroups[index].GroupComposition;
 
@@ -47,11 +59,16 @@ public class MonsterSpawnManager : MonoBehaviour
         {
             for (int j = 0; j < pair.Value; j++)
             {
-                sH.AddEnemyToSpawn(monsterID,pair.Key);
+                sH.AddEnemyToSpawn(monsterID, pair.Key);
                 monsterID++;
             }
 
         }
         sH.StartSpawning();
+    }
+
+    public  void SpawnNextWave(int id)
+    {
+        SpawnNewGroup?.Invoke(id);
     }
 }

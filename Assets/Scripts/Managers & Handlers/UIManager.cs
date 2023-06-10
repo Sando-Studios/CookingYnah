@@ -51,6 +51,8 @@ public class UIManager : MonoBehaviour
     {
         playerData = player.GetPlayerData();
         playerInventory = player.GetInventory();
+
+        
     }
 
     private void Update()
@@ -94,6 +96,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
+        
         List<InventorySlot> list = playerInventory.GetInventoryList();
 
         if (itemSlotParent.transform.childCount > 0)
@@ -111,6 +114,20 @@ public class UIManager : MonoBehaviour
             clone.transform.SetAsLastSibling();
             clone.GetComponent<InventoryNode>().SetData(slot.itemName, slot.itemQuantity, slot.itemSprite);
         }
+
+        UpdateContentHeight(itemSlotParent.transform.childCount);
+    }
+    private void UpdateContentHeight(int itemCount)
+    {
+        RectTransform contentRectTransform = itemSlotParent.transform.GetComponent<RectTransform>();
+        float newHeight = CalculateContentHeight(itemCount);
+        contentRectTransform.sizeDelta = new Vector2(contentRectTransform.sizeDelta.x, newHeight);
+    }
+
+    private float CalculateContentHeight(int itemCount)
+    {
+        int additionalHeight = (itemCount / 4) * 50;
+        return 60 + additionalHeight;
     }
 
     public void OnCursorOver(TargetStat targetStat)

@@ -10,11 +10,11 @@ public class StatToolTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        UIManager.instance.OnCursorOver(stat);
+        UIManager.instance.OnCursorOverStat(stat);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        UIManager.instance.OnCursorOff();
+        UIManager.instance.OnCursorOffStat();
     }
 }

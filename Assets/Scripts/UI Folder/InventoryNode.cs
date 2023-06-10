@@ -40,6 +40,15 @@ public class InventoryNode : MonoBehaviour, IPointerDownHandler
         itemIconImage.sprite = itemSprite;
     }
 
+    public void OnPointerOver()
+    {
+        UIManager.instance.OnCursorOverItem(itemName);
+    }
+    public void OnPointerOff()
+    {
+        UIManager.instance.OnCursorOffItem();
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         // var item = Instantiate(craftingItemEquivalent, eventData.position, Quaternion.identity).GetComponent<IngredientItem>();

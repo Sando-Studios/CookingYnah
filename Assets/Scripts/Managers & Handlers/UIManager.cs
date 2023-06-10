@@ -45,6 +45,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject itemNodePrefab;
     [SerializeField] private GameObject itemPanel;
     [SerializeField] private GameObject itemSlotParent;
+    [SerializeField] private GameObject itemPopupToolTip;
+    [SerializeField] private TextMeshProUGUI itemToolTipText;
+    [SerializeField] private Image itemImage;
+    [SerializeField] private TextMeshProUGUI itemNameText;
+    [SerializeField] private TextMeshProUGUI itemPermEffectsText;
+    [SerializeField] private TextMeshProUGUI itemTempEffectsText;
+    private bool isOverItem = false;
 
 
     private void Start()
@@ -76,6 +83,10 @@ public class UIManager : MonoBehaviour
         if (isOverStat)
         {
             statPopupToolTip.transform.position = Input.mousePosition;
+        }
+        if (isOverItem)
+        {
+            itemPopupToolTip.transform.position = Input.mousePosition;
         }
     }
 
@@ -130,7 +141,7 @@ public class UIManager : MonoBehaviour
         return 60 + additionalHeight;
     }
 
-    public void OnCursorOver(TargetStat targetStat)
+    public void OnCursorOverStat(TargetStat targetStat)
     {
         var s = targetStat;
 
@@ -166,9 +177,100 @@ public class UIManager : MonoBehaviour
         statPopupToolTip.SetActive(true);
     }
 
-    public void OnCursorOff()
+    public void OnCursorOffStat()
     {
-        isOverStat = true;
+        isOverStat = false;
         statPopupToolTip.SetActive(false);
+    }
+
+    public void OnCursorOverItem(string name)
+    {
+        List<InventorySlot> list = playerInventory.GetInventoryList();
+
+        InventorySlot result = list.Find(item => item.itemName == name);
+
+        itemToolTipText.text = result.itemName;
+        itemImage.sprite = result.itemSprite;
+        itemNameText.text = result.itemName;
+
+        string stringToAdd1 = "";
+        string stringToAdd2 = ""; ;
+
+        itemPermEffectsText.text = "";
+        itemTempEffectsText.text = "";
+
+        ItemData itemData = result.itemBuffData;
+        
+        foreach(KeyValuePair<TargetStat, int> pair in itemData.PermanentBuffs)
+        {
+            var s = pair.Key;
+
+            switch (s)
+            {
+                case TargetStat.VitStat:
+                    stringToAdd1 += "+" + pair.Value + " Vitality<br>";
+                    break;
+                case TargetStat.AgiStat:
+                    stringToAdd1 += "+" + pair.Value + " Agility<br>";
+                    break;
+                case TargetStat.StrStat:
+                    stringToAdd1 += "+" + pair.Value + " Strength<br>";
+                    break;
+                case TargetStat.VigStat:
+                    stringToAdd1 += "+" + pair.Value + " Vigor<br>";
+                    break;
+                case TargetStat.IntStat:
+                    stringToAdd1 += "+" + pair.Value + " Intelligence<br>";
+                    break;
+                case TargetStat.EndStat:
+                    stringToAdd1 += "+" + pair.Value + " Endurance<br>";
+                    break;
+                case TargetStat.DexStat:
+                    stringToAdd1 += "+" + pair.Value + " Dexterity<br>";
+                    break;
+            }
+        }
+
+        foreach(KeyValuePair<TargetStat, int> pair in itemData.TemporaryBuffs)
+        {
+            var s = pair.Key;
+
+            switch (s)
+            {
+                case TargetStat.VitStat:
+                    stringToAdd2 += "+" + pair.Value + " Vitality<br>";
+                    break;
+                case TargetStat.AgiStat:
+                    stringToAdd2 += "+" + pair.Value + " Agility<br>";
+                    break;
+                case TargetStat.StrStat:
+                    stringToAdd2 += "+" + pair.Value + " Strength<br>";
+                    break;
+                case TargetStat.VigStat:
+                    stringToAdd2 += "+" + pair.Value + " Vigor<br>";
+                    break;
+                case TargetStat.IntStat:
+                    stringToAdd2 += "+" + pair.Value + " Intelligence<br>";
+                    break;
+                case TargetStat.EndStat:
+                    stringToAdd2 += "+" + pair.Value + " Endurance<br>";
+                    break;
+                case TargetStat.DexStat:
+                    stringToAdd2 += "+" + pair.Value + " Dexterity<br>";
+                    break;
+            }
+        }
+
+        itemPermEffectsText.text += stringToAdd1;
+        itemTempEffectsText.text += stringToAdd2;
+
+        isOverItem = true;
+        itemPopupToolTip.SetActive(true);
+    }
+
+    public void OnCursorOffItem()
+    {
+        isOverItem = false;
+        itemPopupToolTip.SetActive(false);
     }
 }

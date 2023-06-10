@@ -16,6 +16,8 @@ public class MonsterStateManager : MonoBehaviour
     private static MonsterStateManager instance;
     private Dictionary<Enemy, MonsterState> monsterStates;
 
+    [SerializeField] private bool isAIActive = true;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -44,6 +46,8 @@ public class MonsterStateManager : MonoBehaviour
 
     private void Update()
     {
+        if(!isAIActive){ return ; }
+
         var enemyKeys = new List<Enemy>(monsterStates.Keys);
 
         foreach (Enemy enemy in monsterStates.Keys.ToList())

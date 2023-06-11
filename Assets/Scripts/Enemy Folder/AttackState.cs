@@ -55,6 +55,6 @@ public class AttackState : MonsterState
     }
     public override void Exit()
     {
-        enemy.ControlAnimations(MonsterStates.Attack, true);
+        enemy.ControlAnimations(MonsterStates.Attack, false);
     }
 }

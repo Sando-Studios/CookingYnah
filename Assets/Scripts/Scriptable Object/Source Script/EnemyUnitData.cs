@@ -22,8 +22,7 @@ public class EnemyUnitData : UnitData
     [SerializeField] private float attackRange;
 
     [Header("Animations")]
-    [SerializeField]
-    private SerializedDictionary<MonsterStates, Animation> animationClips;
+    [SerializeField] private RuntimeAnimatorController animatorController;
 
     public int UnitID
     {
@@ -44,12 +43,7 @@ public class EnemyUnitData : UnitData
     public override int MaxHealth { get => base.MaxHealth; set => base.MaxHealth = value; }
     public override int CurrentHealth { get => base.CurrentHealth; set => base.CurrentHealth = value; }
     public override float MoveSpeed { get => base.MoveSpeed; set => base.MoveSpeed = value; }
-
-    public SerializedDictionary<MonsterStates, Animation> Animations
-    {
-        get { return animationClips; }
-        set { animationClips = value; }
-    }
+    public RuntimeAnimatorController Controller { get { return animatorController; } }  
 
     public int BasicAttackDamage
     {

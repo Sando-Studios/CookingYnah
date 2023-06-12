@@ -29,6 +29,9 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private bool isAlive = true;
 
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+
     private void OnEnable()
     {
         DamageHandler.OnEnemyUnitDeath += Death;
@@ -70,7 +73,7 @@ public class Enemy : MonoBehaviour
 
         aggroTrigger.radius = enemyDataInstance.AggroRange;
 
-        enemyDataInstance.Animations = enemyUnitData.Animations;
+        animator.runtimeAnimatorController = enemyUnitData.Controller;
     }
 
     public bool IsAlive()
@@ -79,7 +82,7 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !other.isTrigger)
         {
             targetUnit = other.gameObject;
             aggroTrigger.enabled = false;
@@ -160,23 +163,34 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void ControlAnimations(MonsterStates animationName, bool isPlaying)
+    public void ControlAnimations(MonsterStates state, bool isPlaying)
     {
-        Animation animation = enemyDataInstance.Animations[animationName];
-        if (animation != null)
+        ResetAnimatorBool();
+
+        var s = state;
+        switch (state)
         {
-            if (isPlaying)
-            {
-                animation.Play();
-            }
-            else
-            {
-                animation.Stop();
-            }
+            case MonsterStates.Attack:
+                animator.SetBool("isAttacking", isPlaying);
+                break;
+            case MonsterStates.Chase:
+                animator.SetBool("isChasing", isPlaying);
+                break;
+            case MonsterStates.Idle:
+                animator.SetBool("isIdling", isPlaying);
+                break;
+            case MonsterStates.Patrol:
+                animator.SetBool("isPatrolling", isPlaying);
+                break;
+
         }
-        else
-        {
-            Debug.LogWarning("Animation is null for animation name: " + animationName);
-        }
+    }
+
+    private void ResetAnimatorBool()
+    {
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isChasing", false);
+        animator.SetBool("isIdling", false);
+        animator.SetBool("isPatrolling", false);
     }
 }

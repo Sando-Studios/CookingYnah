@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Runtime.ExceptionServices;
 
 public class UIManager : MonoBehaviour
 {

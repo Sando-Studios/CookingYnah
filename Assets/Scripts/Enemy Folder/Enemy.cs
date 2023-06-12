@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Asyncoroutine;
 using UnityEngine.AI;
-using AYellowpaper.SerializedCollections;
-using System.Reflection;
+
 
 
 public class Enemy : MonoBehaviour

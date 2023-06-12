@@ -5,23 +5,35 @@ use std::panic;
 use std::sync::mpsc;
 use std::thread;
 use std::thread::JoinHandle;
+use std::sync::Arc;
 mod twitch;
 
 #[repr(C)]
 struct Context {
     thread_handle: JoinHandle<()>,
     client: mpsc::Sender<String>,
+//    callback: Arc<Option<extern "C" fn() -> ()>>,
+    callback_container: Option<Container>,
+}
+
+#[repr(C)]
+struct Container {
+    main: extern "C" fn() -> (),
 }
 
 #[no_mangle]
 pub extern "C" fn init_runtime() -> *mut c_void {
     let (trans, receiver) = mpsc::channel::<String>();
 
-    let handle = thread::spawn(move || twitch::fake_main(receiver));
+//    let callback: Arc<Option<extern "C" fn() -> ()>> = Arc::new(None);
+
+    let handle = thread::spawn(move || twitch::fake_main(receiver, None));
 
     let ctx = Context {
         thread_handle: handle,
         client: trans,
+//        callback,
+        callback_container: None,
     };
 
     let handle = Box::new(ctx);
@@ -41,6 +53,8 @@ pub extern "C" fn free_handle(handle: *mut c_void) {
         println!("before main join");
         ctx.thread_handle.join();
         println!("after main join");
+
+//        drop(ctx.callback);
         //        drop(ctx);
     }
 }
@@ -54,6 +68,8 @@ pub extern "C" fn join_channel(ctx: *mut c_void, s_ptr: *const u16, s_len: i32) 
     let ctx: Box<Context> = ctx.into();
 
     ctx.client.send(name).unwrap();
+
+    Box::into_raw(ctx);
 }
 
 #[no_mangle]
@@ -63,15 +79,14 @@ pub extern "C" fn register_chat_callback(
 ) {
     let mut ctx = Box::<Context>::from(ctx);
 
-    let Some(callback) = callback else {
-        return;
-    };
+//    ctx.callback = Arc::new(callback);
 
-    twitch::switch_listener(callback);
+    Box::into_raw(ctx); // HOLY SHIT BRUH I FORGOT ABOUT THIS
+//    twitch::switch_listener(callback);
 }
 
 #[no_mangle]
-pub extern "C" fn switch_listener_raw(callback: Option<extern "C" fn() -> ()>) {
+pub extern "C" fn switch_listener_raw(callback: Option<unsafe extern "C" fn() -> ()>) {
     let Some(callback) = callback else {
         return;
     };

@@ -5,10 +5,9 @@ use twitch_irc::{
     message::ServerMessage::{self, Privmsg},
     ClientConfig as Config, SecureTCPTransport as TCPTransport, TwitchIRCClient as IRC,
 };
+use std::sync::Arc;
 
-pub const SHUTDOWN_KEY: &str = "FORCE_SHUTDOWN";
-
-pub fn fake_main(receiver: Receiver<String>) {
+pub fn fake_main(receiver: Receiver<String>, arc_callback: Option<extern "C" fn() -> ()>) {
     let r = runtime::Runtime::new().unwrap();
 
     println!("fake main");
@@ -22,19 +21,20 @@ pub fn fake_main(receiver: Receiver<String>) {
         println!("make handle");
 
         let twitch_recv_handle = tokio::spawn(async move {
+
             while let Some(msg) = incoming.recv().await {
-                //                  println!("Recieved: {:#?}", msg);
 
                 let Privmsg(msg) = msg else {
                     continue;
                 };
+
                 println!("new msssg: {}", msg.message_text);
 
-                //                println!("New Message: {}", msg.message_text);
-
-                unsafe {
-                    CB();
+                match arc_callback.as_ref() {
+                    Some(cb) => cb(),
+                    None => {},
                 }
+
             }
         });
 
@@ -46,11 +46,6 @@ pub fn fake_main(receiver: Receiver<String>) {
         println!("start recv loop");
         // I have no clue how to stop this LMAO
         while let Ok(ch) = receiver.recv() {
-            // might remove
-            //            if ch == SHUTDOWN_KEY {
-            //                break;
-            //            }
-
             match client.join(ch) {
                 Ok(_) => {}
                 Err(e) => eprintln!("Wrong format! E: {e}"),
@@ -61,19 +56,16 @@ pub fn fake_main(receiver: Receiver<String>) {
         twitch_recv_handle.await.unwrap();
 
         println!("end loop");
-
-        // Should be last since this blocks the thread
-        //        twitch_recv_handle.await.unwrap();
     });
 
     println!("outside block");
 }
 
-extern "C" fn empty_listener() {}
+unsafe extern "C" fn empty_listener() {}
 
-static mut CB: extern "C" fn() -> () = empty_listener;
+static mut CB: unsafe extern "C" fn() -> () = empty_listener;
 
-pub fn switch_listener(new: extern "C" fn()) {
+pub fn switch_listener(new: unsafe extern "C" fn()) {
     unsafe {
         CB = new;
         CB();

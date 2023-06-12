@@ -10,7 +10,7 @@ crate-type = ["cdylib"]
 name = "libtwitch_irc"
 
 [dependencies]
-tokio = { version = "1.28.2", features = ["full"] }
+tokio = { version = "1.28.2", features = ["rt-multi-thread"] }
 twitch-irc = "5.0.0"
 
 [build-dependencies]

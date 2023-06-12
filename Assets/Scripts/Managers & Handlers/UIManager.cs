@@ -53,6 +53,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemTempEffectsText;
     private bool isOverItem = false;
 
+    [Header("Crafting UI")]
+    [SerializeField] private GameObject craftingPanel;
+    [SerializeField] private GameObject craftingItemParent;
+
 
     private void Start()
     {

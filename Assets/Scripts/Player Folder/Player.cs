@@ -11,18 +11,16 @@ public class Player : MonoBehaviour
     private PlayerUnitData playerDataInstance;
     private Rigidbody rb;
     public float force;
-    
+
     [SerializeField] private GameObject targetUnit;
 
     private bool isAttacking = false;
     private bool canAttack = true;
 
-    [Header("SFX")]
-    public Material redMaterial;
-    public Material greenMaterial;
-
     [Header("Inventory")]
     [SerializeField] private PlayerInventory inventory;
+
+    private bool isAtCookingStation = false;
 
     private void Awake()
     {
@@ -63,7 +61,7 @@ public class Player : MonoBehaviour
     {
         if (targetUnit)
         {
-            
+
             if (Input.GetButtonDown("Fire1") && canAttack && targetUnit && !isAttacking)
             {
                 isAttacking = true;
@@ -71,14 +69,14 @@ public class Player : MonoBehaviour
 
             }
         }
-        
+
 
         if (Input.GetButton("Horizontal"))
         {
             var val = Input.GetAxis("Horizontal");
             rb.AddForce(new Vector3(val, 0, 0) * force, ForceMode.Force);
         }
-        
+
         if (Input.GetButton("Vertical"))
         {
             var val = Input.GetAxis("Vertical");
@@ -88,32 +86,40 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy" && !other.isTrigger)
         {
             targetUnit = other.gameObject;
+        }
+
+        if (other.tag == "Cook Station")
+        {
+            isAtCookingStation = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy" && !other.isTrigger)
         {
             targetUnit = null;
         }
+
+        if (other.tag == "Cook Station")
+        {
+            isAtCookingStation = false;
+        }
     }
 
-    public void TakeDamage(int damageValue)// Move to a seperate damage handler maybe
+    public bool GetNearStation()
     {
-        playerDataInstance.CurrentHealth -= damageValue;
-        UIManager.instance.UpdateHpUI();
-        Hit();
+        return isAtCookingStation;
     }
 
 
     private async void Attack()
     {
         canAttack = false;
-        
+
         if (targetUnit)
         {
             DamageHandler.ApplyDamage(targetUnit.GetComponent<Enemy>(), 1);
@@ -124,12 +130,6 @@ public class Player : MonoBehaviour
         canAttack = true;
     }
 
-    public async void Hit()// To be replaced by animations
-    {
-        GetComponent<Renderer>().material = redMaterial;
-        await new WaitForSeconds(0.5f);
-        GetComponent<Renderer>().material = greenMaterial;
-    }
 
     public PlayerInventory GetInventory()
     {

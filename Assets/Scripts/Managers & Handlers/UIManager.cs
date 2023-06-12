@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject craftingItemParent;
 
 
+
     private void Start()
     {
         playerData = player.GetPlayerData();
@@ -73,10 +74,19 @@ public class UIManager : MonoBehaviour
             itemPanel.SetActive(!itemPanel.activeInHierarchy);
             UpdateInventoryUI();
         }
-        if (Input.GetButtonDown("Crafting"))
+        if (Input.GetButtonDown("Crafting") && player.GetNearStation())
         {
-
+            craftingPanel.SetActive(!craftingPanel.activeInHierarchy);
+            // Add Update Crafting UI
         }
+
+        Debug.Log(player.GetNearStation());
+
+        if (!player.GetNearStation())
+        {
+            craftingPanel.SetActive(false);
+        }
+
         if (Input.GetButtonDown("Stats"))
         {
             statsPanel.SetActive(!statsPanel.activeInHierarchy);

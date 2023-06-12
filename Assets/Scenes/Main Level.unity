@@ -9415,9 +9415,10 @@ GameObject:
   - component: {fileID: 1277783611}
   - component: {fileID: 1277783613}
   - component: {fileID: 1277783612}
+  - component: {fileID: 1277783614}
   m_Layer: 0
-  m_Name: Cook Station
-  m_TagString: Untagged
+  m_Name: Cooking Station
+  m_TagString: Cook Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9479,6 +9480,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.16, y: 5.62, z: 0.2}
   m_Center: {x: 0, y: 1.75, z: 0}
+--- !u!135 &1277783614
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277783609}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1288554210
 GameObject:
   m_ObjectHideFlags: 0
@@ -10194,6 +10208,8 @@ MonoBehaviour:
   itemNameText: {fileID: 356671813}
   itemPermEffectsText: {fileID: 955265710}
   itemTempEffectsText: {fileID: 1382498527}
+  craftingPanel: {fileID: 790198093}
+  craftingItemParent: {fileID: 1865271084}
 --- !u!4 &1355812998
 Transform:
   m_ObjectHideFlags: 0
@@ -10889,9 +10905,7 @@ MonoBehaviour:
   playerUnitData: {fileID: 11400000, guid: aab21f0e4ebe85c48b03a9877b32a57f, type: 2}
   force: 30
   targetUnit: {fileID: 0}
-  redMaterial: {fileID: 2100000, guid: 369077c2621799f469c0e1af06a20ac5, type: 2}
-  greenMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  inventory: {fileID: 0}
+  inventory: {fileID: 1426414667}
 --- !u!135 &1426414666
 SphereCollider:
   m_ObjectHideFlags: 0

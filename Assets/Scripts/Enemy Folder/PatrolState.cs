@@ -30,7 +30,7 @@ public class PatrolState : MonsterState
             return;
         }
 
-        if (enemy.GetTargetUnit())
+        if (enemy.GetTargetUnit() != null)
         {
             statManager.ChangeState(enemy, new ChaseState(statManager, enemy));
             return;
@@ -39,6 +39,7 @@ public class PatrolState : MonsterState
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             statManager.ChangeState(enemy, new IdleState(statManager, enemy));
+            return;
         }
     }
 

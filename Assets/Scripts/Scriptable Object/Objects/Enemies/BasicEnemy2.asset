@@ -25,13 +25,4 @@ MonoBehaviour:
   aggroRange: 5
   chaseRange: 6
   attackRange: 3
-  animationClips:
-    _serializedList:
-    - Key: 0
-      Value: {fileID: 0}
-    - Key: 1
-      Value: {fileID: 0}
-    - Key: 2
-      Value: {fileID: 0}
-    - Key: 3
-      Value: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: 026a1eadcf6176b46a3dde42080dcb61, type: 2}

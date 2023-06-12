@@ -12,12 +12,12 @@ using System.Reflection;
 public class Enemy : MonoBehaviour
 {
     [Header("Unit DropData")]
-    private EnemyUnitData enemyUnitData;
+    [SerializeField] private EnemyUnitData enemyUnitData;
 
     private EnemyUnitData enemyDataInstance;
     [SerializeField] private SphereCollider aggroTrigger;
     [SerializeField] private GameObject targetUnit;
-    private Vector3 home;
+    [SerializeField] private Vector3 home;
 
     [Header("SFX")]
     public Material redMaterial;
@@ -29,6 +29,9 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private bool isAlive = true;
 
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+
     private void OnEnable()
     {
         DamageHandler.OnEnemyUnitDeath += Death;
@@ -38,11 +41,21 @@ public class Enemy : MonoBehaviour
         DamageHandler.OnEnemyUnitDeath -= Death;
     }
 
-    public void SetData(int enemyID, EnemyUnitData enemyTemplate, Vector3 homeBase)
+    // Start is called before the first frame update
+    void Start()
+    {
+        // enemyDataInstance = new EnemyUnitData();
+
+        SetData(10001); // To be called and set by spawner 
+
+        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
+        agent = GetComponent<NavMeshAgent>();
+
+    }
+
+    public void SetData(int enemyID)
     {
         enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
-        enemyUnitData = enemyTemplate;
-        home = homeBase;
         enemyDataInstance.UnitID = enemyID;
         enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
         enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
@@ -60,10 +73,7 @@ public class Enemy : MonoBehaviour
 
         aggroTrigger.radius = enemyDataInstance.AggroRange;
 
-        enemyDataInstance.Animations = enemyUnitData.Animations;
-        
-        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
-        agent = GetComponent<NavMeshAgent>();
+        animator.runtimeAnimatorController = enemyUnitData.Controller;
     }
 
     public bool IsAlive()
@@ -72,7 +82,7 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !other.isTrigger)
         {
             targetUnit = other.gameObject;
             aggroTrigger.enabled = false;
@@ -153,24 +163,34 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void ControlAnimations(MonsterStates animationName, bool isPlaying)
+    public void ControlAnimations(MonsterStates state, bool isPlaying)
     {
-        return;
-        Animation animation = enemyDataInstance.Animations[animationName];
-        if (animation != null)
+        ResetAnimatorBool();
+
+        var s = state;
+        switch (state)
         {
-            if (isPlaying)
-            {
-                animation.Play();
-            }
-            else
-            {
-                animation.Stop();
-            }
+            case MonsterStates.Attack:
+                animator.SetBool("isAttacking", isPlaying);
+                break;
+            case MonsterStates.Chase:
+                animator.SetBool("isChasing", isPlaying);
+                break;
+            case MonsterStates.Idle:
+                animator.SetBool("isIdling", isPlaying);
+                break;
+            case MonsterStates.Patrol:
+                animator.SetBool("isPatrolling", isPlaying);
+                break;
+
         }
-        else
-        {
-            Debug.LogWarning("Animation is null for animation name: " + animationName);
-        }
+    }
+
+    private void ResetAnimatorBool()
+    {
+        animator.SetBool("isAttacking", false);
+        animator.SetBool("isChasing", false);
+        animator.SetBool("isIdling", false);
+        animator.SetBool("isPatrolling", false);
     }
 }

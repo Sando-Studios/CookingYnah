@@ -27,7 +27,7 @@ public class ChaseState : MonsterState
             return;
         }
 
-        if (!enemy.GetTargetUnit())
+        if (enemy.GetTargetUnit() == null)
         {
             statManager.ChangeState(enemy, new PatrolState(statManager, enemy));
             return;
@@ -36,15 +36,28 @@ public class ChaseState : MonsterState
         float distanceToTarget = Vector3.Distance(enemy.transform.position, enemy.GetTargetUnit().transform.position);
 
         if (distanceToTarget <= enemy.GetEnemyUnitData().AttackRange)
+        {
             statManager.ChangeState(enemy, new AttackState(statManager, enemy));
+            return;
+        }
         else if (distanceToTarget > enemy.GetEnemyUnitData().ChaseRange)
+        {
             statManager.ChangeState(enemy, new PatrolState(statManager, enemy));
+            return;
+        }
         else
+        {
             navMeshAgent.SetDestination(enemy.GetTargetUnit().transform.position);
+            return;
+        }
+
+
+
     }
 
     public override void Exit()
     {
+        enemy.ResetAggro();
         enemy.ControlAnimations(MonsterStates.Chase, false);
     }
 }

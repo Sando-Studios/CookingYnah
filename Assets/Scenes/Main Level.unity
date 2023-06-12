@@ -11037,7 +11037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUnitData: {fileID: 11400000, guid: aab21f0e4ebe85c48b03a9877b32a57f, type: 2}
-  force: 50
+  force: 20
   targetUnit: {fileID: 0}
   inventory: {fileID: 1426414667}
   animator: {fileID: 1324907633}

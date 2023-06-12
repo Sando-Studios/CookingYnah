@@ -124,6 +124,8 @@ public class Player : MonoBehaviour
     {
         animator.SetFloat("MoveX", rb.velocity.x);
         animator.SetFloat("MoveY", rb.velocity.z);
+
+        transform.rotation = Quaternion.Euler(new Vector3(0, rb.velocity.x > 0 ? 180f : 0f, 0));
     }
 
     private async void Attack()

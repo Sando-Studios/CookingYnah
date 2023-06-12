@@ -3590,7 +3590,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420721574}
   m_LocalRotation: {x: 0.29560646, y: 0, z: 0, w: 0.9553098}
-  m_LocalPosition: {x: 3.57, y: 6.507, z: -2.4673386}
+  m_LocalPosition: {x: 3.57, y: 6.707, z: -2.4673386}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6314,7 +6314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912130748}
   m_LocalRotation: {x: 0.29560646, y: -0, z: -0, w: 0.9553098}
-  m_LocalPosition: {x: 3.57, y: 6.507, z: -2.4673386}
+  m_LocalPosition: {x: 3.57, y: 6.707, z: -2.4673386}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10122,7 +10122,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324907631}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4.26, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.8}
   m_ConstrainProportionsScale: 0
@@ -10132,7 +10132,7 @@ Transform:
   - {fileID: 2127612217}
   m_Father: {fileID: 1426414663}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1324907633
 Animator:
   serializedVersion: 4
@@ -11000,8 +11000,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426414659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.57, y: 1.1, z: 5.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.57, y: 1.3, z: 5.75}
+  m_LocalScale: {x: 1, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1324907632}
@@ -11037,9 +11037,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUnitData: {fileID: 11400000, guid: aab21f0e4ebe85c48b03a9877b32a57f, type: 2}
-  force: 30
+  force: 50
   targetUnit: {fileID: 0}
   inventory: {fileID: 1426414667}
+  animator: {fileID: 1324907633}
 --- !u!135 &1426414666
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11065,7 +11066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc91d9a752316f4daf24c42c395ecb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxInventory: 20
+  maxInventory: 50
 --- !u!210 &1426414668
 SortingGroup:
   m_ObjectHideFlags: 0

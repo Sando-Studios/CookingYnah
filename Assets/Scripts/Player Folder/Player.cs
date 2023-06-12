@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
 
     private bool isAtCookingStation = false;
 
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+
     private void Awake()
     {
         playerDataInstance = ScriptableObject.CreateInstance<PlayerUnitData>();
@@ -82,6 +85,8 @@ public class Player : MonoBehaviour
             var val = Input.GetAxis("Vertical");
             rb.AddForce(new Vector3(0, 0, val) * force, ForceMode.Force);
         }
+
+        AnimateMovement();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -115,6 +120,11 @@ public class Player : MonoBehaviour
         return isAtCookingStation;
     }
 
+    private void AnimateMovement()
+    {
+        animator.SetFloat("MoveX", rb.velocity.x);
+        animator.SetFloat("MoveY", rb.velocity.z);
+    }
 
     private async void Attack()
     {

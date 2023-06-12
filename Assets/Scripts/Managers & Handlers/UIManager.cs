@@ -80,8 +80,6 @@ public class UIManager : MonoBehaviour
             // Add Update Crafting UI
         }
 
-        Debug.Log(player.GetNearStation());
-
         if (!player.GetNearStation())
         {
             craftingPanel.SetActive(false);

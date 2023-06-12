@@ -27,7 +27,7 @@ public class SpawningHandler : MonoBehaviour
         MonsterSpawnManager.SpawnNewGroup -= SpawnGroup;
     }
 
-    public void SetData(int id, GameObject prefab, Transform monsterSpawnPoint, Transform monsterHomeBase)
+    public void SetSpawnerData(int id, GameObject prefab, Transform monsterSpawnPoint, Transform monsterHomeBase)
     {
         spawnerID = id;
         monsterPrefab = prefab;
@@ -82,7 +82,7 @@ public class SpawningHandler : MonoBehaviour
             GameObject clone = Instantiate(monsterPrefab, spawnPoint);
 
             Enemy enemy = clone.GetComponent<Enemy>();
-            enemy.SetData(e.Key, e.Value, home);
+            enemy.SetEnemyData(e.Key, e.Value, home);
             enemiesSpawned.Add(enemy);
             await new WaitForSeconds(0.7f);
         }

@@ -11,12 +11,12 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [Header("Unit DropData")]
-    [SerializeField] private EnemyUnitData enemyUnitData;
+    private EnemyUnitData enemyUnitData;
 
     private EnemyUnitData enemyDataInstance;
     [SerializeField] private SphereCollider aggroTrigger;
     [SerializeField] private GameObject targetUnit;
-    [SerializeField] private Vector3 home;
+    private Vector3 home;
 
     [Header("SFX")]
     public Material redMaterial;
@@ -45,17 +45,18 @@ public class Enemy : MonoBehaviour
     {
         // enemyDataInstance = new EnemyUnitData();
 
-        SetData(10001); // To be called and set by spawner 
+        //SetEnemyData(10001); // To be called and set by spawner 
 
-        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
-        agent = GetComponent<NavMeshAgent>();
+
 
     }
 
-    public void SetData(int enemyID)
+    public void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
     {
         enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
         enemyDataInstance.UnitID = enemyID;
+        enemyUnitData = unitData;
+        home = homeBase;
         enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
         enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
         enemyDataInstance.UnitName = enemyUnitData.UnitName;
@@ -72,7 +73,13 @@ public class Enemy : MonoBehaviour
 
         aggroTrigger.radius = enemyDataInstance.AggroRange;
 
+
         animator.runtimeAnimatorController = enemyUnitData.Controller;
+
+        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
+        agent = GetComponent<NavMeshAgent>();
+
+
     }
 
     public bool IsAlive()

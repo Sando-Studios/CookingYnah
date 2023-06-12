@@ -51,7 +51,7 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         GameObject clone = Instantiate(spawnHandlerPrefab, transform);
         SpawningHandler sH = clone.GetComponent<SpawningHandler>();
-        sH.SetData(index, monsterPrefab, spawnPointList[index], basePointList[index]);
+        sH.SetSpawnerData(index, monsterPrefab, spawnPointList[index], basePointList[index]);
 
         Dictionary<EnemyUnitData, int> mGDictionary = monsterGroups[index].GroupComposition;
 

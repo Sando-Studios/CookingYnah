@@ -26,6 +26,7 @@ public class PlayerUnitData : UnitData
     public override int CurrentHealth
     {
         get { return base.CurrentHealth; }
+        set { base.CurrentHealth = value; }
     }
 
     // Main Stats

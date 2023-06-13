@@ -5,23 +5,30 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     private string itemName;
-    private DropItemData itemData;
+    private ItemData itemData;
+    private Sprite itemSprite; 
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    public void SetData(DropItemData data)
+    public void SetData(ItemData data)
     {
         itemData = data;
-
+        
         itemName = itemData.Name;
-        spriteRenderer.sprite = itemData.SpriteToRender;
+        itemSprite = itemData.SpriteToRender;
+        spriteRenderer.sprite = itemSprite;
+        
     }
     public string GetItemName()
     {
         return itemName;
     }
-    public DropItemData GetItemBuffData()
+    public ItemData GetItemBuffData()
     {
         return itemData;
+    }
+    public Sprite GetItemSprite()
+    {
+        return itemSprite;
     }
 
     private void OnTriggerEnter(Collider other)

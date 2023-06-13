@@ -11,18 +11,19 @@ public class Player : MonoBehaviour
     private PlayerUnitData playerDataInstance;
     private Rigidbody rb;
     public float force;
-    
+
     [SerializeField] private GameObject targetUnit;
 
     private bool isAttacking = false;
     private bool canAttack = true;
 
-    [Header("SFX")]
-    public Material redMaterial;
-    public Material greenMaterial;
-
     [Header("Inventory")]
     [SerializeField] private PlayerInventory inventory;
+
+    private bool isAtCookingStation = false;
+
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
 
     private void Awake()
     {
@@ -43,10 +44,9 @@ public class Player : MonoBehaviour
 
     void SetInitialValues()
     {
-        playerDataInstance.MaxHealth = playerUnitData.MaxHealth;
-        playerDataInstance.CurrentHealth = playerDataInstance.MaxHealth;
+
         playerDataInstance.UnitName = playerUnitData.UnitName;
-        playerDataInstance.MoveSpeed = playerUnitData.MoveSpeed;
+
         playerDataInstance.Vitality = playerUnitData.Vitality;
         playerDataInstance.Agility = playerUnitData.Agility;
         playerDataInstance.Strength = playerUnitData.Strength;
@@ -54,6 +54,9 @@ public class Player : MonoBehaviour
         playerDataInstance.Intelligence = playerUnitData.Intelligence;
         playerDataInstance.Endurance = playerUnitData.Endurance;
         playerDataInstance.Dexterity = playerUnitData.Dexterity;
+        playerDataInstance.MoveSpeed = playerUnitData.MoveSpeed;
+        playerDataInstance.MaxHealth = playerUnitData.MaxHealth;
+        playerDataInstance.CurrentHealth = playerDataInstance.MaxHealth;
     }
 
     // Update is called once per frame
@@ -61,7 +64,7 @@ public class Player : MonoBehaviour
     {
         if (targetUnit)
         {
-            
+
             if (Input.GetButtonDown("Fire1") && canAttack && targetUnit && !isAttacking)
             {
                 isAttacking = true;
@@ -69,49 +72,66 @@ public class Player : MonoBehaviour
 
             }
         }
-        
+
 
         if (Input.GetButton("Horizontal"))
         {
             var val = Input.GetAxis("Horizontal");
             rb.AddForce(new Vector3(val, 0, 0) * force, ForceMode.Force);
         }
-        
+
         if (Input.GetButton("Vertical"))
         {
             var val = Input.GetAxis("Vertical");
             rb.AddForce(new Vector3(0, 0, val) * force, ForceMode.Force);
         }
+
+        AnimateMovement();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy" && !other.isTrigger)
         {
             targetUnit = other.gameObject;
+        }
+
+        if (other.tag == "Cook Station")
+        {
+            isAtCookingStation = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy" && !other.isTrigger)
         {
             targetUnit = null;
         }
+
+        if (other.tag == "Cook Station")
+        {
+            isAtCookingStation = false;
+        }
     }
 
-    public void TakeDamage(int damageValue)// Move to a seperate damage handler maybe
+    public bool GetNearStation()
     {
-        playerDataInstance.CurrentHealth -= damageValue;
-        UIManager.instance.UpdateHpUI();
-        Hit();
+        return isAtCookingStation;
     }
 
+    private void AnimateMovement()
+    {
+        animator.SetFloat("MoveX", rb.velocity.x);
+        animator.SetFloat("MoveY", rb.velocity.z);
+
+        transform.rotation = Quaternion.Euler(new Vector3(0, rb.velocity.x > 0 ? 180f : 0f, 0));
+    }
 
     private async void Attack()
     {
         canAttack = false;
-        
+
         if (targetUnit)
         {
             DamageHandler.ApplyDamage(targetUnit.GetComponent<Enemy>(), 1);
@@ -122,12 +142,6 @@ public class Player : MonoBehaviour
         canAttack = true;
     }
 
-    public async void Hit()// To be replaced by animations
-    {
-        GetComponent<Renderer>().material = redMaterial;
-        await new WaitForSeconds(0.5f);
-        GetComponent<Renderer>().material = greenMaterial;
-    }
 
     public PlayerInventory GetInventory()
     {

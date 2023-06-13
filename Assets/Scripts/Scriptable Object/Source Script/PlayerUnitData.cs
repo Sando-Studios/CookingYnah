@@ -74,7 +74,7 @@ public class PlayerUnitData : UnitData
     }
     public float Resistance
     {
-        get { return (Vitality * 0.4f) + (Vigor * 0.2f) + (Endurance * 0.3f); }
+        get { return (Vitality * 0.2f) + (Vigor * 0.2f) + (Endurance * 0.2f); }
     }
     public override float MoveSpeed
     {

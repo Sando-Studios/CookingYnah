@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 639792562578276083}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 026a1eadcf6176b46a3dde42080dcb61, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -198,7 +198,7 @@ GameObject:
   m_Layer: 0
   m_Name: Basic Enemy
   m_TagString: Enemy
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -260,10 +260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c20eed5070a7cb4d8f4edd694f2b1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyUnitData: {fileID: 11400000, guid: af2871776b6352641aeb75898b767170, type: 2}
   aggroTrigger: {fileID: 639792562889159886}
   targetUnit: {fileID: 0}
-  home: {x: 0, y: 0, z: 0}
   redMaterial: {fileID: 2100000, guid: 369077c2621799f469c0e1af06a20ac5, type: 2}
   greenMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   hpBar: {fileID: 639792562637887100}

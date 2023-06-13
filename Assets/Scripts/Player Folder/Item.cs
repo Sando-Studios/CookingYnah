@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Asyncoroutine;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -8,6 +10,11 @@ public class Item : MonoBehaviour
     private ItemData itemData;
     private Sprite itemSprite; 
     [SerializeField] private SpriteRenderer spriteRenderer;
+
+    private void Start()
+    {
+        DelayItemPickup();
+    }
 
     public void SetData(ItemData data)
     {
@@ -33,10 +40,19 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && !other.isTrigger)
         {
             PlayerInventory i = other.gameObject.GetComponent<Player>().GetInventory();
             i.AddItem(this);
         }
+    }
+
+    private async void DelayItemPickup()
+    {
+        this.gameObject.GetComponent<Collider>().enabled = false;
+
+        await new WaitForSeconds(2f);
+
+        this.gameObject.GetComponent<Collider>().enabled = true;
     }
 }

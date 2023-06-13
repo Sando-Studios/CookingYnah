@@ -54,7 +54,7 @@ public class SpawningHandler : MonoBehaviour
 
     private void Update()
     {
-        int w = 1;
+        /*int w = 1;
         if (Input.anyKeyDown) //for testing spawning waves
         {
             Debug.Log("KEY SPAWN");
@@ -62,7 +62,7 @@ public class SpawningHandler : MonoBehaviour
             if (spawnerID == w)
                 enemiesSpawned.Clear();
             OnMemberDeath(-1);
-        }
+        }*/
     }
 
     private void OnMemberDeath(int i)

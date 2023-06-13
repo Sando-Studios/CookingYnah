@@ -1269,6 +1269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basic Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 639792562889159874, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 639792562889159887, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -12093,6 +12097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a24e9193fe8eb49be9bebbc1e703e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAIActive: 1
 --- !u!4 &1629649077
 Transform:
   m_ObjectHideFlags: 0

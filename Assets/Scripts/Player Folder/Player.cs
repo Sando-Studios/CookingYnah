@@ -4,9 +4,7 @@ using UnityEngine;
 using Asyncoroutine;
 
 public class Player : MonoBehaviour
-{
-    public static Player Instance;
-    
+{   
     [Header("Unit DropData")]
     [SerializeField] private PlayerUnitData playerUnitData;
     private PlayerUnitData playerDataInstance;
@@ -28,7 +26,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
         
         playerDataInstance = ScriptableObject.CreateInstance<PlayerUnitData>();
         SetInitialValues();
@@ -45,6 +42,8 @@ public class Player : MonoBehaviour
 
         UIManager.instance.UpdateHpUI();
         BuffManager.instance.SetPlayer(playerDataInstance);
+
+        if (SceneChangeManager.instance.GetObjectToLoad() != gameObject) { Destroy(gameObject); }
     }
 
     void SetInitialValues()

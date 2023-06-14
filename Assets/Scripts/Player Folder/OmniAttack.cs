@@ -10,7 +10,6 @@ public class OmniAttack : MonoBehaviour
         if (other.tag == "Enemy" && !other.isTrigger)
         {
             Enemy enemy = other.GetComponent<Enemy>();
-            Debug.Log("Enemy In Range");
             enemiesInRange.Add(enemy);
         }
     }

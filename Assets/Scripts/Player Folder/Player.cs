@@ -13,9 +13,9 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
     public float force;
 
-    [SerializeField] private GameObject targetUnit;
-
-    private bool isAttacking = false;
+    [Header("OmniAttack")]
+    [SerializeField] private OmniAttack attack;
+    [SerializeField] private SphereCollider attackCollider;
     private bool canAttack = true;
 
     [Header("Inventory")]
@@ -62,20 +62,18 @@ public class Player : MonoBehaviour
         playerDataInstance.MoveSpeed = playerUnitData.MoveSpeed;
         playerDataInstance.MaxHealth = playerUnitData.MaxHealth;
         playerDataInstance.CurrentHealth = playerDataInstance.MaxHealth;
+        playerDataInstance.AttackRange = playerUnitData.AttackRange;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (targetUnit)
+
+        if (Input.GetButtonDown("Fire1") && canAttack)
         {
+            //attackCollider.enabled = true;
+            Attack();
 
-            if (Input.GetButtonDown("Fire1") && canAttack && targetUnit && !isAttacking)
-            {
-                isAttacking = true;
-                Attack();
-
-            }
         }
 
 
@@ -96,10 +94,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy" && !other.isTrigger)
-        {
-            targetUnit = other.gameObject;
-        }
 
         if (other.tag == "Cook Station")
         {
@@ -109,10 +103,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Enemy" && !other.isTrigger)
-        {
-            targetUnit = null;
-        }
 
         if (other.tag == "Cook Station")
         {
@@ -137,13 +127,11 @@ public class Player : MonoBehaviour
     {
         canAttack = false;
 
-        if (targetUnit)
-        {
-            DamageHandler.ApplyDamage(targetUnit.GetComponent<Enemy>(), 1);
-        }
-        await new WaitForSeconds(3.0f);
+        attackCollider.radius = playerDataInstance.AttackRange;
+        attack.DealDamage((int)playerDataInstance.RawDamage);
 
-        isAttacking = false;
+        await new WaitForSeconds(playerDataInstance.AttackInterval);
+
         canAttack = true;
     }
 

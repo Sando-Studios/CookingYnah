@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BasicEnemy
   m_EditorClassIdentifier: 
   unitName: Basic Enemy Test
-  maxHealth: 2
+  maxHealth: 20
   moveSpeed: 20
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}

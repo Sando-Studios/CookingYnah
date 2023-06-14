@@ -22,4 +22,4 @@ MonoBehaviour:
   intelligence: 1
   endurance: 1
   dexterity: 1
-  attackRange: 5
+  attackRange: 3

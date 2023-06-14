@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
+    [SerializeField] private ParticleSystem attackParticle;
 
     private void Awake()
     {
@@ -125,15 +126,14 @@ public class Player : MonoBehaviour
 
     private async void Attack()
     {
+        attackParticle.Play();
         canAttack = false;
 
         attackCollider.radius = playerDataInstance.AttackRange;
         attack.DealDamage((int)playerDataInstance.RawDamage);
-
-        Debug.Log($"{playerUnitData.AttackInterval}");
+        
         await new WaitForSeconds(playerUnitData.AttackInterval);
 
-        Debug.Log("done attacking");
         animator.SetTrigger("attackTrigger");
         canAttack = true;
     }

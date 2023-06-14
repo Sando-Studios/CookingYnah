@@ -2855,6 +2855,7 @@ MonoBehaviour:
   empty: {fileID: 11400000, guid: 05de9f4f3f36e144abdcd11e135e6fdb, type: 2}
   inventoryUIPanel: {fileID: 1527389231}
   craftingInventory: {fileID: 98095381}
+  ogInv: {fileID: 1426414667}
 --- !u!114 &682099636
 MonoBehaviour:
   m_ObjectHideFlags: 0

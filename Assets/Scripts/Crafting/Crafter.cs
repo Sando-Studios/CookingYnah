@@ -23,6 +23,8 @@ namespace Crafting
 
         [SerializeField] private GameObject craftingInventory;
 
+        [SerializeField] private PlayerInventory ogInv;
+
         // private List<GameObject> spawnedClones;
 
         public void Listen()
@@ -41,12 +43,13 @@ namespace Crafting
 
             var obj = Instantiate(ing.prefab, output.transform.parent).GetComponent<IngredientItem>();
             
+            
             // spawnedClones.Add(obj.gameObject);
 
             // obj.transform.SetAsLastSibling();
             
             output.Put(obj);
-            
+            ogInv.AddItem(obj.Name, obj.ItemData);
             
         }
 

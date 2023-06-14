@@ -28,7 +28,7 @@ public class PlayerInventory : MonoBehaviour
     public void AddItem(Item item)
     {
         if (inventoryList.Count >= maxInventory) return;
-        AddItem(item.name, item.GetItemBuffData());
+        AddItem(item.GetItemName(), item.GetItemBuffData());
         Destroy(item.gameObject);
     }
 

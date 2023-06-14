@@ -17,7 +17,10 @@ MonoBehaviour:
   moveSpeed: 20
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
-  dropData: {fileID: 11400000, guid: 20b12f8b08aed6b4dbe75767903dd13e, type: 2}
+  dropData:
+    _serializedList:
+    - Key: {fileID: 11400000, guid: 20b12f8b08aed6b4dbe75767903dd13e, type: 2}
+      Value: 1
   basicAttackDmg: 1
   wanderSpeed: 2
   chaseSpeed: 3
@@ -25,14 +28,4 @@ MonoBehaviour:
   aggroRange: 7
   chaseRange: 8
   attackRange: 2
-  animationClips:
-    _serializedList:
-    - Key: 0
-      Value: {fileID: 0}
-    - Key: 1
-      Value: {fileID: 0}
-    - Key: 2
-      Value: {fileID: 0}
-    - Key: 3
-      Value: {fileID: 0}
   animatorController: {fileID: 9100000, guid: 026a1eadcf6176b46a3dde42080dcb61, type: 2}

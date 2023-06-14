@@ -17,7 +17,10 @@ MonoBehaviour:
   moveSpeed: 3
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
-  dropData: {fileID: 11400000, guid: 20b12f8b08aed6b4dbe75767903dd13e, type: 2}
+  dropData:
+    _serializedList:
+    - Key: {fileID: 11400000, guid: be6fd282ddc66f54dbe292d7969e178f, type: 2}
+      Value: 1
   basicAttackDmg: 5
   wanderSpeed: 2
   chaseSpeed: 2

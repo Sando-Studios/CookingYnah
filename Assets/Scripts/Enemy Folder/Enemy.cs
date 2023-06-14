@@ -144,8 +144,10 @@ public class Enemy : MonoBehaviour
 
         isAlive = false;
 
+        ItemData data = GetRandomItemData();
+
         GameObject clone = Instantiate(enemyDataInstance.DropObject, transform.position, Quaternion.identity);
-        clone.GetComponent<Item>().SetData(enemyDataInstance.DropData);
+        clone.GetComponent<Item>().SetData(data);
 
         transform.GetComponent<NavMeshAgent>().enabled = false;
 
@@ -154,6 +156,30 @@ public class Enemy : MonoBehaviour
         transform.position = position;
 
         Destroy(gameObject, 3.0f);
+    }
+
+    private ItemData GetRandomItemData()
+    {
+        float totalWeight = 0f;
+        foreach (float dropChance in enemyDataInstance.DropData.Values)
+        {
+            totalWeight += dropChance;
+        }
+
+        float randomValue = UnityEngine.Random.Range(0f, totalWeight);
+
+        ItemData data = null;
+        foreach (var entry in enemyDataInstance.DropData)
+        {
+            randomValue -= entry.Value;
+            if (randomValue <= 0f)
+            {
+                data = entry.Key;
+                break;
+            }
+        }
+
+        return data;
     }
 
     public void DealDamage()

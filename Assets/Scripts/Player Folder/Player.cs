@@ -5,6 +5,8 @@ using Asyncoroutine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+    
     [Header("Unit DropData")]
     [SerializeField] private PlayerUnitData playerUnitData;
     private PlayerUnitData playerDataInstance;
@@ -26,8 +28,12 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+        
         playerDataInstance = ScriptableObject.CreateInstance<PlayerUnitData>();
         SetInitialValues();
+        
+        DontDestroyOnLoad(this);
     }
 
     // Start is called before the first frame update

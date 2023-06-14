@@ -4796,7 +4796,7 @@ Transform:
   - {fileID: 1950179001}
   - {fileID: 1473102865}
   m_Father: {fileID: 1852013934}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1072667602
 GameObject:
@@ -5220,6 +5220,7 @@ GameObject:
   - component: {fileID: 1168163928}
   - component: {fileID: 1168163927}
   - component: {fileID: 1168163926}
+  - component: {fileID: 1168163929}
   m_Layer: 0
   m_Name: rock (1)
   m_TagString: Untagged
@@ -5323,6 +5324,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1168163929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168163924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471fb0b6891a7a04db08e7754cc7345e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1263383386
 GameObject:
   m_ObjectHideFlags: 0
@@ -5887,6 +5900,7 @@ GameObject:
   - component: {fileID: 1387368849}
   - component: {fileID: 1387368848}
   - component: {fileID: 1387368847}
+  - component: {fileID: 1387368850}
   m_Layer: 0
   m_Name: rock (3)
   m_TagString: Untagged
@@ -5990,6 +6004,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1387368850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387368845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471fb0b6891a7a04db08e7754cc7345e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1402806032
 GameObject:
   m_ObjectHideFlags: 0
@@ -6345,6 +6371,7 @@ GameObject:
   - component: {fileID: 1473102868}
   - component: {fileID: 1473102867}
   - component: {fileID: 1473102866}
+  - component: {fileID: 1473102869}
   m_Layer: 0
   m_Name: rock (6)
   m_TagString: Untagged
@@ -6448,6 +6475,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1473102869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473102864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471fb0b6891a7a04db08e7754cc7345e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1575816281
 GameObject:
   m_ObjectHideFlags: 0
@@ -6813,7 +6852,7 @@ Transform:
   m_Children:
   - {fileID: 566293536}
   m_Father: {fileID: 1852013934}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1616973636
 GameObject:
@@ -7818,6 +7857,7 @@ GameObject:
   - component: {fileID: 1801794195}
   - component: {fileID: 1801794194}
   - component: {fileID: 1801794193}
+  - component: {fileID: 1801794196}
   m_Layer: 0
   m_Name: rock (2)
   m_TagString: Untagged
@@ -7921,6 +7961,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1801794196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801794191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471fb0b6891a7a04db08e7754cc7345e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1829056069
 GameObject:
   m_ObjectHideFlags: 0
@@ -8099,8 +8151,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1613079438}
   - {fileID: 1041046721}
+  - {fileID: 1613079438}
   - {fileID: 143199547}
   - {fileID: 1417529523}
   - {fileID: 598046815}
@@ -8255,6 +8307,7 @@ GameObject:
   - component: {fileID: 1940290584}
   - component: {fileID: 1940290583}
   - component: {fileID: 1940290582}
+  - component: {fileID: 1940290585}
   m_Layer: 0
   m_Name: rock (4)
   m_TagString: Untagged
@@ -8358,6 +8411,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1940290585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940290580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471fb0b6891a7a04db08e7754cc7345e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1950179000
 GameObject:
   m_ObjectHideFlags: 0
@@ -8370,6 +8435,7 @@ GameObject:
   - component: {fileID: 1950179004}
   - component: {fileID: 1950179003}
   - component: {fileID: 1950179002}
+  - component: {fileID: 1950179005}
   m_Layer: 0
   m_Name: rock (5)
   m_TagString: Untagged
@@ -8473,6 +8539,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1950179005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950179000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471fb0b6891a7a04db08e7754cc7345e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1955473635
 GameObject:
   m_ObjectHideFlags: 0

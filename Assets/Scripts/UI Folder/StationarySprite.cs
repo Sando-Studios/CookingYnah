@@ -9,6 +9,9 @@ public class StationarySprite : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        Quaternion tilt = Quaternion.Euler(25, 0, 0);
+        spriteRenderer.transform.rotation = tilt;
     }
 
     private void Start()

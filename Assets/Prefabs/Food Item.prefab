@@ -338,6 +338,7 @@ MonoBehaviour:
   itemNameText: {fileID: 844664857163415596}
   itemQuantityText: {fileID: 3732661849555769235}
   useButton: {fileID: 6748302682825630546}
+  craftingItemEquivalent: {fileID: 2440300233578835016, guid: 88d3aec9ff04c4244843ad0fd1f3473c, type: 3}
 --- !u!1 &7715504811712429521
 GameObject:
   m_ObjectHideFlags: 0

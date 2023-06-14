@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Asyncoroutine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,8 +19,30 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
 
     private Crafting.Slot focusedSlot;
 
-    private void Start()
+    [SerializeField] private DropItemData dropItemData;
+
+    public string Name
     {
+        get => dropItemData.Name;
+    }
+
+    public DropItemData ItemData
+    {
+        get => dropItemData;
+    }
+
+    private async void Start()
+    {
+        
+    }
+
+    public async void SetRefPosition()
+    {
+        // if (transform.parent.TryGetComponent(out GridLayout layout))
+        // {
+        //     referencePosition = layout.CellToWorld(layout.WorldToCell(transform.position));
+        // }
+        await new WaitForEndOfFrame();
         referencePosition = transform.position;
     }
 
@@ -64,8 +87,12 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
         }
         
         StopFollowMouse();
-
         focusedSlot?.Put(this);
+        
+        if (focusedSlot is CrafterInventory)
+        {
+            SetRefPosition();
+        }
     }
 
     public void OnPointerMove(PointerEventData eventData)
@@ -79,6 +106,13 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
         if (!slot) return;
 
         focusedSlot = slot;
+    }
+
+    private void OnDisable()
+    {
+        if (associatedIngredient.name == "empty") return;
+        
+        Destroy(gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D other)

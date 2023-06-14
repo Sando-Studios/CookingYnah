@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8957071436321238039}
   - component: {fileID: 7677577386287100317}
   - component: {fileID: 1423575849336512078}
+  - component: {fileID: 539258215376433456}
   m_Layer: 0
   m_Name: Drop Item
   m_TagString: Untagged
@@ -60,6 +61,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 8957071437278031937}
+--- !u!114 &539258215376433456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957071436321238036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471fb0b6891a7a04db08e7754cc7345e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8957071437278031943
 GameObject:
   m_ObjectHideFlags: 0

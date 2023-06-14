@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
             //attackCollider.enabled = true;
             Attack();
 
+            animator.SetTrigger("attackTrigger");
         }
 
 
@@ -129,8 +130,11 @@ public class Player : MonoBehaviour
         attackCollider.radius = playerDataInstance.AttackRange;
         attack.DealDamage((int)playerDataInstance.RawDamage);
 
-        await new WaitForSeconds(playerDataInstance.AttackInterval);
+        Debug.Log($"{playerUnitData.AttackInterval}");
+        await new WaitForSeconds(playerUnitData.AttackInterval);
 
+        Debug.Log("done attacking");
+        animator.SetTrigger("attackTrigger");
         canAttack = true;
     }
 

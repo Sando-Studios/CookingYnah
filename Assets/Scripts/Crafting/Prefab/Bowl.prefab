@@ -93,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   associatedIngredient: {fileID: 11400000, guid: 407350be3ea1e954e8ed547acb3a3d22, type: 2}
   refSlot: {fileID: 0}
+  dropItemData: {fileID: 11400000, guid: 20b12f8b08aed6b4dbe75767903dd13e, type: 2}
 --- !u!61 &-2659003443063901575
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -103,10 +104,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.0000076293945}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -117,7 +118,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 29.871582, y: 29.871567}
   m_EdgeRadius: 0
 --- !u!50 &5241701612584282380
 Rigidbody2D:

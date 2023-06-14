@@ -25,9 +25,16 @@ public class PlayerInventory : MonoBehaviour
         InventoryNode.OnUseItem -= UseItem;
     }
 
-    public void AddItem(Item itemToAdd)
+    public void AddItem(Item item)
     {
-        string dropItemName = itemToAdd.GetItemName();
+        if (inventoryList.Count >= maxInventory) return;
+        AddItem(item.name, item.GetItemBuffData());
+        Destroy(item.gameObject);
+    }
+
+    public void AddItem(string name, ItemData itemData)
+    {
+        string dropItemName = name;
 
         InventorySlot result = inventoryList.Find(item => item.itemName == dropItemName);
 
@@ -41,7 +48,7 @@ public class PlayerInventory : MonoBehaviour
 
             inventoryList[i] = s;
 
-            Destroy(itemToAdd.gameObject);
+            // Destroy(itemToAdd.gameObject);
         }
         else
         {
@@ -52,11 +59,11 @@ public class PlayerInventory : MonoBehaviour
                 {
                     itemName = dropItemName,
                     itemQuantity = 1,
-                    itemSprite = itemToAdd.GetItemSprite(),
-                    itemBuffData = itemToAdd.GetItemBuffData()
+                    itemBuffData = itemData,
+                    itemSprite = itemData.SpriteToRender,
                 };
                 inventoryList.Add(newItem);
-                Destroy(itemToAdd.gameObject);
+                // Destroy(itemToAdd.gameObject);
             }
             else
             {

@@ -16,6 +16,16 @@ public class InventoryNode : MonoBehaviour, IPointerDownHandler
 
     [SerializeField] private GameObject craftingItemEquivalent;
 
+    public GameObject GetCraftingPrefab()
+    {
+        return craftingItemEquivalent;
+    }
+
+    public int GetAmount()
+    {
+        return Convert.ToInt32(itemQuantityText.text);
+    }
+
     public static event Action<string> OnUseItem;
 
     private void OnEnable()

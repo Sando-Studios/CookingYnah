@@ -9,7 +9,7 @@ namespace Crafting
     public class Slot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField]
-        private IngredientItem inSlot;
+        protected IngredientItem inSlot;
         public uint amount;
 
         public GameObject emptySlot;
@@ -37,7 +37,7 @@ namespace Crafting
             return oldItem;
         }
 
-        public void Put(IngredientItem newItem)
+        public virtual void Put(IngredientItem newItem)
         {
             // Put on empty
             if (inSlot.associatedIngredient.name == "empty")
@@ -59,7 +59,7 @@ namespace Crafting
 
         }
 
-        public void Remove()
+        public virtual void Remove()
         {
             // inSlot.StartFollowMouse();
             
@@ -68,9 +68,17 @@ namespace Crafting
             inSlot = emptySlot.GetComponent<IngredientItem>();
         }
 
+        private void OnDisable()
+        {
+            if (inSlot.associatedIngredient.name != "empty")
+                Destroy(inSlot, 0.2f);
+            emptySlot.gameObject.SetActive(true);
+            inSlot = emptySlot.GetComponent<IngredientItem>();
+        }
+
         public void OnPointerClick(PointerEventData eventData)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
     }
 }

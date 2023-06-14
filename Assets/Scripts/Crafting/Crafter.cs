@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Asyncoroutine;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Crafting
 {
@@ -15,6 +18,14 @@ namespace Crafting
         public Slot output;
 
         [SerializeField] private Ingredient empty;
+
+        [SerializeField] private GameObject inventoryUIPanel;
+
+        [SerializeField] private GameObject craftingInventory;
+
+        [SerializeField] private PlayerInventory ogInv;
+
+        // private List<GameObject> spawnedClones;
 
         public void Listen()
         {
@@ -31,10 +42,15 @@ namespace Crafting
             }
 
             var obj = Instantiate(ing.prefab, output.transform.parent).GetComponent<IngredientItem>();
+            
+            
+            // spawnedClones.Add(obj.gameObject);
 
             // obj.transform.SetAsLastSibling();
             
             output.Put(obj);
+            ogInv.AddItem(obj.Name, obj.ItemData);
+            
         }
 
         public Ingredient GetOutput()
@@ -83,6 +99,50 @@ namespace Crafting
             }
 
             return true;
+        }
+
+        public void ShowPanel()
+        {
+            gameObject.SetActive(true);
+
+            // var items = GetInventoryItems();
+            // // items[0].
+        }
+
+        private InventoryNode[] GetInventoryItems()
+        {
+            return inventoryUIPanel.GetComponentsInChildren<InventoryNode>();
+        }
+
+        private void OnEnable()
+        {
+            var items = GetInventoryItems();
+            foreach (var i in items)
+            {
+                var o = Instantiate(i.GetCraftingPrefab(), craftingInventory.transform);
+                o.GetComponent<IngredientItem>().SetRefPosition();
+                for (int j = 1; j < i.GetAmount(); j++)
+                {
+                    Instantiate(i.GetCraftingPrefab(), craftingInventory.transform).GetComponent<IngredientItem>().SetRefPosition();
+                }
+
+            }
+
+        }
+
+        private void OnDisable()
+        {
+            var count = craftingInventory.transform.childCount;
+
+            for (int i = 0; i < count; i++)
+            {
+                Destroy(craftingInventory.transform.GetChild(i).gameObject);
+            }
+
+            // foreach (var slut in slots)
+            // {
+            //     slut.get
+            // }
         }
     }
 

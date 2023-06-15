@@ -21,11 +21,11 @@ MonoBehaviour:
     _serializedList:
     - Key: {fileID: 11400000, guid: be6fd282ddc66f54dbe292d7969e178f, type: 2}
       Value: 1
-  basicAttackDmg: 5
+  basicAttackDmg: 4
   wanderSpeed: 2
-  chaseSpeed: 2
+  chaseSpeed: 3
   attackSpeed: 2
-  aggroRange: 3
-  chaseRange: 5
-  attackRange: 2
+  aggroRange: 15
+  chaseRange: 9
+  attackRange: 4
   animatorController: {fileID: 9100000, guid: cdb8d8f5b4a9f9e40a0b1aaaad5db9af, type: 2}

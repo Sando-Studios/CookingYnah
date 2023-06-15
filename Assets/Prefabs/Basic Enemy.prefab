@@ -357,6 +357,7 @@ MonoBehaviour:
   greenMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   hpBar: {fileID: 639792562637887100}
   animator: {fileID: 6338477555309129997}
+  spriteTransform: {fileID: 639792562578276082}
 --- !u!135 &639792562889159886
 SphereCollider:
   m_ObjectHideFlags: 0

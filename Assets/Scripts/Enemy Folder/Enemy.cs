@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Asyncoroutine;
+using Unity.Mathematics;
 using UnityEngine.AI;
-
-
 
 public class Enemy : MonoBehaviour
 {
@@ -30,6 +29,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform spriteTransform;
 
     private void OnEnable()
     {
@@ -46,9 +46,6 @@ public class Enemy : MonoBehaviour
         // enemyDataInstance = new EnemyUnitData();
 
         //SetEnemyData(10001); // To be called and set by spawner 
-
-
-
     }
 
     public void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
@@ -107,8 +104,8 @@ public class Enemy : MonoBehaviour
         if (agent.hasPath)
         {
             Vector3 direction = agent.velocity.normalized;
-
-            //For the animation direction(to be added)
+            
+            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.01 ? -180f : 0f, 0f)); 
         }
     }
 
@@ -133,17 +130,17 @@ public class Enemy : MonoBehaviour
 
     public async void Hit()// To be replaced by animations 
     {
-        var r = GetComponentsInChildren<Renderer>();
+        var r = GetComponentsInChildren<SpriteRenderer>();
 
         foreach (var m in r)
         {
-            m.material = redMaterial;
+            m.color = Color.red;
         }
         await new WaitForSeconds(0.5f);
         
         foreach (var m in r)
         {
-            m.material = greenMaterial;
+            m.color = new Color(255, 255, 255, 255);
         }
     }
 

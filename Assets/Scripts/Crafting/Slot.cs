@@ -76,5 +76,10 @@ namespace Crafting
             inSlot.refSlot = null;
             inSlot = null;
         }
+
+        private void OnDisable()
+        {
+            Clear();
+        }
     }
 }

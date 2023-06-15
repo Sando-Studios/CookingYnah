@@ -130,10 +130,10 @@ public class Player : MonoBehaviour
         attackCollider.radius = playerDataInstance.AttackRange;
         attack.DealDamage((int)playerDataInstance.RawDamage);
 
-        Debug.Log($"{playerUnitData.AttackInterval}");
+        // Debug.Log($"{playerUnitData.AttackInterval}");
         await new WaitForSeconds(playerUnitData.AttackInterval);
 
-        Debug.Log("done attacking");
+        // Debug.Log("done attacking");
         animator.SetTrigger("attackTrigger");
         canAttack = true;
     }

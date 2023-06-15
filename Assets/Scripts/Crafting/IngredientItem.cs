@@ -2,49 +2,48 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Asyncoroutine;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveHandler
 {
-    public Ingredient associatedIngredient;
-
     private Coroutine routine;
 
     private bool isHovering;
 
-    private Vector3 referencePosition;
-    
     public Crafting.Slot refSlot;
 
     private Crafting.Slot focusedSlot;
 
-    [SerializeField] private ItemData dropItemData;
+    public TextMeshProUGUI quantityText;
+    public Image img;
 
-    public string Name
-    {
-        get => dropItemData.Name;
-    }
+    public string itemName;
+    public int amount;
 
-    public ItemData ItemData
-    {
-        get => dropItemData;
-    }
+    public Transform baseParent;
+    public Transform craftingSectionParent;
 
-    private async void Start()
+    public Action<IngredientItem, string, int> InventoryAddCloneEvent;
+    public Crafting.Crafter crafter;
+
+    public void SetData(string name, int amount, Sprite img)
     {
+        itemName = name;
+        this.amount = amount;
+
+        quantityText.text = $"{amount}";
         
+        this.img.sprite = img;
     }
 
-    public async void SetRefPosition()
+    public void UpdateAmount(int newAmount)
     {
-        // if (transform.parent.TryGetComponent(out GridLayout layout))
-        // {
-        //     referencePosition = layout.CellToWorld(layout.WorldToCell(transform.position));
-        // }
-        await new WaitForEndOfFrame();
-        referencePosition = transform.position;
+        amount = newAmount;
+
+        quantityText.text = $"{amount}";
     }
 
     public void StartFollowMouse()
@@ -54,9 +53,6 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
         if (routine != null) return;
         
         routine = StartCoroutine(_followMouse());
-        // refSlot
-        // refSlot?.transform.SetAsLastSibling();
-        transform.SetAsLastSibling();
     }
 
     private IEnumerator _followMouse()
@@ -73,27 +69,53 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
         isHovering = false;
         StopCoroutine(routine);
         routine = null;
-        transform.position = referencePosition;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (associatedIngredient.name == "empty") return;
+        if (amount > 1)
+        {
+            // Debug.Log($"{itemName} is more than 1");
+            var o = SpawnSingleCopy();
+            UpdateAmount(--amount);
+            o.OnPointerClick(new PointerEventData(EventSystem.current));
+            return;
+        }
         
         if (!isHovering)
         {
             refSlot?.Remove();
+            if (refSlot == null && focusedSlot == null) // Newly spawned
+                PutOnCraftingSection();
             StartFollowMouse();
             return;
         }
         
-        StopFollowMouse();
-        focusedSlot?.Put(this);
+        // Hovering Segment
         
-        if (focusedSlot is CrafterInventory)
+        if (refSlot == null)
+            PutOnInventorySection();
+        StopFollowMouse();
+        
+        if (focusedSlot != null)
         {
-            SetRefPosition();
+            focusedSlot.Put(this);
+            return;
         }
+        
+        // If the item is moved to inv section
+        InventoryAddCloneEvent?.Invoke(this, itemName, amount);
+    }
+
+    public void PutOnCraftingSection()
+    {
+        transform.SetParent(craftingSectionParent);
+    }
+
+    public void PutOnInventorySection()
+    {
+        crafter.CacheItemsToDict();
+        transform.SetParent(baseParent);
     }
 
     public void OnPointerMove(PointerEventData eventData)
@@ -109,18 +131,47 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
         focusedSlot = slot;
     }
 
+    private IngredientItem SpawnSingleCopy()
+    {
+        // Part from Crafter.cs
+        var o = Instantiate(gameObject).GetComponent<IngredientItem>();
+        
+        o.SetData(itemName, 1, img.sprite);
+        o.craftingSectionParent = this.craftingSectionParent;
+
+        // Part from UIManager.cs
+        o.baseParent = this.baseParent;
+        o.transform.SetParent(craftingSectionParent.transform);
+
+        o.gameObject.name = $"{itemName} clone";
+
+        #region Rects
+
+        var rect = o.GetComponent<RectTransform>();
+        var selfRect = GetComponent<RectTransform>().rect;
+
+        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, selfRect.width);
+        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, selfRect.height);
+        
+        #endregion
+
+        o.crafter = this.crafter;
+        o.InventoryAddCloneEvent += crafter.AddQuantityToItem;
+
+        return o;
+    }
+
+    // Might replace the destroy child of in UIManager
     private void OnDisable()
     {
-        if (associatedIngredient.name == "empty") return;
-        
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // var slot = other.gameObject.GetComponent<Crafting.Slot>();
-        // if (!slot) return;
-        //
-        // focusedSlot = slot;
+        if (other.TryGetComponent(out CraftingSection section))
+        {
+            focusedSlot = null;
+        }
     }
 }

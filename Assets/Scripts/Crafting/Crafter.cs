@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Asyncoroutine;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Crafting
 {
@@ -15,47 +13,47 @@ namespace Crafting
 
         public Slot[] slots;
 
+        // TODO: Make preview
         public Slot output;
 
-        [SerializeField] private Ingredient empty;
+        [SerializeField] private GameObject craftingSlotPrefab;
 
-        [SerializeField] private GameObject inventoryUIPanel;
+        [SerializeField] private Transform craftingSectionParent;
 
-        [SerializeField] private GameObject craftingInventory;
+        [SerializeField] private PlayerInventory inventory;
 
-        [SerializeField] private PlayerInventory ogInv;
+        [SerializeField] private Transform craftingInventorySection;
 
-        // private List<GameObject> spawnedClones;
+        private Dictionary<string, IngredientItem> cache = new();
 
         public void Listen()
         {
-            Debug.Log(GetOutput() != empty);
+            Debug.Log(GetOutput().itemName != "None");
         }
 
         public void CraftToOutput()
         {
             var ing = GetOutput();
 
-            if (ing.name == "empty")
+            if (ing.itemName == "None")
             {
+                ChangeOutput(false);
                 return;
             }
 
-            var obj = Instantiate(ing.prefab, output.transform.parent).GetComponent<IngredientItem>();
-            
-            
-            // spawnedClones.Add(obj.gameObject);
+            ChangeOutput(true);
 
-            // obj.transform.SetAsLastSibling();
+            RemoveFromInventoryFromSlots();
+            ClearSlots();
             
-            output.Put(obj);
-            ogInv.AddItem(obj.Name, obj.ItemData);
+            inventory.AddItem(ing.itemName, ing.itemBuffData);
             
+            UIManager.instance.UpdateCraftingInventoryUI();
         }
 
-        public Ingredient GetOutput()
+        public InventorySlot GetOutput()
         {
-            var inSlots = new List<CraftingSlot>(4);
+            var inSlots = new List<string>(4);
 
             for (int i = 0; i < 4; i++)
             {
@@ -63,14 +61,10 @@ namespace Crafting
 
                 if (s == null)
                 {
-                    Debug.Log("whhat");
+                    Debug.Log("what");
                 }
                 
-                inSlots.Add(new CraftingSlot()
-                {
-                    amount = s.amount,
-                    item = s.GetIngredientInSlot(),
-                });
+                inSlots.Add(s.GetIngredientInSlot());
             }
 
             foreach (var (name, recipe) in recipes)
@@ -80,11 +74,14 @@ namespace Crafting
                     return recipe.output;
                 }
             }
-
-            return empty;
+            
+            return new InventorySlot()
+            {
+                itemName = "None"
+            };
         }
 
-        private static bool CompareSlots(CraftingSlot[] a, CraftingSlot[] b)
+        private static bool CompareSlots(string[] a, string[] b)
         {
             if (a == b) return true;
             
@@ -101,72 +98,71 @@ namespace Crafting
             return true;
         }
 
-        public void ShowPanel()
+        private void ClearSlots()
         {
-            gameObject.SetActive(true);
-
-            // var items = GetInventoryItems();
-            // // items[0].
-        }
-
-        private InventoryNode[] GetInventoryItems()
-        {
-            return inventoryUIPanel.GetComponentsInChildren<InventoryNode>();
-        }
-
-        private void OnEnable()
-        {
-            var items = GetInventoryItems();
-            foreach (var i in items)
+            foreach (var slot in slots)
             {
-                var o = Instantiate(i.GetCraftingPrefab(), craftingInventory.transform);
-                o.GetComponent<IngredientItem>().SetRefPosition();
-                for (int j = 1; j < i.GetAmount(); j++)
-                {
-                    Instantiate(i.GetCraftingPrefab(), craftingInventory.transform).GetComponent<IngredientItem>().SetRefPosition();
-                }
-
+                slot.Clear();
             }
-
         }
 
-        private void OnDisable()
+        private void RemoveFromInventoryFromSlots()
         {
-            var count = craftingInventory.transform.childCount;
-
-            for (int i = 0; i < count; i++)
+            foreach (var slot in slots)
             {
-                Destroy(craftingInventory.transform.GetChild(i).gameObject);
+                if (slot.GetIngredientInSlot() == "None") continue;
+                inventory.RemoveItem(slot.GetIngredientInSlot());
             }
-
-            // foreach (var slut in slots)
-            // {
-            //     slut.get
-            // }
         }
-    }
 
-    [Serializable]
-    public struct CraftingSlot
-    {
-        [Range(0, 64)] public uint amount;
-        public Ingredient item;
-
-        public override bool Equals(object obj)
+        public IngredientItem SpawnInventorySlot(string name, int amount, Sprite img)
         {
-            if (obj is not CraftingSlot) return false;
+            var o = Instantiate(craftingSlotPrefab).GetComponent<IngredientItem>();
 
-            return item.name == ((CraftingSlot)obj).item.name;
+            o.SetData(name, amount, img);
+            o.craftingSectionParent = craftingSectionParent;
+
+            o.crafter = this;
+
+            o.InventoryAddCloneEvent += AddQuantityToItem;
+
+            o.baseParent = craftingInventorySection;
+            o.transform.SetParent(craftingInventorySection);
+            return o;
         }
 
-        public static bool operator ==(CraftingSlot a, CraftingSlot b)
+        private async void ChangeOutput(bool isGood)
         {
-            return a.Equals(b);
+            throw new NotImplementedException("No sprites yet");
+            await new WaitForSeconds(1.5f);
         }
 
-        public static bool operator !=(CraftingSlot a, CraftingSlot b)
+        public void AddQuantityToItem(IngredientItem clone, string name, int amount)
         {
-            return !a.Equals(b);
+            // Changing Values
+            if (cache.TryGetValue(clone.itemName, out var item))
+            {
+                item.UpdateAmount(item.amount + 1);
+                
+                Destroy(clone.gameObject);
+            }
         }
+
+        public void CacheItemsToDict()
+        {
+            // Clears old cache
+            cache = new();
+            
+            var cCount = craftingInventorySection.transform.childCount;
+            for (int i = 0; i < cCount; i++)
+            {
+                var child = craftingInventorySection.transform.GetChild(i);
+
+                var ingItem = child.GetComponent<IngredientItem>();
+                
+                cache.TryAdd(ingItem.itemName, ingItem);
+            }
+        }
+        
     }
 }

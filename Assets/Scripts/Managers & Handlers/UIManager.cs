@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,6 +57,7 @@ public class UIManager : MonoBehaviour
     [Header("Crafting UI")]
     [SerializeField] private GameObject craftingPanel;
     [SerializeField] private GameObject craftingItemParent;
+    [SerializeField] private Crafting.Crafter crafter;
 
 
 
@@ -78,6 +80,7 @@ public class UIManager : MonoBehaviour
         {
             craftingPanel.SetActive(!craftingPanel.activeInHierarchy);
             // Add Update Crafting UI
+            UpdateCraftingInventoryUI();
         }
 
         if (!player.GetNearStation())
@@ -119,17 +122,9 @@ public class UIManager : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
-        
+        DestroyChildren(itemSlotParent.transform);
+
         List<InventorySlot> list = playerInventory.GetInventoryList();
-
-        if (itemSlotParent.transform.childCount > 0)
-        {
-            for (int i = 0; i < itemSlotParent.transform.childCount; i++)
-            {
-                Destroy(itemSlotParent.transform.GetChild(i).gameObject);
-            }
-        }
-
         foreach (InventorySlot slot in list)
         {
             GameObject clone = Instantiate(itemNodePrefab, transform);
@@ -138,11 +133,39 @@ public class UIManager : MonoBehaviour
             clone.GetComponent<InventoryNode>().SetData(slot.itemName, slot.itemQuantity, slot.itemSprite);
         }
 
-        UpdateContentHeight(itemSlotParent.transform.childCount);
+        UpdateContentHeight(itemSlotParent.transform.childCount, itemSlotParent);
     }
-    private void UpdateContentHeight(int itemCount)
+
+    public void UpdateCraftingInventoryUI()
     {
-        RectTransform contentRectTransform = itemSlotParent.transform.GetComponent<RectTransform>();
+        // Out with the old
+        DestroyChildren(craftingItemParent.transform);
+        
+        // In with the new
+        var rawList = playerInventory.GetInventoryList();
+
+        foreach (var itemStruct in rawList)
+        {
+            var o = crafter.SpawnInventorySlot(itemStruct.itemName, itemStruct.itemQuantity, itemStruct.itemSprite);
+
+            o.gameObject.name = $"{itemStruct.itemName}";
+        }
+        
+        UpdateContentHeight(rawList.Count, craftingItemParent);
+    }
+
+    private void DestroyChildren(Transform target)
+    {
+        var count = target.childCount;
+        for (int i = 0; i < count; i++)
+        {
+            Destroy(target.GetChild(i).gameObject);
+        }
+    }
+    
+    private void UpdateContentHeight(int itemCount, GameObject targetParent)
+    {
+        RectTransform contentRectTransform = targetParent.transform.GetComponent<RectTransform>();
         float newHeight = CalculateContentHeight(itemCount);
         contentRectTransform.sizeDelta = new Vector2(contentRectTransform.sizeDelta.x, newHeight);
     }

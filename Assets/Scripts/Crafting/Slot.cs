@@ -6,32 +6,43 @@ using UnityEngine.EventSystems;
 
 namespace Crafting
 {
-    public class Slot : MonoBehaviour, IPointerClickHandler
+    public class Slot : MonoBehaviour
     {
         [SerializeField]
         protected IngredientItem inSlot;
         public uint amount;
 
-        public GameObject emptySlot;
-
-        public Ingredient GetIngredientInSlot()
+        public string GetIngredientInSlot()
         {
-            return inSlot.associatedIngredient;
+            return inSlot == null ? "None" : inSlot.itemName;
         }
-        
+
+        public void Clear()
+        {
+            if (inSlot == null) return;
+            Destroy(inSlot.gameObject);
+            inSlot = null;
+        }
+
         // Possible actions
         // Put on empty
-        // Remove Something
         // Replace
+        // Remove Something
 
         private IngredientItem Replace(IngredientItem newItem)
         {
             var oldItem = inSlot;
-            
-            inSlot.StartFollowMouse();
-            inSlot.refSlot = null; // Might change when closing the crafting tab (might not despawn or shit)
+
             newItem.refSlot = this;
             newItem.transform.position = transform.position;
+
+            oldItem.PutOnCraftingSection();
+            oldItem.StartFollowMouse();
+            oldItem.refSlot = null;
+            
+            newItem.PutOnCraftingSection(); // Force
+
+            oldItem.transform.SetAsLastSibling();
             inSlot = newItem;
             
             return oldItem;
@@ -40,45 +51,30 @@ namespace Crafting
         public virtual void Put(IngredientItem newItem)
         {
             // Put on empty
-            if (inSlot.associatedIngredient.name == "empty")
+            if (inSlot == null)
             {
-                inSlot.gameObject.SetActive(false);
-
                 newItem.refSlot = this;
 
                 newItem.transform.position = transform.position;
 
                 inSlot = newItem;
+                
+                newItem.PutOnCraftingSection();
 
                 return;
             }
             
             // Not Empty (Replace)
-
             Replace(newItem);
 
         }
 
         public virtual void Remove()
         {
-            // inSlot.StartFollowMouse();
+            inSlot.StartFollowMouse();
             
             inSlot.refSlot = null;
-            emptySlot.gameObject.SetActive(true);
-            inSlot = emptySlot.GetComponent<IngredientItem>();
-        }
-
-        private void OnDisable()
-        {
-            if (inSlot.associatedIngredient.name != "empty")
-                Destroy(inSlot, 0.2f);
-            emptySlot.gameObject.SetActive(true);
-            inSlot = emptySlot.GetComponent<IngredientItem>();
-        }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            // throw new NotImplementedException();
+            inSlot = null;
         }
     }
 }

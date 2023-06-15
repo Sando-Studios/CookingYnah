@@ -5,6 +5,7 @@ using System.Linq;
 using Asyncoroutine;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Crafting
 {
@@ -13,10 +14,6 @@ namespace Crafting
         public SerializedDictionary<string, Recipe> recipes = new();
 
         public Slot[] slots;
-
-        // TODO: Make preview
-        [SerializeField] private GameObject correctCraftSprite;
-        [SerializeField] private GameObject wrongCraftSprite;
         
         public Slot output;
 
@@ -29,7 +26,18 @@ namespace Crafting
         [SerializeField] private Transform craftingInventorySection;
 
         private Dictionary<string, IngredientItem> cache = new();
+        
+        [Header("UI")]
 
+        [SerializeField]
+        [Tooltip("Success Panel")]
+        private SuccessPanel correctCraftSprite;
+        [SerializeField]
+        [Tooltip("The Pot")]
+        private Image wrongCraftSprite;
+
+        [SerializeField] private Sprite wrongSprite;
+        
         public void Listen()
         {
             Debug.Log(GetOutput().itemName != "None");
@@ -39,13 +47,13 @@ namespace Crafting
         {
             var ing = GetOutput();
 
-            if (ing.itemName == "None")
+            if (ing.itemName == InventorySlot.Empty.itemName)
             {
-                ChangeOutput(false);
+                ChangeOutput();
                 return;
             }
 
-            ChangeOutput(true);
+            ChangeOutput(ing);
 
             RemoveFromInventoryFromSlots();
             ClearSlots();
@@ -62,11 +70,6 @@ namespace Crafting
             for (int i = 0; i < 4; i++)
             {
                 var s = slots[i];
-
-                if (s == null)
-                {
-                    Debug.Log("what");
-                }
                 
                 inSlots.Add(s.GetIngredientInSlot());
             }
@@ -83,10 +86,7 @@ namespace Crafting
                 }
             }
             
-            return new InventorySlot()
-            {
-                itemName = "None"
-            };
+            return InventorySlot.Empty;
         }
 
         private static bool CompareSlots(string[] a, string[] b)
@@ -139,10 +139,17 @@ namespace Crafting
             return o;
         }
 
-        private async void ChangeOutput(bool isGood)
+        private async void ChangeOutput()
         {
-            throw new NotImplementedException("No sprites yet");
-            await new WaitForSeconds(1.5f);
+            var old = wrongCraftSprite.sprite;
+            wrongCraftSprite.sprite = wrongSprite;
+            await new WaitForSeconds(1f);
+            wrongCraftSprite.sprite = old;
+        }
+
+        private async void ChangeOutput(InventorySlot item)
+        {
+            correctCraftSprite.Show(item.itemSprite, item.itemName, "NaN");
         }
 
         public void AddQuantityToItem(IngredientItem clone, string name, int amount)

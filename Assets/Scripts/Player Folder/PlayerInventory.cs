@@ -5,6 +5,14 @@ using UnityEngine;
 
 public struct InventorySlot
 {
+    private static readonly InventorySlot empty = new InventorySlot()
+    {
+        itemName = "None",
+        itemQuantity = 0,
+        itemSprite = null,
+        itemBuffData = null,
+    };
+
     public string itemName;
     public int itemQuantity;
     public Sprite itemSprite;
@@ -16,6 +24,11 @@ public struct InventorySlot
         itemQuantity = 1;
         itemSprite = data.SpriteToRender;
         itemBuffData = data;
+    }
+
+    public static InventorySlot Empty
+    {
+        get => empty;
     }
 }
 public class PlayerInventory : MonoBehaviour

@@ -133,9 +133,18 @@ public class Enemy : MonoBehaviour
 
     public async void Hit()// To be replaced by animations 
     {
-        GetComponentInChildren<Renderer>().material = redMaterial;
+        var r = GetComponentsInChildren<Renderer>();
+
+        foreach (var m in r)
+        {
+            m.material = redMaterial;
+        }
         await new WaitForSeconds(0.5f);
-        GetComponentInChildren<Renderer>().material = greenMaterial;
+        
+        foreach (var m in r)
+        {
+            m.material = greenMaterial;
+        }
     }
 
     void Death(int id)

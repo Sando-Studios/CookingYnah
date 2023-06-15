@@ -13,12 +13,8 @@ MonoBehaviour:
   m_Name: Recipe
   m_EditorClassIdentifier: 
   slots:
-  - Eggs
-  - None
-  - None
-  - Cheese
-  output:
-    itemName: Leek
-    itemQuantity: 1
-    itemSprite: {fileID: 21300000, guid: afc566da836a1cc448d20e826d27d909, type: 3}
-    itemBuffData: {fileID: 11400000, guid: 473c1fc887b47ff459b1b017bbe2705a, type: 2}
+  - {fileID: 11400000, guid: 20b12f8b08aed6b4dbe75767903dd13e, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
+  output: {fileID: 11400000, guid: 473c1fc887b47ff459b1b017bbe2705a, type: 2}

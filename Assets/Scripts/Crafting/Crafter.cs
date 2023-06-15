@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Asyncoroutine;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
@@ -69,9 +70,13 @@ namespace Crafting
 
             foreach (var (name, recipe) in recipes)
             {
-                if (CompareSlots(recipe.slots, inSlots.ToArray()))
+                if (CompareSlots(recipe.slots.Select(data =>
+                    {
+                        if (data == null) return "None";
+                        return data.Name;
+                    }).ToArray(), inSlots.ToArray()))
                 {
-                    return recipe.output;
+                    return new InventorySlot(recipe.output);
                 }
             }
             

@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-[Serializable]
 public struct InventorySlot
 {
     public string itemName;
     public int itemQuantity;
     public Sprite itemSprite;
     public ItemData itemBuffData;
+
+    public InventorySlot (ItemData data)
+    {
+        itemName = data.Name;
+        itemQuantity = 1;
+        itemSprite = data.SpriteToRender;
+        itemBuffData = data;
+    }
 }
 public class PlayerInventory : MonoBehaviour
 {

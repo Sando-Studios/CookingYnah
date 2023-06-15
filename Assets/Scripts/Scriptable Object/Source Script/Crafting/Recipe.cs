@@ -10,8 +10,8 @@ namespace Crafting
     [Serializable]
     public class Recipe : ScriptableObject
     {
-        public string[] slots;
+        public ItemData[] slots;
 
-        public InventorySlot output;
+        public ItemData output;
     }
 }

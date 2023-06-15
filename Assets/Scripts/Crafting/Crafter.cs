@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Asyncoroutine;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
@@ -147,9 +148,16 @@ namespace Crafting
             wrongCraftSprite.sprite = old;
         }
 
-        private async void ChangeOutput(InventorySlot item)
+        private void ChangeOutput(InventorySlot item)
         {
-            correctCraftSprite.Show(item.itemSprite, item.itemName, "NaN");
+            var sb = new StringBuilder();
+            
+            foreach (var (stat, amount) in item.itemBuffData.PermanentBuffs)
+            {
+                sb.Append($"+ {amount} {stat.ToString().Replace("Stat", "").ToUpper()}\n");
+            }
+            
+            correctCraftSprite.Show(item.itemSprite, item.itemName, sb.ToString());
         }
 
         public void AddQuantityToItem(IngredientItem clone, string name, int amount)

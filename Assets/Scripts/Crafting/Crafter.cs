@@ -15,6 +15,9 @@ namespace Crafting
         public Slot[] slots;
 
         // TODO: Make preview
+        [SerializeField] private GameObject correctCraftSprite;
+        [SerializeField] private GameObject wrongCraftSprite;
+        
         public Slot output;
 
         [SerializeField] private GameObject craftingSlotPrefab;

@@ -152,12 +152,31 @@ namespace Crafting
         {
             var sb = new StringBuilder();
             
-            foreach (var (stat, amount) in item.itemBuffData.PermanentBuffs)
+            var whole = item.itemBuffData.PermanentBuffs.ToList();
+            var ll = PartitionList(whole, 2);
+
+            foreach (var l in ll)
             {
-                sb.Append($"+ {amount} {stat.ToString().Replace("Stat", "").ToUpper()}\n");
+                foreach (var (stat, val) in l)
+                {
+                    sb.Append($"+ {val} {stat.ToString().Replace("Stat", "").ToUpper()} ");
+                }
+
+                sb.Append("\n");
             }
             
             correctCraftSprite.Show(item.itemSprite, item.itemName, sb.ToString());
+        }
+        
+        // Source: bing; prompt: how to split a list in c# to a list of lists
+        private static List<List<T>> PartitionList<T>(List<T> items, int size)
+        {
+            var list = new List<List<T>>();
+            for (int i = 0; i < items.Count; i += size)
+            {
+                list.Add(items.GetRange(i, Math.Min(size, items.Count - i)));
+            }
+            return list;
         }
 
         public void AddQuantityToItem(IngredientItem clone, string name, int amount)

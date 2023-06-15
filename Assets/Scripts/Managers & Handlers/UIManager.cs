@@ -243,25 +243,25 @@ public class UIManager : MonoBehaviour
             switch (s)
             {
                 case TargetStat.VitStat:
-                    stringToAdd1 += "+" + pair.Value + " Vitality<br>";
+                    stringToAdd1 += "+" + pair.Value + " VIT<br>";
                     break;
                 case TargetStat.AgiStat:
-                    stringToAdd1 += "+" + pair.Value + " Agility<br>";
+                    stringToAdd1 += "+" + pair.Value + " AGI<br>";
                     break;
                 case TargetStat.StrStat:
-                    stringToAdd1 += "+" + pair.Value + " Strength<br>";
+                    stringToAdd1 += "+" + pair.Value + " STR<br>";
                     break;
                 case TargetStat.VigStat:
-                    stringToAdd1 += "+" + pair.Value + " Vigor<br>";
+                    stringToAdd1 += "+" + pair.Value + " VIG<br>";
                     break;
                 case TargetStat.IntStat:
-                    stringToAdd1 += "+" + pair.Value + " Intelligence<br>";
+                    stringToAdd1 += "+" + pair.Value + " INT<br>";
                     break;
                 case TargetStat.EndStat:
-                    stringToAdd1 += "+" + pair.Value + " Endurance<br>";
+                    stringToAdd1 += "+" + pair.Value + " END<br>";
                     break;
                 case TargetStat.DexStat:
-                    stringToAdd1 += "+" + pair.Value + " Dexterity<br>";
+                    stringToAdd1 += "+" + pair.Value + " DEX<br>";
                     break;
             }
         }
@@ -273,25 +273,25 @@ public class UIManager : MonoBehaviour
             switch (s)
             {
                 case TargetStat.VitStat:
-                    stringToAdd2 += "+" + pair.Value + " Vitality<br>";
+                    stringToAdd2 += "+" + pair.Value + " VIT<br>";
                     break;
                 case TargetStat.AgiStat:
-                    stringToAdd2 += "+" + pair.Value + " Agility<br>";
+                    stringToAdd2 += "+" + pair.Value + " AGI<br>";
                     break;
                 case TargetStat.StrStat:
-                    stringToAdd2 += "+" + pair.Value + " Strength<br>";
+                    stringToAdd2 += "+" + pair.Value + " STR<br>";
                     break;
                 case TargetStat.VigStat:
-                    stringToAdd2 += "+" + pair.Value + " Vigor<br>";
+                    stringToAdd2 += "+" + pair.Value + " VIG<br>";
                     break;
                 case TargetStat.IntStat:
-                    stringToAdd2 += "+" + pair.Value + " Intelligence<br>";
+                    stringToAdd2 += "+" + pair.Value + " INT<br>";
                     break;
                 case TargetStat.EndStat:
-                    stringToAdd2 += "+" + pair.Value + " Endurance<br>";
+                    stringToAdd2 += "+" + pair.Value + " END<br>";
                     break;
                 case TargetStat.DexStat:
-                    stringToAdd2 += "+" + pair.Value + " Dexterity<br>";
+                    stringToAdd2 += "+" + pair.Value + " DEX<br>";
                     break;
             }
         }

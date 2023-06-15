@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour
         {
             Vector3 direction = agent.velocity.normalized;
             
-            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.01 ? -180f : 0f, 0f)); 
+            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f)); 
         }
     }
 

@@ -55,14 +55,18 @@ public class MonsterSpawnManager : MonoBehaviour
 
         Dictionary<EnemyUnitData, int> mGDictionary = monsterGroups[index].GroupComposition;
 
-        foreach (KeyValuePair<EnemyUnitData, int> pair in mGDictionary)
+        foreach (var (data, amount) in mGDictionary)
         {
-            for (int j = 0; j < pair.Value; j++)
+            // Problem with this is, spawn handler will only use the prefab that was set by the last obj
+            if (data.OverridePrefab != null)
             {
-                sH.AddEnemyToSpawn(monsterID, pair.Key);
-                monsterID++;
+                sH.SetSpawnerData(index, data.OverridePrefab, spawnPointList[index], basePointList[index]);
             }
-
+            
+            for (int j = 0; j < amount; j++)
+            {
+                sH.AddEnemyToSpawn(monsterID++, data);
+            }
         }
         sH.StartSpawning();
     }

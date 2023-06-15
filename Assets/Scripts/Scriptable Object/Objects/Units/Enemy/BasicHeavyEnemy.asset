@@ -29,3 +29,16 @@ MonoBehaviour:
   chaseRange: 9
   attackRange: 4
   animatorController: {fileID: 9100000, guid: cdb8d8f5b4a9f9e40a0b1aaaad5db9af, type: 2}
+  customBodySprites:
+    _serializedList:
+    - Key: head
+      Value: {fileID: -1559136250, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+    - Key: torso
+      Value: {fileID: -1042948447, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+    - Key: other_arm
+      Value: {fileID: -1880689264, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+    - Key: weapon_arm
+      Value: {fileID: -1880689264, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+    - Key: knife
+      Value: {fileID: 242853273, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+  overridePrefab: {fileID: 8375884530079086255, guid: 49a5a226d5be3bc4b8a5dec26139b698, type: 3}

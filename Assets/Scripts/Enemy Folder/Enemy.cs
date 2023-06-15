@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Asyncoroutine;
+using AYellowpaper.SerializedCollections;
 using Unity.Mathematics;
 using UnityEngine.AI;
 
@@ -31,6 +32,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Transform spriteTransform;
 
+    [Header("Sprites")] [SerializeField]
+    private SerializedDictionary<string, SpriteRenderer> bodyParts = new();
+
     private void OnEnable()
     {
         DamageHandler.OnEnemyUnitDeath += Death;
@@ -46,6 +50,26 @@ public class Enemy : MonoBehaviour
         // enemyDataInstance = new EnemyUnitData();
 
         //SetEnemyData(10001); // To be called and set by spawner 
+        
+        #region Sprite Changes
+
+        var sprites = enemyUnitData.CustomSprites;
+
+        foreach (var (part, sprite) in sprites)
+        {
+            if (!bodyParts.TryGetValue(part, out SpriteRenderer render))
+            {
+                Debug.Log($"no val for {part}");
+                continue;
+            }
+            
+            Debug.Log($"{sprite.name}");
+            render.sprite = sprite;
+        }
+
+        #endregion
+
+        spriteTransform.gameObject.GetComponent<SpriteRenderer>().sprite = null;
     }
 
     public void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)

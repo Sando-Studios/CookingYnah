@@ -358,6 +358,24 @@ MonoBehaviour:
   hpBar: {fileID: 639792562637887100}
   animator: {fileID: 6338477555309129997}
   spriteTransform: {fileID: 639792562578276082}
+  bodyParts:
+    _serializedList:
+    - Key: head
+      Value: {fileID: 5357064011391435791}
+    - Key: torso
+      Value: {fileID: 2038669434436434258}
+    - Key: other_arm
+      Value: {fileID: 3944672729580156683}
+    - Key: weapon_arm
+      Value: {fileID: 1716910640331239136}
+    - Key: knife
+      Value: {fileID: 1408477585970319393}
+    - Key: cosmos
+      Value: {fileID: 5357064011391435791}
+    - Key: dar
+      Value: {fileID: 5357064011391435791}
+    - Key: nel
+      Value: {fileID: 5357064011391435791}
 --- !u!135 &639792562889159886
 SphereCollider:
   m_ObjectHideFlags: 0

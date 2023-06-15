@@ -24,6 +24,14 @@ public class EnemyUnitData : UnitData
     [Header("Animations")]
     [SerializeField] private RuntimeAnimatorController animatorController;
 
+    [Header("Sprites")]
+    [SerializeField]
+    private SerializedDictionary<string, Sprite> customBodySprites;
+
+    [Header("Overrides")]
+    [SerializeField]
+    private GameObject overridePrefab;
+
     public int UnitID
     {
         get { return unitID; }
@@ -81,5 +89,15 @@ public class EnemyUnitData : UnitData
     {
         get { return attackSpeed; }
         set { attackSpeed = value; }
+    }
+
+    public Dictionary<string, Sprite> CustomSprites
+    {
+        get => customBodySprites;
+    }
+
+    public GameObject OverridePrefab
+    {
+        get => overridePrefab;
     }
 }

@@ -1,12 +1,7 @@
-using Mono.Cecil.Cil;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using UnityEditor.PackageManager.UI;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
+
 
 public class SceneChangeManager : MonoBehaviour
 {

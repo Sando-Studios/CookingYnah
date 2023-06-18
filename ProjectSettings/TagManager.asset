@@ -46,3 +46,6 @@ TagManager:
   - name: Ynah
     uniqueID: 3164617439
     locked: 0
+  - name: Monster
+    uniqueID: 3876975231
+    locked: 0

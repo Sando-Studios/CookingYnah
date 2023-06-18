@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 1257594442122759433}
   - component: {fileID: 1414567092645113032}
   m_Layer: 0
-  m_Name: Basic Enemy
+  m_Name: Basic Rat Enemy
   m_TagString: Enemy
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

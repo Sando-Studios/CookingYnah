@@ -7,7 +7,6 @@ using UnityEngine;
 public class SpawningHandler : MonoBehaviour
 {
     private int spawnerID;
-    private GameObject monsterPrefab;
     private Dictionary<int, EnemyUnitData> enemiesToSpawn = new Dictionary<int, EnemyUnitData>();
     private Transform spawnPoint;
     private Vector3 homeBase;
@@ -27,10 +26,9 @@ public class SpawningHandler : MonoBehaviour
         MonsterSpawnManager.SpawnNewGroup -= SpawnGroup;
     }
 
-    public void SetSpawnerData(int id, GameObject prefab, Transform monsterSpawnPoint, Transform monsterHomeBase)
+    public void SetSpawnerData(int id, Transform monsterSpawnPoint, Transform monsterHomeBase)
     {
         spawnerID = id;
-        monsterPrefab = prefab;
         spawnPoint = monsterSpawnPoint;
         homeBase = monsterHomeBase.position;
     }
@@ -79,7 +77,7 @@ public class SpawningHandler : MonoBehaviour
     {
         foreach (KeyValuePair<int, EnemyUnitData> e in enemiesToSpawn)
         {
-            GameObject clone = Instantiate(monsterPrefab, spawnPoint);
+            GameObject clone = Instantiate(e.Value.EnemyPrefab, spawnPoint);
 
             Enemy enemy = clone.GetComponent<Enemy>();
             enemy.SetEnemyData(e.Key, e.Value, home);

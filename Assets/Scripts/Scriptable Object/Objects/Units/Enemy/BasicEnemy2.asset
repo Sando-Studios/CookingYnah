@@ -31,3 +31,4 @@ MonoBehaviour:
   chaseRange: 6
   attackRange: 3
   animatorController: {fileID: 9100000, guid: 026a1eadcf6176b46a3dde42080dcb61, type: 2}
+  enemyPrefab: {fileID: 639792562889159874, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}

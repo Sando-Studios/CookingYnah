@@ -51,25 +51,25 @@ public class Enemy : MonoBehaviour
 
         //SetEnemyData(10001); // To be called and set by spawner 
         
-        #region Sprite Changes
+        //#region Sprite Changes
 
-        var sprites = enemyUnitData.CustomSprites;
+        //var sprites = enemyUnitData.CustomSprites;
 
-        foreach (var (part, sprite) in sprites)
-        {
-            if (!bodyParts.TryGetValue(part, out SpriteRenderer render))
-            {
-                Debug.Log($"no val for {part}");
-                continue;
-            }
+        //foreach (var (part, sprite) in sprites)
+        //{
+        //    if (!bodyParts.TryGetValue(part, out SpriteRenderer render))
+        //    {
+        //        Debug.Log($"no val for {part}");
+        //        continue;
+        //    }
             
-            Debug.Log($"{sprite.name}");
-            render.sprite = sprite;
-        }
+        //    Debug.Log($"{sprite.name}");
+        //    render.sprite = sprite;
+        //}
 
-        #endregion
+        //#endregion
 
-        spriteTransform.gameObject.GetComponent<SpriteRenderer>().sprite = null;
+        //spriteTransform.gameObject.GetComponent<SpriteRenderer>().sprite = null;
     }
 
     public void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)

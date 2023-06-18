@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class MonsterSpawnManager : MonoBehaviour
 {
-
-    [SerializeField] private GameObject monsterPrefab;
     [SerializeField] private SerializedDictionary<Transform, Transform> spawnBaseDictionary = new SerializedDictionary<Transform, Transform>();
     private List<Transform> spawnPointList = new List<Transform>();
     private List<Transform> basePointList = new List<Transform>();
@@ -51,18 +49,12 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         GameObject clone = Instantiate(spawnHandlerPrefab, transform);
         SpawningHandler sH = clone.GetComponent<SpawningHandler>();
-        sH.SetSpawnerData(index, monsterPrefab, spawnPointList[index], basePointList[index]);
+        sH.SetSpawnerData(index, spawnPointList[index], basePointList[index]);
 
         Dictionary<EnemyUnitData, int> mGDictionary = monsterGroups[index].GroupComposition;
 
         foreach (var (data, amount) in mGDictionary)
         {
-            // Problem with this is, spawn handler will only use the prefab that was set by the last obj
-            if (data.OverridePrefab != null)
-            {
-                sH.SetSpawnerData(index, data.OverridePrefab, spawnPointList[index], basePointList[index]);
-            }
-            
             for (int j = 0; j < amount; j++)
             {
                 sH.AddEnemyToSpawn(monsterID++, data);

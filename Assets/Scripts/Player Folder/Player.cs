@@ -138,8 +138,8 @@ public class Player : MonoBehaviour
         await new WaitForSeconds(playerUnitData.AttackInterval);
 
         // Debug.Log("done attacking");
-
-        animator.SetTrigger("attackTrigger");
+        animator.ResetTrigger("AttackFinished");
+        animator.SetTrigger("AttackStart");
         canAttack = true;
     }
 

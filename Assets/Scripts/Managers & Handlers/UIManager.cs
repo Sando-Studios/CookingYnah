@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject craftingPanel;
     [SerializeField] private GameObject craftingItemParent;
     [SerializeField] private Crafting.Crafter crafter;
+    [SerializeField] private GameObject craftingPopup;
 
 
 
@@ -66,7 +67,7 @@ public class UIManager : MonoBehaviour
         playerData = player.GetPlayerData();
         playerInventory = player.GetInventory();
 
-        
+
     }
 
     private void Update()
@@ -79,14 +80,10 @@ public class UIManager : MonoBehaviour
         if (Input.GetButtonDown("Crafting") && player.GetNearStation())
         {
             craftingPanel.SetActive(!craftingPanel.activeInHierarchy);
-            // Add Update Crafting UI
             UpdateCraftingInventoryUI();
         }
 
-        if (!player.GetNearStation())
-        {
-            craftingPanel.SetActive(false);
-        }
+        if (!player.GetNearStation()) { craftingPanel.SetActive(false); }
 
         if (Input.GetButtonDown("Stats"))
         {
@@ -95,14 +92,9 @@ public class UIManager : MonoBehaviour
             UpdateStatsUI();
         }
 
-        if (isOverStat)
-        {
-            statPopupToolTip.transform.position = Input.mousePosition;
-        }
-        if (isOverItem)
-        {
-            itemPopupToolTip.transform.position = Input.mousePosition;
-        }
+        if (isOverStat) { statPopupToolTip.transform.position = Input.mousePosition; }
+
+        if (isOverItem) { itemPopupToolTip.transform.position = Input.mousePosition; }
     }
 
     public void UpdateHpUI()
@@ -140,7 +132,7 @@ public class UIManager : MonoBehaviour
     {
         // Out with the old
         DestroyChildren(craftingItemParent.transform);
-        
+
         // In with the new
         var rawList = playerInventory.GetInventoryList();
 
@@ -150,7 +142,7 @@ public class UIManager : MonoBehaviour
 
             o.gameObject.name = $"{itemStruct.itemName}";
         }
-        
+
         UpdateContentHeight(rawList.Count, craftingItemParent);
     }
 
@@ -162,7 +154,7 @@ public class UIManager : MonoBehaviour
             Destroy(target.GetChild(i).gameObject);
         }
     }
-    
+
     private void UpdateContentHeight(int itemCount, GameObject targetParent)
     {
         RectTransform contentRectTransform = targetParent.transform.GetComponent<RectTransform>();
@@ -235,8 +227,8 @@ public class UIManager : MonoBehaviour
         itemTempEffectsText.text = "";
 
         ItemData itemData = result.itemBuffData;
-        
-        foreach(KeyValuePair<TargetStat, int> pair in itemData.PermanentBuffs)
+
+        foreach (KeyValuePair<TargetStat, int> pair in itemData.PermanentBuffs)
         {
             var s = pair.Key;
 
@@ -266,7 +258,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        foreach(KeyValuePair<TargetStat, int> pair in itemData.TemporaryBuffs)
+        foreach (KeyValuePair<TargetStat, int> pair in itemData.TemporaryBuffs)
         {
             var s = pair.Key;
 
@@ -307,5 +299,10 @@ public class UIManager : MonoBehaviour
     {
         isOverItem = false;
         itemPopupToolTip.SetActive(false);
+    }
+
+    public void SetCraftingPopUp()
+    {
+        craftingPopup.SetActive(player.GetNearStation());
     }
 }

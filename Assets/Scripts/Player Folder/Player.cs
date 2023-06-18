@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
         if (other.tag == "Cook Station")
         {
             isAtCookingStation = true;
+            UIManager.instance.SetCraftingPopUp();
         }
     }
 
@@ -108,6 +109,7 @@ public class Player : MonoBehaviour
         if (other.tag == "Cook Station")
         {
             isAtCookingStation = false;
+            UIManager.instance.SetCraftingPopUp();
         }
     }
 

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawningHandler : MonoBehaviour
 {
@@ -89,6 +90,10 @@ public class SpawningHandler : MonoBehaviour
     private async void BatchDelay()
     {
         await new WaitForSeconds(4.0f);
-        StartSpawning();
+
+        Scene scene = SceneManager.GetActiveScene();
+
+        if (scene.name == "Dungeon Level")
+            StartSpawning();
     }
 }

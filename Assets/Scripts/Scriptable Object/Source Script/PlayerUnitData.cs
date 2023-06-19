@@ -132,6 +132,10 @@ public class PlayerUnitData : UnitData
     }
     public float AttackInterval
     {
-        get { return Dexterity * 0.1f; }
+        get
+        {
+            float interval = 3 - (Dexterity / 100) * 3;
+            return Mathf.Max(0.5f, interval);
+        }
     }
 }

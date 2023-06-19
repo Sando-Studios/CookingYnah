@@ -13,7 +13,7 @@ public class AttackEvent : MonoBehaviour
 
     public void AttackFinished()
     {
-        animator.ResetTrigger("AttackStart");
-        animator.SetTrigger("AttackFinished");
+        animator.SetTrigger("Attack Finish");
+        animator.ResetTrigger("Attack Start");
     }
 }

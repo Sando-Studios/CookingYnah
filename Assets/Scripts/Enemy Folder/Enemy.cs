@@ -44,34 +44,6 @@ public class Enemy : MonoBehaviour
         DamageHandler.OnEnemyUnitDeath -= Death;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // enemyDataInstance = new EnemyUnitData();
-
-        //SetEnemyData(10001); // To be called and set by spawner 
-        
-        //#region Sprite Changes
-
-        //var sprites = enemyUnitData.CustomSprites;
-
-        //foreach (var (part, sprite) in sprites)
-        //{
-        //    if (!bodyParts.TryGetValue(part, out SpriteRenderer render))
-        //    {
-        //        Debug.Log($"no val for {part}");
-        //        continue;
-        //    }
-            
-        //    Debug.Log($"{sprite.name}");
-        //    render.sprite = sprite;
-        //}
-
-        //#endregion
-
-        //spriteTransform.gameObject.GetComponent<SpriteRenderer>().sprite = null;
-    }
-
     public void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
     {
         enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();

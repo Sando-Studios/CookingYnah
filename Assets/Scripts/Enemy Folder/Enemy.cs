@@ -4,20 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Asyncoroutine;
-using UnityEngine.AI;
 using AYellowpaper.SerializedCollections;
-using System.Reflection;
-
+using Unity.Mathematics;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Unit DropData")]
-    [SerializeField] private EnemyUnitData enemyUnitData;
+    private EnemyUnitData enemyUnitData;
 
     private EnemyUnitData enemyDataInstance;
     [SerializeField] private SphereCollider aggroTrigger;
     [SerializeField] private GameObject targetUnit;
-    [SerializeField] private Vector3 home;
+    private Vector3 home;
 
     [Header("SFX")]
     public Material redMaterial;
@@ -31,6 +30,10 @@ public class Enemy : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform spriteTransform;
+
+    [Header("Sprites")] [SerializeField]
+    private SerializedDictionary<string, SpriteRenderer> bodyParts = new();
 
     private void OnEnable()
     {
@@ -41,22 +44,12 @@ public class Enemy : MonoBehaviour
         DamageHandler.OnEnemyUnitDeath -= Death;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // enemyDataInstance = new EnemyUnitData();
-
-        SetData(10001); // To be called and set by spawner 
-
-        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
-        agent = GetComponent<NavMeshAgent>();
-
-    }
-
-    public void SetData(int enemyID)
+    public void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
     {
         enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
         enemyDataInstance.UnitID = enemyID;
+        enemyUnitData = unitData;
+        home = homeBase;
         enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
         enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
         enemyDataInstance.UnitName = enemyUnitData.UnitName;
@@ -73,7 +66,13 @@ public class Enemy : MonoBehaviour
 
         aggroTrigger.radius = enemyDataInstance.AggroRange;
 
+
         animator.runtimeAnimatorController = enemyUnitData.Controller;
+
+        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
+        agent = GetComponent<NavMeshAgent>();
+
+
     }
 
     public bool IsAlive()
@@ -101,8 +100,8 @@ public class Enemy : MonoBehaviour
         if (agent.hasPath)
         {
             Vector3 direction = agent.velocity.normalized;
-
-            //For the animation direction(to be added)
+            
+            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f)); 
         }
     }
 
@@ -127,9 +126,18 @@ public class Enemy : MonoBehaviour
 
     public async void Hit()// To be replaced by animations 
     {
-        GetComponentInChildren<Renderer>().material = redMaterial;
+        var r = GetComponentsInChildren<SpriteRenderer>();
+
+        foreach (var m in r)
+        {
+            m.color = Color.red;
+        }
         await new WaitForSeconds(0.5f);
-        GetComponentInChildren<Renderer>().material = greenMaterial;
+        
+        foreach (var m in r)
+        {
+            m.color = new Color(255, 255, 255, 255);
+        }
     }
 
     void Death(int id)
@@ -138,8 +146,10 @@ public class Enemy : MonoBehaviour
 
         isAlive = false;
 
+        ItemData data = GetRandomItemData();
+
         GameObject clone = Instantiate(enemyDataInstance.DropObject, transform.position, Quaternion.identity);
-        clone.GetComponent<Item>().SetData(enemyDataInstance.DropData);
+        clone.GetComponent<Item>().SetData(data);
 
         transform.GetComponent<NavMeshAgent>().enabled = false;
 
@@ -148,6 +158,30 @@ public class Enemy : MonoBehaviour
         transform.position = position;
 
         Destroy(gameObject, 3.0f);
+    }
+
+    private ItemData GetRandomItemData()
+    {
+        float totalWeight = 0f;
+        foreach (float dropChance in enemyDataInstance.DropData.Values)
+        {
+            totalWeight += dropChance;
+        }
+
+        float randomValue = UnityEngine.Random.Range(0f, totalWeight);
+
+        ItemData data = null;
+        foreach (var entry in enemyDataInstance.DropData)
+        {
+            randomValue -= entry.Value;
+            if (randomValue <= 0f)
+            {
+                data = entry.Key;
+                break;
+            }
+        }
+
+        return data;
     }
 
     public void DealDamage()

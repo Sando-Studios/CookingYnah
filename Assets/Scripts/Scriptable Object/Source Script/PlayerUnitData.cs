@@ -26,6 +26,7 @@ public class PlayerUnitData : UnitData
     public override int CurrentHealth
     {
         get { return base.CurrentHealth; }
+        set { base.CurrentHealth = value; }
     }
 
     // Main Stats
@@ -73,7 +74,7 @@ public class PlayerUnitData : UnitData
     }
     public float Resistance
     {
-        get { return (Vitality * 0.4f) + (Vigor * 0.2f) + (Endurance * 0.3f); }
+        get { return (Vitality * 0.2f) + (Vigor * 0.2f) + (Endurance * 0.2f); }
     }
     public override float MoveSpeed
     {
@@ -131,6 +132,10 @@ public class PlayerUnitData : UnitData
     }
     public float AttackInterval
     {
-        get { return Dexterity * 0.1f; }
+        get
+        {
+            float interval = 3 - (Dexterity / 100) * 3;
+            return Mathf.Max(0.5f, interval);
+        }
     }
 }

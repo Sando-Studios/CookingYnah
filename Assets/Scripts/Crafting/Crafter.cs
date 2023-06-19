@@ -1,8 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Asyncoroutine;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Crafting
 {
@@ -11,64 +15,82 @@ namespace Crafting
         public SerializedDictionary<string, Recipe> recipes = new();
 
         public Slot[] slots;
-
+        
         public Slot output;
 
-        [SerializeField] private Ingredient empty;
+        [SerializeField] private GameObject craftingSlotPrefab;
 
+        [SerializeField] private Transform craftingSectionParent;
+
+        [SerializeField] private PlayerInventory inventory;
+
+        [SerializeField] private Transform craftingInventorySection;
+
+        private Dictionary<string, IngredientItem> cache = new();
+        
+        [Header("UI")]
+
+        [SerializeField]
+        [Tooltip("Success Panel")]
+        private SuccessPanel correctCraftSprite;
+        [SerializeField]
+        [Tooltip("The Pot")]
+        private Image wrongCraftSprite;
+
+        [SerializeField] private Sprite wrongSprite;
+        
         public void Listen()
         {
-            Debug.Log(GetOutput() != empty);
+            Debug.Log(GetOutput().itemName != "None");
         }
 
         public void CraftToOutput()
         {
             var ing = GetOutput();
 
-            if (ing.name == "empty")
+            if (ing.itemName == InventorySlot.Empty.itemName)
             {
+                ChangeOutput();
                 return;
             }
 
-            var obj = Instantiate(ing.prefab, output.transform.parent).GetComponent<IngredientItem>();
+            ChangeOutput(ing);
 
-            // obj.transform.SetAsLastSibling();
+            RemoveFromInventoryFromSlots();
+            ClearSlots();
             
-            output.Put(obj);
+            inventory.AddItem(ing.itemName, ing.itemBuffData);
+            
+            UIManager.instance.UpdateCraftingInventoryUI();
         }
 
-        public Ingredient GetOutput()
+        public InventorySlot GetOutput()
         {
-            var inSlots = new List<CraftingSlot>(4);
+            var inSlots = new List<string>(4);
 
             for (int i = 0; i < 4; i++)
             {
                 var s = slots[i];
-
-                if (s == null)
-                {
-                    Debug.Log("whhat");
-                }
                 
-                inSlots.Add(new CraftingSlot()
-                {
-                    amount = s.amount,
-                    item = s.GetIngredientInSlot(),
-                });
+                inSlots.Add(s.GetIngredientInSlot());
             }
 
             foreach (var (name, recipe) in recipes)
             {
-                if (CompareSlots(recipe.slots, inSlots.ToArray()))
+                if (CompareSlots(recipe.slots.Select(data =>
+                    {
+                        if (data == null) return "None";
+                        return data.Name;
+                    }).ToArray(), inSlots.ToArray()))
                 {
-                    return recipe.output;
+                    return new InventorySlot(recipe.output);
                 }
             }
-
-            return empty;
+            
+            return InventorySlot.Empty;
         }
 
-        private static bool CompareSlots(CraftingSlot[] a, CraftingSlot[] b)
+        private static bool CompareSlots(string[] a, string[] b)
         {
             if (a == b) return true;
             
@@ -84,29 +106,105 @@ namespace Crafting
 
             return true;
         }
-    }
 
-    [Serializable]
-    public struct CraftingSlot
-    {
-        [Range(0, 64)] public uint amount;
-        public Ingredient item;
-
-        public override bool Equals(object obj)
+        private void ClearSlots()
         {
-            if (obj is not CraftingSlot) return false;
-
-            return item.name == ((CraftingSlot)obj).item.name;
+            foreach (var slot in slots)
+            {
+                slot.Clear();
+            }
         }
 
-        public static bool operator ==(CraftingSlot a, CraftingSlot b)
+        private void RemoveFromInventoryFromSlots()
         {
-            return a.Equals(b);
+            foreach (var slot in slots)
+            {
+                if (slot.GetIngredientInSlot() == "None") continue;
+                inventory.RemoveItem(slot.GetIngredientInSlot());
+            }
         }
 
-        public static bool operator !=(CraftingSlot a, CraftingSlot b)
+        public IngredientItem SpawnInventorySlot(string name, int amount, Sprite img)
         {
-            return !a.Equals(b);
+            var o = Instantiate(craftingSlotPrefab).GetComponent<IngredientItem>();
+
+            o.SetData(name, amount, img);
+            o.craftingSectionParent = craftingSectionParent;
+
+            o.crafter = this;
+
+            o.InventoryAddCloneEvent += AddQuantityToItem;
+
+            o.baseParent = craftingInventorySection;
+            o.transform.SetParent(craftingInventorySection);
+            return o;
         }
+
+        private async void ChangeOutput()
+        {
+            var old = wrongCraftSprite.sprite;
+            wrongCraftSprite.sprite = wrongSprite;
+            await new WaitForSeconds(1f);
+            wrongCraftSprite.sprite = old;
+        }
+
+        private void ChangeOutput(InventorySlot item)
+        {
+            var sb = new StringBuilder();
+            
+            var whole = item.itemBuffData.PermanentBuffs.ToList();
+            var ll = PartitionList(whole, 2);
+
+            foreach (var l in ll)
+            {
+                foreach (var (stat, val) in l)
+                {
+                    sb.Append($"+ {val} {stat.ToString().Replace("Stat", "").ToUpper()} ");
+                }
+
+                sb.Append("\n");
+            }
+            
+            correctCraftSprite.Show(item.itemSprite, item.itemName, sb.ToString());
+        }
+        
+        // Source: bing; prompt: how to split a list in c# to a list of lists
+        private static List<List<T>> PartitionList<T>(List<T> items, int size)
+        {
+            var list = new List<List<T>>();
+            for (int i = 0; i < items.Count; i += size)
+            {
+                list.Add(items.GetRange(i, Math.Min(size, items.Count - i)));
+            }
+            return list;
+        }
+
+        public void AddQuantityToItem(IngredientItem clone, string name, int amount)
+        {
+            // Changing Values
+            if (cache.TryGetValue(clone.itemName, out var item))
+            {
+                item.UpdateAmount(item.amount + 1);
+                
+                Destroy(clone.gameObject);
+            }
+        }
+
+        public void CacheItemsToDict()
+        {
+            // Clears old cache
+            cache = new();
+            
+            var cCount = craftingInventorySection.transform.childCount;
+            for (int i = 0; i < cCount; i++)
+            {
+                var child = craftingInventorySection.transform.GetChild(i);
+
+                var ingItem = child.GetComponent<IngredientItem>();
+                
+                cache.TryAdd(ingItem.itemName, ingItem);
+            }
+        }
+        
     }
 }

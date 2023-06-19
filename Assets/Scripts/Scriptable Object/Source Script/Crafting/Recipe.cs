@@ -10,9 +10,8 @@ namespace Crafting
     [Serializable]
     public class Recipe : ScriptableObject
     {
-        [Tooltip("Only the first 4 slots will be used")]
-        public CraftingSlot[] slots;
+        public ItemData[] slots;
 
-        public Ingredient output;
+        public ItemData output;
     }
 }

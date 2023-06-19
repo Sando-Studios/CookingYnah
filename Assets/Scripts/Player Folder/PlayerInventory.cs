@@ -2,22 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
-using TMPro;
-using System.Linq;
-
-using UnityEngine.Rendering;
 
 public struct InventorySlot
 {
+    private static readonly InventorySlot empty = new InventorySlot()
+    {
+        itemName = "None",
+        itemQuantity = 0,
+        itemSprite = null,
+        itemBuffData = null,
+    };
+
     public string itemName;
     public int itemQuantity;
-    public DropItemData itemBuffData;
+    public Sprite itemSprite;
+    public ItemData itemBuffData;
+
+    public InventorySlot (ItemData data)
+    {
+        itemName = data.Name;
+        itemQuantity = 1;
+        itemSprite = data.SpriteToRender;
+        itemBuffData = data;
+    }
+
+    public static InventorySlot Empty
+    {
+        get => empty;
+    }
 }
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private int maxInventory = 20;
 
-    private List<InventorySlot> invetoryList = new List<InventorySlot>();
+    private List<InventorySlot> inventoryList = new List<InventorySlot>();
 
     private void OnEnable()
     {
@@ -28,37 +46,45 @@ public class PlayerInventory : MonoBehaviour
         InventoryNode.OnUseItem -= UseItem;
     }
 
-    public void AddItem(Item itemToAdd)
+    public void AddItem(Item item)
     {
-        string dropItemName = itemToAdd.GetItemName();
+        if (inventoryList.Count >= maxInventory) return;
+        AddItem(item.GetItemName(), item.GetItemBuffData());
+        Destroy(item.gameObject);
+    }
 
-        InventorySlot result = invetoryList.Find(item => item.itemName == dropItemName);
+    public void AddItem(string name, ItemData itemData)
+    {
+        string dropItemName = name;
+
+        InventorySlot result = inventoryList.Find(item => item.itemName == dropItemName);
 
         if (result.itemName != null)
         {
             //Debug.Log("Add Item");
-            int i = invetoryList.IndexOf(result);
+            int i = inventoryList.IndexOf(result);
 
-            InventorySlot s = invetoryList[i];
+            InventorySlot s = inventoryList[i];
             s.itemQuantity += 1;
 
-            invetoryList[i] = s;
+            inventoryList[i] = s;
 
-            Destroy(itemToAdd.gameObject);
+            // Destroy(itemToAdd.gameObject);
         }
         else
         {
-            if (invetoryList.Count <= maxInventory)
+            if (inventoryList.Count <= maxInventory)
             {
                 //Debug.Log("Add New Item");
                 InventorySlot newItem = new InventorySlot
                 {
                     itemName = dropItemName,
                     itemQuantity = 1,
-                    itemBuffData = itemToAdd.GetItemBuffData()
+                    itemBuffData = itemData,
+                    itemSprite = itemData.SpriteToRender,
                 };
-                invetoryList.Add(newItem);
-                Destroy(itemToAdd.gameObject);
+                inventoryList.Add(newItem);
+                // Destroy(itemToAdd.gameObject);
             }
             else
             {
@@ -66,36 +92,36 @@ public class PlayerInventory : MonoBehaviour
             }
         }
 
-        UIManager.instance.UpdateInventoryUI();
+        //UIManager.instance.UpdateInventoryUI();
     }
 
     public void RemoveItem(string itemToRemove)
     {
-        InventorySlot result = invetoryList.Find(item => item.itemName == itemToRemove);
+        InventorySlot result = inventoryList.Find(item => item.itemName == itemToRemove);
 
         if (result.itemName != null)
         {
             if (result.itemQuantity > 1)
             {
-                int i = invetoryList.IndexOf(result);
+                int i = inventoryList.IndexOf(result);
 
-                InventorySlot s = invetoryList[i];
+                InventorySlot s = inventoryList[i];
                 s.itemQuantity -= 1;
 
-                invetoryList[i] = s;
+                inventoryList[i] = s;
             }
             else
             {
-                invetoryList.Remove(result);
+                inventoryList.Remove(result);
             }
 
         }
-        UIManager.instance.UpdateInventoryUI();
+        //UIManager.instance.UpdateInventoryUI();
     }
 
     public int GetItemQuantity(string itemToGet)
     {
-        InventorySlot result = invetoryList.Find(item => item.itemName == itemToGet);
+        InventorySlot result = inventoryList.Find(item => item.itemName == itemToGet);
 
         if (result.itemName != null)
         {
@@ -107,7 +133,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void UseItem(string name)
     {
-        InventorySlot result = invetoryList.Find(item => item.itemName == name);
+        InventorySlot result = inventoryList.Find(item => item.itemName == name);
 
         Dictionary<TargetStat, int> permaBuffs = result.itemBuffData.PermanentBuffs;
         Dictionary<TargetStat, int> tempBuffs = result.itemBuffData.TemporaryBuffs;
@@ -129,10 +155,12 @@ public class PlayerInventory : MonoBehaviour
         }
 
         RemoveItem(result.itemName);
+
+        UIManager.instance.UpdateInventoryUI();
     }
 
     public List<InventorySlot> GetInventoryList()
     {
-        return invetoryList;
+        return inventoryList;
     }
 }

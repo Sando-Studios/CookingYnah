@@ -10,18 +10,23 @@ public class InventoryNode : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemQuantityText;
+    [SerializeField] private Image itemIconImage;
     [SerializeField] private Button useButton;
     private string itemName;
 
     [SerializeField] private GameObject craftingItemEquivalent;
 
-    public static event Action<string> OnUseItem;
-
-    // Start is called before the first frame update
-    void Start()
+    public GameObject GetCraftingPrefab()
     {
-        
+        return craftingItemEquivalent;
     }
+
+    public int GetAmount()
+    {
+        return Convert.ToInt32(itemQuantityText.text);
+    }
+
+    public static event Action<string> OnUseItem;
 
     private void OnEnable()
     {
@@ -37,11 +42,21 @@ public class InventoryNode : MonoBehaviour, IPointerDownHandler
         OnUseItem?.Invoke(itemName);
     }
 
-    public void SetData(string itemID, int itemQuantity)
+    public void SetData(string itemID, int itemQuantity, Sprite itemSprite)
     {
         itemNameText.text = itemID;
         itemName = itemID;
         itemQuantityText.text = itemQuantity.ToString();
+        itemIconImage.sprite = itemSprite;
+    }
+
+    public void OnPointerOver()
+    {
+        UIManager.instance.OnCursorOverItem(itemName);
+    }
+    public void OnPointerOff()
+    {
+        UIManager.instance.OnCursorOffItem();
     }
 
     public void OnPointerDown(PointerEventData eventData)

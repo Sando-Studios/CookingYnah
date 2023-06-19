@@ -39,7 +39,7 @@ public static class DamageHandler
         unit.CurrentHealth -= damage;
 
         UIManager.instance.UpdateHpUI();
-        player.Hit();
+        //Play Damage animation/sfx
 
 
         if (unit.CurrentHealth <= 0)

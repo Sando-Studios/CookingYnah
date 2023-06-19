@@ -8,7 +8,7 @@ public class EnemyUnitData : UnitData
 {
     [SerializeField] private int unitID = -1;
     [SerializeField] private GameObject dropPrefab;
-    [SerializeField] private DropItemData dropData;
+    [SerializeField] private SerializedDictionary<ItemData, float> dropData = new SerializedDictionary<ItemData, float>();
     [SerializeField] private int basicAttackDmg;
 
     [Header("Speeds")]
@@ -24,6 +24,11 @@ public class EnemyUnitData : UnitData
     [Header("Animations")]
     [SerializeField] private RuntimeAnimatorController animatorController;
 
+
+    [Header("Enemy Prefab")] 
+    [SerializeField] private GameObject enemyPrefab;
+
+
     public int UnitID
     {
         get { return unitID; }
@@ -34,7 +39,7 @@ public class EnemyUnitData : UnitData
         get { return dropPrefab; }
         set { dropPrefab = value; }
     }
-    public DropItemData DropData
+    public SerializedDictionary<ItemData, float> DropData
     {
         get { return dropData; }
         set { dropData = value; }
@@ -81,5 +86,10 @@ public class EnemyUnitData : UnitData
     {
         get { return attackSpeed; }
         set { attackSpeed = value; }
+    }
+
+    public GameObject EnemyPrefab
+    {
+        get => enemyPrefab;
     }
 }

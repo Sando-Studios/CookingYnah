@@ -10,18 +10,21 @@ public class GroundBreak : MonoBehaviour
     
     public async void SpawnRocks()
     {
-        for (int i = 0; i < 4; i++)
+        // TODO: Add a parameter for a direction and normalize it here 
+        var dir = Vector3.right + Vector3.back;
+        dir = dir.normalized;
+        
+        for (int i = 1; i <= 4; i++)
         {
-            var location = SpawnSingleRock(transform.position + Vector3.right * i * 2.5f);
+            var location = SpawnSingleRock(transform.position + dir * i * 2.5f, dir);
             await new WaitForSeconds(0.2f);
         }
     }
 
-    private Vector3 SpawnSingleRock(Vector3 location)
+    private Vector3 SpawnSingleRock(Vector3 location, Vector3 dir)
     {
-        Instantiate(rockPrefab, location, Quaternion.identity);
-        
-        
+        Instantiate(rockPrefab, location, Quaternion.LookRotation(dir));
+
         return location + Vector3.right;
     }
 

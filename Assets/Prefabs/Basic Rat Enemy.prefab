@@ -82,7 +82,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &639792562578276083
 GameObject:
@@ -303,6 +303,7 @@ MonoBehaviour:
   targetUnit: {fileID: 0}
   redMaterial: {fileID: 2100000, guid: 369077c2621799f469c0e1af06a20ac5, type: 2}
   greenMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  hpBarGameObject: {fileID: 639792564022852542}
   hpBar: {fileID: 639792562637887100}
   animator: {fileID: 6338477555309129997}
   spriteTransform: {fileID: 639792562578276082}
@@ -488,7 +489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &639792564022852537
 RectTransform:
   m_ObjectHideFlags: 0
@@ -654,7 +655,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &2413343937782403693
 GameObject:
@@ -738,7 +739,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &5371031390283930902
 GameObject:
@@ -823,7 +824,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &5382727143064573204
 GameObject:
@@ -907,7 +908,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &6072250658917783898
 GameObject:
@@ -991,7 +992,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &7897286928193850192
 GameObject:
@@ -1110,7 +1111,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &8617861416209242550
 GameObject:

@@ -23,7 +23,9 @@ public class Enemy : MonoBehaviour
     public Material greenMaterial;
 
     [Header("Health UI")]
+    public GameObject hpBarGameObject;
     public Image hpBar;
+    private Coroutine hpBarCoroutine;
 
     private NavMeshAgent agent;
     private bool isAlive = true;
@@ -226,5 +228,22 @@ public class Enemy : MonoBehaviour
         animator.SetBool("isChasing", false);
         animator.SetBool("isIdling", false);
         animator.SetBool("isPatrolling", false);
+    }
+
+    public void ShowHPBar()
+    {
+        if (hpBarCoroutine != null)
+        {
+            StopCoroutine(hpBarCoroutine);
+        }
+
+        hpBarGameObject.SetActive(true);
+        hpBarCoroutine = StartCoroutine(HideHPBarAfterDelay());
+    }
+
+    private IEnumerator HideHPBarAfterDelay()
+    {
+        yield return new WaitForSeconds(3.0f);
+        hpBarGameObject.gameObject.SetActive(false);
     }
 }

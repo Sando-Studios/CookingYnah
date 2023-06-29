@@ -21,7 +21,7 @@ public class LevelMaskHandler : MonoBehaviour
             foreach (Material m in maskObject.GetComponent<MeshRenderer>().materials)
             {
                 if (m.name != "Brick Floor Material (Instance)")
-                    m.renderQueue = 20010;
+                    m.renderQueue = 3002;
             }
             mask.SetActive(true);
         }

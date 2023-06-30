@@ -10,18 +10,17 @@ public class LevelMaskHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
+        foreach (Material m in maskObject.GetComponent<MeshRenderer>().materials)
+        {
+            if (m.name == "Gray (Instance)")
+                m.renderQueue = 3002;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == maskObject)
         {
-            foreach (Material m in maskObject.GetComponent<MeshRenderer>().materials)
-            {
-                if (m.name != "Brick Floor Material (Instance)")
-                    m.renderQueue = 3002;
-            }
             mask.SetActive(true);
         }
     }
@@ -29,11 +28,6 @@ public class LevelMaskHandler : MonoBehaviour
     {
         if (other.gameObject == maskObject)
         {
-            foreach (Material m in maskObject.GetComponent<MeshRenderer>().materials)
-            {
-                if (m.name != "Brick Floor Material (Instance)")
-                    m.renderQueue = 2000;
-            }
             mask.SetActive(false);
         }
     }

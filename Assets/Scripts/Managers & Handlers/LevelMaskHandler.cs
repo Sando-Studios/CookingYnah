@@ -10,10 +10,10 @@ public class LevelMaskHandler : MonoBehaviour
     void Start()
     {
         foreach (Material m in maskObject.GetComponent<MeshRenderer>().materials)
-            {
-                if (m.name != "Gray 2 (Instance)")
-                    m.renderQueue = 3002;
-            }
+        {
+            if (m.name.Contains("Gray 2"))
+                m.renderQueue = 3002;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

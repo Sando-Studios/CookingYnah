@@ -5819,8 +5819,10 @@ MonoBehaviour:
   rockPrefab: {fileID: 2152593292034762703, guid: ea6c47e40a3ccbb41a420204f8121384, type: 3}
   delayBetween: 0.2
   distanceBetween: 2.5
+  rocksPerAttack: 4
   rings: 3
   rocksPerRing: 8
+  dummy: {fileID: 1426414663}
 --- !u!1 &769167228
 GameObject:
   m_ObjectHideFlags: 0

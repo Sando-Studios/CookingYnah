@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Asyncoroutine;
 using UnityEngine;
 
@@ -12,15 +13,22 @@ public class GroundBreak : MonoBehaviour
     [SerializeField] private float delayBetween = 0.2f;
     [SerializeField] private float distanceBetween = 2.5f;
 
+    [Header("Directional Attack")]
+    [SerializeField] [Min(0)]
+    private int rocksPerAttack = 4;
+
     [Header("Ring Spawn")]
     [SerializeField] private uint rings = 3;
     [SerializeField] private int rocksPerRing = 8;
+
+    [Header("Debugging")]
+    [SerializeField] private Transform dummy;
 
     public async void SpawnRocks(Vector3 dir)
     {
         dir = dir.normalized;
         
-        for (int i = 1; i <= 4; i++)
+        for (int i = 1; i <= rocksPerAttack; i++)
         {
             SpawnSingleRock(transform.position + dir * distanceBetween * i);
             await new WaitForSeconds(delayBetween);
@@ -65,8 +73,8 @@ public class GroundBreak : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            // SpawnRocks(Vector3.right + Vector3.forward);
-            SpawnRocks(rings);
+            SpawnRocks(dummy.position - transform.position);
+            // SpawnRocks(rings);
         }
         
     }

@@ -44,8 +44,14 @@ namespace Crafting
 
         [SerializeField] private GameObject logEntryPrefab;
 
+        private readonly List<string> unlockedRecipes = new();
+
         private void PutToLogs(Recipe rec)
         {
+            if (unlockedRecipes.Contains(rec.output.Name)) return;
+            
+            unlockedRecipes.Add(rec.output.Name);
+            
             Instantiate(logEntryPrefab, logbookParent).GetComponent<LogEntry>().Initialize(rec);
         }
         

@@ -1,6 +1,8 @@
 using AYellowpaper.SerializedCollections;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,11 +16,14 @@ public class ArtifactUIHandler : MonoBehaviour
     [Header("Artifact")]
     [SerializeField] private ArtifactProgress progress;
     [SerializeField] private SerializedDictionary<Artifacts, GameObject> artifactIcons = new SerializedDictionary<Artifacts, GameObject>();
-    
+
     [Header("Tool Tip")]
     [SerializeField] private GameObject artifactToolTip;
-    [SerializeField] private TextMeshPro artifactName;
-    [SerializeField] private TextMeshPro artifactDescription;
+    [SerializeField] private TextMeshProUGUI artifactName;
+    [SerializeField] private TextMeshProUGUI artifactDescription;
+
+    public static event Action<int, Artifacts> OnArtifactSelected;
+    private int selectedSlot;
 
     private void Start()
     {
@@ -64,18 +69,58 @@ public class ArtifactUIHandler : MonoBehaviour
     {
         artifactMenu.SetActive(false);
     }
-    public void ShowArtifactToolTip()
+    public void ShowArtifactToolTip(string artifactName)
     {
         artifactToolTip.SetActive(true);
-        SetToolTipTexts();
+        SetToolTipTexts(artifactName);
     }
     public void HideArtifactToolTip()
     {
         artifactToolTip.SetActive(false);
     }
 
-    private void SetToolTipTexts()
+    public void OnArtifactClick(string artifactSelected)
     {
+        Artifacts a = FindArtifactByName(artifactSelected);
 
+        SerializedDictionary<Artifacts, bool> keyValuePair = progress.UnlockedArtifacts;
+        if (keyValuePair[a])
+        {
+            OnArtifactSelected?.Invoke(selectedSlot, a);
+            return;
+        }
+    }
+
+    public void SetSelectedSlot(int slotNum)
+    {
+        selectedSlot = slotNum;
+    }
+
+    private Artifacts FindArtifactByName(string name)
+    {
+        SerializedDictionary<Artifacts, ArtifactDescriptions> pair = progress.ArtifactDescriptions;
+        KeyValuePair<Artifacts, ArtifactDescriptions> result = pair.FirstOrDefault(kvp => kvp.Value.name == name);
+        return result.Key;
+    }
+
+    private void SetToolTipTexts(string artifactHighlighted)
+    {
+        SerializedDictionary<Artifacts, ArtifactDescriptions> pair = progress.ArtifactDescriptions;
+
+        foreach (var kvp in pair)
+        {
+            if (kvp.Value.Name == artifactHighlighted)
+            {
+                SerializedDictionary<Artifacts, bool> keyValuePair = progress.UnlockedArtifacts;
+                if (!keyValuePair[kvp.Key])
+                {
+                    artifactName.text = "????";
+                    artifactDescription.text = "??????????";
+                    return;
+                }
+                artifactName.text = kvp.Value.Name;
+                artifactDescription.text = kvp.Value.Description;
+            }
+        }
     }
 }

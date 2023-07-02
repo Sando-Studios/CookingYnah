@@ -20,6 +20,16 @@ public class ArtifactHandler : MonoBehaviour
 
     [SerializeField] private GameObject playerGameObject;
 
+    private void OnEnable()
+    {
+        ArtifactUIHandler.OnArtifactSelected += SetArtifact;
+    }
+
+    private void OnDisable()
+    {
+        ArtifactUIHandler.OnArtifactSelected -= SetArtifact;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))

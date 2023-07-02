@@ -7,6 +7,8 @@ public enum Artifacts
 {
     None,
     Fire_Meatball,
+    Ground_Wave,
+    Spectral_Sword,
 }
 public class ArtifactHandler : MonoBehaviour
 {

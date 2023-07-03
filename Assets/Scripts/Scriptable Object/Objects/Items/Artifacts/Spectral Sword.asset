@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ea056b566a89074cae0447e7a984c22, type: 3}
+  m_Script: {fileID: 11500000, guid: a58b3cd6101aa2a4585cf915d339ae28, type: 3}
   m_Name: Spectral Sword
   m_EditorClassIdentifier: 
   artifactName: Spectral Sword
-  artifactDescription: Spawns swords to rain down on enemies
+  artifactDescription: Spawns a shower of swords that rain down on enemies
+  abilityPrefab: {fileID: 0}

@@ -17,14 +17,14 @@ MonoBehaviour:
     - Key: 1
       Value: 1
     - Key: 2
-      Value: 0
-    - Key: 3
       Value: 1
+    - Key: 3
+      Value: 0
   artifactDescriptionDictionary:
     _serializedList:
     - Key: 1
       Value: {fileID: 11400000, guid: 87ce23ccf712cc44d9a46e3d67db666d, type: 2}
     - Key: 2
-      Value: {fileID: 11400000, guid: 08fff91185a9697478aa3a0561d054d0, type: 2}
+      Value: {fileID: 11400000, guid: ebe7e82927ad4b647a6714d43e8d801a, type: 2}
     - Key: 3
-      Value: {fileID: 11400000, guid: 5a33aee4b16fdb740b4051a1aac6a532, type: 2}
+      Value: {fileID: 11400000, guid: 3b787d2286bca3d4199814a1bf51b8a8, type: 2}

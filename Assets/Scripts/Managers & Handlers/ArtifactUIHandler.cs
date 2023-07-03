@@ -13,7 +13,7 @@ public class ArtifactUIHandler : MonoBehaviour
     [SerializeField] private GameObject artifactMenu;
     [SerializeField] private GameObject closeMenuTrigger;
 
-    [Header("Artifact")]
+    [Header("ArtifactAbility")]
     [SerializeField] private ArtifactProgress progress;
     [SerializeField] private SerializedDictionary<Artifacts, GameObject> artifactIcons = new SerializedDictionary<Artifacts, GameObject>();
 
@@ -22,7 +22,7 @@ public class ArtifactUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI artifactName;
     [SerializeField] private TextMeshProUGUI artifactDescription;
 
-    public static event Action<int, Artifacts> OnArtifactSelected;
+    public static event Action<int, Artifacts, GameObject> OnArtifactSelected;
     private int selectedSlot;
 
     private void Start()
@@ -82,11 +82,10 @@ public class ArtifactUIHandler : MonoBehaviour
     public void OnArtifactClick(string artifactSelected)
     {
         Artifacts a = FindArtifactByName(artifactSelected);
-
-        SerializedDictionary<Artifacts, bool> keyValuePair = progress.UnlockedArtifacts;
-        if (keyValuePair[a])
+        
+        if (progress.UnlockedArtifacts[a])
         {
-            OnArtifactSelected?.Invoke(selectedSlot, a);
+            OnArtifactSelected?.Invoke(selectedSlot, a, progress.ArtifactDescriptions[a].AbilityPrefab);
             return;
         }
     }
@@ -98,14 +97,13 @@ public class ArtifactUIHandler : MonoBehaviour
 
     private Artifacts FindArtifactByName(string name)
     {
-        SerializedDictionary<Artifacts, ArtifactDescriptions> pair = progress.ArtifactDescriptions;
-        KeyValuePair<Artifacts, ArtifactDescriptions> result = pair.FirstOrDefault(kvp => kvp.Value.name == name);
+        KeyValuePair<Artifacts, ArtifactData> result = progress.ArtifactDescriptions.FirstOrDefault(kvp => kvp.Value.name == name);
         return result.Key;
     }
 
     private void SetToolTipTexts(string artifactHighlighted)
     {
-        SerializedDictionary<Artifacts, ArtifactDescriptions> pair = progress.ArtifactDescriptions;
+        SerializedDictionary<Artifacts, ArtifactData> pair = progress.ArtifactDescriptions;
 
         foreach (var kvp in pair)
         {

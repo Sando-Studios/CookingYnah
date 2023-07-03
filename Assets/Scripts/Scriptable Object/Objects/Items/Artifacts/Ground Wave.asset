@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ea056b566a89074cae0447e7a984c22, type: 3}
+  m_Script: {fileID: 11500000, guid: a58b3cd6101aa2a4585cf915d339ae28, type: 3}
   m_Name: Ground Wave
   m_EditorClassIdentifier: 
   artifactName: Ground Wave
-  artifactDescription: Spawns a linear wave of pillars that damage nearby enemies
+  artifactDescription: Spawns Stone Pillars forward damaging nearby enemies
+  abilityPrefab: {fileID: 2152593292034762703, guid: ea6c47e40a3ccbb41a420204f8121384, type: 3}

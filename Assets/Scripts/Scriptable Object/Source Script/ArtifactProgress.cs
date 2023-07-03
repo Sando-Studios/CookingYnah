@@ -6,7 +6,7 @@ public class ArtifactProgress : ScriptableObject
 {
     [SerializeField] private SerializedDictionary<Artifacts, bool> isArtifactUnlocked = new SerializedDictionary<Artifacts, bool>();
 
-    [SerializeField] private SerializedDictionary<Artifacts, ArtifactDescriptions> artifactDescriptionDictionary = new SerializedDictionary<Artifacts, ArtifactDescriptions>();
+    [SerializeField] private SerializedDictionary<Artifacts, ArtifactData> artifactDescriptionDictionary = new SerializedDictionary<Artifacts, ArtifactData>();
 
     public SerializedDictionary<Artifacts, bool> UnlockedArtifacts
     {
@@ -14,7 +14,7 @@ public class ArtifactProgress : ScriptableObject
         set { isArtifactUnlocked = value; }
     }
 
-    public SerializedDictionary<Artifacts, ArtifactDescriptions> ArtifactDescriptions
+    public SerializedDictionary<Artifacts, ArtifactData> ArtifactDescriptions
     {
         get { return artifactDescriptionDictionary; }
     }

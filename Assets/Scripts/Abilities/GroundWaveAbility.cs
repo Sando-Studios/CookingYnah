@@ -1,36 +1,32 @@
-using System;
+using Asyncoroutine;
+using Mono.CompilerServices.SymbolWriter;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Asyncoroutine;
 using UnityEngine;
 
-public class GroundBreak : MonoBehaviour
+public class GroundWaveAbility : ArtifactAbility
 {
-    [Header("Spawning")]
-    [SerializeField] private GameObject rockPrefab;
-
     [SerializeField] private float delayBetween = 0.2f;
     [SerializeField] private float distanceBetween = 2.5f;
 
     [Header("Directional Attack")]
-    [SerializeField] [Min(0)]
+    [SerializeField]
+    [Min(0)]
     private int rocksPerAttack = 4;
 
     [Header("Ring Spawn")]
     [SerializeField] private uint rings = 3;
     [SerializeField] private int rocksPerRing = 8;
 
-    [Header("Debugging")]
-    [SerializeField] private Transform dummy;
-
     public async void SpawnRocks(Vector3 dir)
     {
         dir = dir.normalized;
-        
+
+        Vector3 startPoint = new Vector3(transform.position.x, 0f , transform.position.z);
+
         for (int i = 1; i <= rocksPerAttack; i++)
         {
-            SpawnSingleRock(transform.position + dir * distanceBetween * i);
+            SpawnSingleRock(startPoint + dir * distanceBetween * i);
             await new WaitForSeconds(delayBetween);
         }
     }
@@ -40,20 +36,20 @@ public class GroundBreak : MonoBehaviour
         void SpawnRing(float dist)
         {
             var increment = 360 / rocksPerRing;
-            
+
             for (int i = 0; i < 360; i += increment)
             {
                 var rad = Mathf.Deg2Rad * i;
 
                 var y = Mathf.Cos(rad);
                 var x = Mathf.Sin(rad);
-                
+
                 var loc = transform.position + new Vector3(x, 0, y) * dist;
-                
+
                 SpawnSingleRock(loc);
             }
         }
-        
+
         for (uint i = 1; i <= rings; i++)
         {
             SpawnRing(i * distanceBetween);
@@ -65,17 +61,30 @@ public class GroundBreak : MonoBehaviour
     {
         var dir = location - transform.position;
         dir = dir.normalized;
-        
-        Instantiate(rockPrefab, location, Quaternion.LookRotation(dir));
+
+        Instantiate(attackPrefab, location, Quaternion.LookRotation(dir));
     }
 
-    private void Update()
+    protected override void UseSpecialAttack()
     {
-        if (Input.GetMouseButtonDown(1))
+        base.UseSpecialAttack();
+
+        // Getting direction towards mouse
+        Vector3 startingPos = transform.position; 
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane plane = new Plane(Vector3.up, startingPos); 
+
+        float distance;
+        Vector3 endingPos = Vector3.zero;
+
+        if (plane.Raycast(ray, out distance))
         {
-            SpawnRocks(dummy.position - transform.position);
-            // SpawnRocks(rings);
+            endingPos = ray.GetPoint(distance);
         }
-        
+
+        Vector3 direction = endingPos - startingPos;
+        direction.y = 0f;
+
+        SpawnRocks(direction);
     }
 }

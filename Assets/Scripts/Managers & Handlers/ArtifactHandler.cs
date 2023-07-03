@@ -30,23 +30,26 @@ public class ArtifactHandler : MonoBehaviour
         ArtifactUIHandler.OnArtifactSelected -= SetArtifact;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            SetArtifact(1, Artifacts.Fire_Meatball);
-        }
-    }
-
-    public void SetArtifact(int slotNum, Artifacts artifactToSlot)
+    public void SetArtifact(int slotNum, Artifacts artifactToSlot, GameObject obj)
     {
         if (CanSlotArtifact(artifactToSlot))
         {
-            // Remove Artifact script to be replaced
+            // Remove ArtifactAbility script to be replaced
+            ArtifactAbility artifactScript;
             switch (artifacts[slotNum])
             {
                 case Artifacts.Fire_Meatball:
-                    Artifact artifactScript = playerGameObject.GetComponent<FireMeatballArtifact>();
+                    artifactScript = playerGameObject.GetComponent<FireMeatballAbility>();
+                    artifactScript.enabled = false;
+                    Destroy(artifactScript);
+                    break;
+                case Artifacts.Ground_Wave:
+                    artifactScript = playerGameObject.GetComponent<GroundWaveAbility>();
+                    artifactScript.enabled = false;
+                    Destroy(artifactScript);
+                    break;
+                case Artifacts.Spectral_Sword:
+                    artifactScript = playerGameObject.GetComponent<FireMeatballAbility>();
                     artifactScript.enabled = false;
                     Destroy(artifactScript);
                     break;
@@ -56,12 +59,21 @@ public class ArtifactHandler : MonoBehaviour
 
             artifacts[slotNum] = artifactToSlot;
 
-            // Add Artifact script
+            // Add ArtifactAbility script
             var a = artifactToSlot;
             switch (a)
             {
                 case Artifacts.Fire_Meatball:
-                    playerGameObject.AddComponent<FireMeatballArtifact>();
+                    playerGameObject.AddComponent<FireMeatballAbility>();
+                    playerGameObject.GetComponent<FireMeatballAbility>().SetAbilityData(obj, slotNum);
+                    break;
+                case Artifacts.Ground_Wave:
+                    playerGameObject.AddComponent<GroundWaveAbility>();
+                    playerGameObject.GetComponent<GroundWaveAbility>().SetAbilityData(obj, slotNum);
+                    break;
+                case Artifacts.Spectral_Sword:
+                    playerGameObject.AddComponent<FireMeatballAbility>();
+                    playerGameObject.GetComponent<FireMeatballAbility>().SetAbilityData(obj, slotNum);
                     break;
             }
         }

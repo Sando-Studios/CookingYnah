@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Asyncoroutine;
+using TMPro;
 
 public class FireMeatballAbility : ArtifactAbility
 {
     [Header("Meteor Attack")]
-    [SerializeField] [Min(0)]
-    private int ballsPerAttack = 4;
-    
+    [SerializeField] private float delay = 2.0f;
+
 
     [Header("Orbit Spawn")]
-    [SerializeField][Min(0)] 
-    private int ballsInOrbit = 2;
+    [SerializeField][Min(0)] private int ballsInOrbit = 2;
     [SerializeField] private float rotationSpeed = 50.0f;
     [SerializeField] private float orbitDistance = 5.0f;
     [SerializeField] private float orbitDuration = 60.0f;
@@ -23,7 +22,7 @@ public class FireMeatballAbility : ArtifactAbility
     {
         GameObject orbitCenter = new GameObject("Center");
         orbitCenter.transform.SetParent(transform);
-        orbitCenter.transform.localPosition = new Vector3(0,0,0);
+        orbitCenter.transform.localPosition = new Vector3(0, 0, 0);
 
         float angleStep = 360f / ballsInOrbit;
         for (int i = 0; i < ballsInOrbit; i++)
@@ -35,7 +34,7 @@ public class FireMeatballAbility : ArtifactAbility
             clone.transform.SetParent(orbitCenter.transform);
         }
         orbitTarget = orbitCenter;
-        
+
         await new WaitForSeconds(orbitDuration);
 
         orbitCenter.SetActive(false);
@@ -44,11 +43,16 @@ public class FireMeatballAbility : ArtifactAbility
 
     }
 
-
-
-    public async void SpawnMeatballMeteor()
+    public async void SpawnMeatballMeteor(Vector3 targetPos)
     {
-        await new WaitForSeconds(orbitDuration);
+        Vector3 spawnPosition = transform.position + Vector3.up * 2;
+        GameObject spawnedObject = SpawnSingleMeatball(spawnPosition);
+        Meteor objectMovement = spawnedObject.AddComponent<Meteor>();
+        objectMovement.SetTarget(targetPos);
+
+        await new WaitForSeconds(delay);
+
+        objectMovement.TriggerMove();
     }
 
     private GameObject SpawnSingleMeatball(Vector3 location)
@@ -62,7 +66,7 @@ public class FireMeatballAbility : ArtifactAbility
 
         SpawnMeatballOrbit();
     }
-    
+
     protected override void Update()
     {
         base.Update();

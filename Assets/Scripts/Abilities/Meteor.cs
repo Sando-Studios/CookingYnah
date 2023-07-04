@@ -1,34 +1,34 @@
+using Asyncoroutine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Asyncoroutine;
 
-public class Bocchi : MonoBehaviour
+public class Meteor : MonoBehaviour
 {
-    [SerializeField] private float lifeSpan;
+    private Vector3 targetPosition;
+    private bool move;
     private int damageValue;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetTarget(Vector3 target)
     {
-        Destroy(gameObject, lifeSpan);
-        Grow(gameObject);
+        targetPosition = target;
     }
-
-    public async void Grow(GameObject obj)
-    {
-        while (obj)
-        {
-            Vector3 newScale = gameObject.transform.localScale;
-            newScale.y += 0.5f;
-            gameObject.transform.localScale = newScale;
-            await new WaitForSeconds(0.2f);
-        }
-    }
-
     public void SetDamageValue(float dmg)
     {
         damageValue = (int)dmg;
+    }
+
+    public void TriggerMove()
+    {
+        move = true;
+    }
+
+    private void Update()
+    {
+        float speed = 5f;
+
+        if (move)
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,6 +40,8 @@ public class Bocchi : MonoBehaviour
 
             if (other.gameObject.CompareTag("Enemy"))
                 DealDamage(other.GetComponent<Enemy>());
+
+            Destroy(gameObject);
         }
     }
 

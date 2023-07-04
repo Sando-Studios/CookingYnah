@@ -26,12 +26,13 @@ public class GroundWaveAbility : ArtifactAbility
 
         for (int i = 1; i <= rocksPerAttack; i++)
         {
-            SpawnSingleRock(startPoint + dir * distanceBetween * i);
+            GameObject clone = SpawnSingleRock(startPoint + dir * distanceBetween * i);
+            clone.GetComponent<Bocchi>().SetDamageValue(15 * GetComponent<Player>().GetPlayerData().DamageMultiplier);
             await new WaitForSeconds(delayBetween);
         }
     }
 
-    public async void SpawnRocks(uint rings)
+    public async void SpawnRocks(uint rings, float damage)
     {
         void SpawnRing(float dist)
         {
@@ -46,7 +47,8 @@ public class GroundWaveAbility : ArtifactAbility
 
                 var loc = transform.position + new Vector3(x, 0, y) * dist;
 
-                SpawnSingleRock(loc);
+                GameObject clone = SpawnSingleRock(loc);
+                clone.GetComponent<Bocchi>().SetDamageValue(damage);
             }
         }
 
@@ -57,12 +59,12 @@ public class GroundWaveAbility : ArtifactAbility
         }
     }
 
-    private void SpawnSingleRock(Vector3 location)
+    private GameObject SpawnSingleRock(Vector3 location)
     {
         var dir = location - transform.position;
         dir = dir.normalized;
 
-        Instantiate(attackPrefab, location, Quaternion.LookRotation(dir));
+        return Instantiate(attackPrefab, location, Quaternion.LookRotation(dir));
     }
 
     protected override void UseSpecialAttack()

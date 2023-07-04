@@ -905,6 +905,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ynah_Attack_VFX
       objectReference: {fileID: 0}
+    - target: {fileID: 4047581397433718040, guid: 895051a1122e83046810072dd050a511, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4047581397433718041, guid: 895051a1122e83046810072dd050a511, type: 3}
       propertyPath: m_RenderMode
       value: 0
@@ -2268,7 +2272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 304884706}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Upper Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2344,7 +2348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 318419525}
   - component: {fileID: 318419526}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Weapon_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3818,7 +3822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 527216323}
   - component: {fileID: 527216324}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Right_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6314,7 +6318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881897093}
   - component: {fileID: 881897094}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fork
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6398,7 +6402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 883707723}
   - component: {fileID: 883707724}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10090,7 +10094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1288554211}
   - component: {fileID: 1288554212}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Other_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10340,7 +10344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1322053028}
   - component: {fileID: 1322053029}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10425,7 +10429,7 @@ GameObject:
   - component: {fileID: 1324907632}
   - component: {fileID: 1324907633}
   - component: {fileID: 1324907634}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ynah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11204,7 +11208,8 @@ GameObject:
   - component: {fileID: 1426414667}
   - component: {fileID: 1426414668}
   - component: {fileID: 1426414669}
-  m_Layer: 0
+  - component: {fileID: 1426414670}
+  m_Layer: 2
   m_Name: Capsule
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -11334,6 +11339,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d555c46c79ce5a64eb42adfd59c154cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1426414670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426414659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6557b1e1bbbf9174da169570e07168f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPrefab: {fileID: 504390270968948442, guid: 3a92f30a24af2f846b5c86434c54845f, type: 3}
+  slotNum: 1
+  ballsPerAttack: 1
+  delay: 2
+  ballsInOrbit: 2
+  rotationSpeed: 50
+  orbitDistance: 5
+  orbitDuration: 60
 --- !u!1 &1426600143
 GameObject:
   m_ObjectHideFlags: 0
@@ -11389,7 +11414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1428881788}
   - component: {fileID: 1428881789}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ponytail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14021,7 +14046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1805041655}
   - component: {fileID: 1805041656}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16294,7 +16319,7 @@ GameObject:
   - component: {fileID: 2092152118}
   - component: {fileID: 2092152119}
   - component: {fileID: 2092152120}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16479,7 +16504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2127612217}
   - component: {fileID: 2127612218}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Left_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

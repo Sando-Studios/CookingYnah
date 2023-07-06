@@ -73,8 +73,7 @@ public class Player : MonoBehaviour
         {
             //attackCollider.enabled = true;
             Attack();
-
-            animator.SetTrigger("attackTrigger");
+            //animator.SetTrigger("attackTrigger");
         }
 
 

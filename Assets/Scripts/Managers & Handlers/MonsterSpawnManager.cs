@@ -7,10 +7,10 @@ using UnityEngine;
 
 public class MonsterSpawnManager : MonoBehaviour
 {
-    [SerializeField] private SerializedDictionary<Transform, Transform> spawnBaseDictionary = new SerializedDictionary<Transform, Transform>();
+    [SerializeField] private SerializedDictionary<Transform, Transform> spawnBasePairDictionary = new SerializedDictionary<Transform, Transform>();
     private List<Transform> spawnPointList = new List<Transform>();
     private List<Transform> basePointList = new List<Transform>();
-    [SerializeField] private MonsterGroup[] monsterGroups;
+    [SerializeField] private SerializedDictionary<Transform, MonsterGroup> baseGroupPairDictionary = new SerializedDictionary<Transform, MonsterGroup>();
 
     [SerializeField] private GameObject spawnHandlerPrefab;
 
@@ -29,7 +29,7 @@ public class MonsterSpawnManager : MonoBehaviour
     }
     private void Start()
     {
-        foreach (KeyValuePair<Transform, Transform> pair in spawnBaseDictionary)
+        foreach (KeyValuePair<Transform, Transform> pair in spawnBasePairDictionary)
         {
             spawnPointList.Add(pair.Key);
             basePointList.Add(pair.Value);
@@ -39,7 +39,7 @@ public class MonsterSpawnManager : MonoBehaviour
 
     private void SpawnAllMonsters()
     {
-        for (int i = 0; i < spawnPointList.Count; i++)
+        for (int i = 0; i < baseGroupPairDictionary.Count; i++)
         {
             SpawnInitialMonsters(i);
         }
@@ -49,9 +49,13 @@ public class MonsterSpawnManager : MonoBehaviour
     {
         GameObject clone = Instantiate(spawnHandlerPrefab, transform);
         SpawningHandler sH = clone.GetComponent<SpawningHandler>();
-        sH.SetSpawnerData(index, spawnPointList[index], basePointList[index]);
 
-        Dictionary<EnemyUnitData, int> mGDictionary = monsterGroups[index].GroupComposition;
+        Transform spawnPoint = spawnPointList[index];
+        Transform basePoint = basePointList[index];
+
+        sH.SetSpawnerData(index, spawnPoint, basePoint);
+
+        Dictionary<EnemyUnitData, int> mGDictionary = baseGroupPairDictionary[basePoint].GroupComposition;
 
         foreach (var (data, amount) in mGDictionary)
         {

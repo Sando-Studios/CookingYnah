@@ -11,8 +11,8 @@ public class LevelMaskHandler : MonoBehaviour
     {
         foreach (Material m in maskObject.GetComponent<MeshRenderer>().materials)
         {
-            if (m.name.Contains("Gray 2"))
-                m.renderQueue = 3002;
+            if (m.name.Contains("Top"))
+                m.renderQueue = 4002;
         }
     }
 

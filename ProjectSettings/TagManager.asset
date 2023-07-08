@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Cook Station
+  - Floor
   layers:
   - Default
   - TransparentFX

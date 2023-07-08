@@ -50,8 +50,8 @@ public class PatrolState : MonsterState
 
     private Vector3 GetRandomPatrolPoint()
     {
-        Vector3 randomPoint = enemy.GetHome() + Random.insideUnitSphere * 4.0f;
-        NavMesh.SamplePosition(randomPoint, out NavMeshHit point, 4.0f, NavMesh.AllAreas);
+        Vector3 randomPoint = enemy.GetHome() + Random.insideUnitSphere * 7.0f;
+        NavMesh.SamplePosition(randomPoint, out NavMeshHit point, 7.0f, NavMesh.AllAreas);
         return point.position;
     }
 }

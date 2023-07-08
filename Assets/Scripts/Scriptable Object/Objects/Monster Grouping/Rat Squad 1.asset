@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76e53655ffa226f4ab75ad8e5233f62b, type: 3}
-  m_Name: BasicSquad1
+  m_Name: Rat Squad 1
   m_EditorClassIdentifier: 
   groupComposition:
     _serializedList:
     - Key: {fileID: 11400000, guid: af2871776b6352641aeb75898b767170, type: 2}
-      Value: 1
+      Value: 2
     - Key: {fileID: 11400000, guid: f91f975ea5ec74e49be3445a1c391269, type: 2}
       Value: 2

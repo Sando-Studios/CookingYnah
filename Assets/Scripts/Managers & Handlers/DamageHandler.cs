@@ -18,6 +18,7 @@ public static class DamageHandler
 
         unit.CurrentHealth -= damage;
         enemy.Hit();
+        enemy.ShowHPBar();
 
         if (unit.CurrentHealth <= 0)
         {

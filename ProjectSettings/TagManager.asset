@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Cook Station
+  - Floor
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Spawn Door
+  - Monster
   - 
   - 
   - 

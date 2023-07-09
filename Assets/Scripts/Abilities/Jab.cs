@@ -52,9 +52,7 @@ public class Jab : MonoBehaviour
     private async void Fast()
     {
         Debug.Log("boom");
-
-        cone.transform.parent.rotation = Quaternion.LookRotation(GetDirection());
-        await new WaitForNextFrame();
+        
         cone.DealDamage(Convert.ToInt32(damage));
     }
 

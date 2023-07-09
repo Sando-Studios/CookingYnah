@@ -21,6 +21,10 @@ public class Jab : MonoBehaviour
     [SerializeField] private float shortAtkCd;
     [SerializeField] private float comboAtkCd;
 
+    [Header("Colliders")]
+    [SerializeField] private OmniAttack cone;
+    [SerializeField] private OmniAttack sphere;
+
     private Coroutine cdRoutine;
     
     internal uint internalCounter = 0;
@@ -45,13 +49,13 @@ public class Jab : MonoBehaviour
         Fast();
     }
 
-    private void Fast()
+    private async void Fast()
     {
         Debug.Log("boom");
 
-        if (!RayCast(out var obj)) return;
-
-        DamageHandler.ApplyDamage(obj.GetComponent<Enemy>(), Convert.ToInt32(damage));
+        cone.transform.parent.rotation = Quaternion.LookRotation(GetDirection());
+        await new WaitForNextFrame();
+        cone.DealDamage(Convert.ToInt32(damage));
     }
 
     private void Slow()
@@ -63,11 +67,9 @@ public class Jab : MonoBehaviour
         cdRoutine = null;
         Cooldown(comboAtkCd);
 
-        if (!RayCast(out var obj)) return;
-
         var dmg = damage * damageMultiplier;
 
-        DamageHandler.ApplyDamage(obj.GetComponent<Enemy>(), Convert.ToInt32(dmg));
+        sphere.DealDamage(Convert.ToInt32(dmg));
     }
 
     // TODO: Maybe have this function be common on all abilities. i.e. Put on base class; Have a utility class; etc 
@@ -92,6 +94,7 @@ public class Jab : MonoBehaviour
         return direction.normalized;
     }
 
+    [Obsolete("Colliders are now being used instead of RayCasting")]
     private bool RayCast(out GameObject obj)
     {
         obj = null;
@@ -145,7 +148,6 @@ public class Jab : MonoBehaviour
 
     private IEnumerator _Cd(float time)
     {
-        Debug.Log("start cd");
         yield return new WaitForSeconds(time);
         cdRoutine = null;
     }

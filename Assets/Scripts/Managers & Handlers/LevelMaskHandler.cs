@@ -9,6 +9,9 @@ public class LevelMaskHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (maskObject == null)
+            maskObject = GameObject.FindGameObjectWithTag("Floor");
+
         foreach (Material m in maskObject.GetComponent<MeshRenderer>().materials)
         {
             if (m.name.Contains("Top"))

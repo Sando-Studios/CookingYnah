@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     [SerializeField] private SphereCollider attackCollider;
     private bool canAttack = true;
 
+    [SerializeField] private Jab jab;
+
     [Header("Inventory")]
     [SerializeField] private PlayerInventory inventory;
 
@@ -69,7 +71,8 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("Fire1") && canAttack)
+        // TODO: Synchronize animations, since canAttack got replaced
+        if (Input.GetButtonDown("Fire1")) // I removed canAttack for Omni since it got replaced by jab
         {
             //attackCollider.enabled = true;
             Attack();
@@ -131,7 +134,8 @@ public class Player : MonoBehaviour
         canAttack = false;
 
         attackCollider.radius = playerDataInstance.AttackRange;
-        attack.DealDamage((int)playerDataInstance.RawDamage);
+        // attack.DealDamage((int)playerDataInstance.RawDamage);
+        jab.Attack();
 
         animator.ResetTrigger("Attack Finish");
         animator.SetTrigger("Attack Start");

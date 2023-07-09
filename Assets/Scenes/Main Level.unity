@@ -12416,6 +12416,7 @@ MonoBehaviour:
   force: 100
   attack: {fileID: 2092152120}
   attackCollider: {fileID: 2092152119}
+  jab: {fileID: 2013963594}
   inventory: {fileID: 1426414667}
   animator: {fileID: 1324907633}
   attackParticle: {fileID: 337157445}
@@ -19766,7 +19767,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2092152118
 Transform:
   m_ObjectHideFlags: 0

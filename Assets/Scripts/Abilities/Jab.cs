@@ -115,10 +115,10 @@ public class Jab : MonoBehaviour
 
     public void Update()
     {
-        // TODO: Remove testing code
-        if (!Input.GetMouseButtonDown(1)) return;
-
-        Attack();
+        // // TODO: Remove testing code
+        // if (!Input.GetMouseButtonDown(1)) return;
+        //
+        // Attack();
     }
 
     private IEnumerator _timerReset()

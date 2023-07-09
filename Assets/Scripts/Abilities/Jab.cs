@@ -6,24 +6,34 @@ using Asyncoroutine;
 
 public class Jab : MonoBehaviour
 {
-    [SerializeField] [Min(0)]
-    private float timeBetweenAttacks;
+    [SerializeField] [Min(0)] private float timeBetweenAttacks;
 
     private Coroutine timer = null;
 
     [SerializeField] private uint threshold = 3;
-
-    [Range(0, 500)]
-    [SerializeField] private float range;
+    
+    [Range(0, 500)] [SerializeField] private float range;
 
     [SerializeField] [Min(0)] private float damage;
     [Range(1, 100)] [SerializeField] private float damageMultiplier;
 
+    [Header("Cooldowns")]
+    [SerializeField] private float shortAtkCd;
+    [SerializeField] private float comboAtkCd;
+
+    private Coroutine cdRoutine;
+    
     internal uint internalCounter = 0;
 
     public void Attack()
     {
-        StartTimer();
+        if (Cooldown(shortAtkCd))
+        {
+            // On ability cooldown
+            return;
+        }
+        
+        StartTimer(); // Combo timer
 
         if (internalCounter >= threshold)
         {
@@ -31,16 +41,16 @@ public class Jab : MonoBehaviour
             internalCounter = 0;
             return;
         }
-        
+
         Fast();
     }
 
     private void Fast()
     {
         Debug.Log("boom");
-        
+
         if (!RayCast(out var obj)) return;
-        
+
         DamageHandler.ApplyDamage(obj.GetComponent<Enemy>(), Convert.ToInt32(damage));
     }
 
@@ -48,6 +58,11 @@ public class Jab : MonoBehaviour
     {
         Debug.Log("pow");
         
+        // Override cooldown
+        StopCoroutine(cdRoutine);
+        cdRoutine = null;
+        Cooldown(comboAtkCd);
+
         if (!RayCast(out var obj)) return;
 
         var dmg = damage * damageMultiplier;
@@ -59,9 +74,9 @@ public class Jab : MonoBehaviour
     private Vector3 GetDirection()
     {
         // Getting direction towards mouse
-        Vector3 startingPos = transform.position; 
+        Vector3 startingPos = transform.position;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Plane plane = new Plane(Vector3.up, startingPos); 
+        Plane plane = new Plane(Vector3.up, startingPos);
 
         float distance;
         Vector3 endingPos = Vector3.zero;
@@ -80,14 +95,14 @@ public class Jab : MonoBehaviour
     private bool RayCast(out GameObject obj)
     {
         obj = null;
-        
+
         Debug.DrawLine(transform.position, transform.position + GetDirection() * range, Color.blue, 1f, false);
-        
+
         var ray = new Ray(transform.position, GetDirection());
         if (!Physics.Raycast(ray, out var info, range)) return false;
-        
+
         Debug.DrawLine(transform.position, info.point, Color.red, 1f, false);
-        
+
         Debug.Log($"hit {info.collider.name}");
 
         obj = info.collider.gameObject;
@@ -99,7 +114,7 @@ public class Jab : MonoBehaviour
     {
         // TODO: Remove testing code
         if (!Input.GetMouseButtonDown(1)) return;
-        
+
         Attack();
     }
 
@@ -115,6 +130,24 @@ public class Jab : MonoBehaviour
         internalCounter++;
         if (timer == null)
             timer = StartCoroutine(_timerReset());
+    }
+
+    private bool Cooldown(float time)
+    {
+        if (cdRoutine == null)
+        {
+            cdRoutine = StartCoroutine(_Cd(time));
+            return false; // No cd
+        }
+
+        return true; // On Cd
+    }
+
+    private IEnumerator _Cd(float time)
+    {
+        Debug.Log("start cd");
+        yield return new WaitForSeconds(time);
+        cdRoutine = null;
     }
 
 }

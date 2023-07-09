@@ -16158,11 +16158,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53c8965526dec941bfa788940b3a309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenAttacks: 0.8
+  timeBetweenAttacks: 1.5
   threshold: 3
   range: 3
   damage: 5
   damageMultiplier: 2
+  shortAtkCd: 0.5
+  comboAtkCd: 5
 --- !u!4 &2013963595
 Transform:
   m_ObjectHideFlags: 0

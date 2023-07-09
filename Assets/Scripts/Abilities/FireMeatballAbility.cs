@@ -62,8 +62,6 @@ public class FireMeatballAbility : ArtifactAbility
 
     protected override void UseSpecialAttack()
     {
-        base.UseSpecialAttack();
-
         SpawnMeatballOrbit();
     }
 

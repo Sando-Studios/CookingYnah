@@ -69,8 +69,6 @@ public class GroundWaveAbility : ArtifactAbility
 
     protected override void UseSpecialAttack()
     {
-        base.UseSpecialAttack();
-
         // Getting direction towards mouse
         Vector3 startingPos = transform.position; 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

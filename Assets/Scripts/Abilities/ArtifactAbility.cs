@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArtifactAbility : MonoBehaviour
+public abstract class ArtifactAbility : MonoBehaviour
 {
 
     [Header("Spawning")]
@@ -19,10 +19,7 @@ public class ArtifactAbility : MonoBehaviour
         }
     }
 
-    protected virtual void UseSpecialAttack()
-    {
-
-    }
+    protected abstract void UseSpecialAttack();
 
     public virtual void SetAbilityData(GameObject obj, int slotIndex)
     {

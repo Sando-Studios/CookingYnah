@@ -86,9 +86,9 @@ namespace Crafting
 
         public InventorySlot GetOutput()
         {
-            var inSlots = new List<string>(4);
+            var inSlots = new List<string>(slots.Length);
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < slots.Length; i++)
             {
                 var s = slots[i];
                 

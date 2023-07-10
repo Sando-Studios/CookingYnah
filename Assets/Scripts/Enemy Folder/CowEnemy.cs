@@ -38,10 +38,6 @@ public class CowEnemy : Enemy
         base.ResetAggro();
     }
 
-    public override Vector3 GetHome()
-    {
-        return base.GetHome();
-    }
     public override GameObject GetTargetUnit()
     {
         return base.GetTargetUnit();
@@ -64,5 +60,7 @@ public class CowEnemy : Enemy
     public override void DealDamage()
     {
         base.DealDamage();
+
+        // Charge through the
     }
 }

@@ -111,14 +111,9 @@ public class Enemy : MonoBehaviour
         aggroTrigger.enabled = true;
     }
 
-    public virtual Vector3 GetHome()
-    {
-        return home;
-    }
-
     public virtual Vector3 GetRandomPatrolPoint()
     {
-        Vector3 randomPoint = GetHome() + UnityEngine.Random.insideUnitSphere * 7.0f;
+        Vector3 randomPoint = home + UnityEngine.Random.insideUnitSphere * 7.0f;
         NavMesh.SamplePosition(randomPoint, out NavMeshHit point, 7.0f, NavMesh.AllAreas);
         return point.position;
     } 

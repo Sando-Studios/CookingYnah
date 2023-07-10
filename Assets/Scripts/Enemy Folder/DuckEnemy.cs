@@ -27,29 +27,10 @@ public class DuckEnemy : Enemy
 
     public override void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
     {
-        
         base.SetEnemyData(enemyID, unitData, homeBase);
         OnDuckSpawn?.Invoke(enemyID);
     }
 
-    public override bool IsAlive()
-    {
-        return base.IsAlive();
-    }
-    protected override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-    }
-
-    public override void ResetAggro()
-    {
-        base.ResetAggro();
-    }
-
-    public override Vector3 GetHome()
-    {
-        return base.GetHome();
-    }
     public override Vector3 GetRandomPatrolPoint()
     {
         Vector3 randomPoint = waypoints[(int)UnityEngine.Random.Range(0f, waypoints.Length)].transform.position;

@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8731748874042300219}
   - component: {fileID: 5504430840124414836}
   m_Layer: 0
-  m_Name: Right_Leg (1)
+  m_Name: Right_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -474,7 +474,7 @@ PrefabInstance:
     - target: {fileID: 6338477555309129997, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 52f9fac61b3108c4bb53954d13b38043, type: 2}
+      objectReference: {fileID: 22100000, guid: 169a5d62d80a5d34aa8f9fba5965c832, type: 2}
     - target: {fileID: 7897286928193850192, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_IsActive
       value: 0

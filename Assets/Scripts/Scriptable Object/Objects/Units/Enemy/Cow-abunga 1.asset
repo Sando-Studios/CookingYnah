@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e8be34d230c236499d91e53a583c9ab, type: 3}
-  m_Name: Chicken-ier 1
+  m_Name: Cow-abunga 1
   m_EditorClassIdentifier: 
-  unitName: Chicken-ier
+  unitName: 
   maxHealth: 1
   moveSpeed: 3
   unitID: -1
@@ -28,5 +28,5 @@ MonoBehaviour:
   aggroRange: 7
   chaseRange: 10
   attackRange: 5
-  animatorController: {fileID: 22100000, guid: 169a5d62d80a5d34aa8f9fba5965c832, type: 2}
-  enemyPrefab: {fileID: 657449444433750750, guid: 51600f73bc14c0545bec2e187ea7acf0, type: 3}
+  animatorController: {fileID: 22100000, guid: d57daa96e7f9e6e4cb44c780f58ef43f, type: 2}
+  enemyPrefab: {fileID: 7731822615392615700, guid: af2edaab81ff0ae4f9f38a286388d5d7, type: 3}

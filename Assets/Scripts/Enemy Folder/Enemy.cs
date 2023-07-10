@@ -7,6 +7,7 @@ using Asyncoroutine;
 using AYellowpaper.SerializedCollections;
 using Unity.Mathematics;
 using UnityEngine.AI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : MonoBehaviour
 {
@@ -114,6 +115,13 @@ public class Enemy : MonoBehaviour
     {
         return home;
     }
+
+    public virtual Vector3 GetRandomPatrolPoint()
+    {
+        Vector3 randomPoint = GetHome() + UnityEngine.Random.insideUnitSphere * 7.0f;
+        NavMesh.SamplePosition(randomPoint, out NavMeshHit point, 7.0f, NavMesh.AllAreas);
+        return point.position;
+    } 
     public virtual GameObject GetTargetUnit()
     {
         return targetUnit;

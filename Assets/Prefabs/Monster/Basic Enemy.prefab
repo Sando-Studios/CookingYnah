@@ -139,7 +139,6 @@ GameObject:
   - component: {fileID: 639792562889159887}
   - component: {fileID: 639792562889159884}
   - component: {fileID: 639792562889159885}
-  - component: {fileID: 639792562889159881}
   - component: {fileID: 639792562889159886}
   - component: {fileID: 639792562889159880}
   - component: {fileID: 296419432239809361}
@@ -200,44 +199,6 @@ CapsuleCollider:
   m_Height: 2.29
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &639792562889159881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639792562889159874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c20eed5070a7cb4d8f4edd694f2b1a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aggroTrigger: {fileID: 639792562889159886}
-  targetUnit: {fileID: 0}
-  redMaterial: {fileID: 2100000, guid: 369077c2621799f469c0e1af06a20ac5, type: 2}
-  greenMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  hpBarGameObject: {fileID: 639792564022852542}
-  hpBar: {fileID: 639792562637887100}
-  animator: {fileID: 6338477555309129997}
-  spriteTransform: {fileID: 639792562578276082}
-  bodyParts:
-    _serializedList:
-    - Key: head
-      Value: {fileID: 0}
-    - Key: torso
-      Value: {fileID: 0}
-    - Key: other_arm
-      Value: {fileID: 0}
-    - Key: weapon_arm
-      Value: {fileID: 0}
-    - Key: knife
-      Value: {fileID: 0}
-    - Key: cosmos
-      Value: {fileID: 0}
-    - Key: dar
-      Value: {fileID: 0}
-    - Key: nel
-      Value: {fileID: 0}
 --- !u!135 &639792562889159886
 SphereCollider:
   m_ObjectHideFlags: 0

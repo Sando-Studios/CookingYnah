@@ -11,12 +11,12 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [Header("Unit DropData")]
-    private EnemyUnitData enemyUnitData;
+    protected EnemyUnitData enemyUnitData;
+    protected EnemyUnitData enemyDataInstance;
 
-    private EnemyUnitData enemyDataInstance;
-    [SerializeField] private SphereCollider aggroTrigger;
-    [SerializeField] private GameObject targetUnit;
-    private Vector3 home;
+    [SerializeField] protected SphereCollider aggroTrigger;
+    [SerializeField] protected GameObject targetUnit;
+    protected Vector3 home;
 
     [Header("SFX")]
     public Material redMaterial;
@@ -25,30 +25,32 @@ public class Enemy : MonoBehaviour
     [Header("Health UI")]
     public GameObject hpBarGameObject;
     public Image hpBar;
-    private Coroutine hpBarCoroutine;
+    protected Coroutine hpBarCoroutine;
 
-    private NavMeshAgent agent;
-    private bool isAlive = true;
+    protected NavMeshAgent agent;
+    protected bool isAlive = true;
 
     [Header("Animation")]
-    [SerializeField] private Animator animator;
-    [SerializeField] private Transform spriteTransform;
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected Transform spriteTransform;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         DamageHandler.OnEnemyUnitDeath += Death;
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         DamageHandler.OnEnemyUnitDeath -= Death;
     }
 
-    public void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
+    public virtual void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
     {
         enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
+
         enemyDataInstance.UnitID = enemyID;
         enemyUnitData = unitData;
         home = homeBase;
+
         enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
         enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
         enemyDataInstance.UnitName = enemyUnitData.UnitName;
@@ -65,20 +67,18 @@ public class Enemy : MonoBehaviour
 
         aggroTrigger.radius = enemyDataInstance.AggroRange;
 
-
         animator.runtimeAnimatorController = enemyUnitData.Controller;
 
         MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
         agent = GetComponent<NavMeshAgent>();
 
-
     }
 
-    public bool IsAlive()
+    public virtual bool IsAlive()
     {
         return isAlive;
     }
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !other.isTrigger)
         {
@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         float a = enemyDataInstance.CurrentHealth;
         float b = enemyDataInstance.MaxHealth;
@@ -100,30 +100,30 @@ public class Enemy : MonoBehaviour
         {
             Vector3 direction = agent.velocity.normalized;
             
-            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f)); 
+            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -181f : 0f, 0f)); 
         }
     }
 
-    public void ResetAggro()
+    public virtual void ResetAggro()
     {
         targetUnit = null;
         aggroTrigger.enabled = true;
     }
 
-    public Vector3 GetHome()
+    public virtual Vector3 GetHome()
     {
         return home;
     }
-    public GameObject GetTargetUnit()
+    public virtual GameObject GetTargetUnit()
     {
         return targetUnit;
     }
-    public EnemyUnitData GetEnemyUnitData()
+    public virtual EnemyUnitData GetEnemyUnitData()
     {
         return enemyDataInstance;
     }
 
-    public async void Hit()// To be replaced by animations 
+    public virtual async void Hit()// To be replaced by animations 
     {
         var r = GetComponentsInChildren<SpriteRenderer>();
 
@@ -139,7 +139,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Death(int id)
+    protected virtual void Death(int id)
     {
         if (id != enemyDataInstance.UnitID) { return; }
 
@@ -159,7 +159,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, 3.0f);
     }
 
-    private ItemData GetRandomItemData()
+    protected virtual ItemData GetRandomItemData()
     {
         float totalWeight = 0f;
         foreach (float dropChance in enemyDataInstance.DropData.Values)
@@ -183,7 +183,7 @@ public class Enemy : MonoBehaviour
         return data;
     }
 
-    public void DealDamage()
+    public virtual void DealDamage()
     {
         if (targetUnit)
         {
@@ -196,7 +196,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void ControlAnimations(MonsterStates state, bool isPlaying)
+    public virtual void ControlAnimations(MonsterStates state, bool isPlaying)
     {
         ResetAnimatorBool();
 
@@ -219,7 +219,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void ResetAnimatorBool()
+    protected virtual void ResetAnimatorBool()
     {
         animator.SetBool("isAttacking", false);
         animator.SetBool("isChasing", false);
@@ -238,7 +238,7 @@ public class Enemy : MonoBehaviour
         hpBarCoroutine = StartCoroutine(HideHPBarAfterDelay());
     }
 
-    private IEnumerator HideHPBarAfterDelay()
+    protected IEnumerator HideHPBarAfterDelay()
     {
         yield return new WaitForSeconds(3.0f);
         hpBarGameObject.gameObject.SetActive(false);

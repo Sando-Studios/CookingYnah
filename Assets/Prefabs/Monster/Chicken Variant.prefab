@@ -336,6 +336,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7662529988962973729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 372300371724816480}
+  m_Layer: 7
+  m_Name: Egg Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &372300371724816480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7662529988962973729}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.609, y: 2.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 657449444433750739}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &143909834577780252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,6 +389,10 @@ PrefabInstance:
     - target: {fileID: 639792562889159880, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_Radius
       value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 639792562889159881, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 639792562889159881, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: bodyParts._serializedList.Array.size
@@ -485,8 +520,66 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+--- !u!1 &657449443426379170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 639792564022852542, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 143909834577780252}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &657449444148922464 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 639792562637887100, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 143909834577780252}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &657449444410368238 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 639792562578276082, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 143909834577780252}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &657449444433750738 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 639792562889159886, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 143909834577780252}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &657449444433750739 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 639792562889159887, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 143909834577780252}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &657449444433750750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 639792562889159874, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 143909834577780252}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6580626637855203290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657449444433750750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcee86100333dbb45bf4d42333e1888f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aggroTrigger: {fileID: 657449444433750738}
+  targetUnit: {fileID: 0}
+  redMaterial: {fileID: 2100000, guid: 369077c2621799f469c0e1af06a20ac5, type: 2}
+  greenMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  hpBarGameObject: {fileID: 657449443426379170}
+  hpBar: {fileID: 657449444148922464}
+  animator: {fileID: 6199643573244997393}
+  spriteTransform: {fileID: 657449444410368238}
+  eggPrefab: {fileID: 2094448068177463582, guid: ac26731053a59a141882304313535f69, type: 3}
+  eggSpawnPoint: {fileID: 372300371724816480}
+--- !u!95 &6199643573244997393 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6338477555309129997, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
   m_PrefabInstance: {fileID: 143909834577780252}
   m_PrefabAsset: {fileID: 0}

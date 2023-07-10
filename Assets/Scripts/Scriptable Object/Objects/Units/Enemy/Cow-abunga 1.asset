@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8be34d230c236499d91e53a583c9ab, type: 3}
   m_Name: Cow-abunga 1
   m_EditorClassIdentifier: 
-  unitName: 
-  maxHealth: 1
+  unitName: Cow-abunga
+  maxHealth: 10
   moveSpeed: 3
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}

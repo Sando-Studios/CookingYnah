@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8be34d230c236499d91e53a583c9ab, type: 3}
+  m_Name: Chicken-ier 1
+  m_EditorClassIdentifier: 
+  unitName: 
+  maxHealth: 0
+  moveSpeed: 0
+  unitID: -1
+  dropPrefab: {fileID: 0}
+  dropData:
+    _serializedList: []
+  basicAttackDmg: 0
+  wanderSpeed: 0
+  chaseSpeed: 0
+  attackSpeed: 0
+  aggroRange: 0
+  chaseRange: 0
+  attackRange: 0
+  animatorController: {fileID: 0}
+  enemyPrefab: {fileID: 657449444433750750, guid: 51600f73bc14c0545bec2e187ea7acf0, type: 3}

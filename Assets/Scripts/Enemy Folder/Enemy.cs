@@ -34,9 +34,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Transform spriteTransform;
 
-    [Header("Sprites")] [SerializeField]
-    private SerializedDictionary<string, SpriteRenderer> bodyParts = new();
-
     private void OnEnable()
     {
         DamageHandler.OnEnemyUnitDeath += Death;

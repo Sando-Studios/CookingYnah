@@ -9,7 +9,8 @@ public enum MonsterStates
     Attack,
     Chase,
     Patrol,
-    Dead
+    Dead,
+    Combat
 }
 public class MonsterStateManager : MonoBehaviour
 {
@@ -47,8 +48,6 @@ public class MonsterStateManager : MonoBehaviour
     private void Update()
     {
         if(!isAIActive){ return ; }
-
-        var enemyKeys = new List<Enemy>(monsterStates.Keys);
 
         foreach (Enemy enemy in monsterStates.Keys.ToList())
         {

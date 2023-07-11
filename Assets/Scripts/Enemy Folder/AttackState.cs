@@ -16,13 +16,15 @@ public class AttackState : MonsterState
     {
         if (enemy.GetCanAttack())
         {
+            Debug.Log("Attack");
             enemy.SetCanAttack(false);
             enemy.SetIsAttackDone(false);
-            enemy.DoAttack();
+            enemy.ExecuteAttack();
         }
 
         if (!enemy.GetCanAttack() && enemy.GetIsAttackDone())
         {
+            Debug.Log("Attack -> Combat");
             statManager.ChangeState(enemy, new CombatState(statManager, enemy));
             return;
         }

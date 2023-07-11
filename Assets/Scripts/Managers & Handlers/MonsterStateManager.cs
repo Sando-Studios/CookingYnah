@@ -49,8 +49,6 @@ public class MonsterStateManager : MonoBehaviour
     {
         if(!isAIActive){ return ; }
 
-        var enemyKeys = new List<Enemy>(monsterStates.Keys);
-
         foreach (Enemy enemy in monsterStates.Keys.ToList())
         {
             if (enemy == null || enemy.gameObject == null)

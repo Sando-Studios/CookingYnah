@@ -34,7 +34,7 @@ public class ChickenEnemy : Enemy
         spawnedEgg.SetActive(true);
     }
 
-    public override void DoAttack()
+    public override void ExecuteAttack()
     {
         if (targetUnit && !hasGrenadeOut)
         {

@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
     }
     public virtual void SetCanAttack(bool isAttackPossible)
     {
-       canAttack = isAttackPossible;
+        canAttack = isAttackPossible;
     }
     public virtual bool GetIsAttackDone()
     {
@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player") && !other.isTrigger)
         {
             targetUnit = other.gameObject;
-            aggroTrigger.enabled = false;                
+            aggroTrigger.enabled = false;
         }
     }
 
@@ -208,18 +208,12 @@ public class Enemy : MonoBehaviour
         return data;
     }
 
-    public virtual void DoAttack()
+    public virtual void ExecuteAttack()
     {
         if (targetUnit)
         {
-            float distanceToTarget = Vector3.Distance(transform.position, targetUnit.transform.position);
-
-            if (distanceToTarget <= enemyDataInstance.AttackRange)
-            {
-                DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
-                AttackTimer();
-                SetIsAttackDone(true);
-            }
+            AttackTimer();
+            DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
         }
     }
 
@@ -272,6 +266,6 @@ public class Enemy : MonoBehaviour
     protected IEnumerator HideHPBarAfterDelay()
     {
         yield return new WaitForSeconds(3.0f);
-        hpBarGameObject.gameObject.SetActive(false);
+        hpBarGameObject.SetActive(false);
     }
 }

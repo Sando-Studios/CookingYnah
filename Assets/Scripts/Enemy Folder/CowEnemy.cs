@@ -22,7 +22,7 @@ public class CowEnemy : Enemy
         }
     }
 
-    public override void DoAttack()
+    public override void ExecuteAttack()
     {
         if (!isCharging)
         {

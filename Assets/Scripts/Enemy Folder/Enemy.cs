@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Asyncoroutine;
-using AYellowpaper.SerializedCollections;
-using Unity.Mathematics;
 using UnityEngine.AI;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemy : MonoBehaviour
 {
@@ -199,7 +195,6 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-
 
     public virtual void ControlAnimations(MonsterStates state, bool isPlaying)
     {

@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Asyncoroutine;
 using UnityEngine.AI;
-using UnityEditorInternal;
 
 public class CowEnemy : Enemy
 {

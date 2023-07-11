@@ -41,7 +41,7 @@ public class AttackState : MonsterState
             if (!hasAttacked && attackTimer >= enemy.GetEnemyUnitData().AttackSpeed)
             {
                 hasAttacked = true;
-                enemy.DealDamage();
+                enemy.DoAttack();
 
                 ResetVariables();
             }

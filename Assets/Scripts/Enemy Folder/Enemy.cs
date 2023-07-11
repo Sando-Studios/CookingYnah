@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player") && !other.isTrigger)
         {
             targetUnit = other.gameObject;
-            aggroTrigger.enabled = false;
+            aggroTrigger.enabled = false;                
         }
     }
 
@@ -100,10 +100,11 @@ public class Enemy : MonoBehaviour
         if (agent.hasPath)
         {
             Vector3 direction = agent.velocity.normalized;
-            
-            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -181f : 0f, 0f)); 
+
+            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -181f : 0f, 0f));
         }
     }
+    protected virtual void FixedUpdate() { }
 
     public virtual void ResetAggro()
     {
@@ -116,7 +117,7 @@ public class Enemy : MonoBehaviour
         Vector3 randomPoint = home + UnityEngine.Random.insideUnitSphere * 7.0f;
         NavMesh.SamplePosition(randomPoint, out NavMeshHit point, 7.0f, NavMesh.AllAreas);
         return point.position;
-    } 
+    }
     public virtual GameObject GetTargetUnit()
     {
         return targetUnit;
@@ -135,7 +136,7 @@ public class Enemy : MonoBehaviour
             m.color = Color.red;
         }
         await new WaitForSeconds(0.5f);
-        
+
         foreach (var m in r)
         {
             m.color = new Color(255, 255, 255, 255);
@@ -186,7 +187,7 @@ public class Enemy : MonoBehaviour
         return data;
     }
 
-    public virtual void DealDamage()
+    public virtual void DoAttack()
     {
         if (targetUnit)
         {
@@ -198,6 +199,7 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
 
     public virtual void ControlAnimations(MonsterStates state, bool isPlaying)
     {

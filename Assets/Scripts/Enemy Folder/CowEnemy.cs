@@ -1,66 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Asyncoroutine;
+using UnityEngine.AI;
+using UnityEditorInternal;
 
 public class CowEnemy : Enemy
 {
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-    }
+    [Header("Charge")]
+    [SerializeField] private CapsuleCollider capsuleCollider;
+    [SerializeField] private float maxChargeDistance;
 
-    public override void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
-    {
-        base.SetEnemyData(enemyID, unitData, homeBase);
-    }
-
-    public override bool IsAlive()
-    {
-        return base.IsAlive();
-    }
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
+
+        if (other.CompareTag("Player") && !other.isTrigger && capsuleCollider.isTrigger)
+        {
+            DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
+        }
     }
 
-    // Update is called once per frame
-    protected override void Update()
+    public override void DoAttack()
     {
-        base.Update();
+
+        StartCharge();
     }
 
-    public override void ResetAggro()
+    private void StartCharge()
     {
-        base.ResetAggro();
+        Vector3 direction = targetUnit.transform.position - transform.position;
+        direction.y = 0f;
+        direction.Normalize();
+
+        Vector3 destination = transform.position + direction * maxChargeDistance;
+
+        NavMesh.SamplePosition(destination, out NavMeshHit point, 5.0f, NavMesh.AllAreas);
+
+        agent.SetDestination(point.position);
+
+        capsuleCollider.isTrigger = true;
     }
 
-    public override GameObject GetTargetUnit()
+    protected override void FixedUpdate()
     {
-        return base.GetTargetUnit();
-    }
-    public override EnemyUnitData GetEnemyUnitData()
-    {
-        return base.GetEnemyUnitData();
-    }
-
-    protected override void Death(int id)
-    {
-        base.Death(id);
-    }
-
-    protected override ItemData GetRandomItemData()
-    {
-        return base.GetRandomItemData();
-    }
-
-    public override void DealDamage()
-    {
-        base.DealDamage();
-
-        // Charge through the
+        if (capsuleCollider.isTrigger && transform.position == agent.destination)
+        {
+            capsuleCollider.isTrigger = false;
+        }
     }
 }

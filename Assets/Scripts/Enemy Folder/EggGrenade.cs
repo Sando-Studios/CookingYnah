@@ -1,4 +1,5 @@
 using Asyncoroutine;
+using System;
 using UnityEngine;
 
 public class EggGrenade : MonoBehaviour
@@ -10,6 +11,9 @@ public class EggGrenade : MonoBehaviour
     [SerializeField] private float explosionRadius = 4.0f;
     [SerializeField] private int explosionDamage = 4;
     private bool isExploding = false;
+    private int ownerID;
+
+    public static Action<int> OnEggnadeExplode;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,8 +32,9 @@ public class EggGrenade : MonoBehaviour
         }
     }
 
-    public void SetExplosionData(int dmg)
+    public void SetExplosionData(int dmg, int owner)
     {
+        ownerID = owner;
         explosionDamage = dmg;
     }
 
@@ -44,6 +49,7 @@ public class EggGrenade : MonoBehaviour
 
     private void DestroyObject()
     {
+        OnEggnadeExplode?.Invoke(ownerID);
         GetComponent<SphereCollider>().enabled = false;
         Destroy(gameObject);
     }

@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] protected SphereCollider aggroTrigger;
     [SerializeField] protected GameObject targetUnit;
+    protected bool canAttack = true;
+    protected bool isAttackDone = false;
     protected Vector3 home;
 
     [Header("SFX")]
@@ -75,6 +77,29 @@ public class Enemy : MonoBehaviour
     {
         return isAlive;
     }
+    public virtual bool GetCanAttack()
+    {
+        return canAttack;
+    }
+    public virtual void SetCanAttack(bool isAttackPossible)
+    {
+       canAttack = isAttackPossible;
+    }
+    public virtual bool GetIsAttackDone()
+    {
+        return isAttackDone;
+    }
+    public virtual void SetIsAttackDone(bool hasAttackFinished)
+    {
+        isAttackDone = hasAttackFinished;
+    }
+
+    public virtual async void AttackTimer()
+    {
+        await new WaitForSeconds(enemyDataInstance.AttackSpeed);
+        SetCanAttack(true);
+    }
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !other.isTrigger)
@@ -97,10 +122,10 @@ public class Enemy : MonoBehaviour
         {
             Vector3 direction = agent.velocity.normalized;
 
-            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -181f : 0f, 0f));
+            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
         }
     }
-    protected virtual void FixedUpdate() { }
+
 
     public virtual void ResetAggro()
     {
@@ -192,6 +217,8 @@ public class Enemy : MonoBehaviour
             if (distanceToTarget <= enemyDataInstance.AttackRange)
             {
                 DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
+                AttackTimer();
+                SetIsAttackDone(true);
             }
         }
     }
@@ -201,10 +228,13 @@ public class Enemy : MonoBehaviour
         ResetAnimatorBool();
 
         var s = state;
-        switch (state)
+        switch (s)
         {
             case MonsterStates.Attack:
                 animator.SetBool("isAttacking", isPlaying);
+                break;
+            case MonsterStates.Combat:
+                animator.SetBool("isInCombat", isPlaying);
                 break;
             case MonsterStates.Chase:
                 animator.SetBool("isChasing", isPlaying);
@@ -222,6 +252,7 @@ public class Enemy : MonoBehaviour
     protected virtual void ResetAnimatorBool()
     {
         animator.SetBool("isAttacking", false);
+        animator.SetBool("isInCombat", false);
         animator.SetBool("isChasing", false);
         animator.SetBool("isIdling", false);
         animator.SetBool("isPatrolling", false);

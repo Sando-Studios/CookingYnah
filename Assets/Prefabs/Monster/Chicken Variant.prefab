@@ -484,7 +484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 639792564022852542, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1114882451549430071, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_IsActive
@@ -541,6 +541,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 639792562578276082, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
   m_PrefabInstance: {fileID: 143909834577780252}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &657449444410368239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 639792562578276083, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 143909834577780252}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8432613157212912195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657449444410368239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783b4d28dd86b9546a4b642daf14b7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chickenEnemy: {fileID: 6580626637855203290}
 --- !u!135 &657449444433750738 stripped
 SphereCollider:
   m_CorrespondingSourceObject: {fileID: 639792562889159886, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}

@@ -9,7 +9,8 @@ public enum MonsterStates
     Attack,
     Chase,
     Patrol,
-    Dead
+    Dead,
+    Combat
 }
 public class MonsterStateManager : MonoBehaviour
 {

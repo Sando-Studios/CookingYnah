@@ -1347,7 +1347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUnitData: {fileID: 11400000, guid: aab21f0e4ebe85c48b03a9877b32a57f, type: 2}
-  force: 100
+  force: 3500
   attack: {fileID: 6163186898570112790}
   attackCollider: {fileID: 6163186898570112788}
   inventory: {fileID: 6163186900316523452}

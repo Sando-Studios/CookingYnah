@@ -84,13 +84,13 @@ public class Player : MonoBehaviour
         if (Input.GetButton("Horizontal"))
         {
             var val = Input.GetAxis("Horizontal");
-            rb.AddForce(new Vector3(val, 0, 0) * force, ForceMode.Force);
+            rb.AddForce(new Vector3(val, 0, 0) * force * Time.deltaTime, ForceMode.Force);
         }
 
         if (Input.GetButton("Vertical"))
         {
             var val = Input.GetAxis("Vertical");
-            rb.AddForce(new Vector3(0, 0, val) * force, ForceMode.Force);
+            rb.AddForce(new Vector3(0, 0, val) * force * Time.deltaTime, ForceMode.Force);
         }
 
         AnimateMovement();
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.tag == "Cook Station")
+        if (other.CompareTag("Cook Station"))
         {
             isAtCookingStation = true;
             UIManager.instance.SetCraftingPopUp();
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        if (other.tag == "Cook Station")
+        if (other.CompareTag("Cook Station"))
         {
             isAtCookingStation = false;
             UIManager.instance.SetCraftingPopUp();

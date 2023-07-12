@@ -31,6 +31,7 @@ public class ChickenEnemy : Enemy
 
     public void EnableEggnade()
     {
+        spawnedEgg.transform.position = eggSpawnPoint.position;
         spawnedEgg.SetActive(true);
     }
 

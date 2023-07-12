@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        if (other.tag == "Cook Station")
+        if (other.CompareTag("Cook Station"))
         {
             isAtCookingStation = false;
             UIManager.instance.SetCraftingPopUp();

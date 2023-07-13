@@ -1,11 +1,7 @@
-//#![allow(unused)]
-
 use std::ffi::{c_void, c_char};
-use std::panic;
 use std::sync::mpsc;
 use std::thread;
 use std::thread::JoinHandle;
-use std::sync::Arc;
 use std::ffi::CString;
 mod twitch;
 
@@ -41,15 +37,12 @@ pub extern "C" fn free_handle(handle: *mut c_void) {
 
         let ctx = Box::from_raw(handle);
 
-        //        ctx.client.send(twitch::SHUTDOWN_KEY.into());
         drop(ctx.client);
 
-        println!("before main join");
-        ctx.thread_handle.join();
-        println!("after main join");
-
-//        drop(ctx.callback);
-        //        drop(ctx);
+        match ctx.thread_handle.join() {
+            Ok(_) => {},
+            Err(_) => eprintln!("Unexpected error in thread."),
+        }
     }
 }
 

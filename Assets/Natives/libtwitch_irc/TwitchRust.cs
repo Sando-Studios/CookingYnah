@@ -14,7 +14,7 @@ namespace RustFFI
         const string __DllName = "Assets/Natives/libtwitch_irc/target/release/libtwitch_irc.dll";
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void init_runtime_callback_delegate(byte* @byte);
+        public delegate void init_runtime_callback_delegate(byte* );
 
         [DllImport(__DllName, EntryPoint = "init_runtime", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void* init_runtime(init_runtime_callback_delegate callback);

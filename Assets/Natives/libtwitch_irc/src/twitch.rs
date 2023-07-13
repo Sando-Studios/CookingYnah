@@ -6,8 +6,10 @@ use twitch_irc::{
     ClientConfig as Config, SecureTCPTransport as TCPTransport, TwitchIRCClient as IRC,
 };
 use std::sync::Arc;
+use std::ffi::CString;
+use std::ffi::c_char;
 
-pub fn fake_main(receiver: Receiver<String>, arc_callback: Option<extern "C" fn() -> ()>) {
+pub fn fake_main(receiver: Receiver<String>, callback: extern "C" fn(*mut std::ffi::c_char) -> ()) {
     let r = runtime::Runtime::new().unwrap();
 
     println!("fake main");
@@ -30,17 +32,13 @@ pub fn fake_main(receiver: Receiver<String>, arc_callback: Option<extern "C" fn(
 
                 println!("new msssg: {}", msg.message_text);
 
-                match arc_callback.as_ref() {
-                    Some(cb) => cb(),
-                    None => {},
-                }
+                callback(CString::new(msg.message_text.as_str()).unwrap().into_raw());
 
             }
         });
 
-        println!("done make hand");
+        println!("done make handle");
 
-        //        std::thread::sleep(std::time::Duration::from_secs(3));
         client.join("koolieaid".into()).unwrap();
 
         println!("start recv loop");

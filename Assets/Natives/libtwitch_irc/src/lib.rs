@@ -1,39 +1,33 @@
-#![allow(unused)]
+//#![allow(unused)]
 
-use std::ffi::c_void;
+use std::ffi::{c_void, c_char};
 use std::panic;
 use std::sync::mpsc;
 use std::thread;
 use std::thread::JoinHandle;
 use std::sync::Arc;
+use std::ffi::CString;
 mod twitch;
 
 #[repr(C)]
 struct Context {
     thread_handle: JoinHandle<()>,
     client: mpsc::Sender<String>,
-//    callback: Arc<Option<extern "C" fn() -> ()>>,
-    callback_container: Option<Container>,
-}
-
-#[repr(C)]
-struct Container {
-    main: extern "C" fn() -> (),
 }
 
 #[no_mangle]
-pub extern "C" fn init_runtime() -> *mut c_void {
-    let (trans, receiver) = mpsc::channel::<String>();
+pub extern "C" fn init_runtime(callback: Option<extern "C" fn(*mut c_char) -> ()>) -> *mut c_void {
+    if callback.is_none() {
+        return std::ptr::null_mut();
+    }
 
-//    let callback: Arc<Option<extern "C" fn() -> ()>> = Arc::new(None);
+    let (sender, receiver) = mpsc::channel::<String>();
 
-    let handle = thread::spawn(move || twitch::fake_main(receiver, None));
+    let handle = thread::spawn(move || twitch::fake_main(receiver, callback.unwrap()));
 
     let ctx = Context {
         thread_handle: handle,
-        client: trans,
-//        callback,
-        callback_container: None,
+        client: sender,
     };
 
     let handle = Box::new(ctx);
@@ -73,25 +67,9 @@ pub extern "C" fn join_channel(ctx: *mut c_void, s_ptr: *const u16, s_len: i32) 
 }
 
 #[no_mangle]
-pub extern "C" fn register_chat_callback(
-    ctx: *mut c_void,
-    callback: Option<extern "C" fn() -> ()>,
-) {
-    let mut ctx = Box::<Context>::from(ctx);
-
-//    ctx.callback = Arc::new(callback);
-
-    Box::into_raw(ctx); // HOLY SHIT BRUH I FORGOT ABOUT THIS
-//    twitch::switch_listener(callback);
-}
-
-#[no_mangle]
-pub extern "C" fn switch_listener_raw(callback: Option<unsafe extern "C" fn() -> ()>) {
-    let Some(callback) = callback else {
-        return;
-    };
-
-    twitch::switch_listener(callback);
+pub unsafe extern "C" fn free_string(string: *mut c_char) {
+    let cstr = CString::from_raw(string);
+    drop(cstr);
 }
 
 impl From<*mut c_void> for Box<Context> {

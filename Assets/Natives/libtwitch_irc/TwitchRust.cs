@@ -13,8 +13,11 @@ namespace RustFFI
     {
         const string __DllName = "Assets/Natives/libtwitch_irc/target/release/libtwitch_irc.dll";
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate void init_runtime_callback_delegate(byte* @byte);
+
         [DllImport(__DllName, EntryPoint = "init_runtime", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void* init_runtime();
+        public static extern void* init_runtime(init_runtime_callback_delegate callback);
 
         [DllImport(__DllName, EntryPoint = "free_handle", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void free_handle(void* handle);
@@ -22,17 +25,8 @@ namespace RustFFI
         [DllImport(__DllName, EntryPoint = "join_channel", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void join_channel(void* ctx, ushort* s_ptr, int s_len);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void register_chat_callback_callback_delegate();
-
-        [DllImport(__DllName, EntryPoint = "register_chat_callback", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void register_chat_callback(void* ctx, register_chat_callback_callback_delegate callback);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void switch_listener_raw_callback_delegate();
-
-        [DllImport(__DllName, EntryPoint = "switch_listener_raw", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void switch_listener_raw(switch_listener_raw_callback_delegate callback);
+        [DllImport(__DllName, EntryPoint = "free_string", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        public static extern void free_string(byte* @string);
 
 
     }

@@ -52,16 +52,31 @@ namespace Crafting
 
         private unsafe void Thing()
         {
-            RustFFI.TwitchRustRaw.switch_listener_raw(Test);
-            var rn = RustFFI.TwitchRustRaw.init_runtime();
-            // RustFFI.TwitchRustRaw.register_chat_callback(rn, Test);
-            RustFFI.TwitchRustRaw.free_handle(rn);
+            var runtime = RustFFI.TwitchRustRaw.init_runtime(Test);
+
+            if (runtime == null)
+            {
+                Debug.Log("its null");
+                return;
+            }
+            
+            var str = "beaver";
+            fixed (char* p = str)
+            {
+                // NativeMethods.csharp_to_rust_string((ushort*)p, str.Length);
+                
+                RustFFI.TwitchRustRaw.join_channel(runtime, (ushort*)p, str.Length);
+            }
+            
+            // RustFFI.TwitchRustRaw.free_handle(runtime);
         }
 
-        [MonoPInvokeCallback(typeof(RustFFI.TwitchRustRaw.register_chat_callback_callback_delegate))]
-        private static void Test()
+        [MonoPInvokeCallback(typeof(RustFFI.TwitchRustRaw.init_runtime_callback_delegate))]
+        private static unsafe void Test(byte* str)
         {
-            Debug.Log("ayo");
+            var msg = new string((sbyte*)str);
+            Debug.Log($"msg: {msg}");
+            RustFFI.TwitchRustRaw.free_string(str);
         }
 
         public void CraftToOutput()

@@ -52,7 +52,7 @@ namespace Crafting
 
         private unsafe void Thing()
         {
-            var runtime = RustFFI.TwitchRustRaw.init_runtime(Test);
+            var runtime = RawNative.RawTwitch.init_runtime(Test);
 
             if (runtime == null)
             {
@@ -65,18 +65,18 @@ namespace Crafting
             {
                 // NativeMethods.csharp_to_rust_string((ushort*)p, str.Length);
                 
-                RustFFI.TwitchRustRaw.join_channel(runtime, (ushort*)p, str.Length);
+                RawNative.RawTwitch.join_channel(runtime, (ushort*)p, str.Length);
             }
             
             // RustFFI.TwitchRustRaw.free_handle(runtime);
         }
 
-        [MonoPInvokeCallback(typeof(RustFFI.TwitchRustRaw.init_runtime_callback_delegate))]
+        [MonoPInvokeCallback(typeof(RawNative.RawTwitch.init_runtime_callback_delegate))]
         private static unsafe void Test(byte* str)
         {
             var msg = new string((sbyte*)str);
             Debug.Log($"msg: {msg}");
-            RustFFI.TwitchRustRaw.free_string(str);
+            RawNative.RawTwitch.free_string(str);
         }
 
         public void CraftToOutput()

@@ -11,7 +11,7 @@ namespace RawNative
 {
     internal static unsafe partial class RawTwitch
     {
-        const string __DllName = "Assets/Natives/libtwitch_irc/target/release/libtwitch_irc.dll";
+        const string __DllName = "Assets/Plugins/Twitch/libtwitch_irc.dll";
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void init_runtime_callback_delegate(byte* @byte);
@@ -27,11 +27,8 @@ namespace RawNative
 
         [DllImport(__DllName, EntryPoint = "free_string", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void free_string(byte* @string);
-
-
+        
     }
-
-
 
 }
     

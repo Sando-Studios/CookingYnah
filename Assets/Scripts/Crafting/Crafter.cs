@@ -45,40 +45,22 @@ namespace Crafting
             Debug.Log(GetOutput().itemName != "None");
         }
 
+        private Twitch _twitch;
+
         private void Start()
         {
-            Thing();
-        }
+            _twitch = new Twitch();
 
-        private unsafe void Thing()
-        {
-            var runtime = RawNative.RawTwitch.init_runtime(Test);
-
-            if (runtime == null)
-            {
-                Debug.Log("its null");
-                return;
-            }
+            _twitch.OnChat = TwitchChat;
             
-            var str = "beaver";
-            fixed (char* p = str)
-            {
-                // NativeMethods.csharp_to_rust_string((ushort*)p, str.Length);
-                
-                RawNative.RawTwitch.join_channel(runtime, (ushort*)p, str.Length);
-            }
-            
-            // RustFFI.TwitchRustRaw.free_handle(runtime);
+            _twitch.JoinChannel("xqc");
         }
 
-        [MonoPInvokeCallback(typeof(RawNative.RawTwitch.init_runtime_callback_delegate))]
-        private static unsafe void Test(byte* str)
+        private void TwitchChat(string m)
         {
-            var msg = new string((sbyte*)str);
-            Debug.Log($"msg: {msg}");
-            RawNative.RawTwitch.free_string(str);
+            Debug.Log($"message from twitch: {m}");
         }
-
+        
         public void CraftToOutput()
         {
             var ing = GetOutput();

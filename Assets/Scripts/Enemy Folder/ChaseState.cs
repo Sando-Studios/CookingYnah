@@ -37,7 +37,7 @@ public class ChaseState : MonsterState
 
         if (distanceToTarget <= enemy.GetEnemyUnitData().AttackRange)
         {
-            statManager.ChangeState(enemy, new AttackState(statManager, enemy));
+            statManager.ChangeState(enemy, new CombatState(statManager, enemy));
             return;
         }
         else if (distanceToTarget > enemy.GetEnemyUnitData().ChaseRange)
@@ -50,9 +50,6 @@ public class ChaseState : MonsterState
             navMeshAgent.SetDestination(enemy.GetTargetUnit().transform.position);
             return;
         }
-
-
-
     }
 
     public override void Exit()

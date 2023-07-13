@@ -45,22 +45,6 @@ namespace Crafting
             Debug.Log(GetOutput().itemName != "None");
         }
 
-        private Twitch _twitch;
-
-        private void Start()
-        {
-            _twitch = new Twitch();
-
-            _twitch.OnChat = TwitchChat;
-            
-            _twitch.JoinChannel("xqc");
-        }
-
-        private void TwitchChat(string m)
-        {
-            Debug.Log($"message from twitch: {m}");
-        }
-        
         public void CraftToOutput()
         {
             var ing = GetOutput();

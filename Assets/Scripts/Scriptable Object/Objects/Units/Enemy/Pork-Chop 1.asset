@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e8be34d230c236499d91e53a583c9ab, type: 3}
-  m_Name: Danger Duck 1
+  m_Name: Pork-Chop 1
   m_EditorClassIdentifier: 
-  unitName: Quaker
+  unitName: Pork Chop
   maxHealth: 10
-  moveSpeed: 3
+  moveSpeed: 10
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:
@@ -22,11 +22,11 @@ MonoBehaviour:
     - Key: {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
       Value: 1
   basicAttackDmg: 0
-  wanderSpeed: 3
-  chaseSpeed: 5
-  attackSpeed: 5
+  wanderSpeed: 5
+  chaseSpeed: 7
+  attackSpeed: 4
   aggroRange: 10
   chaseRange: 12
-  attackRange: 7
-  animatorController: {fileID: 22100000, guid: 460c6fa9c8b45be45b025bb9bc731dba, type: 2}
-  enemyPrefab: {fileID: 2087585752177718938, guid: 2388476de59759448be0124a4b701f64, type: 3}
+  attackRange: 2
+  animatorController: {fileID: 22100000, guid: 1df9a5e231f9f0d4e91c65e103b25eca, type: 2}
+  enemyPrefab: {fileID: 5974314629011983369, guid: 66d2735c3da4de14e94e4e6747bfcc25, type: 3}

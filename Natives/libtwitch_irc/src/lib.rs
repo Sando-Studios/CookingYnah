@@ -31,7 +31,7 @@ pub extern "C" fn init_runtime(callback: Option<extern "C" fn(*mut c_char) -> ()
 }
 
 #[no_mangle]
-pub extern "C" fn free_handle(handle: *mut c_void) {
+pub extern "C-unwind" fn free_handle(handle: *mut c_void) {
     unsafe {
         let handle: *mut Context = handle.cast();
 
@@ -47,7 +47,7 @@ pub extern "C" fn free_handle(handle: *mut c_void) {
 }
 
 #[no_mangle]
-pub extern "C" fn join_channel(ctx: *mut c_void, s_ptr: *const u16, s_len: i32) {
+pub extern "C-unwind" fn join_channel(ctx: *mut c_void, s_ptr: *const u16, s_len: i32) {
     use std::slice;
 
     let name = unsafe { slice::from_raw_parts(s_ptr, s_len as usize) };
@@ -60,7 +60,7 @@ pub extern "C" fn join_channel(ctx: *mut c_void, s_ptr: *const u16, s_len: i32) 
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn free_string(string: *mut c_char) {
+pub unsafe extern "C-unwind" fn free_string(string: *mut c_char) {
     let cstr = CString::from_raw(string);
     drop(cstr);
 }

@@ -27,8 +27,11 @@ namespace RawNative
 
         [DllImport(__DllName, EntryPoint = "free_string", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void free_string(byte* @string);
-        
+
+
     }
+
+
 
 }
     

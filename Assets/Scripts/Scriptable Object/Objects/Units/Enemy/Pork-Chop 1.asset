@@ -27,6 +27,6 @@ MonoBehaviour:
   attackSpeed: 4
   aggroRange: 10
   chaseRange: 12
-  attackRange: 2
+  attackRange: 5
   animatorController: {fileID: 22100000, guid: 1df9a5e231f9f0d4e91c65e103b25eca, type: 2}
   enemyPrefab: {fileID: 5974314629011983369, guid: 66d2735c3da4de14e94e4e6747bfcc25, type: 3}

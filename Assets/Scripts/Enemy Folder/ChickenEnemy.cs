@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.AI;
 
 public class ChickenEnemy : Enemy
 {
@@ -41,6 +41,7 @@ public class ChickenEnemy : Enemy
         if (targetUnit && !hasGrenadeOut)
         {
             hasGrenadeOut = true;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
 
             GameObject clone = Instantiate(eggPrefab, eggSpawnPoint.position, Quaternion.identity);
             clone.SetActive(false);

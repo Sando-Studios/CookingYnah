@@ -806,11 +806,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 639792564022852537, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5.2650003
+      value: 6.62
       objectReference: {fileID: 0}
     - target: {fileID: 639792564022852542, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1408477585970319393, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_Sprite

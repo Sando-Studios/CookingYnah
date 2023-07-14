@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class TwitchChatManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class TwitchChatManager : MonoBehaviour
     [SerializeField]
     [Min(0)]
     private float timeLimit;
+
+    [SerializeField] private Image bar;
 
     private Coroutine routine;
 
@@ -47,7 +50,7 @@ public class TwitchChatManager : MonoBehaviour
     {
         client.JoinChannel(name);
         if (routine != null) return;
-        routine = StartCoroutine(timer(timeLimit));
+        routine = StartCoroutine(Timer(timeLimit));
     }
 
     private void Reset()
@@ -58,8 +61,9 @@ public class TwitchChatManager : MonoBehaviour
         }
     }
 
-    private IEnumerator timer(float limit)
+    private IEnumerator Timer(float limit)
     {
+        StartCoroutine(ProgressBar());
         yield return new WaitForSeconds(limit);
 
         var max = counters.Max();
@@ -79,7 +83,25 @@ public class TwitchChatManager : MonoBehaviour
         skip:
         
         Reset();
-        StartCoroutine(timer(limit));
+        StartCoroutine(Timer(limit));
+    }
+
+    private IEnumerator ProgressBar()
+    {
+        var cur = 0f;
+        for (;;)
+        {
+            yield return new WaitForEndOfFrame();
+
+            if (Mathf.Approximately(bar.fillAmount, timeLimit))
+            {
+                yield break;
+            }
+
+            bar.fillAmount = cur / timeLimit;
+
+            cur += Time.deltaTime;
+        }
     }
 
     public void DebugFunction1()

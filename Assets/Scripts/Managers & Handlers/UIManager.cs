@@ -63,8 +63,6 @@ public class UIManager : MonoBehaviour
     {
         playerData = player.GetPlayerData();
         playerInventory = player.GetInventory();
-
-
     }
 
     private void Update()

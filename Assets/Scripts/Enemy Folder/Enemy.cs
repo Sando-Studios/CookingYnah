@@ -7,10 +7,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Unit DropData")]
-    protected EnemyUnitData enemyUnitData;
+    [Header("Unit Data")]
     protected EnemyUnitData enemyDataInstance;
-
     [SerializeField] protected SphereCollider aggroTrigger;
     [SerializeField] protected GameObject targetUnit;
     protected bool canAttack = true;
@@ -46,31 +44,13 @@ public class Enemy : MonoBehaviour
     {
         enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
 
-        enemyDataInstance.UnitID = enemyID;
-        enemyUnitData = unitData;
         home = homeBase;
-
-        enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
-        enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
-        enemyDataInstance.UnitName = enemyUnitData.UnitName;
-        enemyDataInstance.MoveSpeed = enemyUnitData.MoveSpeed;
-        enemyDataInstance.DropObject = enemyUnitData.DropObject;
-        enemyDataInstance.DropData = enemyUnitData.DropData;
-        enemyDataInstance.AggroRange = enemyUnitData.AggroRange;
-        enemyDataInstance.BasicAttackDamage = enemyUnitData.BasicAttackDamage;
-        enemyDataInstance.ChaseRange = enemyUnitData.ChaseRange;
-        enemyDataInstance.AttackRange = enemyUnitData.AttackRange;
-        enemyDataInstance.PatrolSpeed = enemyUnitData.PatrolSpeed;
-        enemyDataInstance.ChaseSpeed = enemyUnitData.ChaseSpeed;
-        enemyDataInstance.AttackSpeed = enemyUnitData.AttackSpeed;
-
+        enemyDataInstance.Init(enemyID, unitData);
         aggroTrigger.radius = enemyDataInstance.AggroRange;
+        animator.runtimeAnimatorController = enemyDataInstance.Controller;
 
-        animator.runtimeAnimatorController = enemyUnitData.Controller;
-
-        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
+        MonsterStateManager.Instance.AddMonster(this, new PatrolState(MonsterStateManager.Instance, this));
         agent = GetComponent<NavMeshAgent>();
-
     }
 
     public virtual bool IsAlive()

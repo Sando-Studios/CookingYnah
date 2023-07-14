@@ -31,7 +31,6 @@ public class PlayerUnitData : UnitData
         get { return baseHealth + Mathf.RoundToInt(Vitality * vitHpScalingFactor); }
     }
 
-
     public int Vitality
     {
         get { return vitality; }

@@ -7,7 +7,7 @@ public class UnitData : ScriptableObject
 {
     [SerializeField] private string unitName;
     private int currentHealth;
-    [SerializeField] private float moveSpeed;
+    
 
     public string UnitName 
     { 
@@ -18,11 +18,6 @@ public class UnitData : ScriptableObject
     {
         get { return currentHealth; }
         set { currentHealth = value; }
-    }
-    public virtual float MoveSpeed 
-    {
-        get { return moveSpeed; } 
-        set { moveSpeed = value; }
     }
 }
 

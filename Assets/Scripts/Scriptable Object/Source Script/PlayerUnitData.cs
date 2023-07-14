@@ -6,136 +6,73 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerUnit", menuName = "Unit/Player")]
 public class PlayerUnitData : UnitData
 {
-    [SerializeField] private float vitality;
-    [SerializeField] private float agility;
-    [SerializeField] private float strength;
-    [SerializeField] private float vigor;
-    [SerializeField] private float intelligence;
-    [SerializeField] private float endurance;
-    [SerializeField] private float dexterity;
+    [SerializeField] private int baseHealth = 10;
+    [Header("Vitality to HP Scaling Factor")]
+    [SerializeField] private float vitHpScalingFactor = 0.5f;
 
-    [SerializeField] private float attackRange;
+    private int vitality = 1;
+    private int strength = 1;
+    private int resilience = 1;
 
-    private float currentSprintStamina;
-    private float currentBlockMeter;
+    [Header("Resilience Diminishing Factor")]
+    [Range(0f, 1f)]
+    [SerializeField] float diminishingFactor = 0.3f; // between 0 - 1, higher = earlier diminishing returns
 
-    public override int MaxHealth
+    [SerializeField] private float maxStamina = 100.0f;
+    private float currentStamina;
+
+    [SerializeField] private float attackRange = 5.0f;
+
+    [SerializeField] private int rawDamage = 5;
+    
+
+    public int MaxHealth
     {
-        get { return (int)(Vitality * 10); }
-    }
-    public override int CurrentHealth
-    {
-        get { return base.CurrentHealth; }
-        set { base.CurrentHealth = value; }
+        get { return baseHealth + Mathf.RoundToInt(Vitality * vitHpScalingFactor); }
     }
 
-    // Main Stats
-    public float Vitality
+
+    public int Vitality
     {
         get { return vitality; }
         set { vitality = value; }
     }
-    public float Agility
-    {
-        get { return agility; }
-        set { agility = value; }
-    }
-    public float Strength
+    public int Strength
     {
         get { return strength; }
         set { strength = value; }
     }
-    public float Vigor
+    public int Resilience
     {
-        get { return vigor; }
-        set { vigor = value; }
+        get { return resilience; }
+        set { resilience = value; }
     }
-    public float Intelligence
+    public float ResDiminishingFactor
     {
-        get { return intelligence; }
-        set { intelligence = value; }
-    }
-    public float Endurance
-    {
-        get { return endurance; }
-        set { endurance = value; }
-    }
-    public float Dexterity
-    {
-        get { return dexterity; }
-        set { dexterity = value; }
+        get { return diminishingFactor; }
+        set { diminishingFactor = value; }
     }
 
-    // Derived Stats
+    public float MaxStamina
+    {
+        get { return maxStamina; }
+        set { maxStamina = value; }
+    }
+    public float CurrentStamina
+    {
+        get { return currentStamina; }
+        set { currentStamina = value; }
+    }
+
     public float AttackRange
     {
         get { return attackRange; }
         set { attackRange = value; }
     }
-    public float Resistance
+
+    public int RawDamage
     {
-        get { return (Vitality * 0.2f) + (Vigor * 0.2f) + (Endurance * 0.2f); }
-    }
-    public override float MoveSpeed
-    {
-        get { return Agility * 1.5f; }
-    }
-    public float EvadeDistance
-    {
-        get { return Agility * 0.2f; }
-    }
-    public float RawDamage
-    {
-        get { return Strength * 5.0f; }
-    }
-    public float Blocking
-    {
-        get { return Strength * 0.2f; }
-    }
-    public float ComboDelay
-    {
-        get { return 1.0f - (Vigor * 0.02f); }
-    }
-    public float DamageMultiplier
-    {
-        get { return Vigor * 0.1f; }
-    }
-    public float EnemyAttackExecutionTime
-    {
-        get { return 1.0f + (Intelligence * 0.05f); }
-    }
-    public float RangeMissChance
-    {
-        get { return 10.0f - (Intelligence * 0.5f); }
-    }
-    public float MaxSprintMeter
-    {
-        get { return Endurance * 10.0f; }
-    }
-    public float CurrentSprintMeter
-    {
-        get { return currentSprintStamina; }
-        set { currentSprintStamina = value; }
-    }
-    public float MaxBlockMeter
-    {
-        get { return Endurance * 5.0f; }
-    }
-    public float CurrentBlockMeter
-    {
-        get { return currentBlockMeter; }
-        set { currentBlockMeter = value; }
-    }
-    public float Accuracy
-    {
-        get { return Dexterity * 2.0f; }
-    }
-    public float AttackInterval
-    {
-        get
-        {
-            float interval = 3 - (Dexterity / 100) * 3;
-            return Mathf.Max(0.5f, interval);
-        }
+        get { return rawDamage; }
+        set { rawDamage = value; }
     }
 }

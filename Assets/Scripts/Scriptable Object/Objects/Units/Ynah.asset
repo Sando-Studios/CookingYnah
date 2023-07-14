@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dd6b74ec0e594f48a2629a2dd63d640, type: 3}
-  m_Name: BasicPlayer
+  m_Name: Ynah
   m_EditorClassIdentifier: 
   unitName: Ynah
   maxHealth: 20

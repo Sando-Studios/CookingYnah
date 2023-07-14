@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewEnemyUnit", menuName = "Unit/Enemy")]
 public class EnemyUnitData : UnitData
 {
+    [SerializeField] private int maxHealth;
     [SerializeField] private int unitID = -1;
     [SerializeField] private GameObject dropPrefab;
     [SerializeField] private SerializedDictionary<ItemData, float> dropData = new SerializedDictionary<ItemData, float>();
@@ -28,6 +29,11 @@ public class EnemyUnitData : UnitData
     [Header("Enemy Prefab")] 
     [SerializeField] private GameObject enemyPrefab;
 
+    public int MaxHealth
+    {
+        get { return maxHealth; }
+        set { maxHealth = value; }
+    }
 
     public int UnitID
     {
@@ -45,8 +51,6 @@ public class EnemyUnitData : UnitData
         set { dropData = value; }
     }
 
-    public override int MaxHealth { get => base.MaxHealth; set => base.MaxHealth = value; }
-    public override int CurrentHealth { get => base.CurrentHealth; set => base.CurrentHealth = value; }
     public override float MoveSpeed { get => base.MoveSpeed; set => base.MoveSpeed = value; }
     public RuntimeAnimatorController Controller { get { return animatorController; } }  
 

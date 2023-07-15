@@ -15,10 +15,6 @@ public class Enemy : MonoBehaviour
     protected bool isAttackDone = false;
     protected Vector3 home;
 
-    [Header("SFX")]
-    public Material redMaterial;
-    public Material greenMaterial;
-
     [Header("Health UI")]
     public GameObject hpBarGameObject;
     public Image hpBar;
@@ -128,7 +124,7 @@ public class Enemy : MonoBehaviour
         return enemyDataInstance;
     }
 
-    public virtual async void Hit()// To be replaced by animations 
+    public virtual async void Hit() 
     {
         var r = GetComponentsInChildren<SpriteRenderer>();
 
@@ -192,6 +188,10 @@ public class Enemy : MonoBehaviour
     {
         if (targetUnit)
         {
+            Vector3 direction = targetUnit.transform.position - transform.position;
+            direction.Normalize();
+            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
+
             AttackTimer();
             DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
         }

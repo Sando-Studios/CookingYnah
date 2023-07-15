@@ -605,7 +605,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 639792562578276083, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
   m_PrefabInstance: {fileID: 1448021476472635992}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6439349478011291648
+--- !u!114 &9131522410924037595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -614,10 +614,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2087585751731797163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bed81dae82872cf45872bc24f3df89b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 10b8d116ab2e7d645a5945abde2f6a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duckEnemy: {fileID: 4549621994227407775}
+  enemy: {fileID: 4549621994227407775}
 --- !u!114 &2087585751926445092 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 639792562637887100, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
@@ -653,8 +653,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aggroTrigger: {fileID: 2087585752177718934}
   targetUnit: {fileID: 0}
-  redMaterial: {fileID: 2100000, guid: 369077c2621799f469c0e1af06a20ac5, type: 2}
-  greenMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   hpBarGameObject: {fileID: 2087585751038261734}
   hpBar: {fileID: 2087585751926445092}
   animator: {fileID: 4895039083819397973}

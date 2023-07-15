@@ -40,23 +40,11 @@ public class BuffManager : MonoBehaviour
             case TargetStat.VitStat:
                 player.Vitality += value;
                 break;
-            case TargetStat.AgiStat:
-                player.Agility += value;
-                break;
             case TargetStat.StrStat:
                 player.Strength += value;
                 break;
-            case TargetStat.VigStat:
-                player.Vigor += value;
-                break;
-            case TargetStat.IntStat:
-                player.Intelligence += value;
-                break;
-            case TargetStat.EndStat:
-                player.Endurance += value;
-                break;
-            case TargetStat.DexStat:
-                player.Dexterity += value;
+            case TargetStat.ResStat:
+                player.Resilience += value;
                 break;
             default:
                 Debug.Log("Invalid stat: " + stat);
@@ -74,23 +62,11 @@ public class BuffManager : MonoBehaviour
             case TargetStat.VitStat:
                 player.Vitality -= value;
                 break;
-            case TargetStat.AgiStat:
-                player.Agility -= value;
-                break;
             case TargetStat.StrStat:
                 player.Strength -= value;
                 break;
-            case TargetStat.VigStat:
-                player.Vigor -= value;
-                break;
-            case TargetStat.IntStat:
-                player.Intelligence -= value;
-                break;
-            case TargetStat.EndStat:
-                player.Endurance -= value;
-                break;
-            case TargetStat.DexStat:
-                player.Dexterity -= value;
+            case TargetStat.ResStat:
+                player.Resilience -= value;
                 break;
             default:
                 Debug.Log("Invalid stat: " + stat);

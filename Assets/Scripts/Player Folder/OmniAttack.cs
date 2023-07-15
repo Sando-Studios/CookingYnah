@@ -25,7 +25,7 @@ public class OmniAttack : MonoBehaviour
     {
         foreach (Enemy enemy in enemiesInRange)
         {
-            DamageHandler.ApplyDamage(enemy, damage);
+            DamageHandler.ApplyDamage(enemy, damage, GetComponent<Player>().GetPlayerData().Strength);
         }
     } 
     // Start is called before the first frame update

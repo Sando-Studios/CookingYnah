@@ -6,11 +6,17 @@ public class StationarySprite : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
+    public bool tiltSprite = true;
+
     private void Start()
     {   spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        Quaternion tilt = Quaternion.Euler(25, 0, 0);
-        spriteRenderer.transform.rotation = tilt;
+        if (tiltSprite)
+        {
+            Quaternion tilt = Quaternion.Euler(25, 0, 0);
+            spriteRenderer.transform.rotation = tilt;
+        }
+        
 
         // Get the current X position of the object
         float zPosition = transform.position.z;

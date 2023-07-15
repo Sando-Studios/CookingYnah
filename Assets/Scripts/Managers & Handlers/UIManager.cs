@@ -31,12 +31,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject statsPanel;
     [SerializeField] private GameObject characterImage;
     [SerializeField] private TextMeshProUGUI vitText;
-    [SerializeField] private TextMeshProUGUI agiText;
+    [SerializeField] private TextMeshProUGUI resText;
     [SerializeField] private TextMeshProUGUI strText;
-    [SerializeField] private TextMeshProUGUI vigText;
-    [SerializeField] private TextMeshProUGUI intText;
-    [SerializeField] private TextMeshProUGUI endText;
-    [SerializeField] private TextMeshProUGUI dexText;
+
     [SerializeField] private GameObject statPopupToolTip;
     [SerializeField] private TextMeshProUGUI statDescText;
     [SerializeField] private StatDescriptions statDescriptions;
@@ -66,8 +63,6 @@ public class UIManager : MonoBehaviour
     {
         playerData = player.GetPlayerData();
         playerInventory = player.GetInventory();
-
-
     }
 
     private void Update()
@@ -104,12 +99,8 @@ public class UIManager : MonoBehaviour
     public void UpdateStatsUI()
     {
         vitText.text = playerData.Vitality.ToString();
-        agiText.text = playerData.Agility.ToString();
+        resText.text = playerData.Resilience.ToString();
         strText.text = playerData.Strength.ToString();
-        vigText.text = playerData.Vigor.ToString();
-        intText.text = playerData.Intelligence.ToString();
-        endText.text = playerData.Endurance.ToString();
-        dexText.text = playerData.Dexterity.ToString();
     }
 
     public void UpdateInventoryUI()
@@ -177,23 +168,11 @@ public class UIManager : MonoBehaviour
             case TargetStat.VitStat:
                 statDescText.text = statDescriptions.Vitality;
                 break;
-            case TargetStat.AgiStat:
-                statDescText.text = statDescriptions.Agility;
+            case TargetStat.ResStat:
+                statDescText.text = statDescriptions.Resilience;
                 break;
             case TargetStat.StrStat:
                 statDescText.text = statDescriptions.Strength;
-                break;
-            case TargetStat.VigStat:
-                statDescText.text = statDescriptions.Vigor;
-                break;
-            case TargetStat.IntStat:
-                statDescText.text = statDescriptions.Intelligence;
-                break;
-            case TargetStat.EndStat:
-                statDescText.text = statDescriptions.Endurance;
-                break;
-            case TargetStat.DexStat:
-                statDescText.text = statDescriptions.Dexterity;
                 break;
             default:
                 Debug.Log("Unknown Stat");
@@ -237,23 +216,11 @@ public class UIManager : MonoBehaviour
                 case TargetStat.VitStat:
                     stringToAdd1 += "+" + pair.Value + " VIT<br>";
                     break;
-                case TargetStat.AgiStat:
-                    stringToAdd1 += "+" + pair.Value + " AGI<br>";
-                    break;
                 case TargetStat.StrStat:
                     stringToAdd1 += "+" + pair.Value + " STR<br>";
                     break;
-                case TargetStat.VigStat:
-                    stringToAdd1 += "+" + pair.Value + " VIG<br>";
-                    break;
-                case TargetStat.IntStat:
-                    stringToAdd1 += "+" + pair.Value + " INT<br>";
-                    break;
-                case TargetStat.EndStat:
-                    stringToAdd1 += "+" + pair.Value + " END<br>";
-                    break;
-                case TargetStat.DexStat:
-                    stringToAdd1 += "+" + pair.Value + " DEX<br>";
+                case TargetStat.ResStat:
+                    stringToAdd1 += "+" + pair.Value + " RES<br>";
                     break;
             }
         }
@@ -267,23 +234,11 @@ public class UIManager : MonoBehaviour
                 case TargetStat.VitStat:
                     stringToAdd2 += "+" + pair.Value + " VIT<br>";
                     break;
-                case TargetStat.AgiStat:
-                    stringToAdd2 += "+" + pair.Value + " AGI<br>";
-                    break;
                 case TargetStat.StrStat:
                     stringToAdd2 += "+" + pair.Value + " STR<br>";
                     break;
-                case TargetStat.VigStat:
-                    stringToAdd2 += "+" + pair.Value + " VIG<br>";
-                    break;
-                case TargetStat.IntStat:
-                    stringToAdd2 += "+" + pair.Value + " INT<br>";
-                    break;
-                case TargetStat.EndStat:
-                    stringToAdd2 += "+" + pair.Value + " END<br>";
-                    break;
-                case TargetStat.DexStat:
-                    stringToAdd2 += "+" + pair.Value + " DEX<br>";
+                case TargetStat.ResStat:
+                    stringToAdd2 += "+" + pair.Value + " RES<br>";
                     break;
             }
         }

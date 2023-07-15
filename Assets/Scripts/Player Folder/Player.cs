@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {   
     [Header("Unit DropData")]
     [SerializeField] private PlayerUnitData playerUnitData;
-    private PlayerUnitData playerDataInstance;
     private Rigidbody rb;
     public float force;
 
@@ -27,10 +26,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        
-        playerDataInstance = ScriptableObject.CreateInstance<PlayerUnitData>();
-        SetInitialValues();
-        
         DontDestroyOnLoad(this);
     }
 
@@ -42,27 +37,9 @@ public class Player : MonoBehaviour
         inventory = GetComponent<PlayerInventory>();
 
         UIManager.instance.UpdateHpUI();
-        BuffManager.instance.SetPlayer(playerDataInstance);
+        BuffManager.instance.SetPlayer(playerUnitData);
 
         if (SceneChangeManager.instance.GetObjectToLoad() != gameObject) { Destroy(gameObject); }
-    }
-
-    void SetInitialValues()
-    {
-
-        playerDataInstance.UnitName = playerUnitData.UnitName;
-
-        playerDataInstance.Vitality = playerUnitData.Vitality;
-        playerDataInstance.Agility = playerUnitData.Agility;
-        playerDataInstance.Strength = playerUnitData.Strength;
-        playerDataInstance.Vigor = playerUnitData.Vigor;
-        playerDataInstance.Intelligence = playerUnitData.Intelligence;
-        playerDataInstance.Endurance = playerUnitData.Endurance;
-        playerDataInstance.Dexterity = playerUnitData.Dexterity;
-        playerDataInstance.MoveSpeed = playerUnitData.MoveSpeed;
-        playerDataInstance.MaxHealth = playerUnitData.MaxHealth;
-        playerDataInstance.CurrentHealth = playerDataInstance.MaxHealth;
-        playerDataInstance.AttackRange = playerUnitData.AttackRange;
     }
 
     // Update is called once per frame
@@ -71,9 +48,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1") && canAttack)
         {
-            //attackCollider.enabled = true;
             Attack();
-            //animator.SetTrigger("attackTrigger");
         }
 
 
@@ -130,21 +105,19 @@ public class Player : MonoBehaviour
         attackParticle.Play();
         canAttack = false;
 
-        attackCollider.radius = playerDataInstance.AttackRange;
-        attack.DealDamage((int)playerDataInstance.RawDamage);
+        attackCollider.radius = playerUnitData.AttackRange;
+
+        //DamageHandler.ApplyDamage(/* enemy reference */,(int)playerUnitData.RawDamage, playerUnitData.Strength);
+
+        attack.DealDamage((int)playerUnitData.RawDamage);
 
         animator.ResetTrigger("Attack Finish");
         animator.SetTrigger("Attack Start");
 
-        // Debug.Log($"{playerUnitData.AttackInterval}");
-        await new WaitForSeconds(playerUnitData.AttackInterval);
-
-        // Debug.Log("done attacking");
-        
+        await new WaitForSeconds(2.0f); // Stand in - to be replaced with Eric's combo stuff
 
         canAttack = true;
     }
-
 
     public PlayerInventory GetInventory()
     {
@@ -152,6 +125,6 @@ public class Player : MonoBehaviour
     }
     public PlayerUnitData GetPlayerData()
     {
-        return playerDataInstance;
+        return playerUnitData;
     }
 }

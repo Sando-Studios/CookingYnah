@@ -14,24 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vitDescription: 'Vitality(VIT) <br>
 
-    Increses [Maximum Health] and [Resistance]'
-  agiDescription: 'Agility(AGI) <br>
-
-    Increses [Movemnt Speed] and [Lunge Distance]'
+    Increases [Maximum Health] '
   strDescription: 'Strength(STR) <br>
 
-    Increses [Raw Damage] and [Blocking]'
-  vigDescription: 'Vigor(VIG) <br>
+    Increases [Raw Damage]'
+  resDescription: 'Resilience(RES) <br>
 
-    Increses [Damage], [Resistance] and [Attack
-    Speed]'
-  intDescription: 'Intelligence(INT) <br>
-
-    Increses [Enemy Attack Speed] and
-    [Long Range Accuracy]'
-  endDescription: 'Endurance(END) <br>
-
-    Increses [Maximum Stamina] and [Resistance]'
-  dexDescription: 'Dexterity(DEX) <br>
-
-    Increses [Accuracy] and [Attack Speed]'
+    Increases [Damage Reduction]'

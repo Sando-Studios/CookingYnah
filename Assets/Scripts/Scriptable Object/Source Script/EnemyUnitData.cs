@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewEnemyUnit", menuName = "Unit/Enemy")]
 public class EnemyUnitData : UnitData
 {
+    [SerializeField] private int maxHealth;
     [SerializeField] private int unitID = -1;
     [SerializeField] private GameObject dropPrefab;
     [SerializeField] private SerializedDictionary<ItemData, float> dropData = new SerializedDictionary<ItemData, float>();
@@ -28,6 +29,32 @@ public class EnemyUnitData : UnitData
     [Header("Enemy Prefab")] 
     [SerializeField] private GameObject enemyPrefab;
 
+    public void Init(int id, EnemyUnitData unitDataSource)
+    {
+        UnitID = id;
+        UnitName = unitDataSource.UnitName;
+        MaxHealth = unitDataSource.MaxHealth;
+        CurrentHealth = unitDataSource.MaxHealth;
+        DropObject = unitDataSource.DropObject;
+        DropData = unitDataSource.DropData;
+        AggroRange = unitDataSource.AggroRange;
+        BasicAttackDamage = unitDataSource.BasicAttackDamage;
+        ChaseRange = unitDataSource.ChaseRange;
+        AttackRange = unitDataSource.AttackRange;
+        PatrolSpeed =   unitDataSource.PatrolSpeed;
+        ChaseSpeed = unitDataSource.ChaseSpeed;
+        AttackSpeed = unitDataSource.AttackSpeed;
+        Controller = unitDataSource.Controller;
+        EnemyPrefab = unitDataSource.EnemyPrefab;
+    }
+
+
+
+    public int MaxHealth
+    {
+        get { return maxHealth; }
+        set { maxHealth = value; }
+    }
 
     public int UnitID
     {
@@ -45,10 +72,11 @@ public class EnemyUnitData : UnitData
         set { dropData = value; }
     }
 
-    public override int MaxHealth { get => base.MaxHealth; set => base.MaxHealth = value; }
-    public override int CurrentHealth { get => base.CurrentHealth; set => base.CurrentHealth = value; }
-    public override float MoveSpeed { get => base.MoveSpeed; set => base.MoveSpeed = value; }
-    public RuntimeAnimatorController Controller { get { return animatorController; } }  
+    public RuntimeAnimatorController Controller 
+    { 
+        get { return animatorController; } 
+        set { animatorController = value; }
+    }  
 
     public int BasicAttackDamage
     {
@@ -91,5 +119,6 @@ public class EnemyUnitData : UnitData
     public GameObject EnemyPrefab
     {
         get => enemyPrefab;
+        set { enemyPrefab = value; }
     }
 }

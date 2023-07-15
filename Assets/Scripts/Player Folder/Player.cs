@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 {   
     [Header("Unit DropData")]
     [SerializeField] private PlayerUnitData playerUnitData;
-    private PlayerUnitData playerDataInstance;
     private Rigidbody rb;
     public float force;
 
@@ -30,10 +29,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        
-        playerDataInstance = ScriptableObject.CreateInstance<PlayerUnitData>();
-        SetInitialValues();
-        
         DontDestroyOnLoad(this);
     }
 
@@ -45,27 +40,9 @@ public class Player : MonoBehaviour
         inventory = GetComponent<PlayerInventory>();
 
         UIManager.instance.UpdateHpUI();
-        BuffManager.instance.SetPlayer(playerDataInstance);
+        BuffManager.instance.SetPlayer(playerUnitData);
 
         if (SceneChangeManager.instance.GetObjectToLoad() != gameObject) { Destroy(gameObject); }
-    }
-
-    void SetInitialValues()
-    {
-
-        playerDataInstance.UnitName = playerUnitData.UnitName;
-
-        playerDataInstance.Vitality = playerUnitData.Vitality;
-        playerDataInstance.Agility = playerUnitData.Agility;
-        playerDataInstance.Strength = playerUnitData.Strength;
-        playerDataInstance.Vigor = playerUnitData.Vigor;
-        playerDataInstance.Intelligence = playerUnitData.Intelligence;
-        playerDataInstance.Endurance = playerUnitData.Endurance;
-        playerDataInstance.Dexterity = playerUnitData.Dexterity;
-        playerDataInstance.MoveSpeed = playerUnitData.MoveSpeed;
-        playerDataInstance.MaxHealth = playerUnitData.MaxHealth;
-        playerDataInstance.CurrentHealth = playerDataInstance.MaxHealth;
-        playerDataInstance.AttackRange = playerUnitData.AttackRange;
     }
 
     // Update is called once per frame
@@ -75,9 +52,7 @@ public class Player : MonoBehaviour
         // TODO: Synchronize animations, since canAttack got replaced
         if (Input.GetButtonDown("Fire1")) // I removed canAttack for Omni since it got replaced by jab
         {
-            //attackCollider.enabled = true;
             Attack();
-            //animator.SetTrigger("attackTrigger");
         }
 
 
@@ -155,11 +130,9 @@ public class Player : MonoBehaviour
         // await new WaitForSeconds(playerUnitData.AttackInterval);
 
         // Debug.Log("done attacking");
-        
 
         // canAttack = true;
     }
-
 
     public PlayerInventory GetInventory()
     {
@@ -167,6 +140,6 @@ public class Player : MonoBehaviour
     }
     public PlayerUnitData GetPlayerData()
     {
-        return playerDataInstance;
+        return playerUnitData;
     }
 }

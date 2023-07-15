@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
     {
         canAttack = false;
 
-        attackCollider.radius = playerDataInstance.AttackRange;
+        attackCollider.radius = playerUnitData.AttackRange;
         // attack.DealDamage((int)playerDataInstance.RawDamage);
 
         var (attacked, isSlow) = jab.Attack();

@@ -27,7 +27,8 @@ public class GroundWaveAbility : ArtifactAbility
         for (int i = 1; i <= rocksPerAttack; i++)
         {
             GameObject clone = SpawnSingleRock(startPoint + dir * distanceBetween * i);
-            clone.GetComponent<Bocchi>().SetDamageValue(15 * GetComponent<Player>().GetPlayerData().DamageMultiplier);
+            var p = GetComponent<Player>().GetPlayerData();
+            clone.GetComponent<Bocchi>().SetDamageValue(p.RawDamage, p.Strength);
             await new WaitForSeconds(delayBetween);
         }
     }
@@ -48,7 +49,7 @@ public class GroundWaveAbility : ArtifactAbility
                 var loc = transform.position + new Vector3(x, 0, y) * dist;
 
                 GameObject clone = SpawnSingleRock(loc);
-                clone.GetComponent<Bocchi>().SetDamageValue(damage);
+                clone.GetComponent<Bocchi>().SetDamageValue(damage, GetComponent<Player>().GetPlayerData().Strength);
             }
         }
 

@@ -7,6 +7,7 @@ public class Bocchi : MonoBehaviour
 {
     [SerializeField] private float lifeSpan;
     private int damageValue;
+    private float strength;
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +27,10 @@ public class Bocchi : MonoBehaviour
         }
     }
 
-    public void SetDamageValue(float dmg)
+    public void SetDamageValue(float dmg, float strength)
     {
         damageValue = (int)dmg;
+        this.strength = strength;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,6 +51,6 @@ public class Bocchi : MonoBehaviour
     }
     private void DealDamage(Enemy enemy)
     {
-        DamageHandler.ApplyDamage(enemy, damageValue);
+        DamageHandler.ApplyDamage(enemy, damageValue, strength);
     }
 }

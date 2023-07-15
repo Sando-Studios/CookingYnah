@@ -8,14 +8,16 @@ public class Meteor : MonoBehaviour
     private Vector3 targetPosition;
     private bool move;
     private int damageValue;
+    private float strength;
 
     public void SetTarget(Vector3 target)
     {
         targetPosition = target;
     }
-    public void SetDamageValue(float dmg)
+    public void SetDamageValue(float dmg, float strength)
     {
         damageValue = (int)dmg;
+        this.strength = strength;
     }
 
     public void TriggerMove()
@@ -49,8 +51,9 @@ public class Meteor : MonoBehaviour
     {
         DamageHandler.ApplyDamage(player, damageValue);
     }
+    
     private void DealDamage(Enemy enemy)
     {
-        DamageHandler.ApplyDamage(enemy, damageValue);
+        DamageHandler.ApplyDamage(enemy, damageValue, strength);
     }
 }

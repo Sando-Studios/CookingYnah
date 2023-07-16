@@ -1,8 +1,8 @@
-use std::ffi::{c_void, c_char};
+use std::ffi::CString;
+use std::ffi::{c_char, c_void};
 use std::sync::mpsc;
 use std::thread;
 use std::thread::JoinHandle;
-use std::ffi::CString;
 mod twitch;
 
 #[repr(C)]
@@ -32,22 +32,38 @@ pub extern "C" fn init_runtime(callback: Option<extern "C" fn(*mut c_char) -> ()
 
 #[no_mangle]
 pub extern "C-unwind" fn free_handle(handle: *mut c_void) {
-    unsafe {
+    let ctx = unsafe {
         let handle: *mut Context = handle.cast();
 
-        let ctx = Box::from_raw(handle);
+        Box::from_raw(handle)
+    };
 
-        drop(ctx.client);
+    drop(ctx.client);
 
-        match ctx.thread_handle.join() {
-            Ok(_) => {},
-            Err(_) => eprintln!("Unexpected error in thread."),
-        }
+    match ctx.thread_handle.join() {
+        Ok(_) => {}
+        Err(_) => eprintln!("Unexpected error in thread."),
     }
 }
 
+/// Joins a twitch channel with the provided name
+/// # Safety
+/// - Please use the provided binding for the C# file.
+/// - If you want a custom implementation, `s_ptr` is the location of the string ptr, while s_len will be the length.
+/// - Take note that this does not include the null character at the end.
+/// - Don't forget to put the void* reference first
+/// - The passed string must be UTF-16 encoded, if not, there might be undefined behavior
+/// # Examples
+/// C# code to bind with the function
+/// ```ignore
+/// var str = "koolieaid";
+///  fixed (char* p = str)
+///  {
+///      RawTwitch.join_channel(runtime, (ushort*)p, str.Length);
+///  }
+/// ```
 #[no_mangle]
-pub extern "C-unwind" fn join_channel(ctx: *mut c_void, s_ptr: *const u16, s_len: i32) {
+pub unsafe extern "C-unwind" fn join_channel(ctx: *mut c_void, s_ptr: *const u16, s_len: i32) {
     use std::slice;
 
     let name = unsafe { slice::from_raw_parts(s_ptr, s_len as usize) };
@@ -59,9 +75,15 @@ pub extern "C-unwind" fn join_channel(ctx: *mut c_void, s_ptr: *const u16, s_len
     Box::into_raw(ctx);
 }
 
+/// Frees the string that was pass to the current program from the library
+/// # Safety
+/// **string** must be a pointer passed down by void (*fn)(const char*).
+/// It must also be from Rust, not any other language
 #[no_mangle]
 pub unsafe extern "C-unwind" fn free_string(string: *mut c_char) {
-    let cstr = CString::from_raw(string);
+    let cstr = unsafe {
+        CString::from_raw(string)
+    };
     drop(cstr);
 }
 

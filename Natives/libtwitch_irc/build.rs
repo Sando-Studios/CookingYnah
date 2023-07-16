@@ -5,11 +5,14 @@ fn main() {
         .csharp_namespace("RawNative")
         .csharp_class_name("RawTwitch")
         .csharp_use_function_pointer(false)
-//        .generate_csharp_file("TwitchRust.cs");
-        .generate_to_file("Plugins/libtwitch_irc.dll", "../../Assets/Natives/Twitch/TwitchRust.cs");
+        //        .generate_csharp_file("TwitchRust.cs");
+        .generate_to_file(
+            "../../Assets/Plugins/libtwitch_irc.dll",
+            "../../Assets/Natives/Twitch/TwitchRust.cs",
+        );
 
     match res {
-        Ok(_) => {},
+        Ok(_) => {}
         Err(e) => eprintln!("Error building: {e}"),
     }
 }

@@ -6,12 +6,8 @@ using AYellowpaper.SerializedCollections;
 public enum TargetStat
 {
     VitStat,
-    AgiStat,
     StrStat,
-    VigStat,
-    IntStat,
-    EndStat,
-    DexStat,
+    ResStat,
 }
 
 [CreateAssetMenu(fileName = "NewItem", menuName = "Item/Item")]

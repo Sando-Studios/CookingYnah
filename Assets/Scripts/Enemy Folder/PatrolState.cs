@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,7 +12,7 @@ public class PatrolState : MonsterState
 
     public override void Enter()
     {
-        patrolPoint = GetRandomPatrolPoint();
+        patrolPoint = enemy.GetRandomPatrolPoint();
         agent.SetDestination(patrolPoint);
 
         agent.speed = enemy.GetEnemyUnitData().PatrolSpeed;
@@ -46,13 +44,6 @@ public class PatrolState : MonsterState
     public override void Exit()
     {
         enemy.ControlAnimations(MonsterStates.Patrol, false);
-    }
-
-    private Vector3 GetRandomPatrolPoint()
-    {
-        Vector3 randomPoint = enemy.GetHome() + Random.insideUnitSphere * 7.0f;
-        NavMesh.SamplePosition(randomPoint, out NavMeshHit point, 7.0f, NavMesh.AllAreas);
-        return point.position;
     }
 }
 

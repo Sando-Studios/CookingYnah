@@ -6,7 +6,7 @@ using UnityEngine;
 public static class DamageHandler
 {
     public static event Action<int> OnEnemyUnitDeath;
-    public static event Action<Artifacts> OnBossUnitDeath;
+    public static event Action<Artifacts, string> OnBossUnitDeath;
     public static event Action<int> OnPlayerUnitDeath;
 
     // Damaging a MinorEnemy Unit
@@ -15,7 +15,7 @@ public static class DamageHandler
         if (enemy == null) 
             return;
 
-        EnemyUnitData unit = enemy.GetEnemyUnitData();
+        EnemyUnitData unit = enemy.GetUnitData() as EnemyUnitData;
 
         // Damage calculations
         float actualDamage = baseDamage + playerStrength;
@@ -37,7 +37,7 @@ public static class DamageHandler
         if (enemy == null)
             return;
 
-        EnemyUnitData unit = enemy.GetEnemyUnitData();
+        BossUnitData unit = enemy.GetUnitData() as BossUnitData;
 
         // Damage calculations
         float actualDamage = baseDamage + playerStrength;
@@ -50,7 +50,7 @@ public static class DamageHandler
         if (unit.CurrentHealth <= 0)
         {
             unit.CurrentHealth = 0;
-            OnEnemyUnitDeath?.Invoke(unit.UnitID);
+            OnBossUnitDeath?.Invoke(unit.Artifact, unit.UnitName);
         }
     }
 

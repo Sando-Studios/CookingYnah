@@ -4,63 +4,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.UI;
+public enum BossState
+{
+    Idle,
+    BasicAttack,
+    SpecialAttack,
+    InCombat,
+    Chase
+}
 public class MajorEnemy : Enemy
 {
-    [Header("Unit Data")]
-    protected BossUnitData bossDataInstance;
-
-    [SerializeField] protected GameObject targetUnit;
-    protected bool canAttack = true;
-    protected bool isAttackDone = false;
-    [SerializeField] protected Vector3 home;
-
     protected NavMeshAgent agent;
-    protected bool isAlive = true;
-
-    [Header("Animation")]
-    protected Animator animator;
-    [SerializeField] protected Transform spriteTransform;
-
-    protected virtual void OnEnable()
-    {
-        DamageHandler.OnEnemyUnitDeath += Death;
-    }
-    protected virtual void OnDisable()
-    {
-        DamageHandler.OnEnemyUnitDeath -= Death;
-    }
+    private BossState currentState;
 
     public virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-    }
-
-    public virtual bool IsAlive()
-    {
-        return isAlive;
-    }
-    public virtual bool GetCanAttack()
-    {
-        return canAttack;
-    }
-    public virtual void SetCanAttack(bool isAttackPossible)
-    {
-        canAttack = isAttackPossible;
-    }
-    public virtual bool GetIsAttackDone()
-    {
-        return isAttackDone;
-    }
-    public virtual void SetIsAttackDone(bool hasAttackFinished)
-    {
-        isAttackDone = hasAttackFinished;
-    }
-
-    public virtual async void AttackTimer()
-    {
-        await new WaitForSeconds(bossDataInstance.AttackSpeed);
-        SetCanAttack(true);
+        TransitionToState(BossState.Idle);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -79,7 +40,7 @@ public class MajorEnemy : Enemy
         float b = bossDataInstance.MaxHealth;
         float normalized = a / b;
 
-        //hpBar.fillAmount = normalized;
+        hpBar.fillAmount = normalized;
 
         if (agent.hasPath)
         {
@@ -87,29 +48,49 @@ public class MajorEnemy : Enemy
 
             spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
         }
+
+        // Handle state-specific behavior in the Update method
+        switch (currentState)
+        {
+            case BossState.Idle:
+                IdleBehavior();
+                break;
+            case BossState.BasicAttack:
+                BasicAttackBehavior();
+                break;
+            case BossState.SpecialAttack:
+                SpecialAttackBehavior();
+                break;
+            case BossState.InCombat:
+                InCombat();
+                break;
+            case BossState.Chase:
+                Chase();
+                break;
+        }
     }
 
+    public void IdleBehavior()
+    {
 
-    public virtual void ResetAggro()
+    }
+    public void BasicAttackBehavior()
     {
-        targetUnit = null;
-        //aggroTrigger.enabled = true;
+
+    }
+    public void SpecialAttackBehavior()
+    {
+
+    }
+    public void InCombat()
+    {
+
+    }
+    public void Chase()
+    {
+
     }
 
-    public virtual Vector3 GetRandomPatrolPoint()
-    {
-        Vector3 randomPoint = home + UnityEngine.Random.insideUnitSphere * 7.0f;
-        NavMesh.SamplePosition(randomPoint, out NavMeshHit point, 7.0f, NavMesh.AllAreas);
-        return point.position;
-    }
-    public virtual GameObject GetTargetUnit()
-    {
-        return targetUnit;
-    }
-    public virtual BossUnitData GetEnemyUnitData()
-    {
-        return bossDataInstance;
-    }
 
     public virtual async void Hit()
     {
@@ -127,16 +108,11 @@ public class MajorEnemy : Enemy
         }
     }
 
-    protected virtual void Death(int id)
+    protected override void Death(Artifacts artifact, string name)
     {
-        if (id != bossDataInstance.UnitID) { return; }
+        if (name != bossDataInstance.UnitName) { return; }
 
         isAlive = false;
-
-        ItemData data = GetRandomItemData();
-
-        GameObject clone = Instantiate(bossDataInstance.DropObject, transform.position, Quaternion.identity);
-        clone.GetComponent<Item>().SetData(data);
 
         transform.GetComponent<NavMeshAgent>().enabled = false;
 
@@ -147,31 +123,7 @@ public class MajorEnemy : Enemy
         Destroy(gameObject, 3.0f);
     }
 
-    protected virtual ItemData GetRandomItemData()
-    {
-        float totalWeight = 0f;
-        foreach (float dropChance in bossDataInstance.DropData.Values)
-        {
-            totalWeight += dropChance;
-        }
-
-        float randomValue = UnityEngine.Random.Range(0f, totalWeight);
-
-        ItemData data = null;
-        foreach (var entry in bossDataInstance.DropData)
-        {
-            randomValue -= entry.Value;
-            if (randomValue <= 0f)
-            {
-                data = entry.Key;
-                break;
-            }
-        }
-
-        return data;
-    }
-
-    public virtual void ExecuteAttack()
+    public virtual void ExecuteBasicAttack()
     {
         if (targetUnit)
         {
@@ -179,43 +131,108 @@ public class MajorEnemy : Enemy
             direction.Normalize();
             spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
 
-            AttackTimer();
+            AttackTimer(bossDataInstance.BasicAttackSpeed);
             DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
         }
     }
 
-    public virtual void ControlAnimations(MonsterStates state, bool isPlaying)
+    public virtual void ExecuteSpecialAttack()
+    {
+        if (targetUnit)
+        {
+
+        }
+    }
+
+
+
+    public virtual void ControlAnimations(BossState state, bool isPlaying)
     {
         ResetAnimatorBool();
 
         var s = state;
         switch (s)
         {
-            case MonsterStates.Attack:
-                animator.SetBool("isAttacking", isPlaying);
-                break;
-            case MonsterStates.Combat:
-                animator.SetBool("isInCombat", isPlaying);
-                break;
-            case MonsterStates.Chase:
-                animator.SetBool("isChasing", isPlaying);
-                break;
-            case MonsterStates.Idle:
+            case BossState.Idle:
                 animator.SetBool("isIdling", isPlaying);
                 break;
-            case MonsterStates.Patrol:
-                animator.SetBool("isPatrolling", isPlaying);
+            case BossState.BasicAttack:
+                animator.SetBool("isBasicAttacking", isPlaying);
                 break;
-
+            case BossState.SpecialAttack:
+                animator.SetBool("isSpecialAttacking", isPlaying);
+                break;
+            case BossState.InCombat:
+                animator.SetBool("isInCombat", isPlaying);
+                break;
+            case BossState.Chase:
+                animator.SetBool("isChasing", isPlaying);
+                break;
         }
     }
 
     protected virtual void ResetAnimatorBool()
     {
-        animator.SetBool("isAttacking", false);
-        animator.SetBool("isInCombat", false);
-        animator.SetBool("isChasing", false);
         animator.SetBool("isIdling", false);
-        animator.SetBool("isPatrolling", false);
+        animator.SetBool("isBasicAttacking", false);
+        animator.SetBool("isSpecialAttacking", false);
+        animator.SetBool("isInCombat", false);
+        animator.SetBool("isChasing", false); ;
+    }
+
+    public void TransitionToState(BossState newState)
+    {
+        // Exit the current state
+        ExitState();
+
+        // Enter the new state
+        currentState = newState;
+        EnterState();
+    }
+
+    private void EnterState()
+    {
+        // Perform actions when entering a new state
+        switch (currentState)
+        {
+            case BossState.Idle:
+                ControlAnimations(currentState, true);
+                break;
+            case BossState.BasicAttack:
+                ControlAnimations(currentState, true);
+                break;
+            case BossState.SpecialAttack:
+                ControlAnimations(currentState, true);
+                break;
+            case BossState.InCombat:
+                ControlAnimations(currentState, true);
+                break;
+            case BossState.Chase:
+                ControlAnimations(currentState, true);
+                break;
+        }
+    }
+
+    private void ExitState()
+    {
+        // Perform actions when exiting the current state
+        switch (currentState)
+        {
+            case BossState.Idle:
+                ControlAnimations(currentState, false);
+                break;
+            case BossState.BasicAttack:
+                ControlAnimations(currentState, false);
+                break;
+            case BossState.SpecialAttack:
+                ControlAnimations(currentState, false);
+                break;
+            case BossState.InCombat:
+                ControlAnimations(currentState, false);
+                break;
+            case BossState.Chase:
+                ControlAnimations(currentState, false);
+                break;
+        }
     }
 }

@@ -7,34 +7,13 @@ using UnityEngine.AI;
 
 public class MinorEnemy : Enemy
 {
-    [Header("Unit Data")]
-    protected EnemyUnitData enemyDataInstance;
     [SerializeField] protected SphereCollider aggroTrigger;
-    [SerializeField] protected GameObject targetUnit;
-    protected bool canAttack = true;
-    protected bool isAttackDone = false;
-    protected Vector3 home;
 
     [Header("Health UI")]
     public GameObject hpBarGameObject;
-    public Image hpBar;
     protected Coroutine hpBarCoroutine;
 
     protected NavMeshAgent agent;
-    protected bool isAlive = true;
-
-    [Header("Animation")]
-    protected Animator animator;
-    [SerializeField] protected Transform spriteTransform;
-
-    protected virtual void OnEnable()
-    {
-        DamageHandler.OnEnemyUnitDeath += Death;
-    }
-    protected virtual void OnDisable()
-    {
-        DamageHandler.OnEnemyUnitDeath -= Death;
-    }
 
     public virtual void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
     {
@@ -47,33 +26,6 @@ public class MinorEnemy : Enemy
 
         MonsterStateManager.Instance.AddMonster(this, new PatrolState(MonsterStateManager.Instance, this));
         agent = GetComponent<NavMeshAgent>();
-    }
-
-    public virtual bool IsAlive()
-    {
-        return isAlive;
-    }
-    public virtual bool GetCanAttack()
-    {
-        return canAttack;
-    }
-    public virtual void SetCanAttack(bool isAttackPossible)
-    {
-        canAttack = isAttackPossible;
-    }
-    public virtual bool GetIsAttackDone()
-    {
-        return isAttackDone;
-    }
-    public virtual void SetIsAttackDone(bool hasAttackFinished)
-    {
-        isAttackDone = hasAttackFinished;
-    }
-
-    public virtual async void AttackTimer()
-    {
-        await new WaitForSeconds(enemyDataInstance.AttackSpeed);
-        SetCanAttack(true);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -102,7 +54,6 @@ public class MinorEnemy : Enemy
         }
     }
 
-
     public virtual void ResetAggro()
     {
         targetUnit = null;
@@ -114,14 +65,6 @@ public class MinorEnemy : Enemy
         Vector3 randomPoint = home + UnityEngine.Random.insideUnitSphere * 7.0f;
         NavMesh.SamplePosition(randomPoint, out NavMeshHit point, 7.0f, NavMesh.AllAreas);
         return point.position;
-    }
-    public virtual GameObject GetTargetUnit()
-    {
-        return targetUnit;
-    }
-    public virtual EnemyUnitData GetEnemyUnitData()
-    {
-        return enemyDataInstance;
     }
 
     public virtual async void Hit() 
@@ -140,7 +83,7 @@ public class MinorEnemy : Enemy
         }
     }
 
-    protected virtual void Death(int id)
+    protected override void Death(int id)
     {
         if (id != enemyDataInstance.UnitID) { return; }
 
@@ -192,7 +135,7 @@ public class MinorEnemy : Enemy
             direction.Normalize();
             spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
 
-            AttackTimer();
+            AttackTimer(enemyDataInstance.AttackSpeed);
             DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
         }
     }

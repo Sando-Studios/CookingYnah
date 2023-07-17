@@ -14,7 +14,11 @@ public class BossUnitData : UnitData
     [SerializeField] private float walkSpeed;
     [Tooltip("Run Speed is how much is ADDED onto Walk Speed")]
     [SerializeField] private float runSpeed;
-    [SerializeField] private float attackSpeed;
+    [SerializeField] private float basicAttackSpeed;
+    [SerializeField] private float specialAttackSpeed;
+
+    [Header("Artifact")]
+    [SerializeField] private Artifacts artifact;
 
     public int MaxHealth
     {
@@ -41,9 +45,17 @@ public class BossUnitData : UnitData
         get { return runSpeed; }
     }
 
-    public float AttackSpeed
+    public float BasicAttackSpeed
     {
-        get { return attackSpeed; }
+        get { return basicAttackSpeed; }
     }
-
+    public float SpecialAttackSpeed
+    {
+        get { return specialAttackDamage; }
+    }
+    
+    public Artifacts Artifact
+    {
+        get { return artifact; }
+    }
 }

@@ -61,7 +61,7 @@ public class CowEnemy : MinorEnemy
                 isCharging = false;
                 capsuleCollider.isTrigger = false;
                 agent.enabled = true;
-                AttackTimer();
+                AttackTimer(enemyDataInstance.AttackSpeed);
                 SetIsAttackDone(true);
             }
             else

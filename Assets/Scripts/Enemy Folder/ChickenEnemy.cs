@@ -25,7 +25,7 @@ public class ChickenEnemy : MinorEnemy
         if (enemyDataInstance.UnitID == id)
         {
             hasGrenadeOut = false;
-            AttackTimer();
+            AttackTimer(enemyDataInstance.AttackSpeed);
         }
     }
 

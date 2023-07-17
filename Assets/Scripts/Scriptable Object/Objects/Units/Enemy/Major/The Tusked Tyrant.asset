@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b44df23c7b49943a3b65e8bd5c4d4e, type: 3}
   m_Name: The Tusked Tyrant
   m_EditorClassIdentifier: 
-  unitName: 
-  maxHealth: 0
-  basicAttackDamage: 0
-  specialAttackDamage: 0
-  walkSpeed: 0
-  runSpeed: 0
+  unitName: The Tusked Tyrant
+  maxHealth: 400
+  basicAttackDamage: 20
+  specialAttackDamage: 15
+  walkSpeed: 3
+  runSpeed: 5
+  basicAttackSpeed: 0
+  specialAttackSpeed: 0
+  artifact: 3

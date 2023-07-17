@@ -27,12 +27,12 @@ public class CombatState : MonsterState
 
         float distanceToTarget = Vector3.Distance(enemy.transform.position, enemy.GetTargetUnit().transform.position);
 
-        if (distanceToTarget > enemy.GetEnemyUnitData().AttackRange)
+        if (distanceToTarget > enemy.GetUnitData().AttackRange)
         {
             statManager.ChangeState(enemy, new ChaseState(statManager, enemy));
             return;
         }
-        else if (distanceToTarget <= enemy.GetEnemyUnitData().AttackRange && enemy.GetCanAttack())
+        else if (distanceToTarget <= enemy.GetUnitData().AttackRange && enemy.GetCanAttack())
         {
             statManager.ChangeState(enemy, new AttackState(statManager, enemy));
             return;

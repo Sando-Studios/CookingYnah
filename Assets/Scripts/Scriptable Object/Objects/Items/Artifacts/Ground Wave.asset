@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a58b3cd6101aa2a4585cf915d339ae28, type: 3}
   m_Name: Ground Wave
   m_EditorClassIdentifier: 
-  artifactName: Ground Wave
-  artifactDescription: Spawns Stone Pillars forward damaging nearby enemies
+  artifactName: 'The Pita Pillars '
+  artifactDescription: Raises four Stone Pillars in front of the player, damaging
+    nearby enemies
   abilityPrefab: {fileID: 2152593292034762703, guid: ea6c47e40a3ccbb41a420204f8121384, type: 3}

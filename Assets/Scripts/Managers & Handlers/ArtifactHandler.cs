@@ -8,7 +8,7 @@ public enum Artifacts
     None,
     Fire_Meatball,
     Ground_Wave,
-    Spectral_Sword,
+    Axe_Slashes,
 }
 public class ArtifactHandler : MonoBehaviour
 {
@@ -48,8 +48,8 @@ public class ArtifactHandler : MonoBehaviour
                     artifactScript.enabled = false;
                     Destroy(artifactScript);
                     break;
-                case Artifacts.Spectral_Sword:
-                    artifactScript = playerGameObject.GetComponent<FireMeatballAbility>();
+                case Artifacts.Axe_Slashes:
+                    artifactScript = playerGameObject.GetComponent<OmniSlashAbility>();
                     artifactScript.enabled = false;
                     Destroy(artifactScript);
                     break;
@@ -71,9 +71,9 @@ public class ArtifactHandler : MonoBehaviour
                     playerGameObject.AddComponent<GroundWaveAbility>();
                     playerGameObject.GetComponent<GroundWaveAbility>().SetAbilityData(obj, slotNum);
                     break;
-                case Artifacts.Spectral_Sword:
-                    playerGameObject.AddComponent<FireMeatballAbility>();
-                    playerGameObject.GetComponent<FireMeatballAbility>().SetAbilityData(obj, slotNum);
+                case Artifacts.Axe_Slashes:
+                    playerGameObject.AddComponent<OmniSlashAbility>();
+                    playerGameObject.GetComponent<OmniSlashAbility>().SetAbilityData(obj, slotNum);
                     break;
             }
         }

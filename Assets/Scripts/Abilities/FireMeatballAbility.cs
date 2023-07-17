@@ -46,14 +46,13 @@ public class FireMeatballAbility : ArtifactAbility
 
     }
 
-    public async void SpawnMeatballMeteor(Vector3 targetPos)
+    public async void SpawnMeatballMeteor(Vector3 targetPos, float damage)
     {
         Vector3 spawnPosition = transform.position + Vector3.up * 2;
         GameObject clone = SpawnSingleMeatball(spawnPosition);
         Meteor objectMovement = clone.GetComponent<Meteor>();
         objectMovement.SetTarget(targetPos);
-        // TODO: set when boss scripts are done
-        //objectMovement.SetDamageValue(/*Boss's Damage*/); 
+        objectMovement.SetDamageValue(damage); 
 
         await new WaitForSeconds(delay);
 

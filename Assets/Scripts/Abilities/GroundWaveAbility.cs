@@ -49,7 +49,7 @@ public class GroundWaveAbility : ArtifactAbility
                 var loc = transform.position + new Vector3(x, 0, y) * dist;
 
                 GameObject clone = SpawnSingleRock(loc);
-                clone.GetComponent<Bocchi>().SetDamageValue(damage, GetComponent<Player>().GetPlayerData().Strength);
+                clone.GetComponent<Bocchi>().SetDamageValue(damage);
             }
         }
 

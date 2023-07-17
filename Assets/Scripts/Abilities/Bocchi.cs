@@ -27,9 +27,13 @@ public class Bocchi : MonoBehaviour
         }
     }
 
-    public void SetDamageValue(float dmg, float strength)
+    public void SetDamageValue(float dmg)
     {
         damageValue = (int)dmg;
+    }
+    public void SetDamageValue(float dmg, float strength)
+    {
+        SetDamageValue((int)dmg);
         this.strength = strength;
     }
 

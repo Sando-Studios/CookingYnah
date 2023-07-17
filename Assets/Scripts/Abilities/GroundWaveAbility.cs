@@ -18,7 +18,7 @@ public class GroundWaveAbility : ArtifactAbility
     [SerializeField] private uint rings = 3;
     [SerializeField] private int rocksPerRing = 8;
 
-    public async void SpawnRocks(Vector3 dir)
+    private async void SpawnRocks(Vector3 dir)
     {
         dir = dir.normalized;
 

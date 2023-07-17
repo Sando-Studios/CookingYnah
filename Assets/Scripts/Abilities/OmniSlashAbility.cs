@@ -14,7 +14,7 @@ public class OmniSlashAbility : ArtifactAbility
         
         superSlash.SetDamageValue(GetComponent<Player>().GetPlayerData().RawDamage, GetComponent<Player>().GetPlayerData().Strength);
     }
-    private void SpawnBossSlashZone(float damage)
+    public void SpawnBossSlashZone(float damage)
     {
         GameObject clone = Instantiate(attackPrefab, transform.position, Quaternion.identity);
         clone.transform.SetParent(gameObject.transform);

@@ -18,7 +18,7 @@ public class FireMeatballAbility : ArtifactAbility
     private GameObject orbitTarget;
 
 
-    public async void SpawnMeatballOrbit()
+    private async void SpawnMeatballOrbit()
     {
         GameObject orbitCenter = new GameObject("Center");
         orbitCenter.transform.SetParent(transform);

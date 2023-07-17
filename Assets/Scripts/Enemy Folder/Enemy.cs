@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
     {
         return targetUnit;
     }
-    public virtual UnitData GetUnitData()
+    protected virtual UnitData GetUnitData()
     {
         if (enemyDataInstance != null) return enemyDataInstance;
         if (bossDataInstance != null) return bossDataInstance;

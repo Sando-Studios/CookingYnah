@@ -7,6 +7,8 @@ public class ChaseState : MonsterState
 {
     private NavMeshAgent navMeshAgent;
 
+    //private Enemy monster;
+
     public ChaseState(MonsterStateManager manager, MinorEnemy enemy) : base(manager, enemy)
     {
         navMeshAgent = enemy.GetComponent<NavMeshAgent>();
@@ -14,7 +16,7 @@ public class ChaseState : MonsterState
 
     public override void Enter()
     {
-        navMeshAgent.speed = enemy.GetUnitData().ChaseSpeed;
+        navMeshAgent.speed = enemy.GetEnemyData().ChaseSpeed;
 
         enemy.ControlAnimations(MonsterStates.Chase, true);
     }
@@ -35,12 +37,12 @@ public class ChaseState : MonsterState
 
         float distanceToTarget = Vector3.Distance(enemy.transform.position, enemy.GetTargetUnit().transform.position);
 
-        if (distanceToTarget <= enemy.GetUnitData().AttackRange)
+        if (distanceToTarget <= enemy.GetEnemyData().AttackRange)
         {
             statManager.ChangeState(enemy, new CombatState(statManager, enemy));
             return;
         }
-        else if (distanceToTarget > enemy.GetUnitData().ChaseRange)
+        else if (distanceToTarget > enemy.GetEnemyData().ChaseRange)
         {
             statManager.ChangeState(enemy, new PatrolState(statManager, enemy));
             return;

@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Asyncoroutine;
-using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {

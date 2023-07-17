@@ -1,7 +1,4 @@
 using AYellowpaper.SerializedCollections;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental;
 using UnityEngine;
 public enum Artifacts
 {

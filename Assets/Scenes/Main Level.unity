@@ -11613,7 +11613,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25676
+  m_Name: pb_Mesh22798
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14957,7 +14957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUnitData: {fileID: 11400000, guid: aab21f0e4ebe85c48b03a9877b32a57f, type: 2}
-  force: 100
+  force: 3500
   attack: {fileID: 2092152120}
   attackCollider: {fileID: 2092152119}
   jab: {fileID: 2013963594}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField] private OmniAttack attack;
     [SerializeField] private SphereCollider attackCollider;
     private bool canAttack = true;
+
+    [SerializeField] private Jab jab;
 
     [Header("Inventory")]
     [SerializeField] private PlayerInventory inventory;
@@ -46,7 +49,8 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("Fire1") && canAttack)
+        // TODO: Synchronize animations, since canAttack got replaced
+        if (Input.GetButtonDown("Fire1"))
         {
             Attack();
         }
@@ -100,23 +104,26 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, rb.velocity.x > 0 ? 180f : 0f, 0));
     }
 
-    private async void Attack()
+    private void Attack()
     {
-        attackParticle.Play();
         canAttack = false;
 
         attackCollider.radius = playerUnitData.AttackRange;
 
-        //DamageHandler.ApplyDamage(/* enemy reference */,(int)playerUnitData.RawDamage, playerUnitData.Strength);
+        var (attacked, isSlow) = jab.Attack();
+        
+        if (!attacked) return;
 
-        attack.DealDamage((int)playerUnitData.RawDamage);
-
-        animator.ResetTrigger("Attack Finish");
-        animator.SetTrigger("Attack Start");
-
-        await new WaitForSeconds(2.0f); // Stand in - to be replaced with Eric's combo stuff
-
-        canAttack = true;
+        if (!isSlow)
+        {
+            attackParticle.Play();
+            animator.ResetTrigger("Attack Finish");
+            animator.SetTrigger("Attack Start");
+        }
+        else
+        {
+            throw new NotImplementedException("No slow attack animation yet");
+        }
     }
 
     public PlayerInventory GetInventory()

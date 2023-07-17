@@ -28,9 +28,4 @@ public class OmniAttack : MonoBehaviour
             DamageHandler.ApplyDamage(enemy, damage, GetComponent<Player>().GetPlayerData().Strength);
         }
     } 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 }

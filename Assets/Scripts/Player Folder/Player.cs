@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     {
 
         // TODO: Synchronize animations, since canAttack got replaced
-        if (Input.GetButtonDown("Fire1")) // I removed canAttack for Omni since it got replaced by jab
+        if (Input.GetButtonDown("Fire1"))
         {
             Attack();
         }
@@ -109,7 +109,6 @@ public class Player : MonoBehaviour
         canAttack = false;
 
         attackCollider.radius = playerUnitData.AttackRange;
-        // attack.DealDamage((int)playerDataInstance.RawDamage);
 
         var (attacked, isSlow) = jab.Attack();
         
@@ -125,13 +124,6 @@ public class Player : MonoBehaviour
         {
             throw new NotImplementedException("No slow attack animation yet");
         }
-
-        // Debug.Log($"{playerUnitData.AttackInterval}");
-        // await new WaitForSeconds(playerUnitData.AttackInterval);
-
-        // Debug.Log("done attacking");
-
-        // canAttack = true;
     }
 
     public PlayerInventory GetInventory()

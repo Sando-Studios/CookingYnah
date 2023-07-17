@@ -79,9 +79,9 @@ public class ArtifactHandler : MonoBehaviour
         }
     }
 
+    // Check if the artifact is already slotted
     private bool CanSlotArtifact(Artifacts artifactToSlot)
     {
-        // Check if the artifact is already slotted
         if (artifacts.ContainsValue(artifactToSlot))
             return false;
 

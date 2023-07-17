@@ -48,8 +48,6 @@ public class ArtifactUIHandler : MonoBehaviour
 
         SerializedDictionary<Artifacts, bool> pair = progress.UnlockedArtifacts;
 
-        // Gray out artifacts that you don't have yet
-        // to be replaced with switching icon etc.
         foreach (var kvp in artifactIcons)
         {
             Color currentColor = kvp.Value.GetComponent<Image>().color;

@@ -14,9 +14,13 @@ public class Meteor : MonoBehaviour
     {
         targetPosition = target;
     }
-    public void SetDamageValue(float dmg, float strength)
+    public void SetDamageValue(float dmg)
     {
         damageValue = (int)dmg;
+    }
+    public void SetDamageValue(float dmg, float strength)
+    {
+        SetDamageValue((int)dmg);
         this.strength = strength;
     }
 
@@ -40,7 +44,7 @@ public class Meteor : MonoBehaviour
             if (other.CompareTag("Player"))
                 DealDamage(other.GetComponent<Player>());
 
-            if (other.gameObject.CompareTag("Enemy"))
+            if (other.CompareTag("Enemy"))
                 DealDamage(other.GetComponent<Enemy>());
 
             Destroy(gameObject);

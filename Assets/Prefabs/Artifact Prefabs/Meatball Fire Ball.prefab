@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504390270968948443}
   - component: {fileID: 1152683660413384719}
+  - component: {fileID: 1692308259591116222}
   m_Layer: 0
   m_Name: Meatball Fire Ball
   m_TagString: Untagged
@@ -46,6 +47,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1692308259591116222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504390270968948442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd363c354617404b8f275e7d4217461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5729850632707160597
 GameObject:
   m_ObjectHideFlags: 0

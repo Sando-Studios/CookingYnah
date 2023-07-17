@@ -32,6 +32,9 @@ public class FireMeatballAbility : ArtifactAbility
             Vector3 spawnPosition = orbitCenter.transform.position + spawnOffset;
             GameObject clone = SpawnSingleMeatball(spawnPosition);
             clone.transform.SetParent(orbitCenter.transform);
+
+            Meteor objectMovement = clone.AddComponent<Meteor>();
+            objectMovement.SetDamageValue(GetComponent<Player>().GetPlayerData().RawDamage, GetComponent<Player>().GetPlayerData().Strength);
         }
         orbitTarget = orbitCenter;
 
@@ -46,9 +49,11 @@ public class FireMeatballAbility : ArtifactAbility
     public async void SpawnMeatballMeteor(Vector3 targetPos)
     {
         Vector3 spawnPosition = transform.position + Vector3.up * 2;
-        GameObject spawnedObject = SpawnSingleMeatball(spawnPosition);
-        Meteor objectMovement = spawnedObject.AddComponent<Meteor>();
+        GameObject clone = SpawnSingleMeatball(spawnPosition);
+        Meteor objectMovement = clone.GetComponent<Meteor>();
         objectMovement.SetTarget(targetPos);
+        // TODO: set when boss scripts are done
+        //objectMovement.SetDamageValue(/*Boss's Damage*/); 
 
         await new WaitForSeconds(delay);
 

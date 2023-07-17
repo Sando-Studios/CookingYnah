@@ -15,7 +15,7 @@ public static class DamageHandler
         if (enemy == null) 
             return;
 
-        EnemyUnitData unit = enemy.GetUnitData() as EnemyUnitData;
+        EnemyUnitData unit = enemy.GetEnemyData();
 
         // Damage calculations
         float actualDamage = baseDamage + playerStrength;
@@ -37,7 +37,7 @@ public static class DamageHandler
         if (enemy == null)
             return;
 
-        BossUnitData unit = enemy.GetUnitData() as BossUnitData;
+        BossUnitData unit = enemy.GetBossData();
 
         // Damage calculations
         float actualDamage = baseDamage + playerStrength;

@@ -66,7 +66,7 @@ public class SpawningHandler : MonoBehaviour
 
     private void OnMemberDeath(int i)
     {
-        enemiesSpawned.RemoveAll(enemy => enemy.GetUnitData().UnitID == i);
+        enemiesSpawned.RemoveAll(enemy => enemy.GetEnemyData().UnitID == i);
 
         if (enemiesSpawned.Count == 0)
         {

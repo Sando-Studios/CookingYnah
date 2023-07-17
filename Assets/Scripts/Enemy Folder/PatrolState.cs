@@ -15,7 +15,7 @@ public class PatrolState : MonsterState
         patrolPoint = enemy.GetRandomPatrolPoint();
         agent.SetDestination(patrolPoint);
 
-        agent.speed = enemy.GetUnitData().PatrolSpeed;
+        agent.speed = enemy.GetEnemyData().PatrolSpeed;
 
         enemy.ControlAnimations(MonsterStates.Patrol, true);
     }

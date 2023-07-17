@@ -21,6 +21,11 @@ public class MajorEnemy : Enemy
         TransitionToState(BossState.Idle);
     }
 
+    public BossUnitData GetBossData()
+    {
+        return GetUnitData() as BossUnitData;
+    }
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !other.isTrigger)

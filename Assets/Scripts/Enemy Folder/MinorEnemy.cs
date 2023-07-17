@@ -27,6 +27,11 @@ public class MinorEnemy : Enemy
         agent = GetComponent<NavMeshAgent>();
     }
 
+    public EnemyUnitData GetEnemyData()
+    {
+        return GetUnitData() as EnemyUnitData;
+    }
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && !other.isTrigger)

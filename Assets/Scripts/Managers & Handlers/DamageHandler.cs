@@ -6,10 +6,11 @@ using UnityEngine;
 public static class DamageHandler
 {
     public static event Action<int> OnEnemyUnitDeath;
+    public static event Action<Artifacts> OnBossUnitDeath;
     public static event Action<int> OnPlayerUnitDeath;
 
-    // Damaging a Enemy Unit
-    public static void ApplyDamage(Enemy enemy, int baseDamage, float playerStrength)
+    // Damaging a MinorEnemy Unit
+    public static void ApplyDamage(MinorEnemy enemy, int baseDamage, float playerStrength)
     {
         if (enemy == null) 
             return;
@@ -30,6 +31,29 @@ public static class DamageHandler
             OnEnemyUnitDeath?.Invoke(unit.UnitID);
         }
     }
+    // Damaging a MajorEnemy Unit
+    public static void ApplyDamage(MajorEnemy enemy, int baseDamage, float playerStrength)
+    {
+        if (enemy == null)
+            return;
+
+        EnemyUnitData unit = enemy.GetEnemyUnitData();
+
+        // Damage calculations
+        float actualDamage = baseDamage + playerStrength;
+        int finalDamage = Mathf.RoundToInt(actualDamage);
+
+        unit.CurrentHealth -= finalDamage;
+        enemy.Hit();
+        
+
+        if (unit.CurrentHealth <= 0)
+        {
+            unit.CurrentHealth = 0;
+            OnEnemyUnitDeath?.Invoke(unit.UnitID);
+        }
+    }
+
     // Damaging the Player Unit
     public static void ApplyDamage(Player player, int baseDamage)
     {

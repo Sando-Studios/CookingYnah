@@ -1,30 +1,25 @@
+using Asyncoroutine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Asyncoroutine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class MajorEnemy : Enemy
 {
     [Header("Unit Data")]
-    protected UnitData unitDataInstance;
-    /*[SerializeField] protected SphereCollider aggroTrigger;
+    protected BossUnitData bossDataInstance;
+
     [SerializeField] protected GameObject targetUnit;
     protected bool canAttack = true;
     protected bool isAttackDone = false;
-    protected Vector3 home;
-
-    [Header("Health UI")]
-    public GameObject hpBarGameObject;
-    public Image hpBar;
-    protected Coroutine hpBarCoroutine;
+    [SerializeField] protected Vector3 home;
 
     protected NavMeshAgent agent;
     protected bool isAlive = true;
 
     [Header("Animation")]
-    [SerializeField] protected Animator animator;
+    protected Animator animator;
     [SerializeField] protected Transform spriteTransform;
 
     protected virtual void OnEnable()
@@ -36,16 +31,8 @@ public class Enemy : MonoBehaviour
         DamageHandler.OnEnemyUnitDeath -= Death;
     }
 
-    public virtual void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
+    public virtual void Start()
     {
-        enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
-
-        home = homeBase;
-        enemyDataInstance.Init(enemyID, unitData);
-        aggroTrigger.radius = enemyDataInstance.AggroRange;
-        animator.runtimeAnimatorController = enemyDataInstance.Controller;
-
-        MonsterStateManager.Instance.AddMonster(this, new PatrolState(MonsterStateManager.Instance, this));
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -72,7 +59,7 @@ public class Enemy : MonoBehaviour
 
     public virtual async void AttackTimer()
     {
-        await new WaitForSeconds(enemyDataInstance.AttackSpeed);
+        await new WaitForSeconds(bossDataInstance.AttackSpeed);
         SetCanAttack(true);
     }
 
@@ -81,18 +68,18 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Player") && !other.isTrigger)
         {
             targetUnit = other.gameObject;
-            aggroTrigger.enabled = false;
+            //aggroTrigger.enabled = false;
         }
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        float a = enemyDataInstance.CurrentHealth;
-        float b = enemyDataInstance.MaxHealth;
+        float a = bossDataInstance.CurrentHealth;
+        float b = bossDataInstance.MaxHealth;
         float normalized = a / b;
 
-        hpBar.fillAmount = normalized;
+        //hpBar.fillAmount = normalized;
 
         if (agent.hasPath)
         {
@@ -106,7 +93,7 @@ public class Enemy : MonoBehaviour
     public virtual void ResetAggro()
     {
         targetUnit = null;
-        aggroTrigger.enabled = true;
+        //aggroTrigger.enabled = true;
     }
 
     public virtual Vector3 GetRandomPatrolPoint()
@@ -119,9 +106,9 @@ public class Enemy : MonoBehaviour
     {
         return targetUnit;
     }
-    public virtual EnemyUnitData GetEnemyUnitData()
+    public virtual BossUnitData GetEnemyUnitData()
     {
-        return enemyDataInstance;
+        return bossDataInstance;
     }
 
     public virtual async void Hit()
@@ -142,13 +129,13 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Death(int id)
     {
-        if (id != enemyDataInstance.UnitID) { return; }
+        if (id != bossDataInstance.UnitID) { return; }
 
         isAlive = false;
 
         ItemData data = GetRandomItemData();
 
-        GameObject clone = Instantiate(enemyDataInstance.DropObject, transform.position, Quaternion.identity);
+        GameObject clone = Instantiate(bossDataInstance.DropObject, transform.position, Quaternion.identity);
         clone.GetComponent<Item>().SetData(data);
 
         transform.GetComponent<NavMeshAgent>().enabled = false;
@@ -163,7 +150,7 @@ public class Enemy : MonoBehaviour
     protected virtual ItemData GetRandomItemData()
     {
         float totalWeight = 0f;
-        foreach (float dropChance in enemyDataInstance.DropData.Values)
+        foreach (float dropChance in bossDataInstance.DropData.Values)
         {
             totalWeight += dropChance;
         }
@@ -171,7 +158,7 @@ public class Enemy : MonoBehaviour
         float randomValue = UnityEngine.Random.Range(0f, totalWeight);
 
         ItemData data = null;
-        foreach (var entry in enemyDataInstance.DropData)
+        foreach (var entry in bossDataInstance.DropData)
         {
             randomValue -= entry.Value;
             if (randomValue <= 0f)
@@ -193,7 +180,7 @@ public class Enemy : MonoBehaviour
             spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
 
             AttackTimer();
-            DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
+            DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
         }
     }
 
@@ -231,22 +218,4 @@ public class Enemy : MonoBehaviour
         animator.SetBool("isIdling", false);
         animator.SetBool("isPatrolling", false);
     }
-
-    public void ShowHPBar()
-    {
-        if (hpBarCoroutine != null)
-        {
-            StopCoroutine(hpBarCoroutine);
-        }
-
-        hpBarGameObject.SetActive(true);
-        hpBarCoroutine = StartCoroutine(HideHPBarAfterDelay());
-    }
-
-    protected IEnumerator HideHPBarAfterDelay()
-    {
-        yield return new WaitForSeconds(3.0f);
-        hpBarGameObject.SetActive(false);
-    }
-    */
 }

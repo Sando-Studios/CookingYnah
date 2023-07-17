@@ -7,7 +7,7 @@ public class IdleState : MonsterState
 {
     private float animationDuration;
     private float animationTimer;
-    public IdleState(MonsterStateManager manager, Enemy enemy) : base(manager, enemy) { }
+    public IdleState(MonsterStateManager manager, MinorEnemy enemy) : base(manager, enemy) { }
 
     public override void Enter()
     {

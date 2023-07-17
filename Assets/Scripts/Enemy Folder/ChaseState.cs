@@ -7,7 +7,7 @@ public class ChaseState : MonsterState
 {
     private NavMeshAgent navMeshAgent;
 
-    public ChaseState(MonsterStateManager manager, Enemy enemy) : base(manager, enemy)
+    public ChaseState(MonsterStateManager manager, MinorEnemy enemy) : base(manager, enemy)
     {
         navMeshAgent = enemy.GetComponent<NavMeshAgent>();
     }

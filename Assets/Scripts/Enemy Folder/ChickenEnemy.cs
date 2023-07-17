@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ChickenEnemy : Enemy
+public class ChickenEnemy : MinorEnemy
 {
     [Header("Egg Grenade")]
     [SerializeField] private GameObject eggPrefab;

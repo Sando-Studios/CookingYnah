@@ -44,8 +44,8 @@ public class Meteor : MonoBehaviour
             if (other.CompareTag("Player"))
                 DealDamage(other.GetComponent<Player>());
 
-            if (other.CompareTag("Enemy"))
-                DealDamage(other.GetComponent<Enemy>());
+            if (other.CompareTag("MinorEnemy"))
+                DealDamage(other.GetComponent<MinorEnemy>());
 
             Destroy(gameObject);
         }
@@ -56,7 +56,7 @@ public class Meteor : MonoBehaviour
         DamageHandler.ApplyDamage(player, damageValue);
     }
     
-    private void DealDamage(Enemy enemy)
+    private void DealDamage(MinorEnemy enemy)
     {
         DamageHandler.ApplyDamage(enemy, damageValue, strength);
     }

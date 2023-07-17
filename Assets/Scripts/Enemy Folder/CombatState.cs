@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CombatState : MonsterState
 {
-    public CombatState(MonsterStateManager manager, Enemy enemy) : base(manager, enemy) { }
+    public CombatState(MonsterStateManager manager, MinorEnemy enemy) : base(manager, enemy) { }
 
     public override void Enter()
     {

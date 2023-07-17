@@ -5,7 +5,7 @@ public class PatrolState : MonsterState
 {
     private Vector3 patrolPoint;
 
-    public PatrolState(MonsterStateManager manager, Enemy enemy) : base(manager, enemy)
+    public PatrolState(MonsterStateManager manager, MinorEnemy enemy) : base(manager, enemy)
     {
         agent = enemy.GetComponent<NavMeshAgent>();
     }

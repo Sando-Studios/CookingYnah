@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CowEnemy : Enemy
+public class CowEnemy : MinorEnemy
 {
     [Header("Charge")]
     [SerializeField] private CapsuleCollider capsuleCollider;

@@ -5,11 +5,11 @@ using UnityEngine.UI;
 using Asyncoroutine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class MinorEnemy : Enemy
 {
     [Header("Unit Data")]
-    protected UnitData unitDataInstance;
-    /*[SerializeField] protected SphereCollider aggroTrigger;
+    protected EnemyUnitData enemyDataInstance;
+    [SerializeField] protected SphereCollider aggroTrigger;
     [SerializeField] protected GameObject targetUnit;
     protected bool canAttack = true;
     protected bool isAttackDone = false;
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     protected bool isAlive = true;
 
     [Header("Animation")]
-    [SerializeField] protected Animator animator;
+    protected Animator animator;
     [SerializeField] protected Transform spriteTransform;
 
     protected virtual void OnEnable()
@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
         return enemyDataInstance;
     }
 
-    public virtual async void Hit()
+    public virtual async void Hit() 
     {
         var r = GetComponentsInChildren<SpriteRenderer>();
 
@@ -248,5 +248,4 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         hpBarGameObject.SetActive(false);
     }
-    */
 }

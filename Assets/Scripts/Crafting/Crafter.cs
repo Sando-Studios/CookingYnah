@@ -52,9 +52,19 @@ namespace Crafting
             
             unlockedRecipes.Add(rec.output.Name);
             
-            Instantiate(logEntryPrefab, logbookParent).GetComponent<LogEntry>().Initialize(rec);
+            var obj = Instantiate(logEntryPrefab, logbookParent).GetComponent<LogEntry>();
+            obj.Initialize(rec);
+            
+            obj.gameObject.SetActive(logbookParent.parent.parent.parent.gameObject.activeSelf);
         }
-        
+
+        public void ToggleLogbook()
+        {
+            var parent = logbookParent.parent.parent.parent; // lol
+
+            parent.gameObject.SetActive(!parent.gameObject.activeSelf);
+        }
+
         public void Listen()
         {
             Debug.Log(GetOutput().Item1.itemName != "None");

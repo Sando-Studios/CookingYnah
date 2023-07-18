@@ -15,11 +15,11 @@ MonoBehaviour:
   isArtifactUnlocked:
     _serializedList:
     - Key: 1
-      Value: 0
+      Value: 1
     - Key: 2
-      Value: 0
+      Value: 1
     - Key: 3
-      Value: 0
+      Value: 1
   artifactDescriptionDictionary:
     _serializedList:
     - Key: 1

@@ -32,7 +32,7 @@ public class GoatMajorEnemy : MajorEnemy
             direction.y = 0f;
             direction.Normalize();
 
-            Vector3 destination = transform.position + direction * maxChargeDistance;
+            Vector3 destination = transform.position + direction * (bossDataInstance.AttackRange * 2);
 
             NavMesh.SamplePosition(destination, out NavMeshHit point, 3.0f, NavMesh.AllAreas);
 

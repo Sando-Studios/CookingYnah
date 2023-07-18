@@ -41,7 +41,7 @@ public class MajorEnemy : Enemy
     {
         isPlayerInRoom = isPlayerInArea;
         targetUnit = playerObj;
-        hpBar.transform.parent.gameObject.SetActive(true);
+        hpBar.transform.parent.gameObject.SetActive(isPlayerInArea);
     }
 
     // Update is called once per frame

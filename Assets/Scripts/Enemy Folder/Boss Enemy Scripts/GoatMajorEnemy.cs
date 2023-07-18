@@ -6,17 +6,16 @@ using UnityEngine.AI;
 public class GoatMajorEnemy : MajorEnemy
 {
     [Header("Charge")]
-    [SerializeField] private CapsuleCollider capsuleCollider;
-    [SerializeField] private float maxChargeDistance = 5.0f;
+    [SerializeField] private float maxChargeDistance = 7.0f;
     private Vector3 chargeEndPoint;
-    private bool isCharging;
+    private bool isCharging = false;
 
     // Start is called before the first frame update
     protected void OnTriggerEnter(Collider other)
     {
         //base.OnTriggerEnter(other);
 
-        if (other.CompareTag("Player") && !other.isTrigger && capsuleCollider.isTrigger)
+        if (other.CompareTag("Player") && !other.isTrigger && GetComponent<CapsuleCollider>().isTrigger)
         {
             DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
         }
@@ -28,7 +27,7 @@ public class GoatMajorEnemy : MajorEnemy
         if (!isCharging)
         {
             isCharging = true;
-
+            Debug.Log("Charging");
             Vector3 direction = targetUnit.transform.position - transform.position;
             direction.y = 0f;
             direction.Normalize();
@@ -39,7 +38,7 @@ public class GoatMajorEnemy : MajorEnemy
 
             chargeEndPoint = point.position;
             agent.enabled = false;
-            capsuleCollider.isTrigger = true;
+            GetComponent<CapsuleCollider>().isTrigger = true;
         }
     }
 
@@ -53,12 +52,13 @@ public class GoatMajorEnemy : MajorEnemy
 
     protected override void Update()
     {
-        base.Update();
+
         if (isCharging)
         {
+            Debug.Log("Charging Update");
             Vector3 direction = chargeEndPoint - transform.position;
             direction.Normalize();
-            Vector3 movement = direction * enemyDataInstance.ChaseSpeed;
+            Vector3 movement = direction * bossDataInstance.RunSpeed;
 
             spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
 
@@ -67,9 +67,9 @@ public class GoatMajorEnemy : MajorEnemy
             if (distanceToTarget <= 0.1f)
             {
                 isCharging = false;
-                capsuleCollider.isTrigger = false;
+                GetComponent<CapsuleCollider>().isTrigger = false;
                 agent.enabled = true;
-                AttackTimer(enemyDataInstance.AttackSpeed);
+                AttackTimer(bossDataInstance.BasicAttackSpeed);
                 SetIsAttackDone(true);
             }
             else
@@ -77,6 +77,6 @@ public class GoatMajorEnemy : MajorEnemy
                 transform.position += movement * Time.deltaTime;
             }
         }
-
+        base.Update();
     }
 }

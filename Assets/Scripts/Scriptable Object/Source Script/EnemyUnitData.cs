@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEnemyUnit", menuName = "Unit/Enemy")]
+[CreateAssetMenu(fileName = "NewMinorEnemyUnit", menuName = "Unit/Enemy/MinorEnemy")]
 public class EnemyUnitData : UnitData
 {
     [SerializeField] private int maxHealth;
@@ -26,7 +26,7 @@ public class EnemyUnitData : UnitData
     [SerializeField] private RuntimeAnimatorController animatorController;
 
 
-    [Header("Enemy Prefab")] 
+    [Header("MinorEnemy Prefab")] 
     [SerializeField] private GameObject enemyPrefab;
 
     public void Init(int id, EnemyUnitData unitDataSource)

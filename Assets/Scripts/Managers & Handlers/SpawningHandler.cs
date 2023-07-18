@@ -12,7 +12,7 @@ public class SpawningHandler : MonoBehaviour
     private Transform spawnPoint;
     private Vector3 homeBase;
 
-    private List<Enemy> enemiesSpawned = new List<Enemy>();
+    private List<MinorEnemy> enemiesSpawned = new List<MinorEnemy>();
 
     public static event Action<int> OnEnemyGroupDeath;
 
@@ -66,7 +66,7 @@ public class SpawningHandler : MonoBehaviour
 
     private void OnMemberDeath(int i)
     {
-        enemiesSpawned.RemoveAll(enemy => enemy.GetEnemyUnitData().UnitID == i);
+        enemiesSpawned.RemoveAll(enemy => enemy.GetEnemyData().UnitID == i);
 
         if (enemiesSpawned.Count == 0)
         {
@@ -80,7 +80,7 @@ public class SpawningHandler : MonoBehaviour
         {
             GameObject clone = Instantiate(e.Value.EnemyPrefab, spawnPoint);
 
-            Enemy enemy = clone.GetComponent<Enemy>();
+            MinorEnemy enemy = clone.GetComponent<MinorEnemy>();
             enemy.SetEnemyData(e.Key, e.Value, home);
             enemiesSpawned.Add(enemy);
             await new WaitForSeconds(0.7f);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CombatState : MonsterState
 {
-    public CombatState(MonsterStateManager manager, Enemy enemy) : base(manager, enemy) { }
+    public CombatState(MonsterStateManager manager, MinorEnemy enemy) : base(manager, enemy) { }
 
     public override void Enter()
     {
@@ -27,12 +27,12 @@ public class CombatState : MonsterState
 
         float distanceToTarget = Vector3.Distance(enemy.transform.position, enemy.GetTargetUnit().transform.position);
 
-        if (distanceToTarget > enemy.GetEnemyUnitData().AttackRange)
+        if (distanceToTarget > enemy.GetEnemyData().AttackRange)
         {
             statManager.ChangeState(enemy, new ChaseState(statManager, enemy));
             return;
         }
-        else if (distanceToTarget <= enemy.GetEnemyUnitData().AttackRange && enemy.GetCanAttack())
+        else if (distanceToTarget <= enemy.GetEnemyData().AttackRange && enemy.GetCanAttack())
         {
             statManager.ChangeState(enemy, new AttackState(statManager, enemy));
             return;

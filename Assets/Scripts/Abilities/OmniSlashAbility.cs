@@ -19,7 +19,8 @@ public class OmniSlashAbility : ArtifactAbility
         clone.transform.SetParent(gameObject.transform);
         SuperSlash superSlash = clone.GetComponent<SuperSlash>();
 
-        superSlash.SetDamageValue(damage); 
+        superSlash.SetDamageValue(damage);
+        superSlash.TriggerDamage();
     }
 
     protected override void UseSpecialAttack()

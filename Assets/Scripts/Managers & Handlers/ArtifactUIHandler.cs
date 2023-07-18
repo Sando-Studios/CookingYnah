@@ -1,6 +1,5 @@
 using AYellowpaper.SerializedCollections;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -25,6 +24,15 @@ public class ArtifactUIHandler : MonoBehaviour
     public static event Action<int, Artifacts, GameObject> OnArtifactSelected;
     private int selectedSlot;
 
+    private void OnEnable()
+    {
+        DamageHandler.OnBossUnitDeath += UpdateArtifactProgress;
+    }
+    private void OnDisable()
+    {
+        DamageHandler.OnBossUnitDeath -= UpdateArtifactProgress;
+    }
+
     private void Start()
     {
         artifactMenu.SetActive(false);
@@ -36,6 +44,23 @@ public class ArtifactUIHandler : MonoBehaviour
         if (artifactToolTip.activeInHierarchy)
         {
             artifactToolTip.transform.position = Input.mousePosition;
+        }
+    }
+
+    private void UpdateArtifactProgress(Artifacts artifact, string name)
+    {
+        var a = artifact;
+        switch (a)
+        {
+            case Artifacts.Fire_Meatball:
+                progress.UnlockedArtifacts[a] = true;
+                break;
+            case Artifacts.Ground_Wave:
+                progress.UnlockedArtifacts[a] = true;
+                break;
+            case Artifacts.Axe_Slashes:
+                progress.UnlockedArtifacts[a] = true;
+                break;
         }
     }
 

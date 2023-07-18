@@ -9,6 +9,7 @@ public class Meteor : MonoBehaviour
     private bool move;
     private int damageValue;
     private float strength;
+    private bool isBoss;
 
     public void SetTarget(Vector3 target)
     {
@@ -17,11 +18,13 @@ public class Meteor : MonoBehaviour
     public void SetDamageValue(float dmg)
     {
         damageValue = (int)dmg;
+        isBoss = true;
     }
     public void SetDamageValue(float dmg, float strength)
     {
         SetDamageValue((int)dmg);
         this.strength = strength;
+        isBoss = false;
     }
 
     public void TriggerMove()
@@ -35,19 +38,36 @@ public class Meteor : MonoBehaviour
 
         if (move)
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+
+        float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
+
+        if (distanceToTarget <= 0.1f)
+        {
+            Explode();
+        }
+    }
+
+    private void Explode()
+    {
+        // Animations
+
+
+        move = false;
+        gameObject.transform.position = gameObject.transform.position + Vector3.down * 10;
+        Destroy(gameObject, 3.0f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.isTrigger)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && isBoss)
+            {
                 DealDamage(other.GetComponent<Player>());
-
-            if (other.CompareTag("Enemy"))
+                Explode();
+            }
+            else if (other.CompareTag("Enemy") && !isBoss)
                 DealDamage(other.GetComponent<Enemy>());
-
-            Destroy(gameObject);
         }
     }
 
@@ -55,7 +75,7 @@ public class Meteor : MonoBehaviour
     {
         DamageHandler.ApplyDamage(player, damageValue);
     }
-    
+
     private void DealDamage(Enemy enemy)
     {
         DamageHandler.ApplyDamage(enemy, damageValue, strength);

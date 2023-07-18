@@ -36,6 +36,7 @@ public class Jab : MonoBehaviour
         var col = cone.GetComponent<Collider>();
         
         Physics.IgnoreCollision(EnvironmentRef.Instance.Colliders["pot"], col);
+        Physics.IgnoreCollision(EnvironmentRef.Instance.Colliders["potSphere"], col);
     }
 
     public (bool, bool) Attack()

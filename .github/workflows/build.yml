@@ -17,8 +17,8 @@ jobs:
       steps:
       - uses: actions/cache@v2
         with:
-          path: path/to/your/project/Library
-          key: Library-MyProjectName-TargetPlatform
+          path: /github/workspace/Library
+          key: Library-CookingYnah-StandaloneWindows64
           restore-keys: |
             Library-CookingYnah-
             Library-

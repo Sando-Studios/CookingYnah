@@ -7,19 +7,13 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Unit DropData")]
-    protected EnemyUnitData enemyUnitData;
+    [Header("Unit Data")]
     protected EnemyUnitData enemyDataInstance;
-
     [SerializeField] protected SphereCollider aggroTrigger;
     [SerializeField] protected GameObject targetUnit;
     protected bool canAttack = true;
     protected bool isAttackDone = false;
     protected Vector3 home;
-
-    [Header("SFX")]
-    public Material redMaterial;
-    public Material greenMaterial;
 
     [Header("Health UI")]
     public GameObject hpBarGameObject;
@@ -46,31 +40,13 @@ public class Enemy : MonoBehaviour
     {
         enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
 
-        enemyDataInstance.UnitID = enemyID;
-        enemyUnitData = unitData;
         home = homeBase;
-
-        enemyDataInstance.MaxHealth = enemyUnitData.MaxHealth;
-        enemyDataInstance.CurrentHealth = enemyDataInstance.MaxHealth;
-        enemyDataInstance.UnitName = enemyUnitData.UnitName;
-        enemyDataInstance.MoveSpeed = enemyUnitData.MoveSpeed;
-        enemyDataInstance.DropObject = enemyUnitData.DropObject;
-        enemyDataInstance.DropData = enemyUnitData.DropData;
-        enemyDataInstance.AggroRange = enemyUnitData.AggroRange;
-        enemyDataInstance.BasicAttackDamage = enemyUnitData.BasicAttackDamage;
-        enemyDataInstance.ChaseRange = enemyUnitData.ChaseRange;
-        enemyDataInstance.AttackRange = enemyUnitData.AttackRange;
-        enemyDataInstance.PatrolSpeed = enemyUnitData.PatrolSpeed;
-        enemyDataInstance.ChaseSpeed = enemyUnitData.ChaseSpeed;
-        enemyDataInstance.AttackSpeed = enemyUnitData.AttackSpeed;
-
+        enemyDataInstance.Init(enemyID, unitData);
         aggroTrigger.radius = enemyDataInstance.AggroRange;
+        animator.runtimeAnimatorController = enemyDataInstance.Controller;
 
-        animator.runtimeAnimatorController = enemyUnitData.Controller;
-
-        MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
+        MonsterStateManager.Instance.AddMonster(this, new PatrolState(MonsterStateManager.Instance, this));
         agent = GetComponent<NavMeshAgent>();
-
     }
 
     public virtual bool IsAlive()
@@ -148,7 +124,7 @@ public class Enemy : MonoBehaviour
         return enemyDataInstance;
     }
 
-    public virtual async void Hit()// To be replaced by animations 
+    public virtual async void Hit() 
     {
         var r = GetComponentsInChildren<SpriteRenderer>();
 
@@ -212,6 +188,10 @@ public class Enemy : MonoBehaviour
     {
         if (targetUnit)
         {
+            Vector3 direction = targetUnit.transform.position - transform.position;
+            direction.Normalize();
+            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
+
             AttackTimer();
             DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
         }

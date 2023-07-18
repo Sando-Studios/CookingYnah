@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,6 @@ public class Player : MonoBehaviour
 {   
     [Header("Unit DropData")]
     [SerializeField] private PlayerUnitData playerUnitData;
-    private PlayerUnitData playerDataInstance;
     private Rigidbody rb;
     public float force;
 
@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField] private OmniAttack attack;
     [SerializeField] private SphereCollider attackCollider;
     private bool canAttack = true;
+
+    [SerializeField] private Jab jab;
 
     [Header("Inventory")]
     [SerializeField] private PlayerInventory inventory;
@@ -27,10 +29,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        
-        playerDataInstance = ScriptableObject.CreateInstance<PlayerUnitData>();
-        SetInitialValues();
-        
         DontDestroyOnLoad(this);
     }
 
@@ -42,38 +40,19 @@ public class Player : MonoBehaviour
         inventory = GetComponent<PlayerInventory>();
 
         UIManager.instance.UpdateHpUI();
-        BuffManager.instance.SetPlayer(playerDataInstance);
+        BuffManager.instance.SetPlayer(playerUnitData);
 
         if (SceneChangeManager.instance.GetObjectToLoad() != gameObject) { Destroy(gameObject); }
-    }
-
-    void SetInitialValues()
-    {
-
-        playerDataInstance.UnitName = playerUnitData.UnitName;
-
-        playerDataInstance.Vitality = playerUnitData.Vitality;
-        playerDataInstance.Agility = playerUnitData.Agility;
-        playerDataInstance.Strength = playerUnitData.Strength;
-        playerDataInstance.Vigor = playerUnitData.Vigor;
-        playerDataInstance.Intelligence = playerUnitData.Intelligence;
-        playerDataInstance.Endurance = playerUnitData.Endurance;
-        playerDataInstance.Dexterity = playerUnitData.Dexterity;
-        playerDataInstance.MoveSpeed = playerUnitData.MoveSpeed;
-        playerDataInstance.MaxHealth = playerUnitData.MaxHealth;
-        playerDataInstance.CurrentHealth = playerDataInstance.MaxHealth;
-        playerDataInstance.AttackRange = playerUnitData.AttackRange;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetButtonDown("Fire1") && canAttack)
+        // TODO: Synchronize animations, since canAttack got replaced
+        if (Input.GetButtonDown("Fire1"))
         {
-            //attackCollider.enabled = true;
             Attack();
-            //animator.SetTrigger("attackTrigger");
         }
 
 
@@ -125,26 +104,27 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, rb.velocity.x > 0 ? 180f : 0f, 0));
     }
 
-    private async void Attack()
+    private void Attack()
     {
-        attackParticle.Play();
         canAttack = false;
 
-        attackCollider.radius = playerDataInstance.AttackRange;
-        attack.DealDamage((int)playerDataInstance.RawDamage);
+        attackCollider.radius = playerUnitData.AttackRange;
 
-        animator.ResetTrigger("Attack Finish");
-        animator.SetTrigger("Attack Start");
-
-        // Debug.Log($"{playerUnitData.AttackInterval}");
-        await new WaitForSeconds(playerUnitData.AttackInterval);
-
-        // Debug.Log("done attacking");
+        var (attacked, isSlow) = jab.Attack();
         
+        if (!attacked) return;
 
-        canAttack = true;
+        if (!isSlow)
+        {
+            attackParticle.Play();
+            animator.ResetTrigger("Attack Finish");
+            animator.SetTrigger("Attack Start");
+        }
+        else
+        {
+            throw new NotImplementedException("No slow attack animation yet");
+        }
     }
-
 
     public PlayerInventory GetInventory()
     {
@@ -152,6 +132,6 @@ public class Player : MonoBehaviour
     }
     public PlayerUnitData GetPlayerData()
     {
-        return playerDataInstance;
+        return playerUnitData;
     }
 }

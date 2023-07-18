@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9b44df23c7b49943a3b65e8bd5c4d4e, type: 3}
-  m_Name: The Tusked Tyrant
+  m_Name: The Goatzilla
   m_EditorClassIdentifier: 
-  unitName: The Tusked Tyrant
+  unitName: Goatzilla
   maxHealth: 400
   basicAttackDamage: 20
   specialAttackDamage: 15
@@ -22,4 +22,4 @@ MonoBehaviour:
   specialAttackSpeed: 2
   stunnedDuration: 5
   attackRange: 5
-  artifact: 3
+  artifact: 2

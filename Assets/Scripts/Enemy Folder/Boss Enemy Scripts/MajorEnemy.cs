@@ -2,7 +2,6 @@ using Asyncoroutine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.VFX;
 
 public enum BossState
 {
@@ -16,6 +15,7 @@ public enum BossState
 }
 public class MajorEnemy : Enemy
 {
+    [Header("Boss Name")]
     [SerializeField] private TextMeshProUGUI bossNameText;
     private BossState currentState;
 
@@ -25,7 +25,10 @@ public class MajorEnemy : Enemy
     protected override void Start()
     {
         base.Start();
+        bossNameText.text = bossDataInstance.UnitName;
+        hpBar.transform.parent.gameObject.SetActive(false);
         home = transform.position;
+        bossDataInstance.SetHealthToDefault();
         TransitionToState(BossState.Idle);
     }
 
@@ -38,15 +41,7 @@ public class MajorEnemy : Enemy
     {
         isPlayerInRoom = isPlayerInArea;
         targetUnit = playerObj;
-    }
-
-    protected virtual void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !other.isTrigger)
-        {
-            targetUnit = other.gameObject;
-            //aggroTrigger.enabled = false;
-        }
+        hpBar.transform.parent.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -75,10 +70,12 @@ public class MajorEnemy : Enemy
             case BossState.Chase:
                 ChaseBehavior();
                 break;
+            case BossState.Death:
+                break;
         }
     }
 
-    public void IdleBehavior()
+    private void IdleBehavior()
     {
         if (isPlayerInRoom)
         {
@@ -86,7 +83,7 @@ public class MajorEnemy : Enemy
             return;
         }
     }
-    public void ChaseBehavior()
+    private void ChaseBehavior()
     {
         if (isPlayerInRoom) targetPos = targetUnit.transform.position;
         else if (!isPlayerInRoom) targetPos = home;
@@ -122,7 +119,7 @@ public class MajorEnemy : Enemy
 
     private int attackCount = 0;
 
-    public void InCombatBehavior()
+    private void InCombatBehavior()
     {
         float distanceToTarget = Vector3.Distance(transform.position, GetTargetUnit().transform.position);
 
@@ -150,7 +147,7 @@ public class MajorEnemy : Enemy
 
     }
 
-    public void BasicAttackBehavior()
+    private void BasicAttackBehavior()
     {
         if (GetCanAttack())
         {
@@ -164,7 +161,7 @@ public class MajorEnemy : Enemy
             return;
         }
     }
-    public void SpecialAttackBehavior()
+    private void SpecialAttackBehavior()
     {
         if (GetCanAttack())
         {
@@ -194,26 +191,21 @@ public class MajorEnemy : Enemy
 
     public virtual void ExecuteBasicAttack()
     {
-        if (targetUnit)
-        {
-            Vector3 direction = targetUnit.transform.position - transform.position;
-            direction.Normalize();
-            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
+        Vector3 direction = targetUnit.transform.position - transform.position;
+        direction.Normalize();
+        spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
 
-            AttackTimer(bossDataInstance.BasicAttackSpeed);
-            SetIsAttackDone(true);
-            //DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
-        }
+        AttackTimer(bossDataInstance.BasicAttackSpeed);
+        SetIsAttackDone(true);
+        DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
     }
 
     public virtual void ExecuteSpecialAttack()
     {
-        if (targetUnit)
-        {
-            AttackTimer(bossDataInstance.BasicAttackSpeed);
-            OmniSlashAbility superSlash
-            SetIsAttackDone(true);
-        }
+        AttackTimer(bossDataInstance.SpecialAttackSpeed);
+        OmniSlashAbility omniSlash = GetComponent<OmniSlashAbility>();
+        omniSlash.SpawnBossSlashZone(bossDataInstance.SpecialAttackDamage);
+        SetIsAttackDone(true);
     }
     protected override void Death(Artifacts artifact, string name)
     {
@@ -241,34 +233,34 @@ public class MajorEnemy : Enemy
         switch (s)
         {
             case BossState.Idle:
-                //animator.SetBool("isIdling", isPlaying);
+                animator.SetBool("isIdling", isPlaying);
                 break;
             case BossState.BasicAttack:
-                //animator.SetBool("isBasicAttacking", isPlaying);
+                animator.SetBool("isBasicAttacking", isPlaying);
                 break;
             case BossState.SpecialAttack:
-                //animator.SetBool("isSpecialAttacking", isPlaying);
+                animator.SetBool("isSpecialAttacking", isPlaying);
                 break;
             case BossState.InCombat:
-                //animator.SetBool("isInCombat", isPlaying);
+                animator.SetBool("isInCombat", isPlaying);
                 break;
             case BossState.Stunned:
-                //animator.SetBool("isStunned", isPlaying);
+                animator.SetBool("isStunned", isPlaying);
                 break;
             case BossState.Chase:
-                //animator.SetBool("isChasing", isPlaying);
+                animator.SetBool("isChasing", isPlaying);
                 break;
         }
     }
 
     protected virtual void ResetAnimatorBool()
     {
-        //animator.SetBool("isIdling", false);
-        //animator.SetBool("isBasicAttacking", false);
-        //animator.SetBool("isSpecialAttacking", false);
-        //animator.SetBool("isInCombat", false);
-        //animator.SetBool("isStunned", false);
-        //animator.SetBool("isChasing", false); ;
+        animator.SetBool("isIdling", false);
+        animator.SetBool("isBasicAttacking", false);
+        animator.SetBool("isSpecialAttacking", false);
+        animator.SetBool("isInCombat", false);
+        animator.SetBool("isStunned", false);
+        animator.SetBool("isChasing", false);
     }
 
     public void TransitionToState(BossState newState)
@@ -308,6 +300,8 @@ public class MajorEnemy : Enemy
             case BossState.Death:
                 ResetAnimatorBool();
                 break;
+            default:
+                break;
         }
     }
 
@@ -332,8 +326,9 @@ public class MajorEnemy : Enemy
                 ControlAnimations(currentState, false);
                 break;
             case BossState.Chase:
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
                 ControlAnimations(currentState, false);
+                break;
+                default:
                 break;
         }
     }

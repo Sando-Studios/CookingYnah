@@ -96,6 +96,7 @@ public class Enemy : MonoBehaviour
             maxHealth = bossDataInstance.MaxHealth;
 
         agent = GetComponent<NavMeshAgent>();
+        animator = spriteTransform.GetComponent<Animator>();
     }
     protected virtual void Update()
     {

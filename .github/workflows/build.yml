@@ -17,7 +17,10 @@ jobs:
       steps:
       - uses: actions/cache@v2
         with:
-          path: /github/workspace/Library
+          path: |
+                Library/
+                obj/
+                Packages/
           key: Library-CookingYnah-StandaloneWindows64
           restore-keys: |
             Library-CookingYnah-

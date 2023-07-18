@@ -1,6 +1,8 @@
 using Asyncoroutine;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public enum BossState
 {
@@ -8,22 +10,34 @@ public enum BossState
     BasicAttack,
     SpecialAttack,
     InCombat,
-    Chase
+    Stunned,
+    Chase,
+    Death
 }
 public class MajorEnemy : Enemy
 {
-    protected NavMeshAgent agent;
+    [SerializeField] private TextMeshProUGUI bossNameText;
     private BossState currentState;
 
-    public virtual void Start()
+    private bool isPlayerInRoom = false;
+    private Vector3 targetPos;
+
+    protected override void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        base.Start();
+        home = transform.position;
         TransitionToState(BossState.Idle);
     }
 
     public BossUnitData GetBossData()
     {
         return GetUnitData() as BossUnitData;
+    }
+
+    public void SetPlayerStatus(bool isPlayerInArea, GameObject playerObj)
+    {
+        isPlayerInRoom = isPlayerInArea;
+        targetUnit = playerObj;
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -36,20 +50,9 @@ public class MajorEnemy : Enemy
     }
 
     // Update is called once per frame
-    protected virtual void Update()
+    protected override void Update()
     {
-        float a = bossDataInstance.CurrentHealth;
-        float b = bossDataInstance.MaxHealth;
-        float normalized = a / b;
-
-        hpBar.fillAmount = normalized;
-
-        if (agent.hasPath)
-        {
-            Vector3 direction = agent.velocity.normalized;
-
-            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
-        }
+        base.Update();
 
         // Handle state-specific behavior in the Update method
         switch (currentState)
@@ -64,65 +67,129 @@ public class MajorEnemy : Enemy
                 SpecialAttackBehavior();
                 break;
             case BossState.InCombat:
-                InCombat();
+                InCombatBehavior();
+                break;
+            case BossState.Stunned:
+                StunnedBehavior();
                 break;
             case BossState.Chase:
-                Chase();
+                ChaseBehavior();
                 break;
         }
     }
 
     public void IdleBehavior()
     {
+        if (isPlayerInRoom)
+        {
+            TransitionToState(BossState.Chase);
+            return;
+        }
+    }
+    public void ChaseBehavior()
+    {
+        if (isPlayerInRoom) targetPos = targetUnit.transform.position;
+        else if (!isPlayerInRoom) targetPos = home;
+
+        float distanceToTarget = Vector3.Distance(transform.position, targetPos);
+
+        if (isPlayerInRoom)
+        {
+            if (distanceToTarget <= bossDataInstance.AttackRange)
+            {
+                TransitionToState(BossState.InCombat);
+                return;
+            }
+            else
+            {
+                agent.SetDestination(targetUnit.transform.position);
+            }
+        }
+        else
+        {
+            if (distanceToTarget <= 0.1f)
+            {
+                TransitionToState(BossState.Idle);
+                return;
+            }
+            else
+            {
+                agent.SetDestination(home);
+                return;
+            }
+        }
+    }
+
+    private int attackCount = 0;
+
+    public void InCombatBehavior()
+    {
+        float distanceToTarget = Vector3.Distance(transform.position, GetTargetUnit().transform.position);
+
+        if (distanceToTarget > bossDataInstance.AttackRange)
+        {
+            TransitionToState(BossState.Chase);
+            return;
+        }
+        else if (distanceToTarget <= bossDataInstance.AttackRange && GetCanAttack())
+        {
+            attackCount++;
+
+            if (attackCount % 4 == 0)
+            {
+                attackCount = 0;
+                TransitionToState(BossState.SpecialAttack);
+                return;
+            }
+            else
+            {
+                TransitionToState(BossState.BasicAttack);
+                return;
+            }
+        }
 
     }
+
     public void BasicAttackBehavior()
     {
+        if (GetCanAttack())
+        {
+            StartAttack();
+            ExecuteBasicAttack();
+        }
 
+        if (!GetCanAttack() && GetIsAttackDone())
+        {
+            TransitionToState(BossState.InCombat);
+            return;
+        }
     }
     public void SpecialAttackBehavior()
     {
-
-    }
-    public void InCombat()
-    {
-
-    }
-    public void Chase()
-    {
-
-    }
-
-
-    public virtual async void Hit()
-    {
-        var r = GetComponentsInChildren<SpriteRenderer>();
-
-        foreach (var m in r)
+        if (GetCanAttack())
         {
-            m.color = Color.red;
+            StartAttack();
+            ExecuteSpecialAttack();
         }
-        await new WaitForSeconds(0.5f);
 
-        foreach (var m in r)
+        if (!GetCanAttack() && GetIsAttackDone())
         {
-            m.color = new Color(255, 255, 255, 255);
+            TransitionToState(BossState.Stunned);
+            return;
         }
     }
 
-    protected override void Death(Artifacts artifact, string name)
+    private void StartAttack()
     {
-        if (name != bossDataInstance.UnitName) { return; }
+        SetCanAttack(false);
+        SetIsAttackDone(false);
+    }
 
-        isAlive = false;
+    private async void StunnedBehavior()
+    {
+        await new WaitForSeconds(bossDataInstance.StunnedDuration);
 
-        transform.GetComponent<NavMeshAgent>().enabled = false;
-
-        Vector3 position = transform.position;
-        position.y -= 40f;
-        transform.position = position;
-
-        Destroy(gameObject, 3.0f);
+        TransitionToState(BossState.InCombat);
     }
 
     public virtual void ExecuteBasicAttack()
@@ -134,7 +201,8 @@ public class MajorEnemy : Enemy
             spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
 
             AttackTimer(bossDataInstance.BasicAttackSpeed);
-            DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
+            SetIsAttackDone(true);
+            //DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
         }
     }
 
@@ -142,11 +210,28 @@ public class MajorEnemy : Enemy
     {
         if (targetUnit)
         {
-
+            AttackTimer(bossDataInstance.BasicAttackSpeed);
+            OmniSlashAbility superSlash
+            SetIsAttackDone(true);
         }
     }
+    protected override void Death(Artifacts artifact, string name)
+    {
+        if (name != bossDataInstance.UnitName) { return; }
 
+        TransitionToState(BossState.Death);
 
+        isAlive = false;
+
+        transform.GetComponent<NavMeshAgent>().enabled = false;
+
+        Vector3 position = transform.position;
+        position.y -= 40f;
+        transform.position = position;
+
+        Destroy(gameObject, 3.0f);
+        bossDataInstance.SetHealthToDefault();
+    }
 
     public virtual void ControlAnimations(BossState state, bool isPlaying)
     {
@@ -156,30 +241,34 @@ public class MajorEnemy : Enemy
         switch (s)
         {
             case BossState.Idle:
-                animator.SetBool("isIdling", isPlaying);
+                //animator.SetBool("isIdling", isPlaying);
                 break;
             case BossState.BasicAttack:
-                animator.SetBool("isBasicAttacking", isPlaying);
+                //animator.SetBool("isBasicAttacking", isPlaying);
                 break;
             case BossState.SpecialAttack:
-                animator.SetBool("isSpecialAttacking", isPlaying);
+                //animator.SetBool("isSpecialAttacking", isPlaying);
                 break;
             case BossState.InCombat:
-                animator.SetBool("isInCombat", isPlaying);
+                //animator.SetBool("isInCombat", isPlaying);
+                break;
+            case BossState.Stunned:
+                //animator.SetBool("isStunned", isPlaying);
                 break;
             case BossState.Chase:
-                animator.SetBool("isChasing", isPlaying);
+                //animator.SetBool("isChasing", isPlaying);
                 break;
         }
     }
 
     protected virtual void ResetAnimatorBool()
     {
-        animator.SetBool("isIdling", false);
-        animator.SetBool("isBasicAttacking", false);
-        animator.SetBool("isSpecialAttacking", false);
-        animator.SetBool("isInCombat", false);
-        animator.SetBool("isChasing", false); ;
+        //animator.SetBool("isIdling", false);
+        //animator.SetBool("isBasicAttacking", false);
+        //animator.SetBool("isSpecialAttacking", false);
+        //animator.SetBool("isInCombat", false);
+        //animator.SetBool("isStunned", false);
+        //animator.SetBool("isChasing", false); ;
     }
 
     public void TransitionToState(BossState newState)
@@ -209,8 +298,15 @@ public class MajorEnemy : Enemy
             case BossState.InCombat:
                 ControlAnimations(currentState, true);
                 break;
-            case BossState.Chase:
+            case BossState.Stunned:
                 ControlAnimations(currentState, true);
+                break;
+            case BossState.Chase:
+                agent.stoppingDistance = bossDataInstance.AttackRange - 1;
+                ControlAnimations(currentState, true);
+                break;
+            case BossState.Death:
+                ResetAnimatorBool();
                 break;
         }
     }
@@ -232,7 +328,11 @@ public class MajorEnemy : Enemy
             case BossState.InCombat:
                 ControlAnimations(currentState, false);
                 break;
+            case BossState.Stunned:
+                ControlAnimations(currentState, false);
+                break;
             case BossState.Chase:
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
                 ControlAnimations(currentState, false);
                 break;
         }

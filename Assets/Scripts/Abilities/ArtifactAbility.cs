@@ -13,7 +13,7 @@ public abstract class ArtifactAbility : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (Input.GetButtonDown("Artifact " + slotNum.ToString()) && gameObject.GetComponent<Player>())
+        if (slotNum > 0 && Input.GetButtonDown("Artifact " + slotNum.ToString()) && gameObject.GetComponent<Player>())
         {
             UseSpecialAttack();
         }

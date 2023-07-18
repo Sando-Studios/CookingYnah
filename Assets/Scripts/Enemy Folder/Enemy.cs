@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Asyncoroutine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Enemy : MonoBehaviour
     [Tooltip("Assign in inspector ONLY if this object will be one of the Mini-bosses")]
     [SerializeField] protected BossUnitData bossDataInstance;
     protected EnemyUnitData enemyDataInstance;
+    private float maxHealth;
 
     protected GameObject targetUnit;
 
@@ -22,8 +24,10 @@ public class Enemy : MonoBehaviour
     protected bool isAlive = true;
 
     [Header("Animation")]
-    protected Animator animator;
     [SerializeField] protected Transform spriteTransform;
+    protected Animator animator;
+
+    protected NavMeshAgent agent;
 
     protected virtual void OnEnable()
     {
@@ -66,7 +70,7 @@ public class Enemy : MonoBehaviour
     {
         return targetUnit;
     }
-    protected virtual UnitData GetUnitData()
+    public virtual UnitData GetUnitData()
     {
         if (enemyDataInstance != null) return enemyDataInstance;
         if (bossDataInstance != null) return bossDataInstance;
@@ -83,4 +87,46 @@ public class Enemy : MonoBehaviour
         await new WaitForSeconds(attackSpeed);
         SetCanAttack(true);
     }
+
+    protected virtual void Start()
+    {
+        if (enemyDataInstance != null)
+            maxHealth = enemyDataInstance.MaxHealth;
+        else if (bossDataInstance != null)
+            maxHealth = bossDataInstance.MaxHealth;
+
+        agent = GetComponent<NavMeshAgent>();
+    }
+    protected virtual void Update()
+    {
+        float currentHP = GetUnitData().CurrentHealth;
+
+        float normalized = currentHP / maxHealth;
+
+        hpBar.fillAmount = normalized;
+
+        if (agent.hasPath)
+        {
+            Vector3 direction = agent.velocity.normalized;
+
+            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
+        }
+    }
+
+    public virtual async void Hit()
+    {
+        var r = GetComponentsInChildren<SpriteRenderer>();
+
+        foreach (var m in r)
+        {
+            m.color = Color.red;
+        }
+        await new WaitForSeconds(0.5f);
+
+        foreach (var m in r)
+        {
+            m.color = new Color(255, 255, 255, 255);
+        }
+    }
+
 }

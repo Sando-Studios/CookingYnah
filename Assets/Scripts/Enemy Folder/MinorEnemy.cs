@@ -12,8 +12,6 @@ public class MinorEnemy : Enemy
     public GameObject hpBarGameObject;
     protected Coroutine hpBarCoroutine;
 
-    protected NavMeshAgent agent;
-
     public virtual void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
     {
         enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
@@ -24,7 +22,6 @@ public class MinorEnemy : Enemy
         animator.runtimeAnimatorController = enemyDataInstance.Controller;
 
         MonsterStateManager.Instance.AddMonster(this, new PatrolState(MonsterStateManager.Instance, this));
-        agent = GetComponent<NavMeshAgent>();
     }
 
     public EnemyUnitData GetEnemyData()
@@ -41,23 +38,6 @@ public class MinorEnemy : Enemy
         }
     }
 
-    // Update is called once per frame
-    protected virtual void Update()
-    {
-        float a = enemyDataInstance.CurrentHealth;
-        float b = enemyDataInstance.MaxHealth;
-        float normalized = a / b;
-
-        hpBar.fillAmount = normalized;
-
-        if (agent.hasPath)
-        {
-            Vector3 direction = agent.velocity.normalized;
-
-            spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
-        }
-    }
-
     public virtual void ResetAggro()
     {
         targetUnit = null;
@@ -71,20 +51,12 @@ public class MinorEnemy : Enemy
         return point.position;
     }
 
-    public virtual async void Hit() 
+    public override async void Hit() 
     {
-        var r = GetComponentsInChildren<SpriteRenderer>();
+        base.Hit();
+        ShowHPBar();
 
-        foreach (var m in r)
-        {
-            m.color = Color.red;
-        }
-        await new WaitForSeconds(0.5f);
-
-        foreach (var m in r)
-        {
-            m.color = new Color(255, 255, 255, 255);
-        }
+        await new WaitForSeconds(0);
     }
 
     protected override void Death(int id)

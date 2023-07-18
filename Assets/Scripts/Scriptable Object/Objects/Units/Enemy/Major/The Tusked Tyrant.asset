@@ -18,6 +18,8 @@ MonoBehaviour:
   specialAttackDamage: 15
   walkSpeed: 3
   runSpeed: 5
-  basicAttackSpeed: 0
-  specialAttackSpeed: 0
+  basicAttackSpeed: 2
+  specialAttackSpeed: 2
+  stunnedDuration: 5
+  attackRange: 5
   artifact: 3

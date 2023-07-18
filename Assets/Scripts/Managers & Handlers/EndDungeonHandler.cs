@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class EndDungeonHandler : MonoBehaviour
 {
-    private int bossID;
     private GameObject bossExit;
 
     [SerializeField] private Color disabledColor;
-    [SerializeField] private Color enabledColor;
 
     private void OnEnable()
     {
-        DamageHandler.OnEnemyUnitDeath += OnBossDeath;
+        DamageHandler.OnBossUnitDeath += OnBossDeath;
     }
 
     private void OnDisable()
     {
-        DamageHandler.OnEnemyUnitDeath -= OnBossDeath;
+        DamageHandler.OnBossUnitDeath -= OnBossDeath;
     }
 
     // Start is called before the first frame update
@@ -29,18 +27,10 @@ public class EndDungeonHandler : MonoBehaviour
         bossExit.GetComponent<SceneChangeHandler>().SetCanUse(false);
     }
 
-    public void SetBossID(int id)
-    {
-        bossID = id;
-    }
 
-    private void OnBossDeath(int id)
+    private void OnBossDeath(Artifacts artifact, string name)
     {
-        if (id == bossID)
-        {
-            bossExit.GetComponent<SpriteRenderer>().color = enabledColor;
+            bossExit.GetComponent<SpriteRenderer>().color = Color.white;
             bossExit.GetComponent<SceneChangeHandler>().SetCanUse(true);
-
-        }
     }
 }

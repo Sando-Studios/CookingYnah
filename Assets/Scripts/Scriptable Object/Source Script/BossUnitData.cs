@@ -16,6 +16,11 @@ public class BossUnitData : UnitData
     [SerializeField] private float runSpeed;
     [SerializeField] private float basicAttackSpeed;
     [SerializeField] private float specialAttackSpeed;
+    [Tooltip("Stunned Duration in SECONDS")]
+    [SerializeField] private float stunnedDuration;
+
+    [Header("Range")]
+    [SerializeField] private float attackRange;
 
     [Header("Artifact")]
     [SerializeField] private Artifacts artifact;
@@ -51,11 +56,23 @@ public class BossUnitData : UnitData
     }
     public float SpecialAttackSpeed
     {
-        get { return specialAttackDamage; }
+        get { return specialAttackSpeed; }
     }
-    
+    public float StunnedDuration
+    {
+        get { return stunnedDuration; }
+    }
+    public float AttackRange
+    {
+        get { return attackRange; }
+    }
     public Artifacts Artifact
     {
         get { return artifact; }
+    }
+
+    public void SetHealthToDefault()
+    {
+        CurrentHealth = maxHealth;
     }
 }

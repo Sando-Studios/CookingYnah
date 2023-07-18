@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationEventsHandler : MonoBehaviour
 {
-    [SerializeField] protected MinorEnemy enemy;
+    [SerializeField] protected Enemy enemy;
     public virtual void AttackAnimationEnds()
     {
         enemy.SetIsAttackDone(true);

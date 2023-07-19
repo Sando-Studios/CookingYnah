@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChickenAnimationEventsHandler : AnimationEventsHandler
 {
-    public void LauchEgg()
+    public void LaunchEgg()
     {
         ChickenEnemy chickenEnemy = enemy as ChickenEnemy;
         chickenEnemy.EnableEggnade();

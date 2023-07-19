@@ -23,7 +23,7 @@ public class SceneChangeHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && !other.isTrigger && canUse)
+        if (other.CompareTag("Player") && !other.isTrigger && canUse)
             SceneManager.LoadScene(sceneName);
     }
 }

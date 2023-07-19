@@ -106,13 +106,17 @@ public class UIManager : MonoBehaviour
     {
         craftingPanel.SetActive(!craftingPanel.activeInHierarchy);
         UpdateCraftingInventoryUI();
-        
-        Debug.Log("togg");
     }
 
     public void ForceOpenCraftingPanel()
     {
         craftingPanel.SetActive(true);
+        UpdateCraftingInventoryUI();
+    }
+
+    public void ForceCloseCraftingPanel()
+    {
+        craftingPanel.SetActive(false);
         UpdateCraftingInventoryUI();
     }
 

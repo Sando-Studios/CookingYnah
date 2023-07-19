@@ -6,7 +6,12 @@ using UnityEngine;
 public class TutorialTrigger : MonoBehaviour
 {
     [SerializeField] private CraftingTutorial tut;
-    
+
+    private void Start()
+    {
+        tut.Setup();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent<Player>(out var player)) return;
@@ -14,5 +19,6 @@ public class TutorialTrigger : MonoBehaviour
         UIManager.instance.ForceOpenCraftingPanel();
         
         tut.StartSequences();
+        UIManager.instance.player.DisableInputs();
     }
 }

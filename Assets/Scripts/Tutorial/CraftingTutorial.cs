@@ -9,9 +9,8 @@ public class CraftingTutorial : MonoBehaviour
     private SequenceController _controller;
 
     [SerializeField] private RectTransform popUp;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    public void Setup()
     {
         var tt = popUp.GetComponent<ToolTipAdapter>();
 
@@ -24,9 +23,14 @@ public class CraftingTutorial : MonoBehaviour
 
                 sequence.SetStatus(true);
             }))
-            .AddSequence(new ToolTipSequence(_controller, tt, "fff"));
-
-        // _controller.ManualStart();
+            .AddSequence(new ToolTipSequence(_controller, tt, "fff"))
+            .AddSequence(new WaitSequence(_controller, 3f))
+            .AddSequence(new CustomSequence(_controller, (sequence, o) =>
+            {
+                UIManager.instance.player.EnableInputs();
+                UIManager.instance.ForceCloseCraftingPanel();
+                sequence.SetStatus(true);
+            }));
     }
 
     public void StartSequences()

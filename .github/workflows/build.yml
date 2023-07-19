@@ -17,8 +17,11 @@ jobs:
       steps:
       - uses: actions/cache@v2
         with:
-          path: path/to/your/project/Library
-          key: Library-MyProjectName-TargetPlatform
+          path: |
+                Library/
+                obj/
+                Packages/
+          key: Library-CookingYnah-StandaloneWindows64
           restore-keys: |
             Library-CookingYnah-
             Library-

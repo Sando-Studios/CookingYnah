@@ -20,6 +20,7 @@ public class FireMeatballAbility : ArtifactAbility
 
     private async void SpawnMeatballOrbit()
     {
+        isAbilityActive = true;
         GameObject orbitCenter = new GameObject("Center");
         orbitCenter.transform.SetParent(transform);
         orbitCenter.transform.localPosition = new Vector3(0, 0, 0);
@@ -43,7 +44,7 @@ public class FireMeatballAbility : ArtifactAbility
         orbitCenter.SetActive(false);
         orbitTarget = null;
         Destroy(orbitCenter);
-
+        isAbilityActive = false;
     }
 
     public async void SpawnMeatballMeteor(Vector3 targetPos, float damage)

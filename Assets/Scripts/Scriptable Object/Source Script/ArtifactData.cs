@@ -13,8 +13,12 @@ public class ArtifactData : ScriptableObject
     [SerializeField]
     private GameObject abilityPrefab;
 
+    [SerializeField] private int abilityStaminaCost;
+
     public string Name { get { return artifactName; } }
     public string Description { get { return artifactDescription; } }
 
     public GameObject AbilityPrefab { get {  return abilityPrefab; } }
+
+    public int StaminaCost { get { return abilityStaminaCost; } }
 }

@@ -21,7 +21,7 @@ public class ArtifactUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI artifactName;
     [SerializeField] private TextMeshProUGUI artifactDescription;
 
-    public static event Action<int, Artifacts, GameObject> OnArtifactSelected;
+    public static event Action<int, Artifacts, GameObject, int> OnArtifactSelected;
     private int selectedSlot;
 
     private void OnEnable()
@@ -108,7 +108,7 @@ public class ArtifactUIHandler : MonoBehaviour
         
         if (progress.UnlockedArtifacts[a])
         {
-            OnArtifactSelected?.Invoke(selectedSlot, a, progress.ArtifactDescriptions[a].AbilityPrefab);
+            OnArtifactSelected?.Invoke(selectedSlot, a, progress.ArtifactDescriptions[a].AbilityPrefab, progress.ArtifactDescriptions[a].StaminaCost);
             return;
         }
     }

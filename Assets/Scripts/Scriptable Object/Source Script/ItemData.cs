@@ -10,7 +10,7 @@ public enum TargetStat
     ResStat,
 }
 
-[CreateAssetMenu(fileName = "NewItem", menuName = "Item/Item")]
+[CreateAssetMenu(fileName = "Item", menuName = "Item/Item")]
 public class ItemData : ScriptableObject
 {
     [SerializeField] private string itemName;

@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dafc290cc78e0f541bc6dd37190ea6cc, type: 3}
-  m_Name: LeekItem
+  m_Name: Salmon Item
   m_EditorClassIdentifier: 
-  itemName: Leek
-  itemSprite: {fileID: 21300000, guid: afc566da836a1cc448d20e826d27d909, type: 3}
+  itemName: 
+  itemSprite: {fileID: 0}
   PermaBuffDictionary:
-    _serializedList:
-    - Key: 5
-      Value: 3
-  tempBuffDuration: 6
+    _serializedList: []
+  tempBuffDuration: 0
   TempBuffsDictionary:
     _serializedList: []

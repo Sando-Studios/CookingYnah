@@ -22,6 +22,7 @@ public abstract class ArtifactAbility : MonoBehaviour
             {
                 UseSpecialAttack();
                 playerData.CurrentStamina -= staminaCost;
+                UIManager.instance.UpdateStaminaBarUI();
             }   
             else { /*Play error sound*/ }
 

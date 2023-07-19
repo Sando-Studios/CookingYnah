@@ -10,7 +10,6 @@ namespace Tutorial
     /// Attach this adaptor to a prefab for use in tool tips.
     /// </summary>
     [AddComponentMenu("Tutorial/Tool Tip Adapter")]
-    [Obsolete("Use Text2ToolTipAdapter instead")]
     public class ToolTipAdapter : MonoBehaviour
     {
         [SerializeField]

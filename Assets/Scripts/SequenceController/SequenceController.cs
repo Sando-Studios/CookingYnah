@@ -26,7 +26,7 @@ namespace Tutorial
         {
             StartCoroutine(Loop());
         }
-
+    
         private IEnumerator Loop()
         {
             foreach (var sequence in queue)

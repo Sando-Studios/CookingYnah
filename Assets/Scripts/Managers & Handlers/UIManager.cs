@@ -74,8 +74,7 @@ public class UIManager : MonoBehaviour
         }
         if (Input.GetButtonDown("Crafting") && player.GetNearStation())
         {
-            craftingPanel.SetActive(!craftingPanel.activeInHierarchy);
-            UpdateCraftingInventoryUI();
+            ToggleCraftingPanel();
         }
 
         if (!player.GetNearStation()) { craftingPanel.SetActive(false); }
@@ -101,6 +100,20 @@ public class UIManager : MonoBehaviour
         vitText.text = playerData.Vitality.ToString();
         resText.text = playerData.Resilience.ToString();
         strText.text = playerData.Strength.ToString();
+    }
+
+    public void ToggleCraftingPanel()
+    {
+        craftingPanel.SetActive(!craftingPanel.activeInHierarchy);
+        UpdateCraftingInventoryUI();
+        
+        Debug.Log("togg");
+    }
+
+    public void ForceOpenCraftingPanel()
+    {
+        craftingPanel.SetActive(true);
+        UpdateCraftingInventoryUI();
     }
 
     public void UpdateInventoryUI()

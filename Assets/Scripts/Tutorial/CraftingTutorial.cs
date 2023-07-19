@@ -15,13 +15,24 @@ public class CraftingTutorial : MonoBehaviour
     {
         var tt = popUp.GetComponent<ToolTipAdapter>();
 
-        _controller.AddSequence(new ToolTipSequence(_controller, tt, "test"));
-        
-        _controller.ManualStart();
+        _controller.AddSequence(new ToolTipSequence(_controller, tt, "test"))
+            .AddSequence(new WaitSequence(_controller, 2f))
+            .AddSequence(new ToolTipSequence(_controller, tt, "huh"))
+            .AddSequence(new CustomSequence(_controller, (sequence, o) =>
+            {
+                tt.GetComponent<RectTransform>().anchoredPosition = new Vector2(-145, 60);
+
+                sequence.SetStatus(true);
+            }))
+            .AddSequence(new ToolTipSequence(_controller, tt, "fff"));
+
+        // _controller.ManualStart();
     }
 
-    private void StartSequences()
+    public void StartSequences()
     {
+        _controller.gameObject.SetActive(true);
+        
         _controller.ManualStart();
     }
 }

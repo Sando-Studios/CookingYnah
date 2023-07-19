@@ -6,14 +6,12 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Boar Override Controller
+  m_Name: Goat Override Controller
   m_Controller: {fileID: 9100000, guid: 54e5bf4615cddba46b93bd22c2ba94f7, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 8185a2c090f052042a46ddebec3bc2a9, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 4845c3668664bf940a9146bdc0f9be86, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 23b2fbb07ebce7e44b05dfcd1f6b9b0d, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 59fad7f6c7d81184abc96720b965abd8, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 6a73a1420fb2779499f5f56b0fccae33, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 5a9da93df40a57743be29b168dcb310f, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: e5196af57c4ab314589b86d360877319, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a14ea343a63db194bbe917a2ea778d26, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: aee7e61fcbc132b4eac9a175417e3231, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 43d502dbae20fe342a1b415e0d7a7fbf, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3bcc6b4d7518f9f4e8e02193d1909e2f, type: 2}

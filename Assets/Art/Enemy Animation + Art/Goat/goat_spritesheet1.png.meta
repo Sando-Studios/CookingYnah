@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 333c9ccf00e31da47a80f6822491adb8
+guid: 3cf32db6716211641b53423294311951
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: miniboss_1_spritesheet1_0
+      name: goat_spritesheet1_0
       rect:
         serializedVersion: 2
-        x: 36
-        y: 496
-        width: 254
-        height: 223
+        x: 95
+        y: 299
+        width: 283
+        height: 303
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,239 +131,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 860553a5819930a46bc1ec188588a621
-      internalID: -510381770
+      spriteID: fd0d5abbe7a9f52458c71da54d8986ad
+      internalID: 965793672
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: miniboss_1_spritesheet1_1
+      name: goat_spritesheet1_1
       rect:
         serializedVersion: 2
-        x: 350
-        y: 496
-        width: 252
-        height: 223
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e78bc050af0a974a939c54842294051
-      internalID: -1673498600
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miniboss_1_spritesheet1_2
-      rect:
-        serializedVersion: 2
-        x: 663
-        y: 492
-        width: 245
-        height: 234
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fe976fc862b93584db16c0e3acd63b3b
-      internalID: -1559136250
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miniboss_1_spritesheet1_3
-      rect:
-        serializedVersion: 2
-        x: 971
-        y: 492
-        width: 246
-        height: 234
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: febe60544f179a44dbc9f76c00910f9e
-      internalID: -163488162
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miniboss_1_spritesheet1_4
-      rect:
-        serializedVersion: 2
-        x: 1288
-        y: 500
-        width: 253
-        height: 222
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e41ade44681965246a438515bb426fba
-      internalID: -1205508187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miniboss_1_spritesheet1_5
-      rect:
-        serializedVersion: 2
-        x: 1684
-        y: 351
-        width: 177
-        height: 357
+        x: 448
+        y: 182
+        width: 178
+        height: 321
       alignment: 9
-      pivot: {x: 0.38081178, y: 0.6636457}
+      pivot: {x: 0.3358876, y: 0.793493}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef2ac046bbc011049a16fd290ccdba13
-      internalID: -1880689264
+      spriteID: aa72263773beeb747ab5a2ca9025a288
+      internalID: -2082797769
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: miniboss_1_spritesheet1_6
+      name: goat_spritesheet1_2
       rect:
         serializedVersion: 2
-        x: 1932
-        y: 336
-        width: 199
-        height: 372
+        x: 774
+        y: 218
+        width: 295
+        height: 309
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bdb5cda008a99d4dbd6d910ebcba144
+      internalID: -232176115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goat_spritesheet1_3
+      rect:
+        serializedVersion: 2
+        x: 1146
+        y: 4
+        width: 283
+        height: 303
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 341a181272572ee40964bb6256ef9651
+      internalID: 1803809397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goat_spritesheet1_4
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 321
+        width: 297
+        height: 303
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9b01d57579879d43aad760ed65629eb
+      internalID: 1604313609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goat_spritesheet1_5
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 62
+        width: 106
+        height: 179
       alignment: 9
-      pivot: {x: 0.75279963, y: 0.37785348}
+      pivot: {x: 0.49999985, y: 0.8326675}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db9f4eeb3a2b1a74a961a6f4158991f1
-      internalID: 242853273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miniboss_1_spritesheet1_7
-      rect:
-        serializedVersion: 2
-        x: 146
-        y: 45
-        width: 377
-        height: 404
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 31f0e860af440d848995d3ddbcdd3a09
-      internalID: -633828554
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miniboss_1_spritesheet1_8
-      rect:
-        serializedVersion: 2
-        x: 671
-        y: 44
-        width: 352
-        height: 398
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 741af51029bf4bb4fa48002b3bc9ac57
-      internalID: -1042948447
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miniboss_1_spritesheet1_9
-      rect:
-        serializedVersion: 2
-        x: 1174
-        y: 41
-        width: 377
-        height: 405
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5502f206130901649a734a542305dd72
-      internalID: 1851058311
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miniboss_1_spritesheet1_10
-      rect:
-        serializedVersion: 2
-        x: 1717
-        y: 61
-        width: 133
-        height: 205
-      alignment: 9
-      pivot: {x: 0.47559696, y: 0.8403938}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d5dfd250b2a67f449f54160eced998e
-      internalID: -637507458
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: miniboss_1_spritesheet1_11
-      rect:
-        serializedVersion: 2
-        x: 1944
-        y: 52
-        width: 245
-        height: 233
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1405766b1298e41498afc0c557bde194
-      internalID: -1744233980
+      spriteID: a961a72f917a3484cb42cbb778c62000
+      internalID: -1627490352
       vertices: []
       indices: 
       edges: []
@@ -371,7 +245,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d6c2e27830defe546acc071b7717ae1d
+    spriteID: 0b804c5d55e5d1141b61ccd6e07f87a2
     internalID: 0
     vertices: []
     indices: 
@@ -379,18 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      miniboss_1_spritesheet1_4: -1205508187
-      miniboss_1_spritesheet1_7: -633828554
-      miniboss_1_spritesheet1_10: -637507458
-      miniboss_1_spritesheet1_3: -163488162
-      miniboss_1_spritesheet1_5: -1880689264
-      miniboss_1_spritesheet1_1: -1673498600
-      miniboss_1_spritesheet1_9: 1851058311
-      miniboss_1_spritesheet1_6: 242853273
-      miniboss_1_spritesheet1_2: -1559136250
-      miniboss_1_spritesheet1_0: -510381770
-      miniboss_1_spritesheet1_8: -1042948447
-      miniboss_1_spritesheet1_11: -1744233980
+      goat_spritesheet1_0: 965793672
+      goat_spritesheet1_5: -1627490352
+      goat_spritesheet1_4: 1604313609
+      goat_spritesheet1_2: -232176115
+      goat_spritesheet1_1: -2082797769
+      goat_spritesheet1_3: 1803809397
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

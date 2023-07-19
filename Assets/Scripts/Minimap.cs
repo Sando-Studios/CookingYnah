@@ -46,6 +46,7 @@ public class Minimap : MonoBehaviour
         }
     }
 
+    #if UNITY_EDITOR
     [UnityEditor.MenuItem("Manager Tools/Minimap/Clear All")]
     public static void ClearAll()
     {
@@ -54,6 +55,7 @@ public class Minimap : MonoBehaviour
             Instance.UnTrack(keyValuePair.Key.gameObject);
         }
     }
+    #endif
 
     public void OnDrawGizmos()
     {

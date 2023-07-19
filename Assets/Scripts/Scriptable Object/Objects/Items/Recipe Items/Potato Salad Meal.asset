@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafc290cc78e0f541bc6dd37190ea6cc, type: 3}
   m_Name: Potato Salad Meal
   m_EditorClassIdentifier: 
-  itemName: 
-  itemSprite: {fileID: 0}
+  itemName: Potato Salad
+  itemSprite: {fileID: 21300000, guid: d2127f531f0ff0d4394a117cfb392a34, type: 3}
   PermaBuffDictionary:
-    _serializedList: []
-  tempBuffDuration: 0
+    _serializedList:
+    - Key: 2
+      Value: 1
+  tempBuffDuration: 300
   TempBuffsDictionary:
-    _serializedList: []
+    _serializedList:
+    - Key: 2
+      Value: 3
+  healAmount: 4

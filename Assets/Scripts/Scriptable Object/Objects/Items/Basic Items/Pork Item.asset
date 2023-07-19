@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafc290cc78e0f541bc6dd37190ea6cc, type: 3}
   m_Name: Pork Item
   m_EditorClassIdentifier: 
-  itemName: 
-  itemSprite: {fileID: 0}
+  itemName: Pork
+  itemSprite: {fileID: 21300000, guid: 35f48869d226e8041822f8516eb71d2f, type: 3}
   PermaBuffDictionary:
     _serializedList: []
-  tempBuffDuration: 0
+  tempBuffDuration: 120
   TempBuffsDictionary:
-    _serializedList: []
+    _serializedList:
+    - Key: 1
+      Value: 3
+  healAmount: 3

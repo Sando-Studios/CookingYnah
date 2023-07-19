@@ -15,9 +15,10 @@ MonoBehaviour:
   itemName: Tomato
   itemSprite: {fileID: 21300000, guid: cdc15173df8a4d24cb086d462c32169a, type: 3}
   PermaBuffDictionary:
-    _serializedList:
-    - Key: 3
-      Value: 10
-  tempBuffDuration: 6
-  TempBuffsDictionary:
     _serializedList: []
+  tempBuffDuration: 120
+  TempBuffsDictionary:
+    _serializedList:
+    - Key: 2
+      Value: 3
+  healAmount: 3

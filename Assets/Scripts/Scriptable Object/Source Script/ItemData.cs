@@ -16,8 +16,11 @@ public class ItemData : ScriptableObject
     [SerializeField] private string itemName;
     [SerializeField] private Sprite itemSprite;
     [SerializeField] private SerializedDictionary<TargetStat, int> PermaBuffDictionary = new SerializedDictionary<TargetStat, int>();
+    [Tooltip("In Seconds")]
     [SerializeField] private float tempBuffDuration;
     [SerializeField] private SerializedDictionary<TargetStat, int> TempBuffsDictionary= new SerializedDictionary<TargetStat, int>();
+
+    [SerializeField] private int healAmount;
 
     public string Name
     {
@@ -42,4 +45,8 @@ public class ItemData : ScriptableObject
         get { return PermaBuffDictionary; }
     }
 
+    public int HealAmount
+    {
+        get { return healAmount; }
+    }
 }

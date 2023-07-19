@@ -16,6 +16,9 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 50a5f8bec0630aa478bf97269362a73e, type: 3}
   PermaBuffDictionary:
     _serializedList: []
-  tempBuffDuration: 0
+  tempBuffDuration: 120
   TempBuffsDictionary:
-    _serializedList: []
+    _serializedList:
+    - Key: 1
+      Value: 3
+  healAmount: 3

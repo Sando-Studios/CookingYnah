@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1467e61e4188a09429b6f082f8726e4f
+guid: af697138a8f7f0f4bb4973dba755d23e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: turkey_spritesheet1_0
+      name: flaming_balls_spritesheet1_0
       rect:
         serializedVersion: 2
-        x: 141
-        y: 242
-        width: 332
-        height: 242
+        x: 0
+        y: 0
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88ad77b57e0d4c64f83e0422b3611247
-      internalID: -1283743129
+      spriteID: 76b9648d411c1bb4fbc851c4ab807e54
+      internalID: 147669910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: turkey_spritesheet1_1
+      name: flaming_balls_spritesheet1_1
       rect:
         serializedVersion: 2
-        x: 486
-        y: 411
-        width: 55
-        height: 57
+        x: 800
+        y: 0
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04ae2a2f5858ad0489af48a0c44bb519
-      internalID: -502431351
+      spriteID: 3e4386be69ff64747be83c4b4aea1654
+      internalID: -461426746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: turkey_spritesheet1_2
+      name: flaming_balls_spritesheet1_2
       rect:
         serializedVersion: 2
-        x: 693
-        y: 242
-        width: 332
-        height: 242
+        x: 1600
+        y: 0
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21b545d3779d42b4889683dc767d6db6
-      internalID: -2006139942
+      spriteID: cb9372892f74ea24cb510c40048776fc
+      internalID: 1639510354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: turkey_spritesheet1_3
+      name: flaming_balls_spritesheet1_3
       rect:
         serializedVersion: 2
-        x: 518
-        y: 56
-        width: 120
-        height: 159
+        x: 2400
+        y: 0
+        width: 800
+        height: 800
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,71 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b2ce9f981d1d594a8105d7f5eae39bb
-      internalID: 245535862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: turkey_spritesheet1_4
-      rect:
-        serializedVersion: 2
-        x: 723
-        y: 56
-        width: 114
-        height: 168
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7b56eaec0162cd14db25bcfea0355886
-      internalID: 989195440
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: turkey_spritesheet1_5
-      rect:
-        serializedVersion: 2
-        x: 902
-        y: 53
-        width: 139
-        height: 172
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 201b3a083c651074daae6a625c4977d6
-      internalID: 406890189
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: turkey_spritesheet1_6
-      rect:
-        serializedVersion: 2
-        x: 1091
-        y: 48
-        width: 162
-        height: 185
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ccc16d8f2bdd7134ca5416f169392f8e
-      internalID: 1669892324
+      spriteID: 7f778cda6fb620146bb329019860713e
+      internalID: -1711870422
       vertices: []
       indices: 
       edges: []
@@ -266,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8cc7e58bfa5a70e409cef8ae741bae40
+    spriteID: c14e69df4a7f9fa4d91ed06437f26949
     internalID: 0
     vertices: []
     indices: 
@@ -274,13 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      turkey_spritesheet1_6: 1669892324
-      turkey_spritesheet1_3: 245535862
-      turkey_spritesheet1_5: 406890189
-      turkey_spritesheet1_1: -502431351
-      turkey_spritesheet1_4: 989195440
-      turkey_spritesheet1_0: -1283743129
-      turkey_spritesheet1_2: -2006139942
+      flaming_balls_spritesheet1_0: 147669910
+      flaming_balls_spritesheet1_3: -1711870422
+      flaming_balls_spritesheet1_1: -461426746
+      flaming_balls_spritesheet1_2: 1639510354
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

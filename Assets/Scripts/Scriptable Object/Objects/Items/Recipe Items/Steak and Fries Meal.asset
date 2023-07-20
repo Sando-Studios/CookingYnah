@@ -10,14 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dafc290cc78e0f541bc6dd37190ea6cc, type: 3}
-  m_Name: TomatoItem
+  m_Name: Steak and Fries Meal
   m_EditorClassIdentifier: 
-  itemName: Tomato
-  itemSprite: {fileID: 21300000, guid: cdc15173df8a4d24cb086d462c32169a, type: 3}
+  itemName: Steak and Fries
+  itemSprite: {fileID: 21300000, guid: a4b133cbfba58b147ae5caec296721d5, type: 3}
   PermaBuffDictionary:
     _serializedList:
-    - Key: 3
-      Value: 10
-  tempBuffDuration: 6
+    - Key: 1
+      Value: 1
+    - Key: 0
+      Value: 1
+  tempBuffDuration: 300
   TempBuffsDictionary:
-    _serializedList: []
+    _serializedList:
+    - Key: 0
+      Value: 3
+    - Key: 1
+      Value: 3
+  healAmount: 4

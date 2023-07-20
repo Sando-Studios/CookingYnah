@@ -10,7 +10,8 @@ namespace Crafting
     [Serializable]
     public class Recipe : ScriptableObject
     {
-        public ItemData[] slots;
+        [Tooltip("Proteins|Cards|Vegetables     Proteins|Cards|Vegetables")]
+        public ItemData[] slots = new ItemData[6];
 
         public ItemData output;
     }

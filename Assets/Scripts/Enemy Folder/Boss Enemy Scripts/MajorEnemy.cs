@@ -1,3 +1,4 @@
+using System;
 using Asyncoroutine;
 using TMPro;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class MajorEnemy : Enemy
 {
     protected override void Death(int id)
     {
-        Debug.Log("reaaaalllll");
+        throw new InvalidOperationException("This should never happen btw");
     }
 
     [Header("Boss Name")]
@@ -26,6 +27,16 @@ public class MajorEnemy : Enemy
 
     private bool isPlayerInRoom = false;
     private Vector3 targetPos;
+
+    protected override void OnEnable()
+    {
+        DamageHandler.OnBossUnitDeath += Death;
+    }
+
+    protected override void OnDisable()
+    {
+        DamageHandler.OnBossUnitDeath -= Death;
+    }
 
     protected override void Start()
     {

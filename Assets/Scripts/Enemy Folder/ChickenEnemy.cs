@@ -12,13 +12,11 @@ public class ChickenEnemy : MinorEnemy
     protected override void OnEnable()
     {
         base.OnEnable();
-        DamageHandler.OnEnemyUnitDeath += base.Death;
         EggGrenade.OnEggnadeExplode += EggGrenadeExplode;
     }
     protected override void OnDisable()
     {
         base.OnDisable();
-        DamageHandler.OnEnemyUnitDeath -= base.Death;
         EggGrenade.OnEggnadeExplode -= EggGrenadeExplode;
     }
 

@@ -10,12 +10,12 @@ public class MinorEnemy : Enemy
     
     [SerializeField] protected SphereCollider aggroTrigger;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         DamageHandler.OnEnemyUnitDeath += Death;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         DamageHandler.OnEnemyUnitDeath -= Death;
     }

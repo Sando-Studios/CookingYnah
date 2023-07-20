@@ -15,6 +15,11 @@ public enum BossState
 }
 public class MajorEnemy : Enemy
 {
+    protected override void Death(int id)
+    {
+        Debug.Log("reaaaalllll");
+    }
+
     [Header("Boss Name")]
     [SerializeField] private TextMeshProUGUI bossNameText;
     private BossState currentState;

@@ -98,7 +98,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHpUI()
     {
-        hpText.text = playerData.CurrentHealth.ToString() + " / " + playerData.MaxHealth.ToString();
+        //hpText.text = playerData.CurrentHealth.ToString() + " / " + playerData.MaxHealth.ToString();
     }
 
     public void UpdateHpBarUI()

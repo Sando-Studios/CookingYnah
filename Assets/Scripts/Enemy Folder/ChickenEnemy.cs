@@ -12,11 +12,13 @@ public class ChickenEnemy : MinorEnemy
     protected override void OnEnable()
     {
         base.OnEnable();
+        DamageHandler.OnEnemyUnitDeath += base.Death;
         EggGrenade.OnEggnadeExplode += EggGrenadeExplode;
     }
     protected override void OnDisable()
     {
         base.OnDisable();
+        DamageHandler.OnEnemyUnitDeath -= base.Death;
         EggGrenade.OnEggnadeExplode -= EggGrenadeExplode;
     }
 
@@ -48,5 +50,10 @@ public class ChickenEnemy : MinorEnemy
             clone.GetComponent<EggGrenade>().SetExplosionData(enemyDataInstance.BasicAttackDamage, enemyDataInstance.UnitID);
             spawnedEgg = clone;
         }
+    }
+
+    protected override void Death(int id)
+    {
+        base.Death(id);
     }
 }

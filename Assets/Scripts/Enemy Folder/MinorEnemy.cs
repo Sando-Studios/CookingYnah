@@ -19,8 +19,13 @@ public class MinorEnemy : Enemy
         home = homeBase;
         enemyDataInstance.Init(enemyID, unitData);
         aggroTrigger.radius = enemyDataInstance.AggroRange;
-        animator.runtimeAnimatorController = enemyDataInstance.Controller;
+   
+    }
 
+    protected override void Start()
+    {
+        base.Start();
+        
         MonsterStateManager.Instance.AddMonster(this, new PatrolState(MonsterStateManager.Instance, this));
     }
 
@@ -118,6 +123,9 @@ public class MinorEnemy : Enemy
 
     public virtual void ControlAnimations(MonsterStates state, bool isPlaying)
     {
+        if(!animator)
+            Debug.Log("no animator");
+        
         ResetAnimatorBool();
 
         var s = state;

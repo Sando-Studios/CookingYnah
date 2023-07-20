@@ -47,7 +47,7 @@ public class ArtifactDoorHandler : MonoBehaviour
         {
             if (isComplete && doorObject.transform.position.y >= -6.5f)
             {
-                doorObject.transform.Translate(Vector3.right * Time.deltaTime);
+                doorObject.transform.Translate(Vector3.down * Time.deltaTime);
             }
             else if (isComplete && doorObject.transform.position.y < -6.5f)
             {

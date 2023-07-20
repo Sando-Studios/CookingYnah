@@ -31,18 +31,10 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        if (enemyDataInstance != null)
-            DamageHandler.OnEnemyUnitDeath += Death;
-        else if (bossDataInstance != null)
-            DamageHandler.OnBossUnitDeath += Death;
     }
 
     protected virtual void OnDisable()
     {
-        if (enemyDataInstance != null)
-            DamageHandler.OnEnemyUnitDeath -= Death;
-        else if (bossDataInstance != null)
-            DamageHandler.OnBossUnitDeath -= Death;
     }
 
     public virtual bool IsAlive()

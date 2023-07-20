@@ -20,6 +20,7 @@ public class GroundWaveAbility : ArtifactAbility
 
     private async void SpawnRocks(Vector3 dir)
     {
+        isAbilityActive = true;
         dir = dir.normalized;
 
         Vector3 startPoint = new Vector3(transform.position.x, 0f , transform.position.z);
@@ -31,6 +32,7 @@ public class GroundWaveAbility : ArtifactAbility
             clone.GetComponent<Bocchi>().SetDamageValue(p.RawDamage, p.Strength);
             await new WaitForSeconds(delayBetween);
         }
+        isAbilityActive = false;
     }
 
     public async void SpawnRocks(uint rings, float damage)

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class DuckEnemy : Enemy
+public class DuckEnemy : MinorEnemy
 {
     public static Action<int> OnDuckSpawn;
     private GameObject[] waypoints;

@@ -7,7 +7,8 @@ using TMPro;
 public class FireMeatballAbility : ArtifactAbility
 {
     [Header("Meteor Attack")]
-    [SerializeField] private float delay = 2.0f;
+    [SerializeField] private float delay = 0.5f;
+    [SerializeField] private float heightOffSet = 4;
 
 
     [Header("Orbit Spawn")]
@@ -48,7 +49,7 @@ public class FireMeatballAbility : ArtifactAbility
 
     public async void SpawnMeatballMeteor(Vector3 targetPos, float damage)
     {
-        Vector3 spawnPosition = transform.position + Vector3.up * 2;
+        Vector3 spawnPosition = transform.position + Vector3.up * heightOffSet;
         GameObject clone = SpawnSingleMeatball(spawnPosition);
         Meteor objectMovement = clone.GetComponent<Meteor>();
         objectMovement.SetTarget(targetPos);

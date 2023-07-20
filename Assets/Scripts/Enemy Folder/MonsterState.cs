@@ -9,9 +9,9 @@ public abstract class MonsterState
     protected NavMeshAgent agent;
 
     protected MonsterStateManager statManager;
-    protected Enemy enemy;
+    protected MinorEnemy enemy;
 
-    public MonsterState(MonsterStateManager manager, Enemy enemy)
+    public MonsterState(MonsterStateManager manager, MinorEnemy enemy)
     {
         statManager = manager;
         this.enemy = enemy;

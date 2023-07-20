@@ -29,6 +29,16 @@ public class Jab : MonoBehaviour
     
     internal uint internalCounter = 0;
 
+    private void Start()
+    {
+        if (EnvironmentRef.Instance == null) return;
+        
+        var col = cone.GetComponent<Collider>();
+        
+        Physics.IgnoreCollision(EnvironmentRef.Instance.Colliders["pot"], col);
+        Physics.IgnoreCollision(EnvironmentRef.Instance.Colliders["potSphere"], col);
+    }
+
     public (bool, bool) Attack()
     {
         if (Cooldown(shortAtkCd))

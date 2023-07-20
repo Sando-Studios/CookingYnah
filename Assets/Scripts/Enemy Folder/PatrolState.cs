@@ -5,7 +5,7 @@ public class PatrolState : MonsterState
 {
     private Vector3 patrolPoint;
 
-    public PatrolState(MonsterStateManager manager, Enemy enemy) : base(manager, enemy)
+    public PatrolState(MonsterStateManager manager, MinorEnemy enemy) : base(manager, enemy)
     {
         agent = enemy.GetComponent<NavMeshAgent>();
     }
@@ -15,7 +15,7 @@ public class PatrolState : MonsterState
         patrolPoint = enemy.GetRandomPatrolPoint();
         agent.SetDestination(patrolPoint);
 
-        agent.speed = enemy.GetEnemyUnitData().PatrolSpeed;
+        agent.speed = enemy.GetEnemyData().PatrolSpeed;
 
         enemy.ControlAnimations(MonsterStates.Patrol, true);
     }

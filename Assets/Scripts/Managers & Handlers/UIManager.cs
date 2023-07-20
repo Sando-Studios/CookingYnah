@@ -25,7 +25,12 @@ public class UIManager : MonoBehaviour
     public Player player;
     private PlayerUnitData playerData;
     private PlayerInventory playerInventory;
+    [Header("Health UI")]
     [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private Image hpBarImage;
+
+    [Header("Stamina UI")]
+    [SerializeField] private Image staminaBarImage;
 
     [Header("Character Stats UI")]
     [SerializeField] private GameObject statsPanel;
@@ -94,6 +99,26 @@ public class UIManager : MonoBehaviour
     public void UpdateHpUI()
     {
         hpText.text = playerData.CurrentHealth.ToString() + " / " + playerData.MaxHealth.ToString();
+    }
+
+    public void UpdateHpBarUI()
+    {
+        float currentHP = playerData.CurrentHealth;
+        float maxHealth = playerData.MaxHealth;
+
+        float normalized = currentHP / maxHealth;
+
+        hpBarImage.fillAmount = normalized;
+    }
+
+    public void UpdateStaminaBarUI()
+    {
+        float currentHP = playerData.CurrentStamina;
+        float maxHealth = playerData.MaxStamina;
+
+        float normalized = currentHP / maxHealth;
+
+        staminaBarImage.fillAmount = normalized;
     }
     public void UpdateStatsUI()
     {

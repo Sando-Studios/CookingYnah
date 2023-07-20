@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SuperSlash : MonoBehaviour
 {
-    private List<Enemy> enemiesInRangeList;
+    private List<MinorEnemy> enemiesInRangeList;
     private Player playerInRange;
 
     private bool isBoss;
@@ -31,9 +31,9 @@ public class SuperSlash : MonoBehaviour
             {
                 playerInRange = other.GetComponent<Player>();
             }
-            else if (!isBoss && other.CompareTag("Enemy"))
+            else if (!isBoss && other.CompareTag("MinorEnemy"))
             {
-                enemiesInRangeList.Add(other.GetComponent<Enemy>());
+                enemiesInRangeList.Add(other.GetComponent<MinorEnemy>());
             }
         }
     }
@@ -45,9 +45,9 @@ public class SuperSlash : MonoBehaviour
             {
                 playerInRange = null;
             }
-            else if (!isBoss && other.CompareTag("Enemy"))
+            else if (!isBoss && other.CompareTag("MinorEnemy"))
             {
-                enemiesInRangeList.Remove(other.GetComponent<Enemy>());
+                enemiesInRangeList.Remove(other.GetComponent<MinorEnemy>());
             }
         }
     }
@@ -60,7 +60,7 @@ public class SuperSlash : MonoBehaviour
         }
         else if (!isBoss && enemiesInRangeList.Count > 0)
         {
-            foreach (Enemy e in enemiesInRangeList)
+            foreach (MinorEnemy e in enemiesInRangeList)
             {
                 DealDamage(e);
             }
@@ -71,7 +71,7 @@ public class SuperSlash : MonoBehaviour
     {
         DamageHandler.ApplyDamage(player, damageValue);
     }
-    private void DealDamage(Enemy enemy)
+    private void DealDamage(MinorEnemy enemy)
     {
         DamageHandler.ApplyDamage(enemy, damageValue, strength);
     }

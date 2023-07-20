@@ -50,3 +50,6 @@ TagManager:
   - name: Monster
     uniqueID: 3876975231
     locked: 0
+  - name: Cave
+    uniqueID: 997709819
+    locked: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DeathState : MonsterState
 {
-    public DeathState(MonsterStateManager manager, Enemy enemy) : base(manager, enemy) { }
+    public DeathState(MonsterStateManager manager, MinorEnemy enemy) : base(manager, enemy) { }
 
     public override void Enter()
     {

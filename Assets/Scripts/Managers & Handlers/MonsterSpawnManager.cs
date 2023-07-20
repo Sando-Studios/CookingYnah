@@ -7,9 +7,11 @@ using UnityEngine;
 
 public class MonsterSpawnManager : MonoBehaviour
 {
+    [SerializedDictionary("Spawn Point", "Monster Base")]
     [SerializeField] private SerializedDictionary<Transform, Transform> spawnBasePairDictionary = new SerializedDictionary<Transform, Transform>();
     private List<Transform> spawnPointList = new List<Transform>();
     private List<Transform> basePointList = new List<Transform>();
+    [SerializedDictionary("Home Base", "Monster Group")] 
     [SerializeField] private SerializedDictionary<Transform, MonsterGroup> baseGroupPairDictionary = new SerializedDictionary<Transform, MonsterGroup>();
 
     [SerializeField] private GameObject spawnHandlerPrefab;

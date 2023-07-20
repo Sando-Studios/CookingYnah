@@ -19,7 +19,7 @@ public class MinorEnemy : Enemy
         home = homeBase;
         enemyDataInstance.Init(enemyID, unitData);
         aggroTrigger.radius = enemyDataInstance.AggroRange;
-        animator.runtimeAnimatorController = enemyDataInstance.Controller;
+        //animator.runtimeAnimatorController = enemyDataInstance.Controller; // THIS IS AN ERROR [DELETE]
 
         MonsterStateManager.Instance.AddMonster(this, new PatrolState(MonsterStateManager.Instance, this));
     }

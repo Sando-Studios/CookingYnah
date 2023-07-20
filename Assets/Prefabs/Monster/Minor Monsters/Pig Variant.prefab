@@ -791,7 +791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b8d116ab2e7d645a5945abde2f6a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: -6023853700537099450}
+  enemy: {fileID: 0}
 --- !u!4 &2948661242518685183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 639792562578276082, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
@@ -818,7 +818,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 639792562889159874, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
   m_PrefabInstance: {fileID: 2309009830958070541}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-6023853700537099450
+--- !u!114 &5732814137350955329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -827,22 +827,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2948661242963824591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c20eed5070a7cb4d8f4edd694f2b1a6, type: 3}
+  m_Script: {fileID: 11500000, guid: c9f88e95ded860d4c943c1d9e3366238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggroTrigger: {fileID: 2948661242963824579}
-  targetUnit: {fileID: 0}
-  hpBarGameObject: {fileID: 2948661243967652019}
+  bossDataInstance: {fileID: 0}
   hpBar: {fileID: 2948661242678750577}
-  animator: {fileID: 8646220747659758080}
   spriteTransform: {fileID: 2948661242518685183}
+  aggroTrigger: {fileID: 2948661242963824579}
+  hpBarGameObject: {fileID: 2948661243967652019}
 --- !u!1 &2948661243967652019 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 639792564022852542, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
-  m_PrefabInstance: {fileID: 2309009830958070541}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8646220747659758080 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6338477555309129997, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
   m_PrefabInstance: {fileID: 2309009830958070541}
   m_PrefabAsset: {fileID: 0}

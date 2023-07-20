@@ -72,10 +72,10 @@ public class Enemy : MonoBehaviour
     }
     public virtual UnitData GetUnitData()
     {
-        if (enemyDataInstance != null) return enemyDataInstance;
         if (bossDataInstance != null) return bossDataInstance;
+        //if (enemyDataInstance != null) return enemyDataInstance;
 
-        return null;
+        return enemyDataInstance;
     }
 
     protected virtual void Death(int id) { }
@@ -100,6 +100,9 @@ public class Enemy : MonoBehaviour
     }
     protected virtual void Update()
     {
+        if (!GetUnitData())
+            return;
+        
         float currentHP = GetUnitData().CurrentHealth;
 
         float normalized = currentHP / maxHealth;

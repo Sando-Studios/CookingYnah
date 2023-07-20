@@ -1,6 +1,5 @@
 using AYellowpaper.SerializedCollections;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -22,8 +21,17 @@ public class ArtifactUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI artifactName;
     [SerializeField] private TextMeshProUGUI artifactDescription;
 
-    public static event Action<int, Artifacts, GameObject> OnArtifactSelected;
+    public static event Action<int, Artifacts, GameObject, int> OnArtifactSelected;
     private int selectedSlot;
+
+    private void OnEnable()
+    {
+        DamageHandler.OnBossUnitDeath += UpdateArtifactProgress;
+    }
+    private void OnDisable()
+    {
+        DamageHandler.OnBossUnitDeath -= UpdateArtifactProgress;
+    }
 
     private void Start()
     {
@@ -36,6 +44,23 @@ public class ArtifactUIHandler : MonoBehaviour
         if (artifactToolTip.activeInHierarchy)
         {
             artifactToolTip.transform.position = Input.mousePosition;
+        }
+    }
+
+    private void UpdateArtifactProgress(Artifacts artifact, string name)
+    {
+        var a = artifact;
+        switch (a)
+        {
+            case Artifacts.Fire_Meatball:
+                progress.UnlockedArtifacts[a] = true;
+                break;
+            case Artifacts.Ground_Wave:
+                progress.UnlockedArtifacts[a] = true;
+                break;
+            case Artifacts.Axe_Slashes:
+                progress.UnlockedArtifacts[a] = true;
+                break;
         }
     }
 
@@ -83,7 +108,7 @@ public class ArtifactUIHandler : MonoBehaviour
         
         if (progress.UnlockedArtifacts[a])
         {
-            OnArtifactSelected?.Invoke(selectedSlot, a, progress.ArtifactDescriptions[a].AbilityPrefab);
+            OnArtifactSelected?.Invoke(selectedSlot, a, progress.ArtifactDescriptions[a].AbilityPrefab, progress.ArtifactDescriptions[a].StaminaCost);
             return;
         }
     }

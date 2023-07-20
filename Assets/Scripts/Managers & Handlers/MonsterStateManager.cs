@@ -15,7 +15,7 @@ public enum MonsterStates
 public class MonsterStateManager : MonoBehaviour
 {
     private static MonsterStateManager instance;
-    private Dictionary<Enemy, MonsterState> monsterStates;
+    private Dictionary<MinorEnemy, MonsterState> monsterStates;
 
     [SerializeField] private bool isAIActive = true;
 
@@ -28,17 +28,17 @@ public class MonsterStateManager : MonoBehaviour
         }
 
         instance = this;
-        monsterStates = new Dictionary<Enemy, MonsterState>();
+        monsterStates = new Dictionary<MinorEnemy, MonsterState>();
     }
 
     public static MonsterStateManager Instance { get { return instance; } }
 
-    public void AddMonster(Enemy enemy, MonsterState initialState)
+    public void AddMonster(MinorEnemy enemy, MonsterState initialState)
     {
         monsterStates.Add(enemy, initialState);
     }
 
-    public void ChangeState(Enemy enemy, MonsterState newState)
+    public void ChangeState(MinorEnemy enemy, MonsterState newState)
     {
         monsterStates[enemy].Exit();
         monsterStates[enemy] = newState;
@@ -49,7 +49,7 @@ public class MonsterStateManager : MonoBehaviour
     {
         if(!isAIActive){ return ; }
 
-        foreach (Enemy enemy in monsterStates.Keys.ToList())
+        foreach (MinorEnemy enemy in monsterStates.Keys.ToList())
         {
             if (enemy == null || enemy.gameObject == null)
             {

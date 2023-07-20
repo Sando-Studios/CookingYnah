@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CowEnemy : Enemy
+public class CowEnemy : MinorEnemy
 {
     [Header("Charge")]
     [SerializeField] private CapsuleCollider capsuleCollider;
@@ -61,7 +61,7 @@ public class CowEnemy : Enemy
                 isCharging = false;
                 capsuleCollider.isTrigger = false;
                 agent.enabled = true;
-                AttackTimer();
+                AttackTimer(enemyDataInstance.AttackSpeed);
                 SetIsAttackDone(true);
             }
             else

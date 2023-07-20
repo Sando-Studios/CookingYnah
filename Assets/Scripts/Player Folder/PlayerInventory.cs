@@ -154,6 +154,7 @@ public class PlayerInventory : MonoBehaviour
             }
         }
 
+        BuffManager.instance.ApplyHeal(result.itemBuffData.HealAmount);
         RemoveItem(result.itemName);
 
         UIManager.instance.UpdateInventoryUI();

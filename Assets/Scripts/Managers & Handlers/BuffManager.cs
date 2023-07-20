@@ -8,6 +8,13 @@ public class BuffManager : MonoBehaviour
     private PlayerUnitData player;
     public GameObject tempEffectHandlerPrefab;
 
+    private Dictionary<TargetStat, int> tempBuffAmountDictionary = new Dictionary<TargetStat, int>
+    {
+        { TargetStat.VitStat, 0 },
+        { TargetStat.StrStat, 0 },
+        { TargetStat.ResStat, 0 },
+    };
+
     private void Awake()
     {
         if (instance == null)
@@ -31,6 +38,7 @@ public class BuffManager : MonoBehaviour
         GameObject clone = Instantiate(tempEffectHandlerPrefab, transform);
         clone.GetComponent<TempEffectHandler>().SetData(stat, value, duration);
 
+        tempBuffAmountDictionary[stat] += value;
     }
 
     public void ApplyBuff(TargetStat stat, int value)
@@ -61,6 +69,8 @@ public class BuffManager : MonoBehaviour
         {
             case TargetStat.VitStat:
                 player.Vitality -= value;
+                GuardMaxHealth();
+                UIManager.instance.UpdateHpUI();
                 break;
             case TargetStat.StrStat:
                 player.Strength -= value;
@@ -73,8 +83,34 @@ public class BuffManager : MonoBehaviour
                 break;
         }
 
+        tempBuffAmountDictionary[stat] -= value;
         UIManager.instance.UpdateStatsUI();
     }
 
+    public void RemoveAllTempBuffs()
+    {
+        player.Vitality -= tempBuffAmountDictionary[TargetStat.VitStat];
+        GuardMaxHealth();
 
+        player.Strength -= tempBuffAmountDictionary[TargetStat.StrStat];
+
+        player.Resilience -= tempBuffAmountDictionary[TargetStat.ResStat];
+    } 
+
+    public void ApplyHeal(int value)
+    {
+        player.CurrentHealth += value;
+
+        GuardMaxHealth();
+
+        UIManager.instance.UpdateHpUI();
+    }
+
+    private void GuardMaxHealth()
+    {
+        if (player.CurrentHealth > player.MaxHealth)
+        {
+            player.CurrentHealth = player.MaxHealth;
+        }
+    }
 }

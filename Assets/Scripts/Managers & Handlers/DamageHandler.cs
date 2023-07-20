@@ -6,15 +6,16 @@ using UnityEngine;
 public static class DamageHandler
 {
     public static event Action<int> OnEnemyUnitDeath;
+    public static event Action<Artifacts, string> OnBossUnitDeath;
     public static event Action<int> OnPlayerUnitDeath;
 
-    // Damaging a Enemy Unit
+    // Damaging a Minor Enemy or Major Enemy Unit
     public static void ApplyDamage(Enemy enemy, int baseDamage, float playerStrength)
     {
-        if (enemy == null) 
+        if (enemy == null)
             return;
 
-        EnemyUnitData unit = enemy.GetEnemyUnitData();
+        UnitData unit = enemy.GetUnitData();
 
         // Damage calculations
         float actualDamage = baseDamage + playerStrength;
@@ -22,14 +23,25 @@ public static class DamageHandler
 
         unit.CurrentHealth -= finalDamage;
         enemy.Hit();
-        enemy.ShowHPBar();
 
         if (unit.CurrentHealth <= 0)
         {
             unit.CurrentHealth = 0;
-            OnEnemyUnitDeath?.Invoke(unit.UnitID);
+
+            if (unit is EnemyUnitData)
+            {
+                EnemyUnitData enemyData = unit as EnemyUnitData;
+                OnEnemyUnitDeath ?.Invoke(enemyData.UnitID);
+            }
+            else if (unit is BossUnitData)
+            {
+                BossUnitData bossData = unit as BossUnitData;
+                OnBossUnitDeath?.Invoke(bossData.Artifact, bossData.UnitName);
+            }
+
         }
     }
+
     // Damaging the Player Unit
     public static void ApplyDamage(Player player, int baseDamage)
     {
@@ -39,7 +51,7 @@ public static class DamageHandler
         PlayerUnitData unit = player.GetPlayerData();
 
         // Damage calculations
-        
+
         float damageReduction = 1 - (1 / (1 + unit.Resilience * unit.ResDiminishingFactor));
 
         float actualDamage = baseDamage * damageReduction;

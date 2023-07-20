@@ -1,7 +1,4 @@
 using AYellowpaper.SerializedCollections;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental;
 using UnityEngine;
 public enum Artifacts
 {
@@ -30,7 +27,7 @@ public class ArtifactHandler : MonoBehaviour
         ArtifactUIHandler.OnArtifactSelected -= SetArtifact;
     }
 
-    public void SetArtifact(int slotNum, Artifacts artifactToSlot, GameObject obj)
+    public void SetArtifact(int slotNum, Artifacts artifactToSlot, GameObject obj, int staminaCost)
     {
         if (CanSlotArtifact(artifactToSlot))
         {
@@ -65,15 +62,15 @@ public class ArtifactHandler : MonoBehaviour
             {
                 case Artifacts.Fire_Meatball:
                     playerGameObject.AddComponent<FireMeatballAbility>();
-                    playerGameObject.GetComponent<FireMeatballAbility>().SetAbilityData(obj, slotNum);
+                    playerGameObject.GetComponent<FireMeatballAbility>().SetAbilityData(obj, slotNum, staminaCost);
                     break;
                 case Artifacts.Ground_Wave:
                     playerGameObject.AddComponent<GroundWaveAbility>();
-                    playerGameObject.GetComponent<GroundWaveAbility>().SetAbilityData(obj, slotNum);
+                    playerGameObject.GetComponent<GroundWaveAbility>().SetAbilityData(obj, slotNum, staminaCost);
                     break;
                 case Artifacts.Axe_Slashes:
                     playerGameObject.AddComponent<OmniSlashAbility>();
-                    playerGameObject.GetComponent<OmniSlashAbility>().SetAbilityData(obj, slotNum);
+                    playerGameObject.GetComponent<OmniSlashAbility>().SetAbilityData(obj, slotNum, staminaCost);
                     break;
             }
         }

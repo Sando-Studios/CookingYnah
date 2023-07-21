@@ -1848,14 +1848,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.41666666
+  - time: 0.43333334
     functionName: AddAttackCount
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.48333332
+  - time: 0.5
     functionName: AttackAnimationEnds
     data: 
     objectReferenceParameter: {fileID: 0}

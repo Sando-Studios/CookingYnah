@@ -13,7 +13,7 @@ public class TurkeyMajorEnemy : MajorEnemy
     }
 
     public void SpawnAttack()
-    {   
+    {
         FireMeatballAbility fireBall = GetComponent<FireMeatballAbility>();
         fireBall.SpawnMeatballMeteor(targetUnit.transform.position, bossDataInstance.SpecialAttackDamage);
 

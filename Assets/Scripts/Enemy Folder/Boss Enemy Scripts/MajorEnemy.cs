@@ -227,6 +227,7 @@ public class MajorEnemy : Enemy
         AttackTimer(bossDataInstance.SpecialAttackSpeed);
         OmniSlashAbility omniSlash = GetComponent<OmniSlashAbility>();
         omniSlash.SpawnBossSlashZone(bossDataInstance.SpecialAttackDamage);
+        SetIsAttackDone(true);
     }
     protected override void Death(Artifacts artifact, string name)
     {

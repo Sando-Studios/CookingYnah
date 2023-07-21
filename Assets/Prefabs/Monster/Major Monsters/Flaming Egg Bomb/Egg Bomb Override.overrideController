@@ -8,4 +8,6 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Egg Bomb Override
   m_Controller: {fileID: 9100000, guid: a7a0e4034ab332b4c96adf3f2a189327, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 4a79f4ff2f5502441bd6b8d47fbc89fb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 992497d4ad071bf4a8f41f8c2e36691e, type: 2}

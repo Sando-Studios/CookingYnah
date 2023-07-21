@@ -6,7 +6,7 @@ public class ChickenAnimationEventsHandler : AnimationEventsHandler
 {
     public void LaunchEgg()
     {
-        ChickenEnemy chickenEnemy = enemy as ChickenEnemy;
+        ChickenEnemy chickenEnemy = GetComponentInParent<ChickenEnemy>();
         chickenEnemy.EnableEggnade();
     }
 }

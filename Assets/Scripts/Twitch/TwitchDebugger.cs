@@ -29,7 +29,7 @@ public class TwitchDebugger : MonoBehaviour
     
     private void OnChat(string msg)
     {
-        var args = msg.Split(" ");
+        var args = msg.Split(" ",2);
         
         if (!outcomes.ContainsKey(args[0])) return;
 

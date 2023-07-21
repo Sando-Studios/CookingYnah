@@ -41,7 +41,9 @@ public class Player : MonoBehaviour
 
         inventory = GetComponent<PlayerInventory>();
 
-        UIManager.instance.UpdateHpUI();
+        playerUnitData.CurrentHealth = playerUnitData.MaxHealth;
+        
+        UIManager.instance.UpdateHpBarUI();
         BuffManager.instance.SetPlayer(playerUnitData);
 
         if (SceneChangeManager.instance.GetObjectToLoad() != gameObject) { Destroy(gameObject); }

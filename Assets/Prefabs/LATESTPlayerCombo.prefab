@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 9
+  m_VersionIndex: 12
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1836,6 +1836,9 @@ GameObject:
   - component: {fileID: 8717946974269995697}
   - component: {fileID: 8717946974269995696}
   - component: {fileID: 8717946974269995699}
+  - component: {fileID: 1426414671}
+  - component: {fileID: 1426414672}
+  - component: {fileID: 1426414673}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -1983,13 +1986,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 504390270968948442, guid: 3a92f30a24af2f846b5c86434c54845f, type: 3}
   slotNum: 1
-  staminaCost: 30
+  staminaCost: 80
   delay: 2
   heightOffSet: 4
   ballsInOrbit: 2
   rotationSpeed: 50
   orbitDistance: 5
   orbitDuration: 60
+--- !u!114 &1426414671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717946974269995710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557028ae6124f3b4a9f3e6171d96f110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1426414672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717946974269995710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2d577924e9b4146b56915236ee2baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regenInterval: 0.3
+  regenAmount: 1
+--- !u!114 &1426414673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8717946974269995710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f02836b9ceef74d8b9f6d0991f7eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healInterval: 7
+  healAmount: 1
 --- !u!1 &8717946974271416198
 GameObject:
   m_ObjectHideFlags: 0

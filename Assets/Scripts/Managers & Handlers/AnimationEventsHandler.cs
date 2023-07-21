@@ -17,4 +17,20 @@ public class AnimationEventsHandler : MonoBehaviour
         goatEnemy.StartWave();
         goatEnemy.SetIsAttackDone(true);
     }
+    public void TriggerBall()
+    {
+        TurkeyMajorEnemy turkeyEnemy = transform.parent.GetComponent<TurkeyMajorEnemy>();
+        turkeyEnemy.SpawnAttack();
+    }
+
+    public void AddAttackCount()
+    {
+        MajorEnemy majorEnemy = transform.parent.GetComponent<MajorEnemy>();
+
+        majorEnemy.AddToAttackCount(1);
+    }
+    public void OnExplosionEnd()
+    {
+        transform.parent.parent.GetComponent<Meteor>().OnExplode();
+    }
 }

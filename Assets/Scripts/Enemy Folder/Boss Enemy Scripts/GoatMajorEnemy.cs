@@ -71,6 +71,7 @@ public class GoatMajorEnemy : MajorEnemy
                 GetComponent<CapsuleCollider>().isTrigger = false;
                 agent.enabled = true;
                 AttackTimer(bossDataInstance.BasicAttackSpeed);
+                AddToAttackCount(1);
                 SetIsAttackDone(true);
             }
             else

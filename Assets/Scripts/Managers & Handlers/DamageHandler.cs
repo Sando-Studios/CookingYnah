@@ -59,7 +59,7 @@ public static class DamageHandler
 
         unit.CurrentHealth -= finalDamage;
 
-        UIManager.instance.UpdateHpUI();
+        //UIManager.instance.UpdateHpUI();
         //Play Damage animation/sfx
 
 

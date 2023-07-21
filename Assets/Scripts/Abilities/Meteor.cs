@@ -49,12 +49,17 @@ public class Meteor : MonoBehaviour
 
     private void Explode()
     {
-        // Animations
+        Animator animator = GetComponentInChildren<Animator>();
 
+        animator.SetBool("isExploding", true);
 
         move = false;
+    }
+
+    public void OnExplode()
+    {
         gameObject.transform.position = gameObject.transform.position + Vector3.down * 10;
-        Destroy(gameObject, 3.0f);
+        Destroy(gameObject, 1.0f);
     }
 
     private void OnTriggerEnter(Collider other)

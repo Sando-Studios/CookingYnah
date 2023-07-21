@@ -36,6 +36,7 @@ public class MajorEnemy : Enemy
     {
         return GetUnitData() as BossUnitData;
     }
+    public BossState GetBossState() { return currentState; }
 
     public void SetPlayerStatus(bool isPlayerInArea, GameObject playerObj)
     {
@@ -130,11 +131,8 @@ public class MajorEnemy : Enemy
         }
         else if (distanceToTarget <= bossDataInstance.AttackRange && GetCanAttack())
         {
-            attackCount++;
-
             if (attackCount % 4 == 0 && attackCount > 0)
             {
-                attackCount = 0;
                 TransitionToState(BossState.SpecialAttack);
                 return;
             }
@@ -149,6 +147,14 @@ public class MajorEnemy : Enemy
 
     private void BasicAttackBehavior()
     {
+        float distanceToTarget = Vector3.Distance(transform.position, GetTargetUnit().transform.position);
+
+        if (distanceToTarget > bossDataInstance.AttackRange)
+        {
+            TransitionToState(BossState.InCombat);
+            return;
+        }
+
         if (GetCanAttack())
         {
             StartAttack();
@@ -163,6 +169,14 @@ public class MajorEnemy : Enemy
     }
     private void SpecialAttackBehavior()
     {
+        float distanceToTarget = Vector3.Distance(transform.position, GetTargetUnit().transform.position);
+
+        if (distanceToTarget > bossDataInstance.AttackRange)
+        {
+            TransitionToState(BossState.InCombat);
+            return;
+        }
+
         if (GetCanAttack())
         {
             StartAttack();
@@ -196,7 +210,6 @@ public class MajorEnemy : Enemy
         spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
 
         AttackTimer(bossDataInstance.BasicAttackSpeed);
-        SetIsAttackDone(true);
         DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
     }
 
@@ -205,7 +218,6 @@ public class MajorEnemy : Enemy
         AttackTimer(bossDataInstance.SpecialAttackSpeed);
         OmniSlashAbility omniSlash = GetComponent<OmniSlashAbility>();
         omniSlash.SpawnBossSlashZone(bossDataInstance.SpecialAttackDamage);
-        SetIsAttackDone(true);
     }
     protected override void Death(Artifacts artifact, string name)
     {
@@ -223,6 +235,11 @@ public class MajorEnemy : Enemy
 
         Destroy(gameObject, 3.0f);
         bossDataInstance.SetHealthToDefault();
+    }
+
+    public void AddToAttackCount(int value)
+    {
+        attackCount += value;
     }
 
     public virtual void ControlAnimations(BossState state, bool isPlaying)
@@ -285,6 +302,7 @@ public class MajorEnemy : Enemy
                 ControlAnimations(currentState, true);
                 break;
             case BossState.SpecialAttack:
+                attackCount = 0;
                 ControlAnimations(currentState, true);
                 break;
             case BossState.InCombat:
@@ -328,7 +346,7 @@ public class MajorEnemy : Enemy
             case BossState.Chase:
                 ControlAnimations(currentState, false);
                 break;
-                default:
+            default:
                 break;
         }
     }

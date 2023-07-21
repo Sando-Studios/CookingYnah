@@ -6350,6 +6350,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2309083520152259367, guid: d115c13add03769439f8f143d542dcd4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13.400024
+      objectReference: {fileID: 0}
     - target: {fileID: 2309083521025669717, guid: d115c13add03769439f8f143d542dcd4, type: 3}
       propertyPath: m_Name
       value: Apo-cal-lo-cal-ypse Boss Variant
@@ -6400,7 +6404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3793102389413240413, guid: d115c13add03769439f8f143d542dcd4, type: 3}
       propertyPath: heightOffSet
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7880485675041383789, guid: d115c13add03769439f8f143d542dcd4, type: 3}
       propertyPath: m_WasSpriteAssigned

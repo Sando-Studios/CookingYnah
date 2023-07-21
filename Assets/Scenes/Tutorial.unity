@@ -3114,7 +3114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292555737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.18, y: 0, z: 17.57}
+  m_LocalPosition: {x: -1.18, y: 0, z: 37.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12961,7 +12961,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2091110994}
   m_HandleRect: {fileID: 2091110993}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 1.0000002
   m_Size: 0.5691367
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -13285,7 +13285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277783609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.27, y: 0.73, z: 69.5}
+  m_LocalPosition: {x: -22.19, y: 0.73, z: 71.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17077,6 +17077,7 @@ MonoBehaviour:
   craftingItemParent: {fileID: 1014451399}
   crafter: {fileID: 2094011490}
   craftingPopup: {fileID: 1677090081}
+  _craftingTutorial: {fileID: 0}
 --- !u!4 &1520294058
 Transform:
   m_ObjectHideFlags: 0
@@ -19997,6 +19998,50 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1824473869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1824473870}
+  - component: {fileID: 1824473871}
+  m_Layer: 0
+  m_Name: TutorialM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1824473870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824473869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2007437306}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1824473871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824473869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd95f744bc86e74bb92191edce316ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1830776298
 GameObject:
   m_ObjectHideFlags: 0
@@ -22028,6 +22073,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2007437306}
+  - component: {fileID: 2007437307}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -22055,9 +22101,32 @@ Transform:
   - {fileID: 605186112}
   - {fileID: 674145246}
   - {fileID: 1726380532}
+  - {fileID: 1824473870}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2007437307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007437305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb90c1374c465f841a0145bef0572e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Colliders:
+    _serializedList:
+    - Key: pot
+      Value: {fileID: 1277783613}
+    - Key: potSphere
+      Value: {fileID: 1277783614}
+  objects:
+    _serializedList:
+    - Key: tutorialTrigger
+      Value: {fileID: 1453894028}
 --- !u!1 &2007465840
 GameObject:
   m_ObjectHideFlags: 0
@@ -23422,7 +23491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2094011489
 RectTransform:
   m_ObjectHideFlags: 0

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -61,13 +60,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject craftingItemParent;
     [SerializeField] private Crafting.Crafter crafter;
     [SerializeField] private GameObject craftingPopup;
-
-
+    [SerializeField] private CraftingTutorial _craftingTutorial;
+    public bool craftingBtnBlock = false;
 
     private void Start()
     {
         playerData = player.GetPlayerData();
         playerInventory = player.GetInventory();
+    }
+
+    public void CraftingStartTutorialSequence()
+    {
+        _craftingTutorial.StartSequences();
     }
 
     private void Update()
@@ -77,7 +81,7 @@ public class UIManager : MonoBehaviour
             itemPanel.SetActive(!itemPanel.activeInHierarchy);
             UpdateInventoryUI();
         }
-        if (Input.GetButtonDown("Crafting") && player.GetNearStation())
+        if (Input.GetButtonDown("Crafting") && player.GetNearStation() && !craftingBtnBlock)
         {
             ToggleCraftingPanel();
         }

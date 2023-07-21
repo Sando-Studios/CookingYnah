@@ -10,6 +10,8 @@ public class EnvironmentRef : MonoBehaviour
 
     public SerializedDictionary<string, Collider> Colliders;
 
+    public SerializedDictionary<string, GameObject> objects;
+
     // Start is called before the first frame update
     void Awake()
     {

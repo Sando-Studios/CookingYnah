@@ -10,11 +10,15 @@ public class CraftingTutorial : MonoBehaviour
 
     [SerializeField] private RectTransform popUp;
 
-    public void Setup()
+    public void Start()
     {
         var tt = popUp.GetComponent<ToolTipAdapter>();
 
-        _controller.AddSequence(new ToolTipSequence(_controller, tt, "test"))
+        _controller.AddSequence(new CustomSequence(_controller, (sequence, o) =>
+            {
+                Debug.Log("test");
+                sequence.SetStatus(true);
+            }))
             .AddSequence(new WaitSequence(_controller, 2f))
             .AddSequence(new ToolTipSequence(_controller, tt, "huh"))
             .AddSequence(new CustomSequence(_controller, (sequence, o) =>
@@ -29,8 +33,17 @@ public class CraftingTutorial : MonoBehaviour
             {
                 UIManager.instance.player.EnableInputs();
                 UIManager.instance.ForceCloseCraftingPanel();
+                UIManager.instance.craftingBtnBlock = false;
                 sequence.SetStatus(true);
+                
+                Reset();
             }));
+    }
+
+    public void Reset()
+    {
+        _controller.Clear();
+        Start();
     }
 
     public void StartSequences()

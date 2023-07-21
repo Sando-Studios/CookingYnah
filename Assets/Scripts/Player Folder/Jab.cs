@@ -29,7 +29,7 @@ public class Jab : MonoBehaviour
     
     internal uint internalCounter = 0;
 
-    private void Start()
+    public void Start()
     {
         if (EnvironmentRef.Instance == null) return;
         

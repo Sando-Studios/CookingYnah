@@ -49,14 +49,17 @@ public class FireMeatballAbility : ArtifactAbility
 
     public async void SpawnMeatballMeteor(Vector3 targetPos, float damage)
     {
+        if (GetComponent<MajorEnemy>().GetBossState() != BossState.SpecialAttack) return;
+
         Vector3 spawnPosition = transform.position + Vector3.up * heightOffSet;
         GameObject clone = SpawnSingleMeatball(spawnPosition);
         Meteor objectMovement = clone.GetComponent<Meteor>();
-        objectMovement.SetTarget(targetPos);
-        objectMovement.SetDamageValue(damage); 
+        objectMovement.SetDamageValue(damage);
+        objectMovement.gameObject.transform.localScale += Vector3.one;
 
         await new WaitForSeconds(delay);
 
+        objectMovement.SetTarget(targetPos);
         objectMovement.TriggerMove();
     }
 

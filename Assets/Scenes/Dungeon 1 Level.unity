@@ -2321,7 +2321,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 10
+=======
+  m_RootOrder: 9
+>>>>>>> feature/Adding_Bosses
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &266687795 stripped
 Transform:
@@ -6350,13 +6354,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2309083520152259367, guid: d115c13add03769439f8f143d542dcd4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13.400024
+      objectReference: {fileID: 0}
     - target: {fileID: 2309083521025669717, guid: d115c13add03769439f8f143d542dcd4, type: 3}
       propertyPath: m_Name
       value: Apo-cal-lo-cal-ypse Boss Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2309083521025669720, guid: d115c13add03769439f8f143d542dcd4, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2309083521025669720, guid: d115c13add03769439f8f143d542dcd4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6400,7 +6408,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3793102389413240413, guid: d115c13add03769439f8f143d542dcd4, type: 3}
       propertyPath: heightOffSet
+<<<<<<< HEAD
       value: 7
+=======
+      value: 8
+>>>>>>> feature/Adding_Bosses
       objectReference: {fileID: 0}
     - target: {fileID: 7880485675041383789, guid: d115c13add03769439f8f143d542dcd4, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -9097,7 +9109,11 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_Name: pb_Mesh31318
+=======
+  m_Name: pb_Mesh160280
+>>>>>>> feature/Adding_Bosses
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

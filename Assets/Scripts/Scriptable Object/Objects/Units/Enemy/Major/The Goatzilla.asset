@@ -21,5 +21,5 @@ MonoBehaviour:
   basicAttackSpeed: 2
   specialAttackSpeed: 2
   stunnedDuration: 5
-  attackRange: 4
+  attackRange: 5
   artifact: 2

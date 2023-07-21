@@ -20,7 +20,7 @@ MonoBehaviour:
     _serializedList:
     - Key: {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
       Value: 1
-  basicAttackDmg: 0
+  basicAttackDmg: 3
   wanderSpeed: 5
   chaseSpeed: 7
   attackSpeed: 4

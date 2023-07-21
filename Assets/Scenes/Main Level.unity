@@ -12572,7 +12572,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh122340
+  m_Name: pb_Mesh46294
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15386,7 +15386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1426414665}
   hpText: {fileID: 1049016535}
-  hpBarImage: {fileID: 0}
+  hpBarImage: {fileID: 314959106}
   staminaBarImage: {fileID: 0}
   statsPanel: {fileID: 1829157586}
   characterImage: {fileID: 1374682407}
@@ -16179,6 +16179,9 @@ GameObject:
   - component: {fileID: 1426414668}
   - component: {fileID: 1426414669}
   - component: {fileID: 1426414670}
+  - component: {fileID: 1426414673}
+  - component: {fileID: 1426414672}
+  - component: {fileID: 1426414671}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -16333,6 +16336,46 @@ MonoBehaviour:
   rotationSpeed: 50
   orbitDistance: 5
   orbitDuration: 60
+--- !u!114 &1426414671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426414659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557028ae6124f3b4a9f3e6171d96f110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1426414672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426414659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2d577924e9b4146b56915236ee2baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regenInterval: 0.3
+  regenAmount: 1
+--- !u!114 &1426414673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426414659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f02836b9ceef74d8b9f6d0991f7eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healInterval: 10
+  healAmount: 1
 --- !u!1 &1426600143
 GameObject:
   m_ObjectHideFlags: 0

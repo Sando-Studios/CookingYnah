@@ -2059,6 +2059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Main Level
   canUse: 1
+  blockObject: {fileID: 0}
 --- !u!114 &374533362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2148,7 +2149,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh225668
+  m_Name: pb_Mesh78022
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4400,6 +4401,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3213304174927988504, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3993578098640034546, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379911224666930360, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379911224666930360, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379911224666930360, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379911224666930360, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379911224666930360, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379911224666930360, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379911224666930360, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577019809968816305, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8005447189695290534, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -8516,6 +8557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Main Level
   canUse: 0
+  blockObject: {fileID: 0}
 --- !u!114 &1668204057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8606,7 +8648,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc8aab87485c9e43b18cc35e4eb7c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledColor: {r: 0.31764707, g: 0.31764707, b: 0.31764707, a: 1}
 --- !u!1001 &1671771833
 PrefabInstance:
   m_ObjectHideFlags: 0

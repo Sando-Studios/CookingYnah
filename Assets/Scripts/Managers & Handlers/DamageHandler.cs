@@ -63,7 +63,7 @@ public static class DamageHandler
 
         unit.CurrentHealth -= finalDamage;
 
-        Debug.Log($"Ynah's health: {unit.CurrentHealth}");
+        //Debug.Log($"Ynah's health: {unit.CurrentHealth}");
 
         //UIManager.instance.UpdateHpUI();
         UIManager.instance.UpdateHpBarUI();

@@ -1,3 +1,4 @@
+using System;
 using Asyncoroutine;
 using TMPro;
 using UnityEngine;
@@ -15,12 +16,27 @@ public enum BossState
 }
 public class MajorEnemy : Enemy
 {
+    protected override void Death(int id)
+    {
+        throw new InvalidOperationException("This should never happen btw");
+    }
+
     [Header("Boss Name")]
     [SerializeField] private TextMeshProUGUI bossNameText;
     private BossState currentState;
 
     private bool isPlayerInRoom = false;
     private Vector3 targetPos;
+
+    protected override void OnEnable()
+    {
+        DamageHandler.OnBossUnitDeath += Death;
+    }
+
+    protected override void OnDisable()
+    {
+        DamageHandler.OnBossUnitDeath -= Death;
+    }
 
     protected override void Start()
     {

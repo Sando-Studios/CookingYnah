@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private ParticleSystem attackParticle;
 
+    private bool movementEnabled = true;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour
             Attack();
         }
 
+        if (!movementEnabled) return;
 
         if (Input.GetButton("Horizontal"))
         {
@@ -69,6 +72,16 @@ public class Player : MonoBehaviour
         }
 
         AnimateMovement();
+    }
+
+    public void EnableInputs()
+    {
+        movementEnabled = true;
+    }
+
+    public void DisableInputs()
+    {
+        movementEnabled = false;
     }
 
     private void OnTriggerEnter(Collider other)

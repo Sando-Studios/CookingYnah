@@ -49,4 +49,9 @@ public class ChickenEnemy : MinorEnemy
             spawnedEgg = clone;
         }
     }
+
+    protected override void Death(int id)
+    {
+        base.Death(id);
+    }
 }

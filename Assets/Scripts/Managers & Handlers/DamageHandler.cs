@@ -23,6 +23,8 @@ public static class DamageHandler
 
         unit.CurrentHealth -= finalDamage;
         enemy.Hit();
+        
+        //Debug.Log(unit.CurrentHealth);
 
         if (unit.CurrentHealth <= 0)
         {

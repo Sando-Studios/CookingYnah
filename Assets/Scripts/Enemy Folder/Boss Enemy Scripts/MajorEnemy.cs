@@ -147,14 +147,6 @@ public class MajorEnemy : Enemy
 
     private void BasicAttackBehavior()
     {
-        float distanceToTarget = Vector3.Distance(transform.position, GetTargetUnit().transform.position);
-
-        if (distanceToTarget > bossDataInstance.AttackRange)
-        {
-            TransitionToState(BossState.InCombat);
-            return;
-        }
-
         if (GetCanAttack())
         {
             StartAttack();
@@ -169,14 +161,6 @@ public class MajorEnemy : Enemy
     }
     private void SpecialAttackBehavior()
     {
-        float distanceToTarget = Vector3.Distance(transform.position, GetTargetUnit().transform.position);
-
-        if (distanceToTarget > bossDataInstance.AttackRange)
-        {
-            TransitionToState(BossState.InCombat);
-            return;
-        }
-
         if (GetCanAttack())
         {
             StartAttack();
@@ -210,7 +194,16 @@ public class MajorEnemy : Enemy
         spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
 
         AttackTimer(bossDataInstance.BasicAttackSpeed);
-        DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
+    }
+
+    public void CheckBasicAttackHit()
+    {
+        float distanceToTarget = Vector3.Distance(transform.position, GetTargetUnit().transform.position);
+
+        if (distanceToTarget <= bossDataInstance.AttackRange)
+        {
+            DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
+        }
     }
 
     public virtual void ExecuteSpecialAttack()

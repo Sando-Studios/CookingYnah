@@ -11,6 +11,12 @@ public class AnimationEventsHandler : MonoBehaviour
         enemy.SetIsAttackDone(true);
     }
 
+    public void TriggerHitCheck()
+    {
+        MajorEnemy majorEnemy = transform.parent.GetComponent<MajorEnemy>();
+
+        majorEnemy.CheckBasicAttackHit();
+    }
     public void TriggerWave()
     {
         GoatMajorEnemy goatEnemy = transform.parent.GetComponent<GoatMajorEnemy>();

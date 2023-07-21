@@ -712,7 +712,7 @@ Transform:
   - {fileID: 568390340}
   - {fileID: 1639607193}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &81926014
 PrefabInstance:
@@ -2321,7 +2321,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 10
+=======
+  m_RootOrder: 9
+>>>>>>> feature/Adding_Bosses
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &266687795 stripped
 Transform:
@@ -6404,7 +6408,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3793102389413240413, guid: d115c13add03769439f8f143d542dcd4, type: 3}
       propertyPath: heightOffSet
+<<<<<<< HEAD
       value: 7
+=======
+      value: 8
+>>>>>>> feature/Adding_Bosses
       objectReference: {fileID: 0}
     - target: {fileID: 7880485675041383789, guid: d115c13add03769439f8f143d542dcd4, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -8942,7 +8950,7 @@ Transform:
   - {fileID: 1104506695}
   - {fileID: 1795369640}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1192163505
 GameObject:
@@ -9101,7 +9109,11 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_Name: pb_Mesh31318
+=======
+  m_Name: pb_Mesh160280
+>>>>>>> feature/Adding_Bosses
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -37403,10 +37415,6 @@ PrefabInstance:
     - target: {fileID: 8165699254801703424, guid: d7a1b2799912b084990aadf2eb7c9c69, type: 3}
       propertyPath: m_Name
       value: Player Camera Combo
-      objectReference: {fileID: 0}
-    - target: {fileID: 8165699254801703424, guid: d7a1b2799912b084990aadf2eb7c9c69, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7a1b2799912b084990aadf2eb7c9c69, type: 3}

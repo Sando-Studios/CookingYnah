@@ -64,7 +64,10 @@ public static class DamageHandler
         Debug.Log($"Ynah's health: {unit.CurrentHealth}");
 
         //UIManager.instance.UpdateHpUI();
+<<<<<<< HEAD
         UIManager.instance.UpdateHpBarUI();
+=======
+>>>>>>> feature/Adding_Bosses
         //Play Damage animation/sfx
 
 

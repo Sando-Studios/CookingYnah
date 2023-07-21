@@ -6,23 +6,16 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Goat Override Controller
+  m_Name: Goat Controller
   m_Controller: {fileID: 9100000, guid: 54e5bf4615cddba46b93bd22c2ba94f7, type: 2}
   m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 59fad7f6c7d81184abc96720b965abd8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d4e72453c01bce74685581ae7337fdf6, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 8185a2c090f052042a46ddebec3bc2a9, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 23b2fbb07ebce7e44b05dfcd1f6b9b0d, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 59fad7f6c7d81184abc96720b965abd8, type: 2}
-<<<<<<< HEAD
-    m_OverrideClip: {fileID: 7400000, guid: a14ea343a63db194bbe917a2ea778d26, type: 2}
-=======
-    m_OverrideClip: {fileID: 7400000, guid: d4e72453c01bce74685581ae7337fdf6, type: 2}
->>>>>>> feature/Adding_Bosses
+  - m_OriginalClip: {fileID: 7400000, guid: ded6c4ba8fabe844a82a148f01aece48, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: facd9bc9b95670c4ab164f312213d913, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: aee7e61fcbc132b4eac9a175417e3231, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 3bcc6b4d7518f9f4e8e02193d1909e2f, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: a3d240b769d8ec441b08669bc9eb6625, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: facd9bc9b95670c4ab164f312213d913, type: 2}
-<<<<<<< HEAD
-=======
   - m_OriginalClip: {fileID: 7400000, guid: 5a9da93df40a57743be29b168dcb310f, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: a14ea343a63db194bbe917a2ea778d26, type: 2}
->>>>>>> feature/Adding_Bosses

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Egg Bomb Override
+  m_Controller: {fileID: 9100000, guid: a7a0e4034ab332b4c96adf3f2a189327, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 4a79f4ff2f5502441bd6b8d47fbc89fb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 992497d4ad071bf4a8f41f8c2e36691e, type: 2}
+<<<<<<< HEAD
+=======
+  - m_OriginalClip: {fileID: 7400000, guid: 128e286f3a08b1e489d0191b30e10201, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4c80f9c88f21c934799f00987a4bf23a, type: 2}
+>>>>>>> feature/Adding_Bosses

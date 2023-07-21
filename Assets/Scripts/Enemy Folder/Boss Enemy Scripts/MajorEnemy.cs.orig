@@ -147,6 +147,11 @@ public class MajorEnemy : Enemy
         }
         else if (distanceToTarget <= bossDataInstance.AttackRange && GetCanAttack())
         {
+<<<<<<< HEAD
+            attackCount++;
+
+=======
+>>>>>>> feature/Adding_Bosses
             if (attackCount % 4 == 0 && attackCount > 0)
             {
                 TransitionToState(BossState.SpecialAttack);

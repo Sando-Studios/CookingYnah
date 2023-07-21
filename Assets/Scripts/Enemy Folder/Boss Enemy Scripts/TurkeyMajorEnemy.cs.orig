@@ -18,6 +18,10 @@ public class TurkeyMajorEnemy : MajorEnemy
         fireBall.SpawnMeatballMeteor(targetUnit.transform.position, bossDataInstance.SpecialAttackDamage);
 
         AttackTimer(bossDataInstance.SpecialAttackSpeed);
+<<<<<<< HEAD
+
+=======
+>>>>>>> feature/Adding_Bosses
     }
 
 }

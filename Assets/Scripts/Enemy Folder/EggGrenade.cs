@@ -15,6 +15,8 @@ public class EggGrenade : MonoBehaviour
 
     public static Action<int> OnEggnadeExplode;
 
+    private Player playerUse;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Floor") && !isOnFloor && !other.isTrigger)
@@ -25,10 +27,18 @@ public class EggGrenade : MonoBehaviour
             ExplosionTimer();
         }
 
-        if (other.CompareTag("Player") && isOnFloor && isExploding && !other.isTrigger)
+        if (other.CompareTag("Player") && !other.isTrigger)
         {
-            DamageHandler.ApplyDamage(other.GetComponent<Player>(), explosionDamage);
+            playerUse = other.GetComponent<Player>();
 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") && !other.isTrigger)
+        {
+            playerUse = null;
         }
     }
 
@@ -40,9 +50,10 @@ public class EggGrenade : MonoBehaviour
 
     private async void ExplosionTimer()
     {
-        await new WaitForSeconds(4.0f);
-        isExploding = true;
         GetComponent<SphereCollider>().radius = explosionRadius;
+        await new WaitForSeconds(4.0f);
+        DamageHandler.ApplyDamage(playerUse, explosionDamage);
+        isExploding = true;
         animator.SetBool("isExploding", isExploding);
            
     }

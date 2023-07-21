@@ -6372,6 +6372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apo-cal-lo-cal-ypse Boss Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2309083521025669717, guid: d115c13add03769439f8f143d542dcd4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2309083521025669720, guid: d115c13add03769439f8f143d542dcd4, type: 3}
       propertyPath: m_RootOrder
       value: 8

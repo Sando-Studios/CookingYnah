@@ -7,6 +7,7 @@ public class AnimationEventsHandler : MonoBehaviour
     [SerializeField] protected Enemy enemy;
     public virtual void AttackAnimationEnds()
     {
+        enemy = transform.parent.GetComponent<Enemy>();
         enemy.SetIsAttackDone(true);
     }
 }

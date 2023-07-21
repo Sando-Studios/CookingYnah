@@ -22,6 +22,12 @@ public class LevelMaskHandler : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (scene.name == "Main Level")
+        {
+            mask.SetActive(false);
+            return;
+        }
+
         if (maskObject == null)
             maskObject = GameObject.FindGameObjectWithTag("Floor");
         

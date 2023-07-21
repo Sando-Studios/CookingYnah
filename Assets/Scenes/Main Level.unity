@@ -2216,7 +2216,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh265302
+  m_Name: pb_Mesh31874
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7448,7 +7448,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh265774
+  m_Name: pb_Mesh32348
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11266,7 +11266,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-540714
+  m_Name: pb_Mesh-4112
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -23560,6 +23560,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 570816246966626922, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8717946972995786069, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: near clip plane
       value: 0.001
@@ -23578,7 +23582,7 @@ PrefabInstance:
       objectReference: {fileID: 1145192673}
     - target: {fileID: 8717946973411942258, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_VersionIndex
-      value: 18
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 8717946973808364185, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_Name
@@ -23627,6 +23631,10 @@ PrefabInstance:
     - target: {fileID: 8717946973808364187, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717946973929622361, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}

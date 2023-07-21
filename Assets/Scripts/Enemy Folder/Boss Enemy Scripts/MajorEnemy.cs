@@ -42,6 +42,7 @@ public class MajorEnemy : Enemy
     {
         base.Start();
         bossNameText.text = bossDataInstance.UnitName;
+        bossNameText.gameObject.SetActive(false);
         hpBar.transform.parent.gameObject.SetActive(false);
         home = transform.position;
         bossDataInstance.SetHealthToDefault();
@@ -58,6 +59,7 @@ public class MajorEnemy : Enemy
     {
         isPlayerInRoom = isPlayerInArea;
         targetUnit = playerObj;
+        bossNameText.gameObject.SetActive(isPlayerInArea);
         hpBar.transform.parent.gameObject.SetActive(isPlayerInArea);
     }
 

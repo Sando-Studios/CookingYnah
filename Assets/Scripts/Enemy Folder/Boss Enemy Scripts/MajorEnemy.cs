@@ -132,7 +132,7 @@ public class MajorEnemy : Enemy
         {
             attackCount++;
 
-            if (attackCount % 4 == 0)
+            if (attackCount % 4 == 0 && attackCount > 0)
             {
                 attackCount = 0;
                 TransitionToState(BossState.SpecialAttack);

@@ -1338,7 +1338,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 139955342}
-  - component: {fileID: 139955344}
   - component: {fileID: 139955343}
   m_Layer: 0
   m_Name: Debugger
@@ -1377,20 +1376,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 140978805}
   _progress: {fileID: 11400000, guid: 7560c4903e005844b9c9c40fcf0c9ea4, type: 2}
---- !u!114 &139955344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139955341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45ec445fea0bd4d40a23923715e3e4a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outcomes:
-    _serializedList: []
 --- !u!1 &140978805
 GameObject:
   m_ObjectHideFlags: 0

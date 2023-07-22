@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafc290cc78e0f541bc6dd37190ea6cc, type: 3}
   m_Name: Onion Porkchop Meal
   m_EditorClassIdentifier: 
-  itemName: Pork Chops with Caramelized Onions
+  itemName: Onion Porkchop
   itemSprite: {fileID: 21300000, guid: 504172d57f0c5604fa8f6a74b567a936, type: 3}
   PermaBuffDictionary:
     _serializedList:

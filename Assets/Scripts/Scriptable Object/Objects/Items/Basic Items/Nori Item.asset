@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Nori Item
   m_EditorClassIdentifier: 
   itemName: Nori
-  itemSprite: {fileID: 21300000, guid: 30954956f207df941b723b4d5eee65ba, type: 3}
+  itemSprite: {fileID: 21300000, guid: 144b3330f9f8b494baf0b2f6e8f2b853, type: 3}
   PermaBuffDictionary:
     _serializedList: []
   tempBuffDuration: 120

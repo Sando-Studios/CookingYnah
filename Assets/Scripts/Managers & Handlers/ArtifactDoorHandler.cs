@@ -15,7 +15,7 @@ public class ArtifactDoorHandler : MonoBehaviour
     private bool isComplete = false;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         foreach (var artifact in artifactProgress.UnlockedArtifacts)
         {

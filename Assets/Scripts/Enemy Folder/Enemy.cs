@@ -31,7 +31,6 @@ public abstract class Enemy : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
-    //[Tooltip("Name is all possible ways the audio clip can be used (ie.[for general use] 'Chase Combat Hurt' can be called by Chase State, Combat State or when enemy is Hurt, or [for specific use] 'SpecialA Stomp' can be called specifically) ")]
     [SerializeField] private SerializedDictionary<string, AudioClip> nameClipDictionary = new SerializedDictionary<string, AudioClip>();
 
     protected NavMeshAgent agent;

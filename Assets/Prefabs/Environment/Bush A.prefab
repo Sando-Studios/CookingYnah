@@ -128,7 +128,7 @@ SortingGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8493895067829270338}
-  m_Enabled: 1
+  m_Enabled: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b993ef199e81ff4883322f4a54ffb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1790217375170464753}
   clips:
   - {fileID: 8300000, guid: 9f284c0e84d3a124ab1ef0bc3dfc5dea, type: 3}
   - {fileID: 8300000, guid: 50eea12b4c8ff134aa661793bc99cca8, type: 3}
@@ -185,8 +185,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.22774063
-  MaxDistance: 12.830694
+  MinDistance: 0.1
+  MaxDistance: 12
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

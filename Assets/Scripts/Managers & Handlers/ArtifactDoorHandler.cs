@@ -14,6 +14,9 @@ public class ArtifactDoorHandler : MonoBehaviour
     [SerializeField] private GameObject doorObject;
     private bool isComplete = false;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,7 @@ public class ArtifactDoorHandler : MonoBehaviour
         if (unlockedArtifactCount >= 3)
         {
             isComplete = true;
+            audioSource.Play();
         }
     }
 

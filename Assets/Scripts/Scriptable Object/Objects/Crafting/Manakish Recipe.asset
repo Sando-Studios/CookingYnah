@@ -15,8 +15,8 @@ MonoBehaviour:
   slots:
   - {fileID: 11400000, guid: 4b1d4d53d079c564baae68a531ebcd91, type: 2}
   - {fileID: 11400000, guid: 489d256cecb1c934580dcfef30940494, type: 2}
+  - {fileID: 11400000, guid: cced8b6db43444b47a1eaa06fd302c9c, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 11400000, guid: be6fd282ddc66f54dbe292d7969e178f, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   output: {fileID: 11400000, guid: c377ca61b8dc34945843c36555b7b5ff, type: 2}

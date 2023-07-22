@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] private PlayerInventory inventory;
 
-    public bool isAtCookingStation = false;
+    private bool isAtCookingStation = false;
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
@@ -42,7 +42,8 @@ public class Player : MonoBehaviour
         inventory = GetComponent<PlayerInventory>();
 
         playerUnitData.CurrentHealth = playerUnitData.MaxHealth;
-        
+        playerUnitData.CurrentStamina = playerUnitData.MaxStamina;
+
         UIManager.instance.UpdateHpBarUI();
         BuffManager.instance.SetPlayer(playerUnitData);
 
@@ -84,6 +85,26 @@ public class Player : MonoBehaviour
     public void DisableInputs()
     {
         movementEnabled = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Cook Station"))
+        {
+            isAtCookingStation = true;
+            UIManager.instance.SetCraftingPopUp();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.CompareTag("Cook Station"))
+        {
+            isAtCookingStation = false;
+            UIManager.instance.SetCraftingPopUp();
+        }
     }
 
     public bool GetNearStation()

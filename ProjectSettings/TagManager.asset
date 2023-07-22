@@ -7,7 +7,6 @@ TagManager:
   - Enemy
   - Cook Station
   - Floor
-  - Cone
   layers:
   - Default
   - TransparentFX
@@ -18,7 +17,7 @@ TagManager:
   - Spawn Door
   - Monster
   - Player
-  - Cone
+  - 
   - 
   - 
   - 

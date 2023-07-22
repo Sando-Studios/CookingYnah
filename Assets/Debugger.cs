@@ -1,42 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
-using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using UnityEngine.Events;
-
-using InputField = TMPro.TMP_InputField;
 
 public class Debugger : MonoBehaviour
 {
-    [SerializeField] private SerializedDictionary<string, UnityEvent> actions;
-
-    [SerializeField] private InputField field;
-
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private GameObject canvas;
+    
+    private void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            field.gameObject.SetActive(true);
+            canvas.SetActive(!canvas.activeSelf);
         }
+    }
+
+    public void Max()
+    {
+        var pdata = UIManager.instance.player.GetPlayerData();
+        pdata.Vitality = 10000;
+        pdata.Strength = 10000;
+        pdata.RawDamage = 10000;
+        pdata.Resilience = 10000;
+    }
+
+    public void UnlockArtifacts()
+    {
         
-        if (Input.GetKey(KeyCode.Return))
+    }
+
+    public void TeleportToChamber()
+    {
+        if (EnvironmentRef.Instance == null) return;
+
+        var key = "bossArea";
+
+        var inst = EnvironmentRef.Instance;
+
+        if (!inst.objects.ContainsKey(key))
         {
-            DoTheDougie(field.text);
-            field.text = "";
-            field.gameObject.SetActive(false);
+            Debug.LogError("No Boss Area");
+            return;
         }
-    }
 
-    private void DoTheDougie(string arg)
-    {
-        if (!actions.ContainsKey(arg)) return;
+        var trans = UIManager.instance.player.transform;
 
-        actions[arg].Invoke();
-    }
+        var @ref = inst.objects[key].transform.position;
 
-    public void Testing()
-    {
-        Debug.Log("sfsafac");
+        trans.transform.position = new Vector3(@ref.x, trans.position.y, @ref.z);
     }
 }

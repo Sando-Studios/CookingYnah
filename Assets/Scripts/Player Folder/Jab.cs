@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Asyncoroutine;
 
 public class Jab : MonoBehaviour
 {
@@ -28,16 +27,6 @@ public class Jab : MonoBehaviour
     private Coroutine cdRoutine;
     
     internal uint internalCounter = 0;
-
-    public void Start()
-    {
-        if (EnvironmentRef.Instance == null) return;
-        
-        var col = cone.GetComponent<Collider>();
-        
-        Physics.IgnoreCollision(EnvironmentRef.Instance.Colliders["pot"], col);
-        Physics.IgnoreCollision(EnvironmentRef.Instance.Colliders["potSphere"], col);
-    }
 
     public (bool, bool) Attack()
     {

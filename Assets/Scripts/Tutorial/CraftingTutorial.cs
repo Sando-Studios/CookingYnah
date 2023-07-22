@@ -14,8 +14,11 @@ public class CraftingTutorial : MonoBehaviour
     {
         var tt = popUp.GetComponent<ToolTipAdapter>();
 
+        var originalPos = tt.GetComponent<RectTransform>().anchoredPosition;
+
         _controller.AddSequence(new CustomSequence(_controller, (sequence, o) =>
             {
+                tt.gameObject.SetActive(true);
                 Debug.Log("test");
                 sequence.SetStatus(true);
             }))
@@ -35,6 +38,9 @@ public class CraftingTutorial : MonoBehaviour
                 UIManager.instance.ForceCloseCraftingPanel();
                 UIManager.instance.craftingBtnBlock = false;
                 sequence.SetStatus(true);
+
+                tt.gameObject.SetActive(false);
+                tt.GetComponent<RectTransform>().anchoredPosition = originalPos;
                 
                 Reset();
             }));

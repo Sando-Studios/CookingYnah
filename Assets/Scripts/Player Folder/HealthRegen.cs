@@ -45,8 +45,6 @@ public class HealthRegen : MonoBehaviour
 
                 if (playerUnitData.CurrentHealth > playerUnitData.MaxHealth)
                     playerUnitData.CurrentHealth = playerUnitData.MaxHealth;
-
-                UIManager.instance.UpdateHpBarUI();
             }
         }
     }

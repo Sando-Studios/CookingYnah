@@ -37,8 +37,6 @@ public class GroundWaveAbility : ArtifactAbility
 
     public async void SpawnRocks(uint rings, float damage)
     {
-        if (GetComponent<MajorEnemy>().GetBossState() != BossState.SpecialAttack) return;
-
         void SpawnRing(float dist)
         {
             var increment = 360 / rocksPerRing;

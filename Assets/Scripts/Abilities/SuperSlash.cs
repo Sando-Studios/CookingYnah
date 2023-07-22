@@ -16,12 +16,10 @@ public class SuperSlash : MonoBehaviour
     public void SetDamageValue(float dmg)
     {
         damageValue = (int)dmg;
-        isBoss = true;
     }
     public void SetDamageValue(float dmg, float strength)
     {
         SetDamageValue((int)dmg);
-        isBoss = false;
         this.strength = strength;
     }
 
@@ -47,7 +45,7 @@ public class SuperSlash : MonoBehaviour
             {
                 playerInRange = null;
             }
-            else if (!isBoss && other.CompareTag("Enemy"))
+            else if (!isBoss && other.CompareTag("MinorEnemy"))
             {
                 enemiesInRangeList.Remove(other.GetComponent<MinorEnemy>());
             }

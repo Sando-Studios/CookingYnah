@@ -42,8 +42,7 @@ public class Player : MonoBehaviour
         inventory = GetComponent<PlayerInventory>();
 
         playerUnitData.CurrentHealth = playerUnitData.MaxHealth;
-        playerUnitData.CurrentStamina = playerUnitData.MaxStamina;
-
+        
         UIManager.instance.UpdateHpBarUI();
         BuffManager.instance.SetPlayer(playerUnitData);
 

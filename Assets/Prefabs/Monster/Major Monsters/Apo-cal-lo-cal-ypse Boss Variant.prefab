@@ -461,6 +461,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
+--- !u!114 &2309083520740841707 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7308291296211548121, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
+  m_PrefabInstance: {fileID: 5001184769391980338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2309083520932950116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7308291296422616918, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
@@ -522,20 +533,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossDataInstance: {fileID: 11400000, guid: 530d16ddd490c4c459ace1fdb4cdf06e, type: 2}
-  hpBar: {fileID: 4971202632758329865}
+  hpBar: {fileID: 2309083520740841707}
   spriteTransform: {fileID: 2309083520932950117}
   bossNameText: {fileID: 7301904684418957472}
---- !u!114 &4971202632758329865 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 115551492433243451, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
-  m_PrefabInstance: {fileID: 5001184769391980338}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7301904684418957472 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2320009750286069650, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}

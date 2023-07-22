@@ -23,7 +23,7 @@ public static class DamageHandler
 
         unit.CurrentHealth -= finalDamage;
         enemy.Hit();
-
+        
         //Debug.Log(unit.CurrentHealth);
 
         if (unit.CurrentHealth <= 0)
@@ -33,7 +33,7 @@ public static class DamageHandler
             if (unit is EnemyUnitData)
             {
                 EnemyUnitData enemyData = unit as EnemyUnitData;
-                OnEnemyUnitDeath?.Invoke(enemyData.UnitID);
+                OnEnemyUnitDeath ?.Invoke(enemyData.UnitID);
             }
             else if (unit is BossUnitData)
             {
@@ -53,17 +53,15 @@ public static class DamageHandler
         PlayerUnitData unit = player.GetPlayerData();
 
         // Damage calculations
-        float damageReduction = 1 - (unit.Resilience / 100);
 
-        if (damageReduction < unit.MaxDamageReduction)
-            damageReduction = unit.MaxDamageReduction;
+        float damageReduction = 1 - (1 / (1 + unit.Resilience * unit.ResDiminishingFactor));
 
         float actualDamage = baseDamage * damageReduction;
         int finalDamage = Mathf.RoundToInt(actualDamage);
 
-        unit.CurrentHealth -= finalDamage;
-
-        //Debug.Log($"Ynah's health: {unit.CurrentHealth}");
+        unit.CurrentHealth -= baseDamage;
+        
+        Debug.Log($"Ynah's health: {unit.CurrentHealth}");
 
         //UIManager.instance.UpdateHpUI();
         UIManager.instance.UpdateHpBarUI();

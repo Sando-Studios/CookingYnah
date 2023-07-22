@@ -96,9 +96,11 @@ public class UIManager : MonoBehaviour
         if (Input.GetButtonDown("Stats"))
         {
             FlipActivePanel(statsPanel.name);
-            FlipActivePanel(characterImage.name);
+            if (!characterImage.activeInHierarchy.Equals(statsPanel.activeInHierarchy)) 
+                characterImage.SetActive(statsPanel.activeInHierarchy);
             UpdateStatsUI();
         }
+
 
         if (isOverStat) { statPopupToolTip.transform.position = Input.mousePosition; }
 
@@ -321,13 +323,7 @@ public class UIManager : MonoBehaviour
     private string currentActivePanel = "Start Mother Fucker";
     public void FlipActivePanel(string panelNameToBeFlipped)
     {
-        Debug.Log("Argument " + panelNameToBeFlipped);
-        Debug.Log(statsPanel.name);
-
-        if (statsPanel.name.Equals(panelNameToBeFlipped)) statsPanel.SetActive(true);
-        else statsPanel.SetActive(false);
-        //statsPanel.SetActive(statsPanel.name.Equals(panelNameToBeFlipped));
-        characterImage.SetActive(characterImage.name.Equals(panelNameToBeFlipped));
+        statsPanel.SetActive(statsPanel.name.Equals(panelNameToBeFlipped));
         itemPanel.SetActive(itemPanel.name.Equals(panelNameToBeFlipped));
         craftingPanel.SetActive(craftingPanel.name.Equals(panelNameToBeFlipped));
 

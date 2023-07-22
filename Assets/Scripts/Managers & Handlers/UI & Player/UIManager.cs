@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using AYellowpaper.SerializedCollections;
 
 public class UIManager : MonoBehaviour
 {
@@ -62,7 +63,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Crafting.Crafter crafter;
     [SerializeField] private GameObject craftingPopup;
 
+    [Header("UI Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private SerializedDictionary<AudioName, AudioClip> audioClipDictionary;
 
+    public enum AudioName
+    {
+        Book_Close,
+        Page_Flip
+    }
 
     private void Start()
     {
@@ -74,7 +83,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Inventory"))
         {
-            itemPanel.SetActive(!itemPanel.activeInHierarchy);
+            FlipActivePanel(itemPanel.name);
             UpdateInventoryUI();
         }
         if (Input.GetButtonDown("Crafting") && player.GetNearStation())
@@ -82,12 +91,12 @@ public class UIManager : MonoBehaviour
             ToggleCraftingPanel();
         }
 
-        if (!player.GetNearStation()) { craftingPanel.SetActive(false); }
+        if (!player.GetNearStation() && craftingPanel.activeInHierarchy) { FlipActivePanel(craftingPanel.name); ; }
 
         if (Input.GetButtonDown("Stats"))
         {
-            statsPanel.SetActive(!statsPanel.activeInHierarchy);
-            characterImage.SetActive(!characterImage.activeInHierarchy);
+            FlipActivePanel(statsPanel.name);
+            FlipActivePanel(characterImage.name);
             UpdateStatsUI();
         }
 
@@ -129,7 +138,7 @@ public class UIManager : MonoBehaviour
 
     public void ToggleCraftingPanel()
     {
-        craftingPanel.SetActive(!craftingPanel.activeInHierarchy);
+        FlipActivePanel(craftingPanel.name);
         UpdateCraftingInventoryUI();
     }
 
@@ -301,5 +310,44 @@ public class UIManager : MonoBehaviour
     public void SetCraftingPopUp()
     {
         craftingPopup.SetActive(player.GetNearStation());
+    }
+
+    private void PlayAudio(AudioName name)
+    {
+        audioSource.clip = audioClipDictionary[name];
+        audioSource.Play();
+    }
+
+    private string currentActivePanel = "Start Mother Fucker";
+    public void FlipActivePanel(string panelNameToBeFlipped)
+    {
+        Debug.Log("Argument " + panelNameToBeFlipped);
+        Debug.Log(statsPanel.name);
+
+        if (statsPanel.name.Equals(panelNameToBeFlipped)) statsPanel.SetActive(true);
+        else statsPanel.SetActive(false);
+        //statsPanel.SetActive(statsPanel.name.Equals(panelNameToBeFlipped));
+        characterImage.SetActive(characterImage.name.Equals(panelNameToBeFlipped));
+        itemPanel.SetActive(itemPanel.name.Equals(panelNameToBeFlipped));
+        craftingPanel.SetActive(craftingPanel.name.Equals(panelNameToBeFlipped));
+
+        if (currentActivePanel.Equals(panelNameToBeFlipped))
+        {
+            statsPanel.SetActive(false);
+            characterImage.SetActive(false);
+            itemPanel.SetActive(false);
+            craftingPanel.SetActive(false);
+            PlayAudio(AudioName.Book_Close);
+            currentActivePanel = "Close Mother Fucker";
+            return;
+        }
+        else
+        {
+            if (statsPanel.name.Equals(panelNameToBeFlipped) || itemPanel.name.Equals(panelNameToBeFlipped))
+                PlayAudio(AudioName.Page_Flip);
+
+            currentActivePanel = panelNameToBeFlipped;
+        }
+
     }
 }

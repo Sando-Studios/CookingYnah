@@ -12,11 +12,8 @@ public class RandomSoundHandler : MonoBehaviour
     {
         if (other.isTrigger) return;
 
-        Debug.Log("Sound Trigger");
-
         if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
-            Debug.Log("Sound");
             audioSource.clip = clips[Random.Range(0, clips.Length)];
             audioSource.Play();
         }

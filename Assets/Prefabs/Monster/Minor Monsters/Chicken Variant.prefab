@@ -520,6 +520,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+--- !u!1 &657449443426379170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 639792564022852542, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 143909834577780252}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &657449444148922464 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 639792562637887100, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 143909834577780252}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &657449444410368238 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 639792562578276082, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
@@ -542,6 +558,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783b4d28dd86b9546a4b642daf14b7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &657449444433750738 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 639792562889159886, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 143909834577780252}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &657449444433750739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 639792562889159887, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
@@ -565,12 +586,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossDataInstance: {fileID: 0}
-  hpBar: {fileID: 0}
-  spriteTransform: {fileID: 0}
-  audioSource: {fileID: 0}
+  hpBar: {fileID: 657449444148922464}
+  spriteTransform: {fileID: 657449444410368238}
+  audioSource: {fileID: 2570063405849625586}
   nameClipDictionary:
-    _serializedList: []
-  aggroTrigger: {fileID: 0}
-  hpBarGameObject: {fileID: 0}
-  eggPrefab: {fileID: 0}
-  eggSpawnPoint: {fileID: 0}
+    _serializedList:
+    - Key: Patrol Hurt Death Idle Chase Patrol Attack
+      Value: {fileID: 8300000, guid: e5187606b26d9e64ebb5b4a2d66e228f, type: 3}
+  aggroTrigger: {fileID: 657449444433750738}
+  hpBarGameObject: {fileID: 657449443426379170}
+  eggPrefab: {fileID: 2094448068177463582, guid: ac26731053a59a141882304313535f69, type: 3}
+  eggSpawnPoint: {fileID: 372300371724816480}
+--- !u!82 &2570063405849625586 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2474154283882536430, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 143909834577780252}
+  m_PrefabAsset: {fileID: 0}

@@ -732,9 +732,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
---- !u!95 &3772547020188006619 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6338477555309129997, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+--- !u!82 &4754106242663404600 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2474154283882536430, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
   m_PrefabInstance: {fileID: 7182129000808909270}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7731822615392615700 stripped
@@ -754,14 +754,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff052f75fa06ed4298085812b4d98fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggroTrigger: {fileID: 7731822615392615704}
-  targetUnit: {fileID: 0}
-  redMaterial: {fileID: 2100000, guid: 369077c2621799f469c0e1af06a20ac5, type: 2}
-  greenMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  hpBarGameObject: {fileID: 7731822616532202088}
+  bossDataInstance: {fileID: 0}
   hpBar: {fileID: 7731822615677427626}
-  animator: {fileID: 3772547020188006619}
   spriteTransform: {fileID: 7731822615619516196}
+  audioSource: {fileID: 4754106242663404600}
+  nameClipDictionary:
+    _serializedList:
+    - Key: Patrol Hurt Death Idle Chase Patrol Attack
+      Value: {fileID: 8300000, guid: 24a177b1758ede04db19094e1ec44439, type: 3}
+  aggroTrigger: {fileID: 7731822615392615704}
+  hpBarGameObject: {fileID: 7731822616532202088}
   capsuleCollider: {fileID: 7731822615392615707}
   maxChargeDistance: 6
 --- !u!135 &7731822615392615704 stripped

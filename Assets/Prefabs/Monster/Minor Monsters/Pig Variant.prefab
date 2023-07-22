@@ -774,6 +774,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+--- !u!82 &170773961221056227 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2474154283882536430, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 2309009830958070541}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2948661242518685182 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 639792562578276083, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
@@ -791,7 +796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b8d116ab2e7d645a5945abde2f6a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
 --- !u!4 &2948661242518685183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 639792562578276082, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
@@ -833,6 +837,17 @@ MonoBehaviour:
   bossDataInstance: {fileID: 0}
   hpBar: {fileID: 2948661242678750577}
   spriteTransform: {fileID: 2948661242518685183}
+  audioSource: {fileID: 170773961221056227}
+  nameClipDictionary:
+    _serializedList:
+    - Key: Hurt Idle
+      Value: {fileID: 8300000, guid: ece00a0715fdb5f4ca5774da6cb56235, type: 3}
+    - Key: Patrol
+      Value: {fileID: 8300000, guid: 65f20aad17b3751468b818487a220c9a, type: 3}
+    - Key: Attack
+      Value: {fileID: 8300000, guid: 0e8f9b0e6e66d43499d5afed4135f34b, type: 3}
+    - Key: Chase
+      Value: {fileID: 8300000, guid: 4a18c17b3c4c8344cb34fd76098509ad, type: 3}
   aggroTrigger: {fileID: 2948661242963824579}
   hpBarGameObject: {fileID: 2948661243967652019}
 --- !u!1 &2948661243967652019 stripped

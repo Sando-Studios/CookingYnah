@@ -1006,7 +1006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b8d116ab2e7d645a5945abde2f6a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
 --- !u!4 &5974314628769252921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 639792562578276082, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
@@ -1037,5 +1036,25 @@ MonoBehaviour:
   bossDataInstance: {fileID: 0}
   hpBar: {fileID: 5974314628760202935}
   spriteTransform: {fileID: 5974314628769252921}
+  audioSource: {fileID: 8672822668233827621}
+  nameClipDictionary:
+    _serializedList:
+    - Key: Patrol Hurt Death Idle Chase Patrol Attack
+      Value: {fileID: 8300000, guid: f4d7e6f7a9a5dc94cae95f025ffc81e1, type: 3}
+    - Key: Attack
+      Value: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+    - Key: Patrol
+      Value: {fileID: 8300000, guid: e4f5f30088c1cfc4596eb1340f6a0838, type: 3}
+    - Key: Chase
+      Value: {fileID: 8300000, guid: fec5834544661ed4eb0d1e67bebe57cc, type: 3}
+    - Key: Idle
+      Value: {fileID: 8300000, guid: 07e13a52be4cb474c8bdba392af4897e, type: 3}
+    - Key: Hurt
+      Value: {fileID: 8300000, guid: 4b579eace78e11a49818ef5566202735, type: 3}
   aggroTrigger: {fileID: 5974314629011983365}
   hpBarGameObject: {fileID: 5974314627873932149}
+--- !u!82 &8672822668233827621 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2474154283882536430, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 6487989908028537035}
+  m_PrefabAsset: {fileID: 0}

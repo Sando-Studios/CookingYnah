@@ -524,6 +524,11 @@ MonoBehaviour:
   bossDataInstance: {fileID: 11400000, guid: 530d16ddd490c4c459ace1fdb4cdf06e, type: 2}
   hpBar: {fileID: 4971202632758329865}
   spriteTransform: {fileID: 2309083520932950117}
+  audioSource: {fileID: 0}
+  nameClipDictionary:
+    _serializedList:
+    - Key: Patrol Hurt Death Idle Chase Patrol SpecialA BasicA
+      Value: {fileID: 8300000, guid: 938df53f74d50544b83b2cd1b17069f9, type: 3}
   bossNameText: {fileID: 7301904684418957472}
 --- !u!114 &4971202632758329865 stripped
 MonoBehaviour:

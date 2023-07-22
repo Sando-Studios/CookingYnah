@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
     public enum AudioName
     {
         Book_Close,
-        Page_Flip
+        Page_Flip,
     }
 
     private void Start()
@@ -96,7 +96,7 @@ public class UIManager : MonoBehaviour
         if (Input.GetButtonDown("Stats"))
         {
             FlipActivePanel(statsPanel.name);
-            if (!characterImage.activeInHierarchy.Equals(statsPanel.activeInHierarchy)) 
+            if (!characterImage.activeInHierarchy.Equals(statsPanel.activeInHierarchy))
                 characterImage.SetActive(statsPanel.activeInHierarchy);
             UpdateStatsUI();
         }
@@ -330,16 +330,20 @@ public class UIManager : MonoBehaviour
         if (currentActivePanel.Equals(panelNameToBeFlipped))
         {
             statsPanel.SetActive(false);
-            characterImage.SetActive(false);
             itemPanel.SetActive(false);
             craftingPanel.SetActive(false);
-            PlayAudio(AudioName.Book_Close);
+
+            if (!panelNameToBeFlipped.Equals(craftingPanel.name))
+                PlayAudio(AudioName.Book_Close);
+
             currentActivePanel = "Close Mother Fucker";
             return;
         }
         else
         {
-            if (statsPanel.name.Equals(panelNameToBeFlipped) || itemPanel.name.Equals(panelNameToBeFlipped))
+            if (panelNameToBeFlipped.Equals(craftingPanel.name))
+                PlayAudio(AudioName.Book_Close);
+            else if (statsPanel.name.Equals(panelNameToBeFlipped) || itemPanel.name.Equals(panelNameToBeFlipped))
                 PlayAudio(AudioName.Page_Flip);
 
             currentActivePanel = panelNameToBeFlipped;

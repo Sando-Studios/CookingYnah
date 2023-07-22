@@ -5253,7 +5253,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-253142
+  m_Name: pb_Mesh-43170
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6348,10 +6348,6 @@ PrefabInstance:
       propertyPath: near clip plane
       value: 0.001
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8717946973411942256, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -6366,7 +6362,7 @@ PrefabInstance:
       objectReference: {fileID: 440170322}
     - target: {fileID: 8717946973411942258, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_VersionIndex
-      value: 99
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 8717946973808364185, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_Name

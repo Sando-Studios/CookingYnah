@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] private PlayerInventory inventory;
 
-    private bool isAtCookingStation = false;
+    public bool isAtCookingStation = false;
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
@@ -85,26 +85,6 @@ public class Player : MonoBehaviour
     public void DisableInputs()
     {
         movementEnabled = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-
-        if (other.CompareTag("Cook Station"))
-        {
-            isAtCookingStation = true;
-            UIManager.instance.SetCraftingPopUp();
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-
-        if (other.CompareTag("Cook Station"))
-        {
-            isAtCookingStation = false;
-            UIManager.instance.SetCraftingPopUp();
-        }
     }
 
     public bool GetNearStation()

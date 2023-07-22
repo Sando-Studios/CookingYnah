@@ -11267,7 +11267,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-143984
+  m_Name: pb_Mesh-197088
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13011,7 +13011,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bf65dcc90510ec94f887771adf81b1d0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.214
+  m_Volume: 0.037
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -17050,7 +17050,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 93c46aeff1779f041ba30004e1e815cf, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.19
+  m_Volume: 0.017
   m_Pitch: 0.65
   Loop: 0
   Mute: 0
@@ -22825,6 +22825,17 @@ MonoBehaviour:
   artifactToolTip: {fileID: 197303812}
   artifactName: {fileID: 481745734}
   artifactDescription: {fileID: 954620850}
+--- !u!114 &2028854718 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5001665996310453647, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+  m_PrefabInstance: {fileID: 8717946972877137661}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9f90b1e1e3ef640a7f9b6c1be0a34a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2051549259
 GameObject:
   m_ObjectHideFlags: 0
@@ -23773,7 +23784,7 @@ PrefabInstance:
       objectReference: {fileID: 1145192673}
     - target: {fileID: 8717946973411942258, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_VersionIndex
-      value: 84
+      value: 93
       objectReference: {fileID: 0}
     - target: {fileID: 8717946973808364185, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_Name
@@ -23823,5 +23834,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8717946974269995700, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: audioScript
+      value: 
+      objectReference: {fileID: 2028854718}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}

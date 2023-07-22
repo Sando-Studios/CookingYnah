@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4faae73c9aa58dd449a35816dfa4c740, type: 3}
-  m_Name: Hamburger Recipe
+  m_Name: Manakish Recipe
   m_EditorClassIdentifier: 
   slots:
   - {fileID: 11400000, guid: 4b1d4d53d079c564baae68a531ebcd91, type: 2}
-  - {fileID: 11400000, guid: dc2f81a52af1e694bb30676387845e02, type: 2}
+  - {fileID: 11400000, guid: 489d256cecb1c934580dcfef30940494, type: 2}
   - {fileID: 11400000, guid: be6fd282ddc66f54dbe292d7969e178f, type: 2}
-  - {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: 42d0ac3568a65f24fac0812c6082984b, type: 2}
-  output: {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  output: {fileID: 11400000, guid: c377ca61b8dc34945843c36555b7b5ff, type: 2}

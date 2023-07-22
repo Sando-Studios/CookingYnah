@@ -16,3 +16,4 @@ MonoBehaviour:
   artifactDescription: Deals damage to combatants surounding the player in a large
     AOE attack
   abilityPrefab: {fileID: 7314604010819869106, guid: c58fe58e642dfbd4480162618fe28753, type: 3}
+  abilityStaminaCost: 30

@@ -14,9 +14,8 @@ public class PlayerUnitData : UnitData
     private int strength = 1;
     private int resilience = 1;
 
-    [Header("Resilience Diminishing Factor")]
-    [Range(0f, 1f)]
-    [SerializeField] float diminishingFactor = 0.3f; // between 0 - 1, higher = earlier diminishing returns
+    [Header("Max Damage Reduction")] [Range(0f, 1f)] [Tooltip("The closer to 1, the  higher max amount of damage reduction")]
+    [SerializeField] float maxDamageReduction = 0.9f;
 
     [SerializeField] private float maxStamina = 100.0f;
     private float currentStamina;
@@ -46,10 +45,10 @@ public class PlayerUnitData : UnitData
         get { return resilience; }
         set { resilience = value; }
     }
-    public float ResDiminishingFactor
+    public float MaxDamageReduction
     {
-        get { return diminishingFactor; }
-        set { diminishingFactor = value; }
+        get { return 1 - maxDamageReduction; }
+        set { maxDamageReduction = value; }
     }
 
     public float MaxStamina

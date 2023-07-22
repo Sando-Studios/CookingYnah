@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4faae73c9aa58dd449a35816dfa4c740, type: 3}
-  m_Name: Omelette Recipe
+  m_Name: Salmon Sushi Roll Recipe
   m_EditorClassIdentifier: 
   slots:
-  - {fileID: 11400000, guid: 20b12f8b08aed6b4dbe75767903dd13e, type: 2}
+  - {fileID: 11400000, guid: b3f2f51e964809947a4d2ac7be620f52, type: 2}
+  - {fileID: 11400000, guid: baae8720dfc205d479bd9d4e6c826b6a, type: 2}
+  - {fileID: 11400000, guid: 5be3a471385f8d24ea71cdf779255a7f, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: be6fd282ddc66f54dbe292d7969e178f, type: 2}
-  - {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: 473c1fc887b47ff459b1b017bbe2705a, type: 2}
-  output: {fileID: 11400000, guid: d8bff1b7f4657384993090922d225725, type: 2}
+  - {fileID: 0}
+  output: {fileID: 11400000, guid: 5a5b6007376a72849bd7322421536915, type: 2}

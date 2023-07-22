@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4faae73c9aa58dd449a35816dfa4c740, type: 3}
-  m_Name: Ham & Cheese Recipe
+  m_Name: Ramen Recipe
   m_EditorClassIdentifier: 
   slots:
-  - {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
-  - {fileID: 11400000, guid: 004646ba028d9914085c7f52013ea96d, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 10f2a0d7c3521bf41a21d7bdf8bae561, type: 2}
+  - {fileID: 11400000, guid: f1a0c7502db5ac74b9bdfa5fca009eb7, type: 2}
+  - {fileID: 11400000, guid: 5be3a471385f8d24ea71cdf779255a7f, type: 2}
   - {fileID: 11400000, guid: f42329cd4b3a1a34f8b861c0bf81763c, type: 2}
   - {fileID: 0}
-  - {fileID: 0}
-  output: {fileID: 11400000, guid: fbf6da6dd7e4f034aaf60ed8e84a6fea, type: 2}
+  - {fileID: 11400000, guid: 3007deb6f838d0c48ab2953727daab36, type: 2}
+  output: {fileID: 11400000, guid: 5017cabd22186a947ac683e101a3f82c, type: 2}

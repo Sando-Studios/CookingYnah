@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GreenOnion Item
   m_EditorClassIdentifier: 
   itemName: Green Onion
-  itemSprite: {fileID: 21300000, guid: 30954956f207df941b723b4d5eee65ba, type: 3}
+  itemSprite: {fileID: 21300000, guid: fa2b25ed7e53f984087467c3ce320e80, type: 3}
   PermaBuffDictionary:
     _serializedList: []
   tempBuffDuration: 120

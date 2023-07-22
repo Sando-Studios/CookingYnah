@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4faae73c9aa58dd449a35816dfa4c740, type: 3}
-  m_Name: Omelette Recipe
+  m_Name: Katsudon Recipe
   m_EditorClassIdentifier: 
   slots:
   - {fileID: 11400000, guid: 20b12f8b08aed6b4dbe75767903dd13e, type: 2}
+  - {fileID: 11400000, guid: baae8720dfc205d479bd9d4e6c826b6a, type: 2}
+  - {fileID: 11400000, guid: 3007deb6f838d0c48ab2953727daab36, type: 2}
+  - {fileID: 11400000, guid: f42329cd4b3a1a34f8b861c0bf81763c, type: 2}
   - {fileID: 0}
-  - {fileID: 11400000, guid: be6fd282ddc66f54dbe292d7969e178f, type: 2}
-  - {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
-  - {fileID: 0}
-  - {fileID: 11400000, guid: 473c1fc887b47ff459b1b017bbe2705a, type: 2}
-  output: {fileID: 11400000, guid: d8bff1b7f4657384993090922d225725, type: 2}
+  - {fileID: 11400000, guid: cced8b6db43444b47a1eaa06fd302c9c, type: 2}
+  output: {fileID: 11400000, guid: cbc640f355ea08745bf6a266079fec9f, type: 2}

@@ -2975,7 +2975,51 @@ MonoBehaviour:
     - Key: {fileID: 538221990}
       Value: {fileID: 538221991}
   baseGroupPairDictionary:
-    _serializedList: []
+    _serializedList:
+    - Key: {fileID: 538221991}
+      Value: {fileID: 11400000, guid: 491de0bfe86fc084eac6e46afc5db63b, type: 2}
+    - Key: {fileID: 192389076}
+      Value: {fileID: 11400000, guid: 4cc3278f5da68aa43b1a839326037e67, type: 2}
+    - Key: {fileID: 603240941}
+      Value: {fileID: 11400000, guid: 99f3c61770b86534588c0ec6891e15ee, type: 2}
+    - Key: {fileID: 1148266243}
+      Value: {fileID: 11400000, guid: ca11c652608ed6347afb97868943c489, type: 2}
+    - Key: {fileID: 2133820253}
+      Value: {fileID: 11400000, guid: 8ee8dadc3c421d84cb6c8a81e60a76b0, type: 2}
+    - Key: {fileID: 2090251211}
+      Value: {fileID: 11400000, guid: 727053cb4b558eb4abc4ce8c65cdc17e, type: 2}
+    - Key: {fileID: 2049668691}
+      Value: {fileID: 11400000, guid: 0e4c3e7d9a62af946875b3dd0359413d, type: 2}
+    - Key: {fileID: 934223676}
+      Value: {fileID: 11400000, guid: 0be5a71f546a68f40ba4c502c6c1b44a, type: 2}
+    - Key: {fileID: 882468817}
+      Value: {fileID: 11400000, guid: c4e4d15f9f90d884b8df6255d1fa86f5, type: 2}
+    - Key: {fileID: 2111341168}
+      Value: {fileID: 11400000, guid: ef44f7c8ebb4ad34db02d272124a45ee, type: 2}
+    - Key: {fileID: 1549859452}
+      Value: {fileID: 11400000, guid: 0d882fff683176444823dcfb9886e8cb, type: 2}
+    - Key: {fileID: 335116293}
+      Value: {fileID: 11400000, guid: 5455af6b0b0155f4faa7b33772f9b09c, type: 2}
+    - Key: {fileID: 1814151854}
+      Value: {fileID: 11400000, guid: 1e941720baadf4f479fd7eb48625c509, type: 2}
+    - Key: {fileID: 1439954614}
+      Value: {fileID: 11400000, guid: 03522deb998ea774c81acfa5350ca242, type: 2}
+    - Key: {fileID: 247162208}
+      Value: {fileID: 11400000, guid: d4df84ce21f35824aaaa111329d99429, type: 2}
+    - Key: {fileID: 176608239}
+      Value: {fileID: 11400000, guid: ea9b5e8b2aaed9844b5b3365e25800f8, type: 2}
+    - Key: {fileID: 1993493310}
+      Value: {fileID: 11400000, guid: 205d8815074118242ab56810db524a4b, type: 2}
+    - Key: {fileID: 1671771835}
+      Value: {fileID: 11400000, guid: 33bb6d551bef95f48927a107567b0f0d, type: 2}
+    - Key: {fileID: 305587397}
+      Value: {fileID: 11400000, guid: c0eb062073a19554d957a3dbc7324163, type: 2}
+    - Key: {fileID: 1155103839}
+      Value: {fileID: 11400000, guid: 003d3a4e8bd4e7845810520fa089abe6, type: 2}
+    - Key: {fileID: 172376348}
+      Value: {fileID: 11400000, guid: 4ab10fb264dabc94dab64441ef57a6ea, type: 2}
+    - Key: {fileID: 1611432894}
+      Value: {fileID: 11400000, guid: eae5a962eeaecb44c9420f41e12218b5, type: 2}
   spawnHandlerPrefab: {fileID: 3892363570582158508, guid: f31f5dbafda3ac148b5bc15d0167436c, type: 3}
 --- !u!4 &494739640
 Transform:
@@ -4439,6 +4483,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1777217532515149483, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.038085938
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974676001856327531, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -23.676636
+      objectReference: {fileID: 0}
     - target: {fileID: 8005447189695290534, guid: de7164cf12f16db449609f0f54800b4d, type: 3}
       propertyPath: m_RootOrder
       value: 10

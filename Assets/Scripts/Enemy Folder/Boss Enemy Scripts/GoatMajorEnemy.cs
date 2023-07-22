@@ -45,13 +45,9 @@ public class GoatMajorEnemy : MajorEnemy
     public override void ExecuteSpecialAttack()
     {
         AttackTimer(bossDataInstance.SpecialAttackSpeed);
-    }
-
-
-    public void StartWave()
-    {
         GroundWaveAbility groundWave = GetComponent<GroundWaveAbility>();
         groundWave.SpawnRocks(3, bossDataInstance.SpecialAttackDamage);
+        SetIsAttackDone(true);
     }
 
     protected override void Update()

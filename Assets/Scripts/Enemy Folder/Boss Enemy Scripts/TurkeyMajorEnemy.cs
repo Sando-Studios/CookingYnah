@@ -7,17 +7,20 @@ public class TurkeyMajorEnemy : MajorEnemy
 {
     public override void ExecuteSpecialAttack()
     {
-        Vector3 direction = targetUnit.transform.position - transform.position;
-        direction.Normalize();
-        spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
+        LaunchDelay();
     }
 
-    public void SpawnAttack()
-    {
+    private async void LaunchDelay()
+    {   
         FireMeatballAbility fireBall = GetComponent<FireMeatballAbility>();
         fireBall.SpawnMeatballMeteor(targetUnit.transform.position, bossDataInstance.SpecialAttackDamage);
 
+        await new WaitForSeconds(1.0f);
+
+        fireBall.SpawnMeatballMeteor(targetUnit.transform.position, bossDataInstance.SpecialAttackDamage);
+
         AttackTimer(bossDataInstance.SpecialAttackSpeed);
+
     }
 
 }

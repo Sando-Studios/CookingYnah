@@ -11,8 +11,6 @@ public class Item : MonoBehaviour
     private Sprite itemSprite; 
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    public static Action<string, Sprite> OnItemPickUp;
-
     private void Start()
     {
         DelayItemPickup();
@@ -46,7 +44,6 @@ public class Item : MonoBehaviour
         {
             PlayerInventory i = other.gameObject.GetComponent<Player>().GetInventory();
             i.AddItem(this);
-            OnItemPickUp?.Invoke(itemName, itemSprite);
         }
     }
 

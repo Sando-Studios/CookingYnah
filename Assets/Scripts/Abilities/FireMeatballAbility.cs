@@ -21,8 +21,6 @@ public class FireMeatballAbility : ArtifactAbility
 
     private async void SpawnMeatballOrbit()
     {
-        isAbilityActive = true;
-
         GameObject orbitCenter = new GameObject("Center");
         orbitCenter.transform.SetParent(transform);
         orbitCenter.transform.localPosition = new Vector3(0, 0, 0);
@@ -43,7 +41,6 @@ public class FireMeatballAbility : ArtifactAbility
 
         await new WaitForSeconds(orbitDuration);
 
-        isAbilityActive = false;
         orbitCenter.SetActive(false);
         orbitTarget = null;
         Destroy(orbitCenter);
@@ -52,17 +49,14 @@ public class FireMeatballAbility : ArtifactAbility
 
     public async void SpawnMeatballMeteor(Vector3 targetPos, float damage)
     {
-        if (GetComponent<MajorEnemy>().GetBossState() != BossState.SpecialAttack) return;
-
         Vector3 spawnPosition = transform.position + Vector3.up * heightOffSet;
         GameObject clone = SpawnSingleMeatball(spawnPosition);
         Meteor objectMovement = clone.GetComponent<Meteor>();
-        objectMovement.SetDamageValue(damage);
-        objectMovement.gameObject.transform.localScale += Vector3.one;
+        objectMovement.SetTarget(targetPos);
+        objectMovement.SetDamageValue(damage); 
 
         await new WaitForSeconds(delay);
 
-        objectMovement.SetTarget(targetPos);
         objectMovement.TriggerMove();
     }
 

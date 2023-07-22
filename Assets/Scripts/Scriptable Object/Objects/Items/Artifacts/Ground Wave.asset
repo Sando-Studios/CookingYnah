@@ -16,4 +16,3 @@ MonoBehaviour:
   artifactDescription: Raises four Stone Pillars in front of the player, damaging
     nearby enemies
   abilityPrefab: {fileID: 2152593292034762703, guid: ea6c47e40a3ccbb41a420204f8121384, type: 3}
-  abilityStaminaCost: 60

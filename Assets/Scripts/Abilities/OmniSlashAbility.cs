@@ -18,8 +18,6 @@ public class OmniSlashAbility : ArtifactAbility
     }
     public void SpawnBossSlashZone(float damage)
     {
-        if (GetComponent<MajorEnemy>().GetBossState() != BossState.SpecialAttack) return;
-
         GameObject clone = Instantiate(attackPrefab, transform.position, Quaternion.identity);
         clone.transform.SetParent(gameObject.transform);
         SuperSlash superSlash = clone.GetComponent<SuperSlash>();

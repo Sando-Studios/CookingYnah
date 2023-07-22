@@ -2197,7 +2197,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh242736
+  m_Name: pb_Mesh23208
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2571,90 +2571,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 451725179655784355, guid: a35dbbaeecc867b4c9475833cb55576e, type: 3}
   m_PrefabInstance: {fileID: 333499648}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &334169811
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 334169812}
-  - component: {fileID: 334169813}
-  m_Layer: 0
-  m_Name: Block
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &334169812
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 334169811}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.55, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1668204055}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &334169813
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 334169811}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 997709819
-  m_SortingLayer: 3
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2b1b07a4ae3351b4baf248c4130e79a8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 8.3, y: 7.74}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &342144334
 GameObject:
   m_ObjectHideFlags: 0
@@ -9064,7 +8980,6 @@ GameObject:
   - component: {fileID: 1509852167}
   - component: {fileID: 1509852166}
   - component: {fileID: 1509852168}
-  - component: {fileID: 1509852169}
   m_Layer: 0
   m_Name: Boss Room Trigger
   m_TagString: Untagged
@@ -9113,19 +9028,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 2535959520655519060}
---- !u!114 &1509852169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509852165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e12ba473b79985a48a18a508ba5f8a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progress: {fileID: 11400000, guid: 7560c4903e005844b9c9c40fcf0c9ea4, type: 2}
 --- !u!1 &1510812528
 GameObject:
   m_ObjectHideFlags: 0
@@ -68928,8 +68830,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 5.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 334169812}
+  m_Children: []
   m_Father: {fileID: 1898349127}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0.261, z: 0}
@@ -68947,7 +68848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Main Level
   canUse: 0
-  blockObject: {fileID: 334169811}
+  blockObject: {fileID: 0}
 --- !u!114 &1668204057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69012,8 +68913,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 997709819
-  m_SortingLayer: 3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7347b24d8e6984f4f80d85bcdb927292, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -69038,6 +68939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc8aab87485c9e43b18cc35e4eb7c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disabledColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
 --- !u!1 &1669742509
 GameObject:
   m_ObjectHideFlags: 0
@@ -71891,10 +71793,6 @@ PrefabInstance:
     - target: {fileID: 7556903388343119020, guid: 22093ac193923ce40b8352511c2028e2, type: 3}
       propertyPath: m_Name
       value: Tusked Tyrant Boss Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 9034670144910488793, guid: 22093ac193923ce40b8352511c2028e2, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22093ac193923ce40b8352511c2028e2, type: 3}

@@ -26,8 +26,6 @@ public class StaminaRegen : MonoBehaviour
 
                 if (playerUnitData.CurrentStamina > playerUnitData.MaxStamina)
                     playerUnitData.CurrentStamina = playerUnitData.MaxStamina;
-
-                UIManager.instance.UpdateStaminaBarUI();
             }
         }
     }

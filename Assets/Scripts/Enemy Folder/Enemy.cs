@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Asyncoroutine;
 using UnityEngine.AI;
+using AYellowpaper.SerializedCollections;
+using System.Collections.Generic;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -26,6 +28,11 @@ public abstract class Enemy : MonoBehaviour
     [Header("Animation")]
     [SerializeField] protected Transform spriteTransform;
     protected Animator animator;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    //[Tooltip("Name is all possible ways the audio clip can be used (ie.[for general use] 'Chase Combat Hurt' can be called by Chase State, Combat State or when enemy is Hurt, or [for specific use] 'SpecialA Stomp' can be called specifically) ")]
+    [SerializeField] private SerializedDictionary<string, AudioClip> nameClipDictionary = new SerializedDictionary<string, AudioClip>();
 
     protected NavMeshAgent agent;
 
@@ -83,20 +90,20 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         animator = spriteTransform.GetComponent<Animator>();
-        
+
         if (enemyDataInstance != null)
             maxHealth = enemyDataInstance.MaxHealth;
         else if (bossDataInstance != null)
             maxHealth = bossDataInstance.MaxHealth;
 
         agent = GetComponent<NavMeshAgent>();
-        
+
     }
     protected virtual void Update()
     {
         if (!GetUnitData())
             return;
-        
+
         float currentHP = GetUnitData().CurrentHealth;
 
         float normalized = currentHP / maxHealth;
@@ -115,6 +122,8 @@ public abstract class Enemy : MonoBehaviour
     {
         var r = GetComponentsInChildren<SpriteRenderer>();
 
+        PlayAudioClip(GetAudioClipName("Hurt"));
+
         foreach (var m in r)
         {
             m.color = Color.red;
@@ -127,4 +136,39 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    protected string GetAudioClipName(string inputName)
+    {
+        if (nameClipDictionary.ContainsKey(inputName))
+        {
+            return inputName;
+        }
+
+        List<string> matchingClipNames = new List<string>();
+
+        foreach (var kvp in nameClipDictionary)
+        {
+            if (kvp.Key.Contains(inputName))
+            {
+                matchingClipNames.Add(kvp.Key);
+            }
+        }
+
+        if (matchingClipNames.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, matchingClipNames.Count);
+            return matchingClipNames[randomIndex];
+        }
+
+        return "Why you trying this";
+    }
+
+    protected void PlayAudioClip(string name)
+    {
+        audioSource.clip = nameClipDictionary[name];
+
+        if (audioSource.clip)
+            audioSource.Play();
+        else
+            Debug.Log("THE FUCK YOU LOOKING FOR");
+    }
 }

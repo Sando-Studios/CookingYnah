@@ -24,6 +24,9 @@ public class MinorEnemy : Enemy
     public GameObject hpBarGameObject;
     protected Coroutine hpBarCoroutine;
 
+    private float randomInterval;
+    private float time;
+
     public virtual void SetEnemyData(int enemyID, EnemyUnitData unitData, Vector3 homeBase)
     {
         enemyDataInstance = ScriptableObject.CreateInstance<EnemyUnitData>();
@@ -71,6 +74,7 @@ public class MinorEnemy : Enemy
     public override async void Hit() 
     {
         base.Hit();
+        PlayAudioClip(GetAudioClipName("Hurt"));
         ShowHPBar();
 
         await new WaitForSeconds(0);
@@ -88,6 +92,8 @@ public class MinorEnemy : Enemy
         clone.GetComponent<Item>().SetData(data);
 
         transform.GetComponent<NavMeshAgent>().enabled = false;
+
+        PlayAudioClip(GetAudioClipName("Death"));
 
         Vector3 position = transform.position;
         position.y -= 40f;
@@ -186,5 +192,22 @@ public class MinorEnemy : Enemy
     {
         yield return new WaitForSeconds(3.0f);
         hpBarGameObject.SetActive(false);
+    }
+
+    public void PlaySoundRandomTime(string clipName)
+    {
+        time += Time.deltaTime;
+
+        if (time >= randomInterval)
+        {
+            randomInterval = UnityEngine.Random.Range(1, 10);
+            PlaySound(clipName);
+            time = 0f;
+        } 
+    }
+
+    public void PlaySound(string clipName)
+    {
+        PlayAudioClip(GetAudioClipName(clipName));
     }
 }

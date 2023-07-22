@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Debugger : MonoBehaviour
 {
     [SerializeField] private GameObject canvas;
+
+    [SerializeField] private ArtifactProgress _progress;
     
     private void Update()
     {
@@ -23,7 +26,12 @@ public class Debugger : MonoBehaviour
 
     public void UnlockArtifacts()
     {
+        if (EnvironmentRef.Instance == null) return;
         
+        _progress.UnlockAll();
+
+        var door = EnvironmentRef.Instance.objects["artifactDoor"]?.GetComponent<ArtifactDoorHandler>();
+        door.Start();
     }
 
     public void TeleportToChamber()

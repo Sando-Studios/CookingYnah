@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
@@ -17,5 +18,20 @@ public class ArtifactProgress : ScriptableObject
     public SerializedDictionary<Artifacts, ArtifactData> ArtifactDescriptions
     {
         get { return artifactDescriptionDictionary; }
+    }
+
+    public void UnlockAll()
+    {
+        var keys = new List<Artifacts>();
+        
+        foreach (var (key, _) in isArtifactUnlocked)
+        {
+            keys.Add(key);
+        }
+        
+        foreach (var artifacts in keys)
+        {
+            isArtifactUnlocked[artifacts] = true;
+        }
     }
 }

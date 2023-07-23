@@ -835,7 +835,7 @@ SpriteMask:
   m_MaskAlphaCutoff: 0
   m_FrontSortingLayerID: -417992065
   m_BackSortingLayerID: 0
-  m_FrontSortingLayer: 0
+  m_FrontSortingLayer: 2
   m_BackSortingLayer: 0
   m_FrontSortingOrder: 100
   m_BackSortingOrder: -100
@@ -971,7 +971,7 @@ SpriteMask:
   m_MaskAlphaCutoff: 0
   m_FrontSortingLayerID: -417992065
   m_BackSortingLayerID: 0
-  m_FrontSortingLayer: 0
+  m_FrontSortingLayer: 2
   m_BackSortingLayer: 0
   m_FrontSortingOrder: 100
   m_BackSortingOrder: -100
@@ -2754,7 +2754,7 @@ SpriteMask:
   m_MaskAlphaCutoff: 0
   m_FrontSortingLayerID: -417992065
   m_BackSortingLayerID: 0
-  m_FrontSortingLayer: 0
+  m_FrontSortingLayer: 2
   m_BackSortingLayer: 0
   m_FrontSortingOrder: 100
   m_BackSortingOrder: -100
@@ -3017,9 +3017,9 @@ MonoBehaviour:
     - Key: {fileID: 1155103839}
       Value: {fileID: 11400000, guid: 003d3a4e8bd4e7845810520fa089abe6, type: 2}
     - Key: {fileID: 172376348}
-      Value: {fileID: 11400000, guid: d4df84ce21f35824aaaa111329d99429, type: 2}
+      Value: {fileID: 11400000, guid: 4ab10fb264dabc94dab64441ef57a6ea, type: 2}
     - Key: {fileID: 1611432894}
-      Value: {fileID: 11400000, guid: 5455af6b0b0155f4faa7b33772f9b09c, type: 2}
+      Value: {fileID: 11400000, guid: eae5a962eeaecb44c9420f41e12218b5, type: 2}
   spawnHandlerPrefab: {fileID: 3892363570582158508, guid: f31f5dbafda3ac148b5bc15d0167436c, type: 3}
 --- !u!4 &494739640
 Transform:
@@ -4126,7 +4126,7 @@ SpriteMask:
   m_MaskAlphaCutoff: 0
   m_FrontSortingLayerID: -417992065
   m_BackSortingLayerID: 0
-  m_FrontSortingLayer: 0
+  m_FrontSortingLayer: 2
   m_BackSortingLayer: 0
   m_FrontSortingOrder: 100
   m_BackSortingOrder: -100
@@ -49980,7 +49980,7 @@ SpriteMask:
   m_MaskAlphaCutoff: 0
   m_FrontSortingLayerID: -417992065
   m_BackSortingLayerID: 0
-  m_FrontSortingLayer: 0
+  m_FrontSortingLayer: 2
   m_BackSortingLayer: 0
   m_FrontSortingOrder: 100
   m_BackSortingOrder: -100

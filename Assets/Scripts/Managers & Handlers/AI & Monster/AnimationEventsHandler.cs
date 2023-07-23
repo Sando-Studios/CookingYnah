@@ -36,6 +36,6 @@ public class AnimationEventsHandler : MonoBehaviour
     }
     public void OnExplosionEnd()
     {
-        transform.parent.parent.GetComponent<Meteor>().OnExplode();
+        transform.root.GetComponent<Meteor>().OnExplode();
     }
 }

@@ -21,9 +21,7 @@ public class EndDungeonHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource.Stop();
-        audioSource.clip = triumph;
-        audioSource.Play();
+
         bossExit = gameObject;
         bossExit.GetComponent<SceneChangeHandler>().SetCanUse(false);
     }
@@ -31,6 +29,9 @@ public class EndDungeonHandler : MonoBehaviour
 
     private void OnBossDeath(Artifacts artifact, string name)
     {
-            bossExit.GetComponent<SceneChangeHandler>().SetCanUse(true);
+        audioSource.Stop();
+        audioSource.clip = triumph;
+        audioSource.Play();
+        bossExit.GetComponent<SceneChangeHandler>().SetCanUse(true);
     }
 }

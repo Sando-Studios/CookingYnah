@@ -87,10 +87,13 @@ public abstract class Enemy : MonoBehaviour
         SetCanAttack(true);
     }
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         if (SceneManager.GetActiveScene().name.Contains("Main")) Destroy(gameObject);
+    }
 
+    protected virtual void Start()
+    {
         animator = spriteTransform.GetComponent<Animator>();
 
         if (enemyDataInstance != null)

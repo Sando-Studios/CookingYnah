@@ -9,7 +9,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnPlayButtonClicked()
     {
-        SceneManager.LoadScene("Main Level");
+        SceneManager.LoadScene("Beginning Cutscene");
     }
 
     public void OnQuitButtonClicked()

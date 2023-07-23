@@ -27,7 +27,7 @@ public class TempEffectHandler : MonoBehaviour
     }
     public static Action<TargetStat, float> OnNewTempBuff;
 
-    public void SetData(TargetStat stat, int value, float duration, Sprite sprite)
+    public void SetData(TargetStat stat, int value, float duration)
     {
         statName = stat;
         amount = value;

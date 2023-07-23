@@ -16,10 +16,10 @@ public class TempBuffUIIconHandler : MonoBehaviour
         TempEffectHandler.OnNewTempBuff -= SpawnNewIcon;
     }
 
-    private void SpawnNewIcon(Sprite sprite, float duration)
+    private void SpawnNewIcon(TargetStat stat, float duration)
     {
         GameObject clone = Instantiate(iconPrefab, transform);
-        clone.GetComponent<TempBuffIcon>().SetData(sprite, duration);
+        clone.GetComponent<TempBuffIcon>().SetData(stat, duration);
         clone.transform.SetAsLastSibling();
     }
 }

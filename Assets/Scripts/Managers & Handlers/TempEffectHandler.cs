@@ -25,7 +25,7 @@ public class TempEffectHandler : MonoBehaviour
     {
         amount = 0;
     }
-    public static Action<Sprite, float> OnNewTempBuff;
+    public static Action<TargetStat, float> OnNewTempBuff;
 
     public void SetData(TargetStat stat, int value, float duration, Sprite sprite)
     {
@@ -33,7 +33,7 @@ public class TempEffectHandler : MonoBehaviour
         amount = value;
         effectDuration = duration;
 
-        OnNewTempBuff?.Invoke(sprite, duration);
+        OnNewTempBuff?.Invoke(stat, duration);
         EffectTimer();
     }
 

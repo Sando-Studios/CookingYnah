@@ -19,6 +19,9 @@ public class ArtifactHandler : MonoBehaviour
 
     [SerializeField] private GameObject playerGameObject;
 
+    [SerializeField] private Image slot1Image;
+    [SerializeField] private Image slot2Image;
+
     private void OnEnable()
     {
         ArtifactUIHandler.OnArtifactSelected += SetArtifact;
@@ -62,7 +65,20 @@ public class ArtifactHandler : MonoBehaviour
             Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, 1);
             image.color = newColor;
             image.sprite = sprite;
-            
+
+            if (slotNum.Equals(1))
+            {
+                slot1Image.sprite = sprite;
+                slot1Image.color = Color.white;
+            }
+
+            else if (slotNum.Equals(2))
+            {
+                slot2Image.sprite = sprite;
+                slot2Image.color = Color.white;
+            }
+
+
             // Add ArtifactAbility script
             var a = artifactToSlot;
             switch (a)

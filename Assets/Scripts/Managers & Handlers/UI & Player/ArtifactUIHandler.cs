@@ -65,7 +65,7 @@ public class ArtifactUIHandler : MonoBehaviour
             }
             else
             {
-                Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, 0.5f);
+                Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, 0.3f);
                 kvp.Value.GetComponent<Image>().color = newColor;
                 artifactAreas[kvp.Key].gameObject.SetActive(false);
             }

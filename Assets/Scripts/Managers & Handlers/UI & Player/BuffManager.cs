@@ -70,7 +70,7 @@ public class BuffManager : MonoBehaviour
             case TargetStat.VitStat:
                 player.Vitality -= value;
                 GuardMaxHealth();
-                UIManager.instance.UpdateHpUI();
+                UIManager.instance.UpdateHpBarUI();
                 break;
             case TargetStat.StrStat:
                 player.Strength -= value;
@@ -103,7 +103,7 @@ public class BuffManager : MonoBehaviour
 
         GuardMaxHealth();
 
-        UIManager.instance.UpdateHpUI();
+        UIManager.instance.UpdateHpBarUI();
     }
 
     private void GuardMaxHealth()

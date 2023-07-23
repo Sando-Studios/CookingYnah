@@ -21,8 +21,6 @@ public class Minimap : MonoBehaviour
 
     [SerializeField] private Image minimapImg;
 
-    public GameObject dummytrack;
-
     public void Awake()
     {
         Instance = this;
@@ -33,7 +31,7 @@ public class Minimap : MonoBehaviour
         topRight = new Vector3(bottomRight.position.x, 0, topLeft.position.z);
         bottomLeft = new Vector3(topLeft.position.x, 0, bottomRight.position.z);
         
-        Track(dummytrack);
+        Track(UIManager.instance.player.gameObject);
     }
 
     // error when the player dies

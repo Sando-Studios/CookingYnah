@@ -141,6 +141,14 @@ public class Player : MonoBehaviour
     {
         return inventory;
     }
+
+    public PlayerInventory Swap(PlayerInventory newInv)
+    {
+        var i = inventory;
+        inventory = newInv;
+        return i;
+    }
+    
     public PlayerUnitData GetPlayerData()
     {
         return playerUnitData;

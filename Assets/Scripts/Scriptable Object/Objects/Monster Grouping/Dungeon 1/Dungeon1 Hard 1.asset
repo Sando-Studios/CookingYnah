@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groupComposition:
     _serializedList:
-    - Key: {fileID: 11400000, guid: 0029e126654b7384b971e8cdc63f1df4, type: 2}
+    - Key: {fileID: 11400000, guid: cfa88c2599d684a49af305023bf27bb5, type: 2}
       Value: 1

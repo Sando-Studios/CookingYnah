@@ -6,7 +6,19 @@ using UnityEngine.AI;
 
 public class MinorEnemy : Enemy
 {
+    protected override void Death(Artifacts artifact, string name) { Debug.Log("yoooooooooooooo"); }
+    
     [SerializeField] protected SphereCollider aggroTrigger;
+
+    protected virtual void OnEnable()
+    {
+        DamageHandler.OnEnemyUnitDeath += Death;
+    }
+
+    protected virtual void OnDisable()
+    {
+        DamageHandler.OnEnemyUnitDeath -= Death;
+    }
 
     [Header("Health UI")]
     public GameObject hpBarGameObject;

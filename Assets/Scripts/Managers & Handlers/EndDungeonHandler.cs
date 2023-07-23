@@ -6,8 +6,6 @@ public class EndDungeonHandler : MonoBehaviour
 {
     private GameObject bossExit;
 
-    [SerializeField] private Color disabledColor;
-
     private void OnEnable()
     {
         DamageHandler.OnBossUnitDeath += OnBossDeath;
@@ -22,15 +20,12 @@ public class EndDungeonHandler : MonoBehaviour
     void Start()
     {
         bossExit = gameObject;
-
-        bossExit.GetComponent<SpriteRenderer>().color = disabledColor;
         bossExit.GetComponent<SceneChangeHandler>().SetCanUse(false);
     }
 
 
     private void OnBossDeath(Artifacts artifact, string name)
     {
-            bossExit.GetComponent<SpriteRenderer>().color = Color.white;
             bossExit.GetComponent<SceneChangeHandler>().SetCanUse(true);
     }
 }

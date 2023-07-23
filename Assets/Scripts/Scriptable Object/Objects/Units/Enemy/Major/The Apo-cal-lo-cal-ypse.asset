@@ -16,10 +16,10 @@ MonoBehaviour:
   maxHealth: 400
   basicAttackDamage: 1
   specialAttackDamage: 5
-  walkSpeed: 5
-  runSpeed: 3
+  walkSpeed: 7
+  runSpeed: 4
   basicAttackSpeed: 2
   specialAttackSpeed: 3
   stunnedDuration: 5
-  attackRange: 5
+  attackRange: 7
   artifact: 1

@@ -21,11 +21,13 @@ public class Player : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] private PlayerInventory inventory;
 
-    private bool isAtCookingStation = false;
+    public bool isAtCookingStation = false;
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
     [SerializeField] private ParticleSystem attackParticle;
+
+    private bool movementEnabled = true;
 
     private void Awake()
     {
@@ -39,7 +41,9 @@ public class Player : MonoBehaviour
 
         inventory = GetComponent<PlayerInventory>();
 
-        UIManager.instance.UpdateHpUI();
+        playerUnitData.CurrentHealth = playerUnitData.MaxHealth;
+        
+        UIManager.instance.UpdateHpBarUI();
         BuffManager.instance.SetPlayer(playerUnitData);
 
         if (SceneChangeManager.instance.GetObjectToLoad() != gameObject) { Destroy(gameObject); }
@@ -55,6 +59,7 @@ public class Player : MonoBehaviour
             Attack();
         }
 
+        if (!movementEnabled) return;
 
         if (Input.GetButton("Horizontal"))
         {
@@ -71,24 +76,14 @@ public class Player : MonoBehaviour
         AnimateMovement();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void EnableInputs()
     {
-
-        if (other.CompareTag("Cook Station"))
-        {
-            isAtCookingStation = true;
-            UIManager.instance.SetCraftingPopUp();
-        }
+        movementEnabled = true;
     }
 
-    private void OnTriggerExit(Collider other)
+    public void DisableInputs()
     {
-
-        if (other.CompareTag("Cook Station"))
-        {
-            isAtCookingStation = false;
-            UIManager.instance.SetCraftingPopUp();
-        }
+        movementEnabled = false;
     }
 
     public bool GetNearStation()

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -61,13 +60,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject craftingItemParent;
     [SerializeField] private Crafting.Crafter crafter;
     [SerializeField] private GameObject craftingPopup;
-
-
+    [SerializeField] private CraftingTutorial _craftingTutorial;
+    public bool craftingBtnBlock = false;
 
     private void Start()
     {
         playerData = player.GetPlayerData();
         playerInventory = player.GetInventory();
+    }
+
+    public void CraftingStartTutorialSequence()
+    {
+        _craftingTutorial.StartSequences();
     }
 
     private void Update()
@@ -77,10 +81,9 @@ public class UIManager : MonoBehaviour
             itemPanel.SetActive(!itemPanel.activeInHierarchy);
             UpdateInventoryUI();
         }
-        if (Input.GetButtonDown("Crafting") && player.GetNearStation())
+        if (Input.GetButtonDown("Crafting") && player.GetNearStation() && !craftingBtnBlock)
         {
-            craftingPanel.SetActive(!craftingPanel.activeInHierarchy);
-            UpdateCraftingInventoryUI();
+            ToggleCraftingPanel();
         }
 
         if (!player.GetNearStation()) { craftingPanel.SetActive(false); }
@@ -99,7 +102,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHpUI()
     {
-        hpText.text = playerData.CurrentHealth.ToString() + " / " + playerData.MaxHealth.ToString();
+        //hpText.text = playerData.CurrentHealth.ToString() + " / " + playerData.MaxHealth.ToString();
     }
 
     public void UpdateHpBarUI()
@@ -126,6 +129,24 @@ public class UIManager : MonoBehaviour
         vitText.text = playerData.Vitality.ToString();
         resText.text = playerData.Resilience.ToString();
         strText.text = playerData.Strength.ToString();
+    }
+
+    public void ToggleCraftingPanel()
+    {
+        craftingPanel.SetActive(!craftingPanel.activeInHierarchy);
+        UpdateCraftingInventoryUI();
+    }
+
+    public void ForceOpenCraftingPanel()
+    {
+        craftingPanel.SetActive(true);
+        UpdateCraftingInventoryUI();
+    }
+
+    public void ForceCloseCraftingPanel()
+    {
+        craftingPanel.SetActive(false);
+        UpdateCraftingInventoryUI();
     }
 
     public void UpdateInventoryUI()

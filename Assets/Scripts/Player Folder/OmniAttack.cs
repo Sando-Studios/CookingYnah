@@ -7,7 +7,7 @@ public class OmniAttack : MonoBehaviour
     private List<MinorEnemy> enemiesInRange = new List<MinorEnemy>();
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "MinorEnemy" && !other.isTrigger)
+        if (other.tag == "Enemy" && !other.isTrigger)
         {
             MinorEnemy enemy = other.GetComponent<MinorEnemy>();
             enemiesInRange.Add(enemy);
@@ -15,7 +15,7 @@ public class OmniAttack : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "MinorEnemy" && !other.isTrigger)
+        if (other.tag == "Enemy" && !other.isTrigger)
         {
             enemiesInRange.Remove(other.GetComponent<MinorEnemy>());
         }
@@ -25,7 +25,7 @@ public class OmniAttack : MonoBehaviour
     {
         foreach (MinorEnemy enemy in enemiesInRange)
         {
-            DamageHandler.ApplyDamage(enemy, damage, GetComponent<Player>().GetPlayerData().Strength);
+            DamageHandler.ApplyDamage(enemy, damage, GetComponentInParent<Player>().GetPlayerData().Strength);
         }
     } 
 }

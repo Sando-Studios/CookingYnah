@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Asyncoroutine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     [Header("Unit Data")]
     [Tooltip("Assign in inspector ONLY if this object will be one of the Mini-bosses")]
@@ -31,18 +31,10 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        if (enemyDataInstance != null)
-            DamageHandler.OnEnemyUnitDeath += Death;
-        else if (bossDataInstance != null)
-            DamageHandler.OnBossUnitDeath += Death;
     }
 
     protected virtual void OnDisable()
     {
-        if (enemyDataInstance != null)
-            DamageHandler.OnEnemyUnitDeath -= Death;
-        else if (bossDataInstance != null)
-            DamageHandler.OnBossUnitDeath -= Death;
     }
 
     public virtual bool IsAlive()
@@ -78,9 +70,9 @@ public class Enemy : MonoBehaviour
         return enemyDataInstance;
     }
 
-    protected virtual void Death(int id) { }
+    protected abstract void Death(int id);
 
-    protected virtual void Death(Artifacts artifact, string name) { }
+    protected abstract void Death(Artifacts artifact, string name);
 
     protected virtual async void AttackTimer(float attackSpeed)
     {

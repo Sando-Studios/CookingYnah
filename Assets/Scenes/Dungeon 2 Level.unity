@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 23437a342c989fb4793080e47cf8214b, type: 2}
   m_LightingSettings: {fileID: 1528131834}
 --- !u!196 &4
 NavMeshSettings:
@@ -984,6 +984,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.6
@@ -1063,6 +1067,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22
@@ -1518,6 +1526,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.9
@@ -1664,6 +1676,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.3
@@ -1813,6 +1829,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: -37
@@ -2059,6 +2079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Main Level
   canUse: 1
+  blockObject: {fileID: 0}
 --- !u!114 &374533362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2148,7 +2169,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh225668
+  m_Name: pb_Mesh169788
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3612,6 +3633,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 19
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.6
@@ -4905,6 +4930,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22.2
@@ -5200,6 +5229,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 14
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.6
@@ -6205,6 +6238,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 18
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22
@@ -6381,6 +6418,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30.6
@@ -6519,6 +6560,10 @@ PrefabInstance:
     - target: {fileID: 8165699254801703424, guid: d7a1b2799912b084990aadf2eb7c9c69, type: 3}
       propertyPath: m_Name
       value: Player Camera Combo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165699254801703424, guid: d7a1b2799912b084990aadf2eb7c9c69, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7a1b2799912b084990aadf2eb7c9c69, type: 3}
@@ -7427,6 +7472,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -7896,6 +7945,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.3
@@ -8363,6 +8416,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.5
@@ -8516,6 +8573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Main Level
   canUse: 0
+  blockObject: {fileID: 0}
 --- !u!114 &1668204057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8614,6 +8672,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: -23.3
@@ -49478,6 +49540,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 27.6
@@ -50672,6 +50738,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: -42.6
@@ -50949,6 +51019,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.2
@@ -51090,6 +51164,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 16
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.2
@@ -51337,6 +51415,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.2
@@ -51447,6 +51529,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 913459314}
     m_Modifications:
+    - target: {fileID: 1849695098020463009, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
+      propertyPath: m_Name
+      value: Monster Base 17
+      objectReference: {fileID: 0}
     - target: {fileID: 1849695098020463010, guid: 26a32c7a795815745b1df112b4fb6762, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.4

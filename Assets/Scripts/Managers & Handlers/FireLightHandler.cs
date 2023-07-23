@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Asyncoroutine;
+using Random = UnityEngine.Random;
 
 public class FireLightHandler : MonoBehaviour
 {
@@ -14,8 +16,11 @@ public class FireLightHandler : MonoBehaviour
 
     private async void Flicker()
     {
-        while (gameObject.activeInHierarchy)
+        for (;;)
         {
+            if(this == null)
+                return;
+            
             float intensity = Random.Range(0.5f, 1.3f);
             lightSource.intensity = intensity;
             await new WaitForSeconds(0.1f);

@@ -23,6 +23,8 @@ public static class DamageHandler
 
         unit.CurrentHealth -= finalDamage;
         enemy.Hit();
+        
+        //Debug.Log(unit.CurrentHealth);
 
         if (unit.CurrentHealth <= 0)
         {
@@ -57,9 +59,12 @@ public static class DamageHandler
         float actualDamage = baseDamage * damageReduction;
         int finalDamage = Mathf.RoundToInt(actualDamage);
 
-        unit.CurrentHealth -= finalDamage;
+        unit.CurrentHealth -= baseDamage;
+        
+        Debug.Log($"Ynah's health: {unit.CurrentHealth}");
 
-        UIManager.instance.UpdateHpUI();
+        //UIManager.instance.UpdateHpUI();
+        UIManager.instance.UpdateHpBarUI();
         //Play Damage animation/sfx
 
 

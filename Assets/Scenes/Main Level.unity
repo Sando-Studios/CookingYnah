@@ -5129,6 +5129,7 @@ MonoBehaviour:
       Value: {fileID: 285181095}
   doorObject: {fileID: 1477534148}
   audioSource: {fileID: 1477534151}
+  sceneChangeHandlerScript: {fileID: 1078137381}
 --- !u!210 &551351935
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -8920,7 +8921,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh122296
+  m_Name: pb_Mesh734368
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12389,7 +12390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e068a454aaa993439d6ecfbca0ad42f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Dungeon 3 Level
+  sceneName: Ending Cutscene
   canUse: 0
   blockObject: {fileID: 0}
 --- !u!114 &1078137382
@@ -12874,7 +12875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1687ae15835a0d841aa208ba44084a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 0}
 --- !u!1 &1123981081
 GameObject:
   m_ObjectHideFlags: 0

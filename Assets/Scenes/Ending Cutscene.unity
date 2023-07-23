@@ -409,7 +409,7 @@ MonoBehaviour:
     - Key: {fileID: 21300000, guid: 63d0f9e33e1fac0478d4984dc5c2d7d1, type: 3}
       Value: 3
   image: {fileID: 210004551}
-  nextSceneName: Main Menu
+  nextSceneName: MainMenu
 --- !u!114 &210004551
 MonoBehaviour:
   m_ObjectHideFlags: 0

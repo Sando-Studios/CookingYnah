@@ -18,6 +18,20 @@ public class TempBuffIcon : MonoBehaviour
     private float currentTime;
     private bool start = false;
 
+    private void OnEnable()
+    {
+        DamageHandler.OnPlayerUnitDeath += PlayerKilled;
+    }
+    private void OnDisable()
+    {
+        DamageHandler.OnPlayerUnitDeath -= PlayerKilled;
+    }
+
+    private void PlayerKilled(int i)
+    {
+        Destroy(gameObject);
+    }
+
     public void SetData(TargetStat stat, float duration)
     {
         var s = stat;

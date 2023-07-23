@@ -38,6 +38,8 @@ public class TempBuffIcon : MonoBehaviour
         currentTime = duration;
 
         start = true;
+        
+        Destroy(gameObject, this.duration);
     }
 
     private void Update()

@@ -2499,7 +2499,7 @@ MonoBehaviour:
   damage: 10
   damageMultiplier: 2
   shortAtkCd: 0.5
-  comboAtkCd: 5
+  comboAtkCd: 3
   cone: {fileID: 8717946973411942262}
   sphere: {fileID: 8717946973362874351}
 --- !u!1 &8717946974649711926

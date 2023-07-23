@@ -46,6 +46,12 @@ namespace Crafting
 
         private readonly List<string> unlockedRecipes = new();
 
+        private void Start()
+        {
+            foreach (var (_, value) in recipes)
+                PutToLogs(value);
+        }
+
         private void PutToLogs(Recipe rec)
         {
             if (unlockedRecipes.Contains(rec.output.Name)) return;

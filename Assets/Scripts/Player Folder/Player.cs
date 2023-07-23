@@ -115,6 +115,7 @@ public class Player : MonoBehaviour
         audioScript.OnPlayerMove(status);
     }
 
+
     private void Attack()
     {
         canAttack = false;

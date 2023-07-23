@@ -2502,6 +2502,9 @@ MonoBehaviour:
   comboAtkCd: 3
   cone: {fileID: 8717946973411942262}
   sphere: {fileID: 8717946973362874351}
+  spriteRenderer: {fileID: 8717946974257690860}
+  activeColor: {r: 1, g: 0.5921569, b: 0, a: 0.38431373}
+  inactiveColor: {r: 1, g: 0, b: 0, a: 0.38431373}
 --- !u!1 &8717946974649711926
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,10 @@ public class Jab : MonoBehaviour
     
     internal uint internalCounter = 0;
 
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Color activeColor;
+    [SerializeField] private Color inactiveColor;
+
     public (bool, uint) Attack()
     {
         if (Cooldown(shortAtkCd))
@@ -63,6 +67,7 @@ public class Jab : MonoBehaviour
         // Override cooldown
         StopCoroutine(cdRoutine);
         cdRoutine = null;
+        spriteRenderer.color = inactiveColor;
         Cooldown(comboAtkCd);
 
         var dmg = damage * damageMultiplier;
@@ -148,6 +153,7 @@ public class Jab : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         cdRoutine = null;
+        spriteRenderer.color = activeColor;
     }
 
 }

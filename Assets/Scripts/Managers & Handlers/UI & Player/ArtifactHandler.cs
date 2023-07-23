@@ -1,5 +1,7 @@
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.UI;
+
 public enum Artifacts
 {
     None,
@@ -27,7 +29,7 @@ public class ArtifactHandler : MonoBehaviour
         ArtifactUIHandler.OnArtifactSelected -= SetArtifact;
     }
 
-    public void SetArtifact(int slotNum, Artifacts artifactToSlot, GameObject obj, int staminaCost)
+    public void SetArtifact(int slotNum, Artifacts artifactToSlot, GameObject obj, int staminaCost, Image image, Sprite sprite)
     {
         if (CanSlotArtifact(artifactToSlot))
         {
@@ -56,6 +58,11 @@ public class ArtifactHandler : MonoBehaviour
 
             artifacts[slotNum] = artifactToSlot;
 
+            Color currentColor = image.color;
+            Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, 1);
+            image.color = newColor;
+            image.sprite = sprite;
+            
             // Add ArtifactAbility script
             var a = artifactToSlot;
             switch (a)

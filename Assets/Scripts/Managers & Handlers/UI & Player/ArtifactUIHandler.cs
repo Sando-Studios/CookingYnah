@@ -15,14 +15,21 @@ public class ArtifactUIHandler : MonoBehaviour
     [Header("ArtifactAbility")]
     [SerializeField] private ArtifactProgress progress;
     [SerializeField] private SerializedDictionary<Artifacts, GameObject> artifactIcons = new SerializedDictionary<Artifacts, GameObject>();
+    [SerializeField] private SerializedDictionary<Artifacts, GameObject> artifactAreas = new SerializedDictionary<Artifacts, GameObject>();
 
     [Header("Tool Tip")]
     [SerializeField] private GameObject artifactToolTip;
     [SerializeField] private TextMeshProUGUI artifactName;
     [SerializeField] private TextMeshProUGUI artifactDescription;
 
-    public static event Action<int, Artifacts, GameObject, int> OnArtifactSelected;
+    [Header("Icons")]
+    [SerializeField] private Sprite fireMeatballSprite;
+    [SerializeField] private Sprite groundWaveSprite;
+    [SerializeField] private Sprite axeSlashesSprite;
+
+    public static event Action<int, Artifacts, GameObject, int, Image, Sprite> OnArtifactSelected;
     private int selectedSlot;
+    private Image selectedSlotImage;
 
     private void Start()
     {
@@ -54,17 +61,20 @@ public class ArtifactUIHandler : MonoBehaviour
             {
                 Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, 1);
                 kvp.Value.GetComponent<Image>().color = newColor;
+                artifactAreas[kvp.Key].gameObject.SetActive(true);
             }
             else
             {
                 Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b, 0.5f);
                 kvp.Value.GetComponent<Image>().color = newColor;
+                artifactAreas[kvp.Key].gameObject.SetActive(false);
             }
         }
     }
     public void HideArtifactMenu()
     {
         artifactMenu.SetActive(false);
+        selectedSlotImage = null;
     }
     public void ShowArtifactToolTip(string artifactName)
     {
@@ -79,10 +89,23 @@ public class ArtifactUIHandler : MonoBehaviour
     public void OnArtifactClick(string artifactSelected)
     {
         Artifacts a = FindArtifactByName(artifactSelected);
-        
+
+        Sprite spriteToSend = null;
         if (progress.UnlockedArtifacts[a])
         {
-            OnArtifactSelected?.Invoke(selectedSlot, a, progress.ArtifactDescriptions[a].AbilityPrefab, progress.ArtifactDescriptions[a].StaminaCost);
+            switch (artifactSelected)
+            {
+                case "Fire Meatball":
+                    spriteToSend = fireMeatballSprite;
+                    break;
+                case "Ground Wave":
+                    spriteToSend = groundWaveSprite;
+                    break;
+                case "Spectral Sword":
+                    spriteToSend = axeSlashesSprite;
+                    break;
+            }
+            OnArtifactSelected?.Invoke(selectedSlot, a, progress.ArtifactDescriptions[a].AbilityPrefab, progress.ArtifactDescriptions[a].StaminaCost, selectedSlotImage, spriteToSend);
             return;
         }
     }
@@ -90,6 +113,10 @@ public class ArtifactUIHandler : MonoBehaviour
     public void SetSelectedSlot(int slotNum)
     {
         selectedSlot = slotNum;
+    }
+    public void SetSelectedSlotImage(Image imageObj)
+    {
+        selectedSlotImage = imageObj;
     }
 
     private Artifacts FindArtifactByName(string name)

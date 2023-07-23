@@ -129,7 +129,7 @@ MeshCollider:
   m_GameObject: {fileID: 1374908310319155103}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -1103,6 +1103,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &4785789645848216960 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5753715703981489227, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
+  m_PrefabInstance: {fileID: 987352239253338571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7556903388319377052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7308291296422616919, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
@@ -1160,9 +1165,13 @@ MonoBehaviour:
   bossDataInstance: {fileID: 11400000, guid: 46760d3982ec05e459834a8f24075227, type: 2}
   hpBar: {fileID: 876305103271646448}
   spriteTransform: {fileID: 7556903388319377052}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 4785789645848216960}
   nameClipDictionary:
     _serializedList:
+    - Key: Combat
+      Value: {fileID: 8300000, guid: 9e4b3992fe2edb34f99abb72c5da624a, type: 3}
+    - Key: Stun
+      Value: {fileID: 8300000, guid: 9e4b3992fe2edb34f99abb72c5da624a, type: 3}
     - Key: BasicA
       Value: {fileID: 8300000, guid: 9e4b3992fe2edb34f99abb72c5da624a, type: 3}
     - Key: Hurt Death

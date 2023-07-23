@@ -10,22 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e8be34d230c236499d91e53a583c9ab, type: 3}
-  m_Name: EASY_Pork-Chop 1
+  m_Name: EASY_Cow-abunga 1
   m_EditorClassIdentifier: 
-  unitName: Pork Chop
+  unitName: Cow-abunga
   maxHealth: 90
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:
     _serializedList:
+    - Key: {fileID: 11400000, guid: 4b1d4d53d079c564baae68a531ebcd91, type: 2}
+      Value: 1
     - Key: {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
       Value: 1
-  basicAttackDmg: 5
-  wanderSpeed: 5
-  chaseSpeed: 7
-  attackSpeed: 4
-  aggroRange: 10
-  chaseRange: 12
+    - Key: {fileID: 11400000, guid: 42d0ac3568a65f24fac0812c6082984b, type: 2}
+      Value: 1
+  basicAttackDmg: 7
+  wanderSpeed: 3
+  chaseSpeed: 5
+  attackSpeed: 3
+  aggroRange: 7
+  chaseRange: 10
   attackRange: 5
-  animatorController: {fileID: 22100000, guid: 1df9a5e231f9f0d4e91c65e103b25eca, type: 2}
-  enemyPrefab: {fileID: 5974314629011983369, guid: 66d2735c3da4de14e94e4e6747bfcc25, type: 3}
+  animatorController: {fileID: 22100000, guid: d57daa96e7f9e6e4cb44c780f58ef43f, type: 2}
+  enemyPrefab: {fileID: 7731822615392615700, guid: af2edaab81ff0ae4f9f38a286388d5d7, type: 3}

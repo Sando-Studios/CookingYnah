@@ -21,6 +21,8 @@ public class IdleState : MonsterState
     {
         animationTimer += deltaTime;
 
+        enemy.PlaySoundRandomTime("Idle");
+
         if (!enemy.IsAlive())
         {
             statManager.ChangeState(enemy, new DeathState(statManager, enemy));

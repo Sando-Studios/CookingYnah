@@ -714,6 +714,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 6.02
       objectReference: {fileID: 0}
+    - target: {fileID: 2474154283882536430, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6338477555309129997, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_Controller
       value: 
@@ -732,9 +736,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
---- !u!95 &3772547020188006619 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6338477555309129997, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+--- !u!82 &4754106242663404600 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2474154283882536430, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
   m_PrefabInstance: {fileID: 7182129000808909270}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7731822615392615700 stripped
@@ -754,14 +758,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff052f75fa06ed4298085812b4d98fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggroTrigger: {fileID: 7731822615392615704}
-  targetUnit: {fileID: 0}
-  redMaterial: {fileID: 2100000, guid: 369077c2621799f469c0e1af06a20ac5, type: 2}
-  greenMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  hpBarGameObject: {fileID: 7731822616532202088}
+  bossDataInstance: {fileID: 0}
   hpBar: {fileID: 7731822615677427626}
-  animator: {fileID: 3772547020188006619}
   spriteTransform: {fileID: 7731822615619516196}
+  audioSource: {fileID: 4754106242663404600}
+  nameClipDictionary:
+    _serializedList:
+    - Key: Stampede
+      Value: {fileID: 8300000, guid: 86ab191d3bb518a4dbc12dca9c4ef7d6, type: 3}
+    - Key: Death
+      Value: {fileID: 8300000, guid: 99892097d67c33d4aa573e4e982e6506, type: 3}
+    - Key: Patrol Idle
+      Value: {fileID: 8300000, guid: f0e5c3cd070fe8c489c37301e7388325, type: 3}
+    - Key: Chase
+      Value: {fileID: 8300000, guid: 28e27aa4dd4d96e4cb1817f753ffa6ce, type: 3}
+    - Key: Combat
+      Value: {fileID: 8300000, guid: f7f6fe84e6153274f82dfd821b97133c, type: 3}
+    - Key: Attack
+      Value: {fileID: 8300000, guid: 3816a12f21dffe74a91104ba2c5ae62b, type: 3}
+    - Key: Hurt
+      Value: {fileID: 8300000, guid: 0b773b2ce1380c843ad5c2b94c938672, type: 3}
+  aggroTrigger: {fileID: 7731822615392615704}
+  hpBarGameObject: {fileID: 7731822616532202088}
   capsuleCollider: {fileID: 7731822615392615707}
   maxChargeDistance: 6
 --- !u!135 &7731822615392615704 stripped

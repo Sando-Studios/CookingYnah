@@ -16,6 +16,7 @@ public class AttackState : MonsterState
     {
         if (enemy.GetCanAttack())
         {
+            enemy.PlaySound("Attack");
             enemy.SetCanAttack(false);
             enemy.SetIsAttackDone(false);
             enemy.ExecuteAttack();

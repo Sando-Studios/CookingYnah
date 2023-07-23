@@ -13,6 +13,8 @@ public class CombatState : MonsterState
 
     public override void Update(float deltaTime)
     {
+        enemy.PlaySoundRandomTime("Combat");
+
         if (!enemy.IsAlive())
         {
             statManager.ChangeState(enemy, new DeathState(statManager, enemy));

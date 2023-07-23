@@ -39,6 +39,8 @@ public class CowEnemy : MinorEnemy
             chargeEndPoint = point.position;
             agent.enabled = false;
             capsuleCollider.isTrigger = true;
+
+            PlaySound("Stampede");
         }
     }
 

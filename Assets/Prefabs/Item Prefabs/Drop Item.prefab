@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 8957071437278031937}
+  itemAudioSource: {fileID: 0}
 --- !u!114 &539258215376433456
 MonoBehaviour:
   m_ObjectHideFlags: 0

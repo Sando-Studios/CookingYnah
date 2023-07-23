@@ -22,6 +22,8 @@ public class PatrolState : MonsterState
 
     public override void Update(float deltaTime)
     {
+        enemy.PlaySoundRandomTime("Patrol");
+
         if (!enemy.IsAlive())
         {
             statManager.ChangeState(enemy, new DeathState(statManager, enemy));
@@ -39,6 +41,8 @@ public class PatrolState : MonsterState
             statManager.ChangeState(enemy, new IdleState(statManager, enemy));
             return;
         }
+
+
     }
 
     public override void Exit()

@@ -35,6 +35,9 @@ public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private int maxInventory = 20;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+
     private List<InventorySlot> inventoryList = new List<InventorySlot>();
 
     private void OnEnable()
@@ -156,6 +159,9 @@ public class PlayerInventory : MonoBehaviour
 
         BuffManager.instance.ApplyHeal(result.itemBuffData.HealAmount);
         RemoveItem(result.itemName);
+
+        audioSource.Stop();
+        audioSource.Play();
 
         UIManager.instance.UpdateInventoryUI();
     }

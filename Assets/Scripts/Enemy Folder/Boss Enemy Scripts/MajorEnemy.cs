@@ -28,6 +28,9 @@ public class MajorEnemy : Enemy
     private bool isPlayerInRoom = false;
     private Vector3 targetPos;
 
+    private float randomInterval;
+    private float time;
+
     protected override void OnEnable()
     {
         DamageHandler.OnBossUnitDeath += Death;
@@ -46,6 +49,7 @@ public class MajorEnemy : Enemy
         hpBar.transform.parent.gameObject.SetActive(false);
         home = transform.position;
         bossDataInstance.SetHealthToDefault();
+        randomInterval = UnityEngine.Random.Range(1, 7);
         TransitionToState(BossState.Idle);
     }
 
@@ -142,6 +146,14 @@ public class MajorEnemy : Enemy
             }
             else
             {
+                time += Time.deltaTime;
+
+                if (time >= randomInterval)
+                {
+                    PlayAudioClip(GetAudioClipName("Chase"));
+                    time = 0f;
+                }
+
                 agent.SetDestination(home);
                 return;
             }
@@ -167,6 +179,15 @@ public class MajorEnemy : Enemy
         }
         else if (distanceToTarget <= bossDataInstance.AttackRange && GetCanAttack())
         {
+
+            time += Time.deltaTime;
+
+            if (time >= randomInterval)
+            {
+                PlayAudioClip(GetAudioClipName("Combat"));
+                time = 0f;
+            }
+
             if (attackCount % 4 == 0 && attackCount > 0)
             {
                 TransitionToState(BossState.SpecialAttack);
@@ -235,6 +256,8 @@ public class MajorEnemy : Enemy
             TransitionToState(BossState.Death);
             return;
         }
+        
+        PlayAudioClip(GetAudioClipName("Stun"));
 
         await new WaitForSeconds(bossDataInstance.StunnedDuration);
 
@@ -254,6 +277,8 @@ public class MajorEnemy : Enemy
         spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
 
         AttackTimer(bossDataInstance.BasicAttackSpeed);
+
+        PlayAudioClip(GetAudioClipName("BasicA"));
     }
 
     public void CheckBasicAttackHit()
@@ -271,6 +296,9 @@ public class MajorEnemy : Enemy
         AttackTimer(bossDataInstance.SpecialAttackSpeed);
         OmniSlashAbility omniSlash = GetComponent<OmniSlashAbility>();
         omniSlash.SpawnBossSlashZone(bossDataInstance.SpecialAttackDamage);
+
+        PlayAudioClip(GetAudioClipName("SpecialA"));
+
         SetIsAttackDone(true);
     }
     protected override void Death(Artifacts artifact, string name)

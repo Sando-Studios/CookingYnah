@@ -23,6 +23,8 @@ public class ChaseState : MonsterState
 
     public override void Update(float deltaTime)
     {
+        enemy.PlaySoundRandomTime("Chase");
+
         if (!enemy.IsAlive())
         {
             statManager.ChangeState(enemy, new DeathState(statManager, enemy));

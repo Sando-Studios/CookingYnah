@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
-{   
+{
     [Header("Unit DropData")]
     [SerializeField] private PlayerUnitData playerUnitData;
     private Rigidbody rb;
@@ -26,8 +26,12 @@ public class Player : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator animator;
     [SerializeField] private ParticleSystem attackParticle;
+    [SerializeField] private GameObject spriteObject;
 
     private bool movementEnabled = true;
+
+    [Header("Audio")]
+    [SerializeField] private YnahWalkingSounds audioScript;
 
     private void Awake()
     {
@@ -62,19 +66,26 @@ public class Player : MonoBehaviour
 
         if (!movementEnabled) return;
 
+        bool isMoving = false;
+
         if (Input.GetButton("Horizontal"))
         {
             var val = Input.GetAxis("Horizontal");
             rb.AddForce(new Vector3(val, 0, 0) * force * Time.deltaTime, ForceMode.Force);
+
+            isMoving = true;
         }
 
         if (Input.GetButton("Vertical"))
         {
             var val = Input.GetAxis("Vertical");
             rb.AddForce(new Vector3(0, 0, val) * force * Time.deltaTime, ForceMode.Force);
+
+            isMoving = true;
         }
 
         AnimateMovement();
+        PlayMovementSound(isMoving);
     }
 
     public void EnableInputs()
@@ -97,7 +108,11 @@ public class Player : MonoBehaviour
         animator.SetFloat("MoveX", rb.velocity.x);
         animator.SetFloat("MoveY", rb.velocity.z);
 
-        transform.rotation = Quaternion.Euler(new Vector3(0, rb.velocity.x > 0 ? 180f : 0f, 0));
+        spriteObject.transform.rotation = Quaternion.Euler(new Vector3(0, rb.velocity.x > 0 ? 180f : 0f, 0));
+    }
+    private void PlayMovementSound(bool status)
+    {
+        audioScript.OnPlayerMove(status);
     }
 
     private void Attack()
@@ -107,7 +122,7 @@ public class Player : MonoBehaviour
         attackCollider.radius = playerUnitData.AttackRange;
 
         var (attacked, isSlow) = jab.Attack();
-        
+
         if (!attacked) return;
 
         if (!isSlow)

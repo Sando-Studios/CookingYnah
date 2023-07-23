@@ -37,18 +37,21 @@ public class GoatMajorEnemy : MajorEnemy
             chargeEndPoint = point.position;
             agent.enabled = false;
             GetComponent<CapsuleCollider>().isTrigger = true;
+            PlayAudioClip(GetAudioClipName("BasicA Stampede"));
             AddToAttackCount(1);
         }
     }
 
     public override void ExecuteSpecialAttack()
     {
+        PlayAudioClip(GetAudioClipName("SpecialA Roar"));
         AttackTimer(bossDataInstance.SpecialAttackSpeed);
     }
 
 
     public void StartWave()
     {
+        PlayAudioClip(GetAudioClipName("SpecialA Stomp"));
         GroundWaveAbility groundWave = GetComponent<GroundWaveAbility>();
         groundWave.SpawnRocks(3, bossDataInstance.SpecialAttackDamage);
     }

@@ -17,6 +17,8 @@ public class TurkeyMajorEnemy : MajorEnemy
         FireMeatballAbility fireBall = GetComponent<FireMeatballAbility>();
         fireBall.SpawnMeatballMeteor(targetUnit.transform.position, bossDataInstance.SpecialAttackDamage);
 
+        PlayAudioClip(GetAudioClipName("SpecialA"));
+
         AttackTimer(bossDataInstance.SpecialAttackSpeed);
     }
 

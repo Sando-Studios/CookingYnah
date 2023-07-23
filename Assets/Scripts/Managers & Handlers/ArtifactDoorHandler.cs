@@ -17,6 +17,8 @@ public class ArtifactDoorHandler : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
 
+    public SceneChangeHandler sceneChangeHandlerScript;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -55,6 +57,7 @@ public class ArtifactDoorHandler : MonoBehaviour
             }
             else if (isComplete && doorObject.transform.position.y < -2.7f)
             {
+                sceneChangeHandlerScript.SetCanUse(true);
                 Destroy(doorObject);
             }
         }

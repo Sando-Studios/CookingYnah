@@ -104,10 +104,13 @@ public class BuffManager : MonoBehaviour
         if (player.Resilience < 1)
             player.Resilience = 1;
 
-        foreach (var key in tempBuffAmountDictionary.Keys)
+        /*foreach (var key in tempBuffAmountDictionary.Keys)
         {
             tempBuffAmountDictionary[key] = 0;
-        }
+        }*/
+        tempBuffAmountDictionary[TargetStat.ResStat] = 0;
+        tempBuffAmountDictionary[TargetStat.VitStat] = 0;
+        tempBuffAmountDictionary[TargetStat.StrStat] = 0;
         
         GuardMaxHealth();
     } 

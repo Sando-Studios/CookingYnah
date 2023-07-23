@@ -121,19 +121,28 @@ public class Player : MonoBehaviour
 
         attackCollider.radius = playerUnitData.AttackRange;
 
-        var (attacked, isSlow) = jab.Attack();
+        var (attacked, counter) = jab.Attack();
 
         if (!attacked) return;
-
-        if (!isSlow)
+        
+        switch (counter)
         {
-            attackParticle.Play();
-            animator.ResetTrigger("Attack Finish");
-            animator.SetTrigger("Attack Start");
-        }
-        else
-        {
-            throw new NotImplementedException("No slow attack animation yet");
+            case 0:
+                break;
+            case 1:
+                attackParticle.Play();
+                animator.ResetTrigger("Attack Finish");
+                animator.SetTrigger("Attack Start");
+                break;
+            case 2:
+                throw new NotImplementedException("No second attack animation yet");
+                break;
+            case 3:
+                throw new NotImplementedException("No slow attack animation yet");
+                break;
+            default:
+                Debug.LogError("HOW");
+                break;
         }
     }
 

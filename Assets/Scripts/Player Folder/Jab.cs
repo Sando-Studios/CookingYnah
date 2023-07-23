@@ -28,12 +28,12 @@ public class Jab : MonoBehaviour
     
     internal uint internalCounter = 0;
 
-    public (bool, bool) Attack()
+    public (bool, uint) Attack()
     {
         if (Cooldown(shortAtkCd))
         {
             // On ability cooldown
-            return (false, false);
+            return (false, 0);
         }
         
         StartTimer(); // Combo timer
@@ -42,11 +42,11 @@ public class Jab : MonoBehaviour
         {
             Slow();
             internalCounter = 0;
-            return (true, true);
+            return (true, threshold);
         }
 
         Fast();
-        return (true, false);
+        return (true, internalCounter);
     }
 
     private async void Fast()

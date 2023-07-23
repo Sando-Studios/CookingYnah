@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class BossRoomTrigger : MonoBehaviour
 {
-    [SerializeField]private MajorEnemy boss;
+    [SerializeField] private MajorEnemy boss;
+    [SerializeField] private AudioSource audioSource;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.isTrigger && other.CompareTag("Player"))
+        {
             boss.SetPlayerStatus(true, other.gameObject);
+            audioSource.Play();
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.isTrigger && other.CompareTag("Player"))
+        {
             boss.SetPlayerStatus(false, null);
+            audioSource.Stop();
+        }
+
     }
 }

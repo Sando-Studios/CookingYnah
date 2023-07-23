@@ -974,6 +974,11 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 5753715703981489227, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
   m_PrefabInstance: {fileID: 753592056096311756}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8005447188683068375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7308291297603213851, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
+  m_PrefabInstance: {fileID: 753592056096311756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8005447189695290539 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7308291296463066471, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
@@ -997,17 +1002,32 @@ MonoBehaviour:
   audioSource: {fileID: 5020394323477951879}
   nameClipDictionary:
     _serializedList:
+    - Key: Stomp 3
+      Value: {fileID: 8300000, guid: f17df964c6fb04149a1a629a121b60b4, type: 3}
+    - Key: Stomp 2
+      Value: {fileID: 8300000, guid: e982b9dd29a88f64f8c5b024d82c8398, type: 3}
+    - Key: Stomp 1
+      Value: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+    - Key: Roar
+      Value: {fileID: 8300000, guid: 8bec61725baa7ea41a3fc552c27b00e1, type: 3}
+    - Key: Stampede 1
+      Value: {fileID: 8300000, guid: 9d648fd71a58afc4cbe4d212bbfeb0cc, type: 3}
+    - Key: Stampede 2
+      Value: {fileID: 8300000, guid: 99e92363a533c3448bda0f70b9f59275, type: 3}
     - Key: Stun
-      Value: {fileID: 8300000, guid: eccc0c37dc982b546bbce665f35b51da, type: 3}
+      Value: {fileID: 8300000, guid: b16a3645f6ef5934ca9cbee20801beff, type: 3}
     - Key: Combat
       Value: {fileID: 8300000, guid: eccc0c37dc982b546bbce665f35b51da, type: 3}
-    - Key: Hurt Death
-      Value: {fileID: 8300000, guid: eccc0c37dc982b546bbce665f35b51da, type: 3}
+    - Key: Death
+      Value: {fileID: 8300000, guid: 5997dffa89c6ca2409f2b6d66735e5f6, type: 3}
+    - Key: Hurt 1
+      Value: {fileID: 8300000, guid: b16a3645f6ef5934ca9cbee20801beff, type: 3}
+    - Key: Hurt 2
+      Value: {fileID: 8300000, guid: b67d004b6eaca564ead3630759776b64, type: 3}
     - Key: Idle Chase
       Value: {fileID: 8300000, guid: e9f457628344de74baa814d8ab60b687, type: 3}
-    - Key: SpecialA BasicA
-      Value: {fileID: 8300000, guid: 8bec61725baa7ea41a3fc552c27b00e1, type: 3}
   bossNameText: {fileID: 3046438204611962462}
+  bossUI: {fileID: 8005447188683068375}
   maxChargeDistance: 5
 --- !u!114 &4190605587336523734
 MonoBehaviour:

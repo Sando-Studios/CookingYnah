@@ -51,19 +51,6 @@ public class SpawningHandler : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        /*int w = 1;
-        if (Input.anyKeyDown) //for testing spawning waves
-        {
-            Debug.Log("KEY SPAWN");
-            
-            if (spawnerID == w)
-                enemiesSpawned.Clear();
-            OnMemberDeath(-1);
-        }*/
-    }
-
     private void OnMemberDeath(int i)
     {
         enemiesSpawned.RemoveAll(enemy => enemy.GetEnemyData().UnitID == i);
@@ -76,6 +63,8 @@ public class SpawningHandler : MonoBehaviour
 
     private async void Spawning(Vector3 home)
     {
+        if (!SceneManager.GetActiveScene().name.Contains("Dungeon")) return;
+
         foreach (KeyValuePair<int, EnemyUnitData> e in enemiesToSpawn)
         {
             GameObject clone = Instantiate(e.Value.EnemyPrefab, spawnPoint);
@@ -89,11 +78,11 @@ public class SpawningHandler : MonoBehaviour
 
     private async void BatchDelay()
     {
-        await new WaitForSeconds(4.0f);
+        await new WaitForSeconds(15.0f);
 
         Scene scene = SceneManager.GetActiveScene();
 
-        if (scene.name == "Dungeon Level")
+        if (scene.name.Contains("Dungeon"))
             StartSpawning();
     }
 }

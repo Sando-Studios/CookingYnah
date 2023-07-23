@@ -955,6 +955,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: 1df9a5e231f9f0d4e91c65e103b25eca, type: 2}
+    - target: {fileID: 5753715703981489227, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7308291296422616919, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1
@@ -1108,6 +1112,11 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 5753715703981489227, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
   m_PrefabInstance: {fileID: 987352239253338571}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7556903387339842512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7308291297603213851, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
+  m_PrefabInstance: {fileID: 987352239253338571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7556903388319377052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7308291296422616919, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
@@ -1168,16 +1177,35 @@ MonoBehaviour:
   audioSource: {fileID: 4785789645848216960}
   nameClipDictionary:
     _serializedList:
-    - Key: Combat
-      Value: {fileID: 8300000, guid: 9e4b3992fe2edb34f99abb72c5da624a, type: 3}
+    - Key: Combat 1
+      Value: {fileID: 8300000, guid: e67dc766d59787343955917a53453a61, type: 3}
+    - Key: Combat 2
+      Value: {fileID: 8300000, guid: d8687838f605aa047a1d23aa0b5e40aa, type: 3}
+    - Key: Combat 3
+      Value: {fileID: 8300000, guid: 07e13a52be4cb474c8bdba392af4897e, type: 3}
+    - Key: Combat 4
+      Value: {fileID: 8300000, guid: e5abda5b648664143bba356cff5b2030, type: 3}
+    - Key: Combat 5
+      Value: {fileID: 8300000, guid: 7fe328c66eb0099448f5f9306cd2c1d0, type: 3}
     - Key: Stun
+      Value: {fileID: 8300000, guid: 4ff424335d38e064b8214e30fb18bb06, type: 3}
+    - Key: BasicA 1
+      Value: {fileID: 8300000, guid: d4c84733cf5cadf40a006c162e4ddffd, type: 3}
+    - Key: BasicA 2
+      Value: {fileID: 8300000, guid: 3975ebf61a42233469603b13bda4494d, type: 3}
+    - Key: BasicA 3
       Value: {fileID: 8300000, guid: 9e4b3992fe2edb34f99abb72c5da624a, type: 3}
-    - Key: BasicA
-      Value: {fileID: 8300000, guid: 9e4b3992fe2edb34f99abb72c5da624a, type: 3}
-    - Key: Hurt Death
-      Value: {fileID: 8300000, guid: 69964ba687c3a714ea3e37cdd36fc5e5, type: 3}
-    - Key: Idle Chase
+    - Key: Hurt Death 1
+      Value: {fileID: 8300000, guid: 1fa329033ec0e4e4e8e9f88e68d70314, type: 3}
+    - Key: Hurt Death 2
+      Value: {fileID: 8300000, guid: 7190c651d45347c47bd393640cc53b1a, type: 3}
+    - Key: Chase 1
       Value: {fileID: 8300000, guid: c8e1e51417f8c52498d69b2cde67c929, type: 3}
+    - Key: Chase 2
+      Value: {fileID: 8300000, guid: 7ea37e481c1478741ad57d774b9c55b6, type: 3}
+    - Key: Chase 3
+      Value: {fileID: 8300000, guid: 6158dbda59b15aa43beedefd9ac7e536, type: 3}
     - Key: SpecialA
-      Value: {fileID: 8300000, guid: b021fe492252cc748a91c66022ced450, type: 3}
+      Value: {fileID: 8300000, guid: f0434bb09b6c86f48945c21555472d4d, type: 3}
   bossNameText: {fileID: 3279063846959961689}
+  bossUI: {fileID: 7556903387339842512}

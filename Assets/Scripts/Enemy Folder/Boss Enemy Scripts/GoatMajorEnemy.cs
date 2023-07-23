@@ -17,7 +17,7 @@ public class GoatMajorEnemy : MajorEnemy
 
         if (other.CompareTag("Player") && !other.isTrigger && GetComponent<CapsuleCollider>().isTrigger)
         {
-            DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
+            DamageHandler.ApplyDamage(other.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
         }
     }
 
@@ -37,21 +37,23 @@ public class GoatMajorEnemy : MajorEnemy
             chargeEndPoint = point.position;
             agent.enabled = false;
             GetComponent<CapsuleCollider>().isTrigger = true;
-            PlayAudioClip(GetAudioClipName("BasicA Stampede"));
+            PlayAudioClip(GetAudioClipName("Stampede"));
             AddToAttackCount(1);
         }
     }
 
     public override void ExecuteSpecialAttack()
     {
-        PlayAudioClip(GetAudioClipName("SpecialA Roar"));
+        PlayAudioClip(GetAudioClipName("Roar"));
         AttackTimer(bossDataInstance.SpecialAttackSpeed);
     }
 
 
     public void StartWave()
     {
-        PlayAudioClip(GetAudioClipName("SpecialA Stomp"));
+        GetComponent<AudioSource>().Stop();
+        PlayAudioClip(GetAudioClipName("Stomp"));
+        GetComponent<AudioSource>().Play();
         GroundWaveAbility groundWave = GetComponent<GroundWaveAbility>();
         groundWave.SpawnRocks(3, bossDataInstance.SpecialAttackDamage);
     }

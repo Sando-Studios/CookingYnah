@@ -22,6 +22,7 @@ public class Debugger : MonoBehaviour
         pdata.Strength = 10000;
         pdata.RawDamage = 10000;
         pdata.Resilience = 10000;
+        pdata.CurrentHealth = pdata.MaxHealth;
     }
 
     public void UnlockArtifacts()

@@ -6,6 +6,7 @@ using Asyncoroutine;
 using UnityEngine.AI;
 using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -84,6 +85,11 @@ public abstract class Enemy : MonoBehaviour
     {
         await new WaitForSeconds(attackSpeed);
         SetCanAttack(true);
+    }
+
+    protected virtual void Awake()
+    {
+        if (SceneManager.GetActiveScene().name.Contains("Main")) Destroy(gameObject);
     }
 
     protected virtual void Start()

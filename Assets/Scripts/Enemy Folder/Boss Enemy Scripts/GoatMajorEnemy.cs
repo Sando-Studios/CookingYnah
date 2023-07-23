@@ -17,7 +17,7 @@ public class GoatMajorEnemy : MajorEnemy
 
         if (other.CompareTag("Player") && !other.isTrigger && GetComponent<CapsuleCollider>().isTrigger)
         {
-            DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
+            DamageHandler.ApplyDamage(other.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
         }
     }
 

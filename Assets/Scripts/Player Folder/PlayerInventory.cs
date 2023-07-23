@@ -87,6 +87,7 @@ public class PlayerInventory : MonoBehaviour
                     itemQuantity = 1,
                     itemBuffData = itemData,
                     itemSprite = itemData.SpriteToRender,
+                    itemDesc = itemData.Description
                 };
                 inventoryList.Add(newItem);
                 // Destroy(itemToAdd.gameObject);

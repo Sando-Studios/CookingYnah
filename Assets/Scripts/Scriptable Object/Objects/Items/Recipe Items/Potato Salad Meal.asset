@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Potato Salad
   itemSprite: {fileID: 21300000, guid: d2127f531f0ff0d4394a117cfb392a34, type: 3}
+  itemDescription: Salad with potatoes, eggs & tomatoes that contains Iron, Vit.
+    C & Carbohydrates.
   PermaBuffDictionary:
     _serializedList:
     - Key: 2

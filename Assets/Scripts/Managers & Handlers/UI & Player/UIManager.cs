@@ -53,6 +53,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemToolTipText;
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI itemNameText;
+    [SerializeField] private TextMeshProUGUI itemDescText;
     [SerializeField] private TextMeshProUGUI itemPermEffectsText;
     [SerializeField] private TextMeshProUGUI itemTempEffectsText;
     private bool isOverItem = false;
@@ -285,6 +286,7 @@ public class UIManager : MonoBehaviour
         itemToolTipText.text = result.itemName;
         itemImage.sprite = result.itemSprite;
         itemNameText.text = result.itemName;
+        itemDescText.text = result.itemDesc;
 
         string stringToAdd1 = "";
         string stringToAdd2 = ""; ;

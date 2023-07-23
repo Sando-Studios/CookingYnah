@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Katsudon
   itemSprite: {fileID: 21300000, guid: 26e191ba3c03db94cac138adc07f6ab5, type: 3}
+  itemDescription: Pork cutlet topped with eggs & onions that has Carbohydrates,
+    Protein & Potassium.
   PermaBuffDictionary:
     _serializedList:
     - Key: 1

@@ -17,6 +17,7 @@ public struct InventorySlot
     public int itemQuantity;
     public Sprite itemSprite;
     public ItemData itemBuffData;
+    public string itemDesc;
 
     public InventorySlot (ItemData data)
     {
@@ -24,6 +25,7 @@ public struct InventorySlot
         itemQuantity = 1;
         itemSprite = data.SpriteToRender;
         itemBuffData = data;
+        itemDesc = data.Description;
     }
 
     public static InventorySlot Empty
@@ -85,6 +87,7 @@ public class PlayerInventory : MonoBehaviour
                     itemQuantity = 1,
                     itemBuffData = itemData,
                     itemSprite = itemData.SpriteToRender,
+                    itemDesc = itemData.Description
                 };
                 inventoryList.Add(newItem);
                 // Destroy(itemToAdd.gameObject);

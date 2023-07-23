@@ -92,8 +92,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Inventory"))
         {
-            FlipActivePanel(itemPanel.name);
-            UpdateInventoryUI();
+            SelectInventory();
         }
         if (Input.GetButtonDown("Crafting") && player.GetNearStation())
         {
@@ -104,16 +103,27 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetButtonDown("Stats"))
         {
-            FlipActivePanel(statsPanel.name);
-            if (!characterImage.activeInHierarchy.Equals(statsPanel.activeInHierarchy))
-                characterImage.SetActive(statsPanel.activeInHierarchy);
-            UpdateStatsUI();
+            SelectStats();
         }
 
 
         if (isOverStat) { statPopupToolTip.transform.position = Input.mousePosition; }
 
         if (isOverItem) { itemPopupToolTip.transform.position = Input.mousePosition; }
+    }
+
+    public void SelectInventory()
+    {
+        FlipActivePanel(itemPanel.name);
+        UpdateInventoryUI();
+    }
+
+    public void SelectStats()
+    {
+        FlipActivePanel(statsPanel.name);
+        if (!characterImage.activeInHierarchy.Equals(statsPanel.activeInHierarchy))
+            characterImage.SetActive(statsPanel.activeInHierarchy);
+        UpdateStatsUI();
     }
 
     public void UpdateHpUI()

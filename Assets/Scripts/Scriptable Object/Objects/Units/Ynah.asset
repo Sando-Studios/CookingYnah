@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Ynah
   m_EditorClassIdentifier: 
   unitName: Ynah
-  baseHealth: 10
+  baseHealth: 100
   vitHpScalingFactor: 0.5
   maxDamageReduction: 0.9
   maxStamina: 100
   attackRange: 3
-  rawDamage: 5
+  rawDamage: 6

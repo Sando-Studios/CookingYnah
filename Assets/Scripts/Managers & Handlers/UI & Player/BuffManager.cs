@@ -33,10 +33,10 @@ public class BuffManager : MonoBehaviour
         player = unit;
     }
 
-    public void ApplyTempBuffs(TargetStat stat, int value, float duration)
+    public void ApplyTempBuffs(TargetStat stat, int value, float duration, Sprite sprite)
     {
         GameObject clone = Instantiate(tempEffectHandlerPrefab, transform);
-        clone.GetComponent<TempEffectHandler>().SetData(stat, value, duration);
+        clone.GetComponent<TempEffectHandler>().SetData(stat, value, duration, sprite);
 
         tempBuffAmountDictionary[stat] += value;
     }

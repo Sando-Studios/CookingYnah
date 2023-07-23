@@ -156,7 +156,7 @@ public class PlayerInventory : MonoBehaviour
         {
             foreach (var item in tempBuffs)
             {
-                BuffManager.instance.ApplyTempBuffs(item.Key, item.Value, result.itemBuffData.Duration);
+                BuffManager.instance.ApplyTempBuffs(item.Key, item.Value, result.itemBuffData.Duration, result.itemSprite);
             }
         }
 

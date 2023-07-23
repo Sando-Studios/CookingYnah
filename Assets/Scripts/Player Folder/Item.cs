@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private string itemName;
-    private ItemData itemData;
-    private Sprite itemSprite; 
+    [SerializeField] private string itemName;
+    [SerializeField] private ItemData itemData;
+    [SerializeField] private Sprite itemSprite; 
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     public static Action<string, Sprite> OnItemPickUp;

@@ -41,7 +41,12 @@ public class MinorEnemy : Enemy
     {
         base.Start();
         
-        MonsterStateManager.Instance.AddMonster(this, new PatrolState(MonsterStateManager.Instance, this));
+        if(MonsterStateManager.Instance.GetIsAiActive())
+            MonsterStateManager.Instance.AddMonster(this, new PatrolState(MonsterStateManager.Instance, this));
+        else
+        {
+            MonsterStateManager.Instance.AddMonster(this, new IdleState(MonsterStateManager.Instance, this));
+        }
     }
 
     public EnemyUnitData GetEnemyData()

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0af8211c61eeb9443be41c65df314bbc
+guid: 998e71378cb26e646a6639f5fbbcd94b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,106 +117,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ynah_newhead_spritesheet1_0
+      name: slow_attack_spritesheet1_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 351
-        width: 270
-        height: 212
+        x: 0
+        y: 0
+        width: 621
+        height: 624
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 732f180a84c7e3348998155bc7376768
-      internalID: 1334216911
+      spriteID: 2fb2bb776a7c85946b0683eaeffa65da
+      internalID: -934425796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ynah_newhead_spritesheet1_1
+      name: slow_attack_spritesheet1_1
       rect:
         serializedVersion: 2
-        x: 367
-        y: 350
-        width: 270
-        height: 212
+        x: 621
+        y: 0
+        width: 621
+        height: 624
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01cc80c7ebc5af041a0aa3941678965a
-      internalID: 1126938666
+      spriteID: ed2a1844aad253045b4f658c9da2eb6c
+      internalID: -877158420
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ynah_newhead_spritesheet1_2
+      name: slow_attack_spritesheet1_2
       rect:
         serializedVersion: 2
-        x: 702
-        y: 355
-        width: 201
-        height: 211
-      alignment: 9
-      pivot: {x: 0.56545097, y: 0.50415677}
+        x: 1242
+        y: 0
+        width: 621
+        height: 624
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7b409f1221a4ca46b0e129f5fa95047
-      internalID: -86322048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ynah_newhead_spritesheet1_3
-      rect:
-        serializedVersion: 2
-        x: 101
-        y: 71
-        width: 270
-        height: 208
-      alignment: 9
-      pivot: {x: 0.6754081, y: 0.5042166}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e5b043750e3fae4ab749d7f9828f8c6
-      internalID: -761358525
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ynah_newhead_spritesheet1_4
-      rect:
-        serializedVersion: 2
-        x: 530
-        y: 71
-        width: 270
-        height: 208
-      alignment: 9
-      pivot: {x: 0.50977015, y: 0.50843364}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd9e2826834281d4685d5a892172c4bf
-      internalID: 2057129799
+      spriteID: 10bfbb98763836d4686cd68306dcf1ec
+      internalID: 1155566452
       vertices: []
       indices: 
       edges: []
@@ -224,7 +182,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8cf84e1628d54a342b83b653ef12a9c7
+    spriteID: 1188686915827d644ae4136b64674643
     internalID: 0
     vertices: []
     indices: 
@@ -232,11 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ynah_newhead_spritesheet1_4: 2057129799
-      ynah_newhead_spritesheet1_2: -86322048
-      ynah_newhead_spritesheet1_0: 1334216911
-      ynah_newhead_spritesheet1_3: -761358525
-      ynah_newhead_spritesheet1_1: 1126938666
+      slow_attack_spritesheet1_1: -877158420
+      slow_attack_spritesheet1_2: 1155566452
+      slow_attack_spritesheet1_0: -934425796
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

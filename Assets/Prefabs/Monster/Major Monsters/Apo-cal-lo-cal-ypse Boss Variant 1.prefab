@@ -355,6 +355,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.7
       objectReference: {fileID: 0}
+    - target: {fileID: 5753715703981489227, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7308291296422616919, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.4999999
@@ -466,6 +470,11 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 5753715703981489227, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
   m_PrefabInstance: {fileID: 5001184769391980338}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2309083520011875625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7308291297603213851, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
+  m_PrefabInstance: {fileID: 5001184769391980338}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2309083520932950116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7308291296422616918, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
@@ -532,9 +541,22 @@ MonoBehaviour:
   audioSource: {fileID: 774209010048226169}
   nameClipDictionary:
     _serializedList:
-    - Key: Patrol Hurt Death Stun Idle Chase Patrol SpecialA BasicA
-      Value: {fileID: 8300000, guid: 938df53f74d50544b83b2cd1b17069f9, type: 3}
+    - Key: Death
+      Value: {fileID: 8300000, guid: dcf834baf4d878d4f8739a673d65d3bf, type: 3}
+    - Key: Chase
+      Value: {fileID: 8300000, guid: 39b994f384e4a204886317843d38c470, type: 3}
+    - Key: Hurt
+      Value: {fileID: 8300000, guid: dcf834baf4d878d4f8739a673d65d3bf, type: 3}
+    - Key: Stun
+      Value: {fileID: 8300000, guid: 39b994f384e4a204886317843d38c470, type: 3}
+    - Key: Combat
+      Value: {fileID: 8300000, guid: 002c9639b7bdd9846b793c76cf839c57, type: 3}
+    - Key: BasicA
+      Value: {fileID: 8300000, guid: e28443b1e97845c4789ca87b253ab435, type: 3}
+    - Key: SpecialA
+      Value: {fileID: 8300000, guid: dcf834baf4d878d4f8739a673d65d3bf, type: 3}
   bossNameText: {fileID: 7301904684418957472}
+  bossUI: {fileID: 2309083520011875625}
 --- !u!114 &4971202632758329865 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 115551492433243451, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}

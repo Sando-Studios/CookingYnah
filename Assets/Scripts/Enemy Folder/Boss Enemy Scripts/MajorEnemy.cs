@@ -301,7 +301,7 @@ public class MajorEnemy : Enemy
 
         PlayAudioClip(GetAudioClipName("SpecialA"));
 
-        SetIsAttackDone(true);
+        //SetIsAttackDone(true);
     }
     protected override void Death(Artifacts artifact, string name)
     {

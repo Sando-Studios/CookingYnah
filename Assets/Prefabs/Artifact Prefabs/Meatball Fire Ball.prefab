@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 504390270968948443}
   - component: {fileID: 1152683660413384719}
   - component: {fileID: 1692308259591116222}
+  - component: {fileID: 5923633673242987068}
+  - component: {fileID: 5978889592210042449}
   m_Layer: 0
   m_Name: Meatball Fire Ball
   m_TagString: Untagged
@@ -59,6 +61,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd363c354617404b8f275e7d4217461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5923633673242987068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504390270968948442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d555c46c79ce5a64eb42adfd59c154cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!210 &5978889592210042449
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504390270968948442}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &983784710821211209
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,6 +95,7 @@ GameObject:
   - component: {fileID: 632946889444229099}
   - component: {fileID: 885014690938607672}
   - component: {fileID: 6621357812331577853}
+  - component: {fileID: 4260764280675034946}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -164,6 +190,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4260764280675034946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983784710821211209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b8d116ab2e7d645a5945abde2f6a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5729850632707160597
 GameObject:
   m_ObjectHideFlags: 0

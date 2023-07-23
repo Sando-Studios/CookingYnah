@@ -21,8 +21,10 @@ public class MajorEnemy : Enemy
         throw new InvalidOperationException("This should never happen btw");
     }
 
-    [Header("Boss Name")]
+    [Header("Boss UI")]
     [SerializeField] private TextMeshProUGUI bossNameText;
+    [SerializeField] private GameObject bossUI;
+
     private BossState currentState;
 
     private bool isPlayerInRoom = false;
@@ -306,6 +308,9 @@ public class MajorEnemy : Enemy
         if (name != bossDataInstance.UnitName) { return; }
 
         TransitionToState(BossState.Death);
+
+        PlayAudioClip(GetAudioClipName("Death"));
+        bossUI.SetActive(false);
 
         isAlive = false;
 

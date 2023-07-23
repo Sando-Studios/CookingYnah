@@ -17575,6 +17575,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acc91d9a752316f4daf24c42c395ecb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1426414669 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5332311679014189420, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+  m_PrefabInstance: {fileID: 8717946972877137661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1426600143
 GameObject:
   m_ObjectHideFlags: 0
@@ -27194,7 +27199,7 @@ PrefabInstance:
       objectReference: {fileID: 1145192673}
     - target: {fileID: 8717946973411942258, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_VersionIndex
-      value: 111
+      value: 114
       objectReference: {fileID: 0}
     - target: {fileID: 8717946973411942263, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_Layer
@@ -27268,6 +27273,10 @@ PrefabInstance:
       propertyPath: audioScript
       value: 
       objectReference: {fileID: 2028854718}
+    - target: {fileID: 8717946974269995702, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1426414669}
     - target: {fileID: 8717946974269995710, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_IsActive
       value: 1

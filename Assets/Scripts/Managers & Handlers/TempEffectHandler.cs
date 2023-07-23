@@ -1,3 +1,4 @@
+using System;
 using Asyncoroutine;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,21 @@ public class TempEffectHandler : MonoBehaviour
     private TargetStat statName;
     private int amount;
     private float effectDuration = 3.0f;
+
+    private void OnEnable()
+    {
+        DamageHandler.OnPlayerUnitDeath += OnPlayerKilled;
+    }
+
+    private void OnDisable()
+    {
+        DamageHandler.OnPlayerUnitDeath -= OnPlayerKilled;
+    }
+
+    private void OnPlayerKilled(int i)
+    {
+        amount = 0;
+    }
 
     public void SetData(TargetStat stat, int value, float duration)
     {

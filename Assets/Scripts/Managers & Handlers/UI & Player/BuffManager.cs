@@ -90,11 +90,26 @@ public class BuffManager : MonoBehaviour
     public void RemoveAllTempBuffs()
     {
         player.Vitality -= tempBuffAmountDictionary[TargetStat.VitStat];
-        GuardMaxHealth();
 
         player.Strength -= tempBuffAmountDictionary[TargetStat.StrStat];
 
         player.Resilience -= tempBuffAmountDictionary[TargetStat.ResStat];
+
+        if (player.Vitality < 1)
+            player.Vitality = 1;
+        
+        if (player.Strength < 1)
+            player.Strength = 1;
+        
+        if (player.Resilience < 1)
+            player.Resilience = 1;
+
+        foreach (var key in tempBuffAmountDictionary.Keys)
+        {
+            tempBuffAmountDictionary[key] = 0;
+        }
+        
+        GuardMaxHealth();
     } 
 
     public void ApplyHeal(int value)

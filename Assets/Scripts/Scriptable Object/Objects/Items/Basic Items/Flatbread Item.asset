@@ -20,6 +20,6 @@ MonoBehaviour:
   tempBuffDuration: 120
   TempBuffsDictionary:
     _serializedList:
-    - Key: 1
-      Value: 2
-  healAmount: 3
+    - Key: 0
+      Value: 3
+  healAmount: 5

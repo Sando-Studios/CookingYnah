@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: HARD_Shank-A-Swine 1
   m_EditorClassIdentifier: 
   unitName: Shank
-  maxHealth: 10
-  moveSpeed: 10
+  maxHealth: 150
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:
     _serializedList:
-    - Key: {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
+    - Key: {fileID: 11400000, guid: baae8720dfc205d479bd9d4e6c826b6a, type: 2}
+      Value: 1
+    - Key: {fileID: 11400000, guid: 5be3a471385f8d24ea71cdf779255a7f, type: 2}
+      Value: 1
+    - Key: {fileID: 11400000, guid: f42329cd4b3a1a34f8b861c0bf81763c, type: 2}
       Value: 1
   basicAttackDmg: 0
   wanderSpeed: 5

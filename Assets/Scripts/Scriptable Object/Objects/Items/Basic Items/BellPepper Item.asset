@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BellPepper Item
   m_EditorClassIdentifier: 
   itemName: Bell Pepper
-  itemSprite: {fileID: 21300000, guid: 30954956f207df941b723b4d5eee65ba, type: 3}
+  itemSprite: {fileID: 21300000, guid: f1b089232d53d954e9dbdf364d6d16bf, type: 3}
   itemDescription: Gives Vitamins & Minerals that boost immunity to resist incoming
     attacks.
   PermaBuffDictionary:
@@ -21,6 +21,6 @@ MonoBehaviour:
   tempBuffDuration: 120
   TempBuffsDictionary:
     _serializedList:
-    - Key: 0
+    - Key: 2
       Value: 3
-  healAmount: 3
+  healAmount: 5

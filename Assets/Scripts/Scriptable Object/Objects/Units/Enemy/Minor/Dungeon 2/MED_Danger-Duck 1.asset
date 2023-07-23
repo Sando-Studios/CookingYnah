@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: MED_Danger-Duck 1
   m_EditorClassIdentifier: 
   unitName: Quaker
-  maxHealth: 10
+  maxHealth: 30
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:
     _serializedList:
+    - Key: {fileID: 11400000, guid: b3f2f51e964809947a4d2ac7be620f52, type: 2}
+      Value: 0.1
+    - Key: {fileID: 11400000, guid: 5e1dcb6c287ffc84b90aea1a9e6d8c18, type: 2}
+      Value: 0.45
     - Key: {fileID: 11400000, guid: 20b12f8b08aed6b4dbe75767903dd13e, type: 2}
-      Value: 1
-    - Key: {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
-      Value: 1
+      Value: 0.45
   basicAttackDmg: 1
   wanderSpeed: 3
   chaseSpeed: 5

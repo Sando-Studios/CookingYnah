@@ -23,5 +23,5 @@ MonoBehaviour:
   TempBuffsDictionary:
     _serializedList:
     - Key: 1
-      Value: 3
-  healAmount: 3
+      Value: 9
+  healAmount: 10

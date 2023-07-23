@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: MED_Shank-A-Swine 1
   m_EditorClassIdentifier: 
   unitName: Shank
-  maxHealth: 10
+  maxHealth: 80
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:
     _serializedList:
+    - Key: {fileID: 11400000, guid: b1655785a0873d149aa46d97c8d5b21d, type: 2}
+      Value: 1
     - Key: {fileID: 11400000, guid: 42d0ac3568a65f24fac0812c6082984b, type: 2}
       Value: 1
     - Key: {fileID: 11400000, guid: cced8b6db43444b47a1eaa06fd302c9c, type: 2}

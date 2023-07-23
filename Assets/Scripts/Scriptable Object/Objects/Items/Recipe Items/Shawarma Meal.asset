@@ -22,15 +22,9 @@ MonoBehaviour:
       Value: 3
     - Key: 1
       Value: 3
-    - Key: 2
-      Value: 3
   tempBuffDuration: 300
   TempBuffsDictionary:
     _serializedList:
-    - Key: 0
-      Value: 6
-    - Key: 1
-      Value: 6
     - Key: 2
       Value: 6
-  healAmount: 6
+  healAmount: 10

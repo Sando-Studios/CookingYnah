@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: HARD_Pork-Chop 1
   m_EditorClassIdentifier: 
   unitName: Pork Chop
-  maxHealth: 10
-  moveSpeed: 10
+  maxHealth: 210
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:
     _serializedList:
-    - Key: {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
+    - Key: {fileID: 11400000, guid: f42329cd4b3a1a34f8b861c0bf81763c, type: 2}
+      Value: 1
+    - Key: {fileID: 11400000, guid: be6fd282ddc66f54dbe292d7969e178f, type: 2}
       Value: 1
   basicAttackDmg: 0
   wanderSpeed: 5

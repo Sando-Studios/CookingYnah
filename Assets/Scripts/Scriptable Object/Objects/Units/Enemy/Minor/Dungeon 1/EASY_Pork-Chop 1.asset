@@ -18,6 +18,10 @@ MonoBehaviour:
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:
     _serializedList:
+    - Key: {fileID: 11400000, guid: 004646ba028d9914085c7f52013ea96d, type: 2}
+      Value: 1
+    - Key: {fileID: 11400000, guid: f42329cd4b3a1a34f8b861c0bf81763c, type: 2}
+      Value: 1
     - Key: {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
       Value: 1
   basicAttackDmg: 5

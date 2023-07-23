@@ -18,14 +18,10 @@ MonoBehaviour:
   PermaBuffDictionary:
     _serializedList:
     - Key: 1
-      Value: 1
-    - Key: 0
-      Value: 1
+      Value: 7
   tempBuffDuration: 300
   TempBuffsDictionary:
     _serializedList:
-    - Key: 0
-      Value: 3
-    - Key: 1
-      Value: 3
-  healAmount: 4
+    - Key: 2
+      Value: 4
+  healAmount: 7

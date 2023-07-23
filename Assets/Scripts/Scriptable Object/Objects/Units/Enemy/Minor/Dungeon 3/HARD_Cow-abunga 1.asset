@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: HARD_Cow-abunga 1
   m_EditorClassIdentifier: 
   unitName: Cow-abunga
-  maxHealth: 10
+  maxHealth: 190
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:
     _serializedList:
-    - Key: {fileID: 11400000, guid: 20b12f8b08aed6b4dbe75767903dd13e, type: 2}
+    - Key: {fileID: 11400000, guid: f1a0c7502db5ac74b9bdfa5fca009eb7, type: 2}
+      Value: 1
+    - Key: {fileID: 11400000, guid: 4b1d4d53d079c564baae68a531ebcd91, type: 2}
       Value: 1
     - Key: {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
       Value: 1

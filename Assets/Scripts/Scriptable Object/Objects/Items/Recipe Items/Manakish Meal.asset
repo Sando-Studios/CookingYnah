@@ -18,15 +18,13 @@ MonoBehaviour:
     Carbohydrates, Protein & Iron.
   PermaBuffDictionary:
     _serializedList:
-    - Key: 1
-      Value: 1
     - Key: 0
-      Value: 1
+      Value: 3
   tempBuffDuration: 300
   TempBuffsDictionary:
     _serializedList:
-    - Key: 0
-      Value: 3
+    - Key: 2
+      Value: 2
     - Key: 1
-      Value: 3
-  healAmount: 4
+      Value: 2
+  healAmount: 5

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: The Apo-cal-lo-cal-ypse
   m_EditorClassIdentifier: 
   unitName: The Apo-cal-lo-cal-ypse
-  maxHealth: 20
-  basicAttackDamage: 1
-  specialAttackDamage: 5
+  maxHealth: 450
+  basicAttackDamage: 10
+  specialAttackDamage: 15
   walkSpeed: 7
   runSpeed: 4
   basicAttackSpeed: 2

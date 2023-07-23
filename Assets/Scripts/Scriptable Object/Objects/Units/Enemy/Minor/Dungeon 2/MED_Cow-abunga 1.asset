@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MED_Cow-abunga 1
   m_EditorClassIdentifier: 
   unitName: Cow-abunga
-  maxHealth: 10
+  maxHealth: 180
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:

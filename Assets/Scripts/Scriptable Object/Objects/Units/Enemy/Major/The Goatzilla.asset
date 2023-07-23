@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: The Goatzilla
   m_EditorClassIdentifier: 
   unitName: Goatzilla
-  maxHealth: 400
+  maxHealth: 850
   basicAttackDamage: 20
-  specialAttackDamage: 15
+  specialAttackDamage: 30
   walkSpeed: 5
   runSpeed: 3
   basicAttackSpeed: 2

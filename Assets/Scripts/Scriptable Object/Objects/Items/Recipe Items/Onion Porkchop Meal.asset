@@ -18,11 +18,11 @@ MonoBehaviour:
     C & Calcium. '
   PermaBuffDictionary:
     _serializedList:
-    - Key: 2
-      Value: 1
+    - Key: 1
+      Value: 2
   tempBuffDuration: 300
   TempBuffsDictionary:
     _serializedList:
     - Key: 2
-      Value: 3
-  healAmount: 3
+      Value: 1
+  healAmount: 6

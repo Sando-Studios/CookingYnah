@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Kaldereta
   itemSprite: {fileID: 21300000, guid: e914ec7903c60b94cae6481443789185, type: 3}
+  itemDescription: 
   PermaBuffDictionary:
     _serializedList:
     - Key: 1
@@ -27,4 +28,4 @@ MonoBehaviour:
       Value: 3
     - Key: 1
       Value: 3
-  healAmount: 4
+  healAmount: 15

@@ -23,4 +23,4 @@ MonoBehaviour:
     _serializedList:
     - Key: 2
       Value: 3
-  healAmount: 3
+  healAmount: 5

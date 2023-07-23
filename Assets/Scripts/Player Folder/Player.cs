@@ -135,10 +135,14 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("Attack Start");
                 break;
             case 2:
-                throw new NotImplementedException("No second attack animation yet");
+                //throw new NotImplementedException("No second attack animation yet");
+                animator.ResetTrigger("Attack Finish");
+                animator.SetTrigger("Attack Start2");
                 break;
             case 3:
-                throw new NotImplementedException("No slow attack animation yet");
+                //throw new NotImplementedException("No slow attack animation yet");
+                animator.ResetTrigger("Attack Finish");
+                animator.SetTrigger("Attack Start3");
                 break;
             default:
                 Debug.LogError("HOW");

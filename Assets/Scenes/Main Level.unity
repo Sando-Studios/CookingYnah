@@ -13140,7 +13140,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-315792
+  m_Name: pb_Mesh-53398
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -27091,6 +27091,10 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.524
       objectReference: {fileID: 0}
+    - target: {fileID: 8717946972987175232, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: speed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8717946972995786069, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: near clip plane
       value: 0.001
@@ -27109,7 +27113,7 @@ PrefabInstance:
       objectReference: {fileID: 1145192673}
     - target: {fileID: 8717946973411942258, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_VersionIndex
-      value: 102
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 8717946973411942263, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_Layer

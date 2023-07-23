@@ -6,6 +6,9 @@ using UnityEngine;
 public class FaceToCameraHorizon : MonoBehaviour
 {
     private Camera came;
+
+    [Min(1)]
+    [SerializeField] private float speed = 10f;
     
     private void Start()
     {
@@ -15,7 +18,8 @@ public class FaceToCameraHorizon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.LookRotation(GetDirection());
+        var target = Quaternion.LookRotation(GetDirection());
+        transform.rotation = Quaternion.Slerp(transform.rotation, target, speed * Time.deltaTime);
     }
     
     private Vector3 GetDirection()

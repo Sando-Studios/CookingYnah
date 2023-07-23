@@ -74,7 +74,6 @@ public class MinorEnemy : Enemy
     public override async void Hit() 
     {
         base.Hit();
-        PlayAudioClip(GetAudioClipName("Hurt"));
         ShowHPBar();
 
         await new WaitForSeconds(0);

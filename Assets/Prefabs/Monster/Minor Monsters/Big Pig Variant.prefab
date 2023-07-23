@@ -856,6 +856,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -417992065
       objectReference: {fileID: 0}
+    - target: {fileID: 2474154283882536430, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2758194297212581487, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.08
@@ -1039,18 +1043,18 @@ MonoBehaviour:
   audioSource: {fileID: 8672822668233827621}
   nameClipDictionary:
     _serializedList:
-    - Key: Patrol Hurt Death Idle Chase Patrol Attack
-      Value: {fileID: 8300000, guid: f4d7e6f7a9a5dc94cae95f025ffc81e1, type: 3}
-    - Key: Attack
-      Value: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
-    - Key: Patrol
-      Value: {fileID: 8300000, guid: e4f5f30088c1cfc4596eb1340f6a0838, type: 3}
-    - Key: Chase
-      Value: {fileID: 8300000, guid: fec5834544661ed4eb0d1e67bebe57cc, type: 3}
-    - Key: Idle
-      Value: {fileID: 8300000, guid: 07e13a52be4cb474c8bdba392af4897e, type: 3}
     - Key: Hurt
-      Value: {fileID: 8300000, guid: 4b579eace78e11a49818ef5566202735, type: 3}
+      Value: {fileID: 8300000, guid: ece00a0715fdb5f4ca5774da6cb56235, type: 3}
+    - Key: Patrol Idle
+      Value: {fileID: 8300000, guid: 65f20aad17b3751468b818487a220c9a, type: 3}
+    - Key: Combat
+      Value: {fileID: 8300000, guid: 0e8f9b0e6e66d43499d5afed4135f34b, type: 3}
+    - Key: Chase
+      Value: {fileID: 8300000, guid: 4a18c17b3c4c8344cb34fd76098509ad, type: 3}
+    - Key: Attack
+      Value: {fileID: 8300000, guid: 2de1fa1cb0332884c80850edf58233af, type: 3}
+    - Key: Death
+      Value: {fileID: 8300000, guid: 177da7a22f7d86b40b0be33bcaa83bab, type: 3}
   aggroTrigger: {fileID: 5974314629011983365}
   hpBarGameObject: {fileID: 5974314627873932149}
 --- !u!82 &8672822668233827621 stripped

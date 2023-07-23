@@ -137,10 +137,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected string GetAudioClipName(string inputName)
     {
-        Debug.Log("GetAudioClipName()");
         if (nameClipDictionary.ContainsKey(inputName))
         {
-            Debug.Log("Exact Name");
             return inputName;
         }
 
@@ -156,27 +154,19 @@ public abstract class Enemy : MonoBehaviour
 
         if (matchingClipNames.Count > 0)
         {
-            Debug.Log("Contains Name");
             int randomIndex = UnityEngine.Random.Range(0, matchingClipNames.Count);
             return matchingClipNames[randomIndex];
         }
 
-        Debug.Log("nothing");
-        return "THere is nothing there";
+        return "";
     }
 
     protected void PlayAudioClip(string name)
     {
-        Debug.Log("PlayAudioClip()");
         if (nameClipDictionary.ContainsKey(name))
-            audioSource.clip = nameClipDictionary[name];
-
-        if (audioSource.clip.Equals(nameClipDictionary[name]))
         {
+            audioSource.clip = nameClipDictionary[name];
             audioSource.Play();
-            Debug.Log("Play()");
         }
-        else
-            Debug.Log("THE FUCK YOU LOOKING FOR"); Debug.Log("else");
     }
 }

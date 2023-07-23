@@ -60,4 +60,9 @@ public class MonsterStateManager : MonoBehaviour
             monsterStates[enemy].Update(Time.deltaTime);
         }
     }
+
+    public bool GetIsAiActive()
+    {
+        return isAIActive;
+    }
 }

@@ -90,6 +90,8 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        if (craftingBtnBlock) return;
+        
         if (Input.GetButtonDown("Inventory"))
         {
             SelectInventory();
@@ -114,12 +116,16 @@ public class UIManager : MonoBehaviour
 
     public void SelectInventory()
     {
+        if (craftingBtnBlock) return;
+        
         FlipActivePanel(itemPanel.name);
         UpdateInventoryUI();
     }
 
     public void SelectStats()
     {
+        if (craftingBtnBlock) return;
+        
         FlipActivePanel(statsPanel.name);
         if (!characterImage.activeInHierarchy.Equals(statsPanel.activeInHierarchy))
             characterImage.SetActive(statsPanel.activeInHierarchy);
@@ -189,6 +195,15 @@ public class UIManager : MonoBehaviour
         }
 
         UpdateContentHeight(itemSlotParent.transform.childCount, itemSlotParent);
+    }
+
+    public PlayerInventory SwapInventory(PlayerInventory inv)
+    {
+        var old  = player.Swap(inv);
+
+        playerInventory = inv;
+        
+        return old;
     }
 
     public void UpdateCraftingInventoryUI()

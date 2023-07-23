@@ -36,6 +36,17 @@ namespace Tutorial
             }
         }
 
+        public int Tasks
+        {
+            get => queue.Count;
+        }
+
+        public void Clear()
+        {
+            queue.Clear();
+            _internalCopy.Clear();
+        }
+
         public bool Repeat()
         {
             throw new NotImplementedException();

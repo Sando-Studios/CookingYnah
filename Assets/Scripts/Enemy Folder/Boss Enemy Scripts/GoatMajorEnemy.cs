@@ -23,11 +23,9 @@ public class GoatMajorEnemy : MajorEnemy
 
     public override void ExecuteBasicAttack()
     {
-        Debug.Log("Basic");
         if (!isCharging)
         {
             isCharging = true;
-            Debug.Log("Charging");
             Vector3 direction = targetUnit.transform.position - transform.position;
             direction.y = 0f;
             direction.Normalize();
@@ -39,6 +37,7 @@ public class GoatMajorEnemy : MajorEnemy
             chargeEndPoint = point.position;
             agent.enabled = false;
             GetComponent<CapsuleCollider>().isTrigger = true;
+            AddToAttackCount(1);
         }
     }
 
@@ -59,7 +58,6 @@ public class GoatMajorEnemy : MajorEnemy
 
         if (isCharging)
         {
-            Debug.Log("Charging Update");
             Vector3 direction = chargeEndPoint - transform.position;
             direction.Normalize();
             Vector3 movement = direction * bossDataInstance.RunSpeed;

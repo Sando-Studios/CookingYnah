@@ -527,8 +527,12 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   nameClipDictionary:
     _serializedList:
-    - Key: Patrol Hurt Death Idle Chase Patrol SpecialA BasicA
-      Value: {fileID: 8300000, guid: 938df53f74d50544b83b2cd1b17069f9, type: 3}
+    - Key: SpecialA BasicA
+      Value: {fileID: 8300000, guid: 002c9639b7bdd9846b793c76cf839c57, type: 3}
+    - Key: Idle Chase
+      Value: {fileID: 8300000, guid: 39b994f384e4a204886317843d38c470, type: 3}
+    - Key: Hurt Death
+      Value: {fileID: 8300000, guid: dcf834baf4d878d4f8739a673d65d3bf, type: 3}
   bossNameText: {fileID: 7301904684418957472}
 --- !u!114 &4971202632758329865 stripped
 MonoBehaviour:

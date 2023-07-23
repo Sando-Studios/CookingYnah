@@ -1156,4 +1156,15 @@ MonoBehaviour:
   bossDataInstance: {fileID: 11400000, guid: 46760d3982ec05e459834a8f24075227, type: 2}
   hpBar: {fileID: 876305103271646448}
   spriteTransform: {fileID: 7556903388319377052}
+  audioSource: {fileID: 0}
+  nameClipDictionary:
+    _serializedList:
+    - Key: BasicA
+      Value: {fileID: 8300000, guid: 9e4b3992fe2edb34f99abb72c5da624a, type: 3}
+    - Key: Hurt Death
+      Value: {fileID: 8300000, guid: 69964ba687c3a714ea3e37cdd36fc5e5, type: 3}
+    - Key: Idle Chase
+      Value: {fileID: 8300000, guid: c8e1e51417f8c52498d69b2cde67c929, type: 3}
+    - Key: SpecialA
+      Value: {fileID: 8300000, guid: b021fe492252cc748a91c66022ced450, type: 3}
   bossNameText: {fileID: 3279063846959961689}

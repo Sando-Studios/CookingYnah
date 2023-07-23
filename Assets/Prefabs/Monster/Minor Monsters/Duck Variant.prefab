@@ -660,18 +660,14 @@ MonoBehaviour:
   audioSource: {fileID: 3912944085700026294}
   nameClipDictionary:
     _serializedList:
-    - Key: Death
-      Value: {fileID: 8300000, guid: ece00a0715fdb5f4ca5774da6cb56235, type: 3}
     - Key: Patrol Idle
-      Value: {fileID: 8300000, guid: 65f20aad17b3751468b818487a220c9a, type: 3}
-    - Key: Chase
-      Value: {fileID: 8300000, guid: 0e8f9b0e6e66d43499d5afed4135f34b, type: 3}
-    - Key: Combat
-      Value: {fileID: 8300000, guid: 4a18c17b3c4c8344cb34fd76098509ad, type: 3}
+      Value: {fileID: 8300000, guid: 37932c47a2fe0504fa398d9ec7171b00, type: 3}
+    - Key: Chase Combat
+      Value: {fileID: 8300000, guid: 24a177b1758ede04db19094e1ec44439, type: 3}
     - Key: Hurt
-      Value: {fileID: 8300000, guid: 2de1fa1cb0332884c80850edf58233af, type: 3}
-    - Key: Attack
-      Value: {fileID: 8300000, guid: 177da7a22f7d86b40b0be33bcaa83bab, type: 3}
+      Value: {fileID: 8300000, guid: 665d768d6b7ebfd4aa46f494e34c8fe1, type: 3}
+    - Key: Attack Death
+      Value: {fileID: 8300000, guid: e5187606b26d9e64ebb5b4a2d66e228f, type: 3}
   aggroTrigger: {fileID: 2087585752177718934}
   hpBarGameObject: {fileID: 2087585751038261734}
 --- !u!82 &3912944085700026294 stripped

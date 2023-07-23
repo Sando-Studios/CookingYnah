@@ -596,17 +596,13 @@ MonoBehaviour:
   nameClipDictionary:
     _serializedList:
     - Key: Patrol Idle
-      Value: {fileID: 8300000, guid: ece00a0715fdb5f4ca5774da6cb56235, type: 3}
-    - Key: Hurt
-      Value: {fileID: 8300000, guid: 65f20aad17b3751468b818487a220c9a, type: 3}
-    - Key: Combat
-      Value: {fileID: 8300000, guid: 0e8f9b0e6e66d43499d5afed4135f34b, type: 3}
+      Value: {fileID: 8300000, guid: e4f5f30088c1cfc4596eb1340f6a0838, type: 3}
+    - Key: Hurt Combat
+      Value: {fileID: 8300000, guid: c3716b2bfba7079419e74e7db0188bc3, type: 3}
     - Key: Death
-      Value: {fileID: 8300000, guid: 4a18c17b3c4c8344cb34fd76098509ad, type: 3}
-    - Key: Chase
-      Value: {fileID: 8300000, guid: 2de1fa1cb0332884c80850edf58233af, type: 3}
-    - Key: Attack
-      Value: {fileID: 8300000, guid: 177da7a22f7d86b40b0be33bcaa83bab, type: 3}
+      Value: {fileID: 8300000, guid: 743c13b77baa95f4d8d1ff1594dda11b, type: 3}
+    - Key: Attack Chase
+      Value: {fileID: 8300000, guid: 666eb5c02725e1f428bd92efbcdd882e, type: 3}
   aggroTrigger: {fileID: 657449444433750738}
   hpBarGameObject: {fileID: 657449443426379170}
   eggPrefab: {fileID: 2094448068177463582, guid: ac26731053a59a141882304313535f69, type: 3}

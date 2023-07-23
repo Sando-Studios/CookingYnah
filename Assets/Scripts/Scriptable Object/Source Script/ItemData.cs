@@ -13,8 +13,13 @@ public enum TargetStat
 [CreateAssetMenu(fileName = "Item", menuName = "Item/Item")]
 public class ItemData : ScriptableObject
 {
+    [Header("Item Data")]
     [SerializeField] private string itemName;
     [SerializeField] private Sprite itemSprite;
+    [TextArea]
+    [SerializeField] private string itemDescription;
+
+    [Header("Item Data")]
     [SerializeField] private SerializedDictionary<TargetStat, int> PermaBuffDictionary = new SerializedDictionary<TargetStat, int>();
     [Tooltip("In Seconds")]
     [SerializeField] private float tempBuffDuration;
@@ -25,6 +30,10 @@ public class ItemData : ScriptableObject
     public string Name
     {
         get { return itemName; }
+    }
+    public string Description
+    {
+        get { return itemDescription; }
     }
     public Sprite SpriteToRender
     {

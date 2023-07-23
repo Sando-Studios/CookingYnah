@@ -51,7 +51,9 @@ public class GoatMajorEnemy : MajorEnemy
 
     public void StartWave()
     {
+        GetComponent<AudioSource>().Stop();
         PlayAudioClip(GetAudioClipName("Stomp"));
+        GetComponent<AudioSource>().Play();
         GroundWaveAbility groundWave = GetComponent<GroundWaveAbility>();
         groundWave.SpawnRocks(3, bossDataInstance.SpecialAttackDamage);
     }

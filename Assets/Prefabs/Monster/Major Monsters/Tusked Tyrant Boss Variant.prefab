@@ -955,6 +955,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: 1df9a5e231f9f0d4e91c65e103b25eca, type: 2}
+    - target: {fileID: 5753715703981489227, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7308291296422616919, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1

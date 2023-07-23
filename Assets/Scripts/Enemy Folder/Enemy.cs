@@ -6,6 +6,7 @@ using Asyncoroutine;
 using UnityEngine.AI;
 using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -88,6 +89,8 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
+        if (SceneManager.GetActiveScene().name.Contains("Main")) Destroy(gameObject);
+
         animator = spriteTransform.GetComponent<Animator>();
 
         if (enemyDataInstance != null)

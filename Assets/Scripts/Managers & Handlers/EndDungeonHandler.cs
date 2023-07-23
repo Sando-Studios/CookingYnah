@@ -5,6 +5,8 @@ using UnityEngine;
 public class EndDungeonHandler : MonoBehaviour
 {
     private GameObject bossExit;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip triumph;
 
     private void OnEnable()
     {
@@ -19,6 +21,9 @@ public class EndDungeonHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource.Stop();
+        audioSource.clip = triumph;
+        audioSource.Play();
         bossExit = gameObject;
         bossExit.GetComponent<SceneChangeHandler>().SetCanUse(false);
     }

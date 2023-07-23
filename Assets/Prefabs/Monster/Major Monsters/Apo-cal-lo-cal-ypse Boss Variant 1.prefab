@@ -355,6 +355,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.7
       objectReference: {fileID: 0}
+    - target: {fileID: 5753715703981489227, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7308291296422616919, guid: 0550a4d1e6fb16e4c92fcfe9cf6faea8, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.4999999
@@ -550,7 +554,7 @@ MonoBehaviour:
     - Key: BasicA
       Value: {fileID: 8300000, guid: e28443b1e97845c4789ca87b253ab435, type: 3}
     - Key: SpecialA
-      Value: {fileID: 8300000, guid: e28443b1e97845c4789ca87b253ab435, type: 3}
+      Value: {fileID: 8300000, guid: dcf834baf4d878d4f8739a673d65d3bf, type: 3}
   bossNameText: {fileID: 7301904684418957472}
   bossUI: {fileID: 2309083520011875625}
 --- !u!114 &4971202632758329865 stripped

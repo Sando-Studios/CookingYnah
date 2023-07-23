@@ -101,7 +101,7 @@ public class ArtifactUIHandler : MonoBehaviour
                 case "Ground Wave":
                     spriteToSend = groundWaveSprite;
                     break;
-                case "Spectral Sword":
+                case "Super Slash":
                     spriteToSend = axeSlashesSprite;
                     break;
             }

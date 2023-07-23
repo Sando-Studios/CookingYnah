@@ -29,6 +29,11 @@ public class IngredientItem : MonoBehaviour, IPointerClickHandler, IPointerMoveH
     public Action<IngredientItem, string, int> InventoryAddCloneEvent;
     public Crafting.Crafter crafter;
 
+    private void Start()
+    {
+        this.transform.localScale = Vector3.one;
+    }
+
     public void SetData(string name, int amount, Sprite img)
     {
         itemName = name;

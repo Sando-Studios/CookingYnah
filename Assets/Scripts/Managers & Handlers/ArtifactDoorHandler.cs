@@ -18,7 +18,7 @@ public class ArtifactDoorHandler : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         foreach (var artifact in artifactProgress.UnlockedArtifacts)
         {

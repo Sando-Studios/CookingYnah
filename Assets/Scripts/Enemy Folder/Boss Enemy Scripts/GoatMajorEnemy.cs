@@ -38,6 +38,7 @@ public class GoatMajorEnemy : MajorEnemy
             agent.enabled = false;
             GetComponent<CapsuleCollider>().isTrigger = true;
             PlayAudioClip(GetAudioClipName("BasicA Stampede"));
+            AddToAttackCount(1);
         }
     }
 

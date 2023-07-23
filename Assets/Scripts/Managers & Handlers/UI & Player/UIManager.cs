@@ -62,6 +62,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject craftingItemParent;
     [SerializeField] private Crafting.Crafter crafter;
     [SerializeField] private GameObject craftingPopup;
+    [SerializeField] private CraftingTutorial _craftingTutorial;
+    public bool craftingBtnBlock = false;
 
     [Header("UI Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -77,6 +79,13 @@ public class UIManager : MonoBehaviour
     {
         playerData = player.GetPlayerData();
         playerInventory = player.GetInventory();
+        
+        _craftingTutorial.Setup();
+    }
+    
+    public void CraftingStartTutorialSequence()
+    {
+        _craftingTutorial.StartSequences();
     }
 
     private void Update()
@@ -316,6 +325,12 @@ public class UIManager : MonoBehaviour
 
     private void PlayAudio(AudioName name)
     {
+        if (!audioClipDictionary.ContainsKey(name))
+        {
+            Debug.LogError($"{name} doesn't exist in the dictionary.");
+            return;
+        }
+        
         audioSource.clip = audioClipDictionary[name];
         audioSource.Play();
     }

@@ -100,6 +100,12 @@ public class MajorEnemy : Enemy
 
     private void IdleBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+
         if (isPlayerInRoom)
         {
             TransitionToState(BossState.Chase);
@@ -108,6 +114,12 @@ public class MajorEnemy : Enemy
     }
     private void ChaseBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+
         if (isPlayerInRoom) targetPos = targetUnit.transform.position;
         else if (!isPlayerInRoom) targetPos = home;
 
@@ -152,6 +164,12 @@ public class MajorEnemy : Enemy
 
     private void InCombatBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+
         float distanceToTarget = Vector3.Distance(transform.position, GetTargetUnit().transform.position);
 
         if (distanceToTarget > bossDataInstance.AttackRange)
@@ -186,6 +204,12 @@ public class MajorEnemy : Enemy
 
     private void BasicAttackBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+
         if (GetCanAttack())
         {
             StartAttack();
@@ -200,6 +224,12 @@ public class MajorEnemy : Enemy
     }
     private void SpecialAttackBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+
         if (GetCanAttack())
         {
             StartAttack();
@@ -221,8 +251,21 @@ public class MajorEnemy : Enemy
 
     private async void StunnedBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+        
         PlayAudioClip(GetAudioClipName("Stun"));
+
         await new WaitForSeconds(bossDataInstance.StunnedDuration);
+
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
 
         TransitionToState(BossState.InCombat);
     }

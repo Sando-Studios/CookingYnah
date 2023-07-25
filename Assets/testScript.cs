@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Asyncoroutine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class testScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static testScript instance;
+    
+    private void Start()
     {
-        DontDestroyOnLoad(this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

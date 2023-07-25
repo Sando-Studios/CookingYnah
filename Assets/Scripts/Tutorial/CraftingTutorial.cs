@@ -10,7 +10,7 @@ public class CraftingTutorial : MonoBehaviour
 
     [SerializeField] private RectTransform popUp;
 
-    public void Start()
+    public void Setup()
     {
         var tt = popUp.GetComponent<ToolTipAdapter>();
 
@@ -19,19 +19,66 @@ public class CraftingTutorial : MonoBehaviour
         _controller.AddSequence(new CustomSequence(_controller, (sequence, o) =>
             {
                 tt.gameObject.SetActive(true);
-                Debug.Log("test");
                 sequence.SetStatus(true);
             }))
-            .AddSequence(new WaitSequence(_controller, 2f))
-            .AddSequence(new ToolTipSequence(_controller, tt, "huh"))
+            .AddSequence(new ToolTipSequence(_controller, tt, "Here is the list of recipes."))
+            .AddSequence(new WaitSequence(_controller, 4f))
             .AddSequence(new CustomSequence(_controller, (sequence, o) =>
             {
-                tt.GetComponent<RectTransform>().anchoredPosition = new Vector2(-145, 60);
+                tt.GetComponent<RectTransform>().anchoredPosition = new Vector2(-563, -126);
 
                 sequence.SetStatus(true);
             }))
-            .AddSequence(new ToolTipSequence(_controller, tt, "fff"))
-            .AddSequence(new WaitSequence(_controller, 3f))
+            .AddSequence(new ToolTipSequence(_controller, tt, "This will be your guide in cooking meals"))
+            .AddSequence(new WaitSequence(_controller, 4f))
+            .AddSequence(new CustomSequence(_controller, (sequence, o) =>
+            {
+                tt.GetComponent<RectTransform>().anchoredPosition = new Vector2(-622, 157);
+
+                sequence.SetStatus(true);
+            }))
+            .AddSequence(new ToolTipSequence(_controller, tt, "This is your inventory panel"))
+            .AddSequence(new WaitSequence(_controller, 4f))
+            .AddSequence(new CustomSequence(_controller, (sequence, o) =>
+            {
+                tt.GetComponent<RectTransform>().anchoredPosition = new Vector2(770, -1);
+
+                sequence.SetStatus(true);
+            }))
+            .AddSequence(new ToolTipSequence(_controller, tt, "To create meals, use this panel"))
+            .AddSequence(new WaitSequence(_controller, 4f))
+            .AddSequence(new CustomSequence(_controller, (sequence, o) =>
+            {
+                tt.GetComponent<RectTransform>().anchoredPosition = new Vector2(45, 294);
+
+                sequence.SetStatus(true);
+            }))
+            .AddSequence(new ToolTipSequence(_controller, tt, "Place your protein in the first column of boxes"))
+            .AddSequence(new WaitSequence(_controller, 4f))
+            .AddSequence(new CustomSequence(_controller, (sequence, o) =>
+            {
+                tt.GetComponent<RectTransform>().anchoredPosition = new Vector2(206, 297);
+
+                sequence.SetStatus(true);
+            }))
+            .AddSequence(new ToolTipSequence(_controller, tt, "Place your carbs in the second column of boxes"))
+            .AddSequence(new WaitSequence(_controller, 4f))
+            .AddSequence(new CustomSequence(_controller, (sequence, o) =>
+            {
+                tt.GetComponent<RectTransform>().anchoredPosition = new Vector2(336, 298);
+
+                sequence.SetStatus(true);
+            }))
+            .AddSequence(new ToolTipSequence(_controller, tt, "Place your veggies on the last column"))
+            .AddSequence(new WaitSequence(_controller, 4f))
+            .AddSequence(new CustomSequence(_controller, (sequence, o) =>
+            {
+                tt.GetComponent<RectTransform>().anchoredPosition = new Vector2(138, -235);
+
+                sequence.SetStatus(true);
+            }))
+            .AddSequence(new ToolTipSequence(_controller, tt, "Then click the cook button to cook your meal!"))
+            .AddSequence(new WaitSequence(_controller, 4f))
             .AddSequence(new CustomSequence(_controller, (sequence, o) =>
             {
                 UIManager.instance.player.EnableInputs();
@@ -49,7 +96,7 @@ public class CraftingTutorial : MonoBehaviour
     public void Reset()
     {
         _controller.Clear();
-        Start();
+        Setup();
     }
 
     public void StartSequences()

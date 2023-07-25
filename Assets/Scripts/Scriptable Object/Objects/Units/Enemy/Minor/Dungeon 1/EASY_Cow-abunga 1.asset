@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EASY_Cow-abunga 1
   m_EditorClassIdentifier: 
   unitName: Cow-abunga
-  maxHealth: 130
+  maxHealth: 90
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:
@@ -24,7 +24,7 @@ MonoBehaviour:
       Value: 1
     - Key: {fileID: 11400000, guid: 42d0ac3568a65f24fac0812c6082984b, type: 2}
       Value: 1
-  basicAttackDmg: 3
+  basicAttackDmg: 7
   wanderSpeed: 3
   chaseSpeed: 5
   attackSpeed: 3

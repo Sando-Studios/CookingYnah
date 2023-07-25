@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dungeon 3 Level.unity
     guid: 1b202f93e8a330d4c90203b381cd1ec6
+  - enabled: 1
+    path: Assets/Scenes/Beginning Cutscene.unity
+    guid: 0d1d2470fe0429e4ab2c8c3a132eb484
+  - enabled: 1
+    path: Assets/Scenes/Ending Cutscene.unity
+    guid: cf9ed2b891ec24f40806ccf10c035ca2
   m_configObjects: {}

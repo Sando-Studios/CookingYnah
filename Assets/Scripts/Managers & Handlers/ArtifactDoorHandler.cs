@@ -14,8 +14,13 @@ public class ArtifactDoorHandler : MonoBehaviour
     [SerializeField] private GameObject doorObject;
     private bool isComplete = false;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+
+    public SceneChangeHandler sceneChangeHandlerScript;
+
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         foreach (var artifact in artifactProgress.UnlockedArtifacts)
         {
@@ -25,6 +30,7 @@ public class ArtifactDoorHandler : MonoBehaviour
         if (unlockedArtifactCount >= 3)
         {
             isComplete = true;
+            audioSource.Play();
         }
     }
 
@@ -45,12 +51,13 @@ public class ArtifactDoorHandler : MonoBehaviour
     {
         if (doorObject)
         {
-            if (isComplete && doorObject.transform.position.y >= -6.5f)
+            if (isComplete && doorObject.transform.position.y >= -2.7f)
             {
                 doorObject.transform.Translate(Vector3.down * Time.deltaTime);
             }
-            else if (isComplete && doorObject.transform.position.y < -6.5f)
+            else if (isComplete && doorObject.transform.position.y < -2.7f)
             {
+                sceneChangeHandlerScript.SetCanUse(true);
                 Destroy(doorObject);
             }
         }

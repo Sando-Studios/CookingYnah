@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MED_Chicken-ier
   m_EditorClassIdentifier: 
   unitName: Chicken-ier
-  maxHealth: 10
+  maxHealth: 70
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:
@@ -22,7 +22,7 @@ MonoBehaviour:
       Value: 1
     - Key: {fileID: 11400000, guid: 20b12f8b08aed6b4dbe75767903dd13e, type: 2}
       Value: 1
-  basicAttackDmg: 0
+  basicAttackDmg: 1
   wanderSpeed: 3
   chaseSpeed: 5
   attackSpeed: 5

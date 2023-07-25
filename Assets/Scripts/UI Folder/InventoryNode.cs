@@ -16,6 +16,11 @@ public class InventoryNode : MonoBehaviour, IPointerDownHandler
 
     [SerializeField] private GameObject craftingItemEquivalent;
 
+    private void Start()
+    {
+        this.transform.localScale = Vector3.one;
+    }
+
     public GameObject GetCraftingPrefab()
     {
         return craftingItemEquivalent;

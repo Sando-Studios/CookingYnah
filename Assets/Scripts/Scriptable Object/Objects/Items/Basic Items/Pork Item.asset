@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Pork
   itemSprite: {fileID: 21300000, guid: 35f48869d226e8041822f8516eb71d2f, type: 3}
+  itemDescription: 'Helps build muscles that gives you more powerful attacks
+
+'
   PermaBuffDictionary:
     _serializedList: []
   tempBuffDuration: 120
   TempBuffsDictionary:
     _serializedList:
     - Key: 1
-      Value: 3
-  healAmount: 3
+      Value: 2
+  healAmount: 2

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class OmniAttack : MonoBehaviour
 {
-    private List<MinorEnemy> enemiesInRange = new List<MinorEnemy>();
+    private List<Enemy> enemiesInRange = new List<Enemy>();
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy" && !other.isTrigger)
         {
-            MinorEnemy enemy = other.GetComponent<MinorEnemy>();
+            Enemy enemy = other.GetComponent<Enemy>();
             enemiesInRange.Add(enemy);
         }
     }
@@ -17,13 +17,13 @@ public class OmniAttack : MonoBehaviour
     {
         if (other.tag == "Enemy" && !other.isTrigger)
         {
-            enemiesInRange.Remove(other.GetComponent<MinorEnemy>());
+            enemiesInRange.Remove(other.GetComponent<Enemy>());
         }
     }
 
     public void DealDamage(int damage)
     {
-        foreach (MinorEnemy enemy in enemiesInRange)
+        foreach (Enemy enemy in enemiesInRange)
         {
             DamageHandler.ApplyDamage(enemy, damage, GetComponentInParent<Player>().GetPlayerData().Strength);
         }

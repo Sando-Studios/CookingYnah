@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Onion
   itemSprite: {fileID: 21300000, guid: 83d60a2d2b5eff84c95b53c3bc016afa, type: 3}
+  itemDescription: Gives Vitamins & Minerals that boost immunity to resist incoming
+    attacks.
   PermaBuffDictionary:
     _serializedList: []
   tempBuffDuration: 120
   TempBuffsDictionary:
     _serializedList:
     - Key: 2
-      Value: 0
+      Value: 1
   healAmount: 3

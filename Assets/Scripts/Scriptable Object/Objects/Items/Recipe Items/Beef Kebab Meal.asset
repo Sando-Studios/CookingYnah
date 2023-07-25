@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dafc290cc78e0f541bc6dd37190ea6cc, type: 3}
+  m_Name: Beef Kebab Meal
+  m_EditorClassIdentifier: 
+  itemName: Beef Kebab
+  itemSprite: {fileID: 21300000, guid: 26914d9f186e17d4188bc9aac5630f56, type: 3}
+  itemDescription: Beef chunks with a tomato based sauce that give Carbohydrates,
+    Protein & Iron.
+  PermaBuffDictionary:
+    _serializedList:
+    - Key: 0
+      Value: 4
+    - Key: 1
+      Value: 4
+  tempBuffDuration: 300
+  TempBuffsDictionary:
+    _serializedList:
+    - Key: 2
+      Value: 8
+  healAmount: 5

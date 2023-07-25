@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: -1559136250, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+  m_Sprite: {fileID: -1559136250, guid: 35ab10fa3cfc72e4bb4ae31621b2094d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -157,7 +157,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -637507458, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+  m_Sprite: {fileID: -637507458, guid: 35ab10fa3cfc72e4bb4ae31621b2094d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -241,7 +241,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: -1880689264, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+  m_Sprite: {fileID: -1880689264, guid: 35ab10fa3cfc72e4bb4ae31621b2094d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -325,7 +325,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 242853273, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+  m_Sprite: {fileID: 242853273, guid: 35ab10fa3cfc72e4bb4ae31621b2094d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -446,7 +446,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1880689264, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+  m_Sprite: {fileID: -1880689264, guid: 35ab10fa3cfc72e4bb4ae31621b2094d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -530,7 +530,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -637507458, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+  m_Sprite: {fileID: -637507458, guid: 35ab10fa3cfc72e4bb4ae31621b2094d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -612,7 +612,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -417992065
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -698,7 +698,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -1042948447, guid: 333c9ccf00e31da47a80f6822491adb8, type: 3}
+  m_Sprite: {fileID: -1042948447, guid: 35ab10fa3cfc72e4bb4ae31621b2094d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -856,6 +856,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -417992065
       objectReference: {fileID: 0}
+    - target: {fileID: 2474154283882536430, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2758194297212581487, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.08
@@ -976,7 +980,7 @@ SortingGroup:
   m_GameObject: {fileID: 5974314627873932149}
   m_Enabled: 1
   m_SortingLayerID: -417992065
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 30
 --- !u!114 &5974314628760202935 stripped
 MonoBehaviour:
@@ -1006,7 +1010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b8d116ab2e7d645a5945abde2f6a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
 --- !u!4 &5974314628769252921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 639792562578276082, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
@@ -1037,5 +1040,25 @@ MonoBehaviour:
   bossDataInstance: {fileID: 0}
   hpBar: {fileID: 5974314628760202935}
   spriteTransform: {fileID: 5974314628769252921}
+  audioSource: {fileID: 8672822668233827621}
+  nameClipDictionary:
+    _serializedList:
+    - Key: Hurt
+      Value: {fileID: 8300000, guid: 4b579eace78e11a49818ef5566202735, type: 3}
+    - Key: Patrol Idle
+      Value: {fileID: 8300000, guid: 8f817543549548a46a924f9c08898fa5, type: 3}
+    - Key: Combat
+      Value: {fileID: 8300000, guid: e5abda5b648664143bba356cff5b2030, type: 3}
+    - Key: Chase
+      Value: {fileID: 8300000, guid: 7fe328c66eb0099448f5f9306cd2c1d0, type: 3}
+    - Key: Attack
+      Value: {fileID: 8300000, guid: f0434bb09b6c86f48945c21555472d4d, type: 3}
+    - Key: Death
+      Value: {fileID: 8300000, guid: 3975ebf61a42233469603b13bda4494d, type: 3}
   aggroTrigger: {fileID: 5974314629011983365}
   hpBarGameObject: {fileID: 5974314627873932149}
+--- !u!82 &8672822668233827621 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2474154283882536430, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+  m_PrefabInstance: {fileID: 6487989908028537035}
+  m_PrefabAsset: {fileID: 0}

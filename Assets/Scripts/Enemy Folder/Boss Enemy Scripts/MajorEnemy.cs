@@ -21,12 +21,17 @@ public class MajorEnemy : Enemy
         throw new InvalidOperationException("This should never happen btw");
     }
 
-    [Header("Boss Name")]
+    [Header("Boss UI")]
     [SerializeField] private TextMeshProUGUI bossNameText;
+    [SerializeField] private GameObject bossUI;
+
     private BossState currentState;
 
     private bool isPlayerInRoom = false;
     private Vector3 targetPos;
+
+    private float randomInterval;
+    private float time;
 
     protected override void OnEnable()
     {
@@ -42,9 +47,11 @@ public class MajorEnemy : Enemy
     {
         base.Start();
         bossNameText.text = bossDataInstance.UnitName;
+        bossNameText.gameObject.SetActive(false);
         hpBar.transform.parent.gameObject.SetActive(false);
         home = transform.position;
         bossDataInstance.SetHealthToDefault();
+        randomInterval = UnityEngine.Random.Range(1, 7);
         TransitionToState(BossState.Idle);
     }
 
@@ -52,11 +59,13 @@ public class MajorEnemy : Enemy
     {
         return GetUnitData() as BossUnitData;
     }
+    public BossState GetBossState() { return currentState; }
 
     public void SetPlayerStatus(bool isPlayerInArea, GameObject playerObj)
     {
         isPlayerInRoom = isPlayerInArea;
         targetUnit = playerObj;
+        bossNameText.gameObject.SetActive(isPlayerInArea);
         hpBar.transform.parent.gameObject.SetActive(isPlayerInArea);
     }
 
@@ -93,6 +102,12 @@ public class MajorEnemy : Enemy
 
     private void IdleBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+
         if (isPlayerInRoom)
         {
             TransitionToState(BossState.Chase);
@@ -101,6 +116,12 @@ public class MajorEnemy : Enemy
     }
     private void ChaseBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+
         if (isPlayerInRoom) targetPos = targetUnit.transform.position;
         else if (!isPlayerInRoom) targetPos = home;
 
@@ -127,6 +148,14 @@ public class MajorEnemy : Enemy
             }
             else
             {
+                time += Time.deltaTime;
+
+                if (time >= randomInterval)
+                {
+                    PlayAudioClip(GetAudioClipName("Chase"));
+                    time = 0f;
+                }
+
                 agent.SetDestination(home);
                 return;
             }
@@ -137,6 +166,12 @@ public class MajorEnemy : Enemy
 
     private void InCombatBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+
         float distanceToTarget = Vector3.Distance(transform.position, GetTargetUnit().transform.position);
 
         if (distanceToTarget > bossDataInstance.AttackRange)
@@ -146,11 +181,17 @@ public class MajorEnemy : Enemy
         }
         else if (distanceToTarget <= bossDataInstance.AttackRange && GetCanAttack())
         {
-            attackCount++;
+
+            time += Time.deltaTime;
+
+            if (time >= randomInterval)
+            {
+                PlayAudioClip(GetAudioClipName("Combat"));
+                time = 0f;
+            }
 
             if (attackCount % 4 == 0 && attackCount > 0)
             {
-                attackCount = 0;
                 TransitionToState(BossState.SpecialAttack);
                 return;
             }
@@ -165,6 +206,12 @@ public class MajorEnemy : Enemy
 
     private void BasicAttackBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+
         if (GetCanAttack())
         {
             StartAttack();
@@ -179,6 +226,12 @@ public class MajorEnemy : Enemy
     }
     private void SpecialAttackBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+
         if (GetCanAttack())
         {
             StartAttack();
@@ -200,7 +253,21 @@ public class MajorEnemy : Enemy
 
     private async void StunnedBehavior()
     {
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
+        
+        PlayAudioClip(GetAudioClipName("Stun"));
+
         await new WaitForSeconds(bossDataInstance.StunnedDuration);
+
+        if (!isAlive)
+        {
+            TransitionToState(BossState.Death);
+            return;
+        }
 
         TransitionToState(BossState.InCombat);
     }
@@ -212,8 +279,18 @@ public class MajorEnemy : Enemy
         spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
 
         AttackTimer(bossDataInstance.BasicAttackSpeed);
-        SetIsAttackDone(true);
-        DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
+
+        PlayAudioClip(GetAudioClipName("BasicA"));
+    }
+
+    public void CheckBasicAttackHit()
+    {
+        float distanceToTarget = Vector3.Distance(transform.position, GetTargetUnit().transform.position);
+
+        if (distanceToTarget <= bossDataInstance.AttackRange)
+        {
+            DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), bossDataInstance.BasicAttackDamage);
+        }
     }
 
     public virtual void ExecuteSpecialAttack()
@@ -221,13 +298,19 @@ public class MajorEnemy : Enemy
         AttackTimer(bossDataInstance.SpecialAttackSpeed);
         OmniSlashAbility omniSlash = GetComponent<OmniSlashAbility>();
         omniSlash.SpawnBossSlashZone(bossDataInstance.SpecialAttackDamage);
-        SetIsAttackDone(true);
+
+        PlayAudioClip(GetAudioClipName("SpecialA"));
+
+        //SetIsAttackDone(true);
     }
     protected override void Death(Artifacts artifact, string name)
     {
         if (name != bossDataInstance.UnitName) { return; }
 
         TransitionToState(BossState.Death);
+
+        PlayAudioClip(GetAudioClipName("Death"));
+        bossUI.SetActive(false);
 
         isAlive = false;
 
@@ -239,6 +322,11 @@ public class MajorEnemy : Enemy
 
         Destroy(gameObject, 3.0f);
         bossDataInstance.SetHealthToDefault();
+    }
+
+    public void AddToAttackCount(int value)
+    {
+        attackCount += value;
     }
 
     public virtual void ControlAnimations(BossState state, bool isPlaying)
@@ -301,6 +389,7 @@ public class MajorEnemy : Enemy
                 ControlAnimations(currentState, true);
                 break;
             case BossState.SpecialAttack:
+                attackCount = 0;
                 ControlAnimations(currentState, true);
                 break;
             case BossState.InCombat:
@@ -344,7 +433,7 @@ public class MajorEnemy : Enemy
             case BossState.Chase:
                 ControlAnimations(currentState, false);
                 break;
-                default:
+            default:
                 break;
         }
     }

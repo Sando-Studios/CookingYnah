@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Asyncoroutine;
 using UnityEngine.AI;
+using AYellowpaper.SerializedCollections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -26,6 +29,10 @@ public abstract class Enemy : MonoBehaviour
     [Header("Animation")]
     [SerializeField] protected Transform spriteTransform;
     protected Animator animator;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    public SerializedDictionary<string, AudioClip> nameClipDictionary = new SerializedDictionary<string, AudioClip>();
 
     protected NavMeshAgent agent;
 
@@ -80,23 +87,28 @@ public abstract class Enemy : MonoBehaviour
         SetCanAttack(true);
     }
 
+    protected virtual void Awake()
+    {
+        if (SceneManager.GetActiveScene().name.Contains("Main")) Destroy(gameObject);
+    }
+
     protected virtual void Start()
     {
         animator = spriteTransform.GetComponent<Animator>();
-        
+
         if (enemyDataInstance != null)
             maxHealth = enemyDataInstance.MaxHealth;
         else if (bossDataInstance != null)
             maxHealth = bossDataInstance.MaxHealth;
 
         agent = GetComponent<NavMeshAgent>();
-        
+
     }
     protected virtual void Update()
     {
         if (!GetUnitData())
             return;
-        
+
         float currentHP = GetUnitData().CurrentHealth;
 
         float normalized = currentHP / maxHealth;
@@ -115,6 +127,8 @@ public abstract class Enemy : MonoBehaviour
     {
         var r = GetComponentsInChildren<SpriteRenderer>();
 
+        PlayAudioClip(GetAudioClipName("Hurt"));
+
         foreach (var m in r)
         {
             m.color = Color.red;
@@ -127,4 +141,38 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    protected string GetAudioClipName(string inputName)
+    {
+        if (nameClipDictionary.ContainsKey(inputName))
+        {
+            return inputName;
+        }
+
+        List<string> matchingClipNames = new List<string>();
+
+        foreach (var kvp in nameClipDictionary)
+        {
+            if (kvp.Key.Contains(inputName))
+            {
+                matchingClipNames.Add(kvp.Key);
+            }
+        }
+
+        if (matchingClipNames.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, matchingClipNames.Count);
+            return matchingClipNames[randomIndex];
+        }
+
+        return "";
+    }
+
+    protected void PlayAudioClip(string name)
+    {
+        if (nameClipDictionary.ContainsKey(name))
+        {
+            audioSource.clip = nameClipDictionary[name];
+            audioSource.Play();
+        }
+    }
 }

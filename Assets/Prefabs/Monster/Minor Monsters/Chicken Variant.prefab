@@ -494,6 +494,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2474154283882536430, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5371031390283930902, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -558,7 +562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783b4d28dd86b9546a4b642daf14b7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 6580626637855203290}
 --- !u!135 &657449444433750738 stripped
 SphereCollider:
   m_CorrespondingSourceObject: {fileID: 639792562889159886, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
@@ -574,7 +577,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 639792562889159874, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
   m_PrefabInstance: {fileID: 143909834577780252}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6580626637855203290
+--- !u!114 &-6208590619691417877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -586,16 +589,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcee86100333dbb45bf4d42333e1888f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggroTrigger: {fileID: 657449444433750738}
-  targetUnit: {fileID: 0}
-  hpBarGameObject: {fileID: 657449443426379170}
+  bossDataInstance: {fileID: 0}
   hpBar: {fileID: 657449444148922464}
-  animator: {fileID: 6199643573244997393}
   spriteTransform: {fileID: 657449444410368238}
+  audioSource: {fileID: 2570063405849625586}
+  nameClipDictionary:
+    _serializedList:
+    - Key: Patrol Idle
+      Value: {fileID: 8300000, guid: e4f5f30088c1cfc4596eb1340f6a0838, type: 3}
+    - Key: Hurt Combat
+      Value: {fileID: 8300000, guid: c3716b2bfba7079419e74e7db0188bc3, type: 3}
+    - Key: Death
+      Value: {fileID: 8300000, guid: 743c13b77baa95f4d8d1ff1594dda11b, type: 3}
+    - Key: Attack Chase
+      Value: {fileID: 8300000, guid: 666eb5c02725e1f428bd92efbcdd882e, type: 3}
+  aggroTrigger: {fileID: 657449444433750738}
+  hpBarGameObject: {fileID: 657449443426379170}
   eggPrefab: {fileID: 2094448068177463582, guid: ac26731053a59a141882304313535f69, type: 3}
   eggSpawnPoint: {fileID: 372300371724816480}
---- !u!95 &6199643573244997393 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6338477555309129997, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
+--- !u!82 &2570063405849625586 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2474154283882536430, guid: 63f5e4c984aa2bd4a9ec84e72ca976a7, type: 3}
   m_PrefabInstance: {fileID: 143909834577780252}
   m_PrefabAsset: {fileID: 0}

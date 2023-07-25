@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: MED_Pork-Chop 1
   m_EditorClassIdentifier: 
   unitName: Pork Chop
-  maxHealth: 10
+  maxHealth: 180
   unitID: -1
   dropPrefab: {fileID: 8957071436321238036, guid: 5c2074d460d866a44bfa768ef3a482d0, type: 3}
   dropData:
     _serializedList:
-    - Key: {fileID: 11400000, guid: dc2f81a52af1e694bb30676387845e02, type: 2}
-      Value: 1
     - Key: {fileID: 11400000, guid: be6fd282ddc66f54dbe292d7969e178f, type: 2}
       Value: 1
-  basicAttackDmg: 0
+    - Key: {fileID: 11400000, guid: 489d256cecb1c934580dcfef30940494, type: 2}
+      Value: 1
+  basicAttackDmg: 1
   wanderSpeed: 5
   chaseSpeed: 7
   attackSpeed: 4

@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4faae73c9aa58dd449a35816dfa4c740, type: 3}
   m_Name: Ham & Cheese Recipe
   m_EditorClassIdentifier: 
-  slots: []
-  output: {fileID: 0}
+  slots:
+  - {fileID: 11400000, guid: fbb3b24f308a6f7488b734ac624fd45a, type: 2}
+  - {fileID: 11400000, guid: 004646ba028d9914085c7f52013ea96d, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: f42329cd4b3a1a34f8b861c0bf81763c, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  output: {fileID: 11400000, guid: fbf6da6dd7e4f034aaf60ed8e84a6fea, type: 2}

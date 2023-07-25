@@ -8,6 +8,7 @@ TagManager:
   - Cook Station
   - Floor
   - Cone
+  - Rug
   layers:
   - Default
   - TransparentFX

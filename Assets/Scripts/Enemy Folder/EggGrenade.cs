@@ -13,8 +13,22 @@ public class EggGrenade : MonoBehaviour
     private bool isExploding = false;
     private int ownerID;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip tickingClip;
+    [SerializeField] private AudioClip explosionClip;
+
     public static Action<int> OnEggnadeExplode;
 
+    private Player playerUse;
+
+    private void Start()
+    {
+        audioSource.clip = tickingClip;
+        audioSource.loop = true;
+        audioSource.Play();
+        
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Floor") && !isOnFloor && !other.isTrigger)
@@ -25,10 +39,18 @@ public class EggGrenade : MonoBehaviour
             ExplosionTimer();
         }
 
-        if (other.CompareTag("Player") && isOnFloor && isExploding && !other.isTrigger)
+        if (other.CompareTag("Player") && !other.isTrigger)
         {
-            DamageHandler.ApplyDamage(other.GetComponent<Player>(), explosionDamage);
+            playerUse = other.GetComponent<Player>();
 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player") && !other.isTrigger)
+        {
+            playerUse = null;
         }
     }
 
@@ -40,9 +62,15 @@ public class EggGrenade : MonoBehaviour
 
     private async void ExplosionTimer()
     {
-        await new WaitForSeconds(4.0f);
-        isExploding = true;
         GetComponent<SphereCollider>().radius = explosionRadius;
+        await new WaitForSeconds(4.0f);
+
+        audioSource.clip = explosionClip;
+        audioSource.loop = false;
+        audioSource.Play();
+
+        DamageHandler.ApplyDamage(playerUse, explosionDamage);
+        isExploding = true;
         animator.SetBool("isExploding", isExploding);
            
     }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: The Tusked Tyrant
   m_EditorClassIdentifier: 
   unitName: The Tusked Tyrant
-  maxHealth: 400
-  basicAttackDamage: 20
-  specialAttackDamage: 15
+  maxHealth: 1250
+  basicAttackDamage: 25
+  specialAttackDamage: 35
   walkSpeed: 5
   runSpeed: 3
   basicAttackSpeed: 2

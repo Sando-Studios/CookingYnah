@@ -17,6 +17,7 @@ public struct InventorySlot
     public int itemQuantity;
     public Sprite itemSprite;
     public ItemData itemBuffData;
+    public string itemDesc;
 
     public InventorySlot (ItemData data)
     {
@@ -24,6 +25,7 @@ public struct InventorySlot
         itemQuantity = 1;
         itemSprite = data.SpriteToRender;
         itemBuffData = data;
+        itemDesc = data.Description;
     }
 
     public static InventorySlot Empty
@@ -34,6 +36,9 @@ public struct InventorySlot
 public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] private int maxInventory = 20;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
 
     private List<InventorySlot> inventoryList = new List<InventorySlot>();
 
@@ -82,6 +87,7 @@ public class PlayerInventory : MonoBehaviour
                     itemQuantity = 1,
                     itemBuffData = itemData,
                     itemSprite = itemData.SpriteToRender,
+                    itemDesc = itemData.Description
                 };
                 inventoryList.Add(newItem);
                 // Destroy(itemToAdd.gameObject);
@@ -156,6 +162,9 @@ public class PlayerInventory : MonoBehaviour
 
         BuffManager.instance.ApplyHeal(result.itemBuffData.HealAmount);
         RemoveItem(result.itemName);
+
+        audioSource.Stop();
+        audioSource.Play();
 
         UIManager.instance.UpdateInventoryUI();
     }

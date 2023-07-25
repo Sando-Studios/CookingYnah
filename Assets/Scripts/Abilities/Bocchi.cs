@@ -44,8 +44,8 @@ public class Bocchi : MonoBehaviour
             if (other.CompareTag("Player"))
                 DealDamage(other.GetComponent<Player>());
 
-            if (other.gameObject.CompareTag("MinorEnemy"))
-                DealDamage(other.GetComponent<MinorEnemy>());
+            if (other.gameObject.CompareTag("Enemy"))
+                DealDamage(other.GetComponent<Enemy>());
         }
     }
 
@@ -53,7 +53,7 @@ public class Bocchi : MonoBehaviour
     {
         DamageHandler.ApplyDamage(player, damageValue);
     }
-    private void DealDamage(MinorEnemy enemy)
+    private void DealDamage(Enemy enemy)
     {
         DamageHandler.ApplyDamage(enemy, damageValue, strength);
     }

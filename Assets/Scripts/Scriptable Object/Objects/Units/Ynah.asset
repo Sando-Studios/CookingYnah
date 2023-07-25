@@ -13,13 +13,9 @@ MonoBehaviour:
   m_Name: Ynah
   m_EditorClassIdentifier: 
   unitName: Ynah
-  maxHealth: 20
-  moveSpeed: 20
-  vitality: 1
-  agility: 1
-  strength: 1
-  vigor: 1
-  intelligence: 1
-  endurance: 1
-  dexterity: 1
+  baseHealth: 100
+  vitHpScalingFactor: 0.5
+  maxDamageReduction: 0.9
+  maxStamina: 100
   attackRange: 3
+  rawDamage: 6

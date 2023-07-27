@@ -10,6 +10,7 @@ public class Meteor : MonoBehaviour
     private int damageValue;
     private float strength;
     private bool isBoss;
+    private List<Enemy> enemiesInRange = new();
 
     public void SetTarget(Vector3 target)
     {
@@ -24,6 +25,7 @@ public class Meteor : MonoBehaviour
     {
         SetDamageValue((int)dmg);
         this.strength = strength;
+        DamageTicker();
         isBoss = false;
     }
 
@@ -72,8 +74,33 @@ public class Meteor : MonoBehaviour
                 Explode();
             }
             else if (other.CompareTag("Enemy") && !isBoss)
-                DealDamage(other.GetComponent<Enemy>());
+                enemiesInRange.Add(other.GetComponent<Enemy>());
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (!other.isTrigger)
+        {
+            if (other.CompareTag("Enemy") && !isBoss)
+                enemiesInRange.Remove(other.GetComponent<Enemy>());
+        }
+    }
+
+    private async void DamageTicker()
+    {
+        while (true)
+        {
+            if (enemiesInRange.Count > 0)
+            {
+                foreach (Enemy e in enemiesInRange)
+                {
+                    DealDamage(e);
+                }
+            }
+
+            await new WaitForSeconds(1.0f);
+        }
+
     }
 
     private void DealDamage(Player player)

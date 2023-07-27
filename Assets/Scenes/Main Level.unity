@@ -2292,8 +2292,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2131052776}
   m_HandleRect: {fileID: 2131052775}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.55653656
+  m_Value: 1.0000002
+  m_Size: 0.5565366
   m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2832,7 +2832,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23480
+  m_Name: pb_Mesh24250
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9384,7 +9384,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24034
+  m_Name: pb_Mesh24820
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13338,7 +13338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1687ae15835a0d841aa208ba44084a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 0}
 --- !u!1 &1123981081
 GameObject:
   m_ObjectHideFlags: 0
@@ -13605,7 +13604,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1596
+  m_Name: pb_Mesh-1622
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18117,7 +18116,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 125155510}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.094233796
+  m_Size: 0.09423381
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -25286,7 +25285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -0.0000038146973, y: -173}
+  m_AnchoredPosition: {x: -0.0000038146973, y: -91}
   m_SizeDelta: {x: 444.391, y: 254.683}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1876615554
@@ -25342,8 +25341,8 @@ MonoBehaviour:
   icon: {fileID: 1956622500}
   nameText: {fileID: 925053035}
   statsText: {fileID: 1931186783}
-  timeShown: 1.5
-  upperLimit: 110
+  timeShown: 2.25
+  upperLimit: 140
   speed: 130
 --- !u!1 &1897420644
 GameObject:

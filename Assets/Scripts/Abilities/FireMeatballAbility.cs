@@ -84,4 +84,12 @@ public class FireMeatballAbility : ArtifactAbility
             orbitTarget.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         }
     }
+
+    private void OnDestroy()
+    {
+        if (orbitTarget)
+        {
+            Destroy(orbitTarget.gameObject);
+        }
+    }
 }

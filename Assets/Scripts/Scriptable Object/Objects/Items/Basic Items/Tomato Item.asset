@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Tomato
   itemSprite: {fileID: 21300000, guid: dfdf0b7ee694f0748bf9b0a99cc7e505, type: 3}
-  itemDescription: Gives Vitamins & Minerals that boost immunity to resist incoming
-    attacks.
+  itemDescription: Gives <mark color=#50c87866>Vitamins & Minerals</mark> that boost
+    immunity to resist incoming attacks.
   PermaBuffDictionary:
     _serializedList: []
   tempBuffDuration: 120

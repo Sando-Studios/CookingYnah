@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Lettuce
   itemSprite: {fileID: 21300000, guid: 146d9d6c0313feb4792400a5d10636ef, type: 3}
-  itemDescription: Gives Vitamins & Minerals that boost immunity to resist incoming
-    attacks.
+  itemDescription: Gives <mark color=#50c87866>Vitamins & Minerals</mark> that boost
+    immunity to resist incoming attacks.
   PermaBuffDictionary:
     _serializedList: []
   tempBuffDuration: 120

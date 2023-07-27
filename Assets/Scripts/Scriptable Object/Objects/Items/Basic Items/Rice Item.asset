@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Rice
   itemSprite: {fileID: 21300000, guid: 9b31f1afd0924684282f65ed2af5d73b, type: 3}
-  itemDescription: 'Source of energy that makes you last longer in the dungeon.
-
-'
+  itemDescription: Gives <mark color=#50c87866>Carbohydrates</mark> that makes you
+    last longer in the dungeon.
   PermaBuffDictionary:
     _serializedList: []
   tempBuffDuration: 120

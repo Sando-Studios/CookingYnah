@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cheese Item
   m_EditorClassIdentifier: 
   itemName: Cheese
-  itemSprite: {fileID: 21300000, guid: c1c0faa03fb9a9447afa8ce865a157f1, type: 3}
+  itemSprite: {fileID: 21300000, guid: 13880721101be924298a85fadda2f226, type: 3}
   itemDescription: 'Helps build muscles that gives you more powerful attacks
 
 '

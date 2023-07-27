@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tomato Item
   m_EditorClassIdentifier: 
   itemName: Tomato
-  itemSprite: {fileID: 21300000, guid: cdc15173df8a4d24cb086d462c32169a, type: 3}
+  itemSprite: {fileID: 21300000, guid: dfdf0b7ee694f0748bf9b0a99cc7e505, type: 3}
   itemDescription: Gives Vitamins & Minerals that boost immunity to resist incoming
     attacks.
   PermaBuffDictionary:

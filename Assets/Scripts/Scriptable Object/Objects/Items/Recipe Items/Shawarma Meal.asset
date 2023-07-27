@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Shawarma
   itemSprite: {fileID: 21300000, guid: 9919c5fa6c475304caaa044f309a531c, type: 3}
   itemDescription: Sliced beef / chicken with vegetables wrapped in flatbread that
-    has Carbohydrates, Protein & Iron.
+    has <mark color=#50c87866>Carbohydrates, Protein & Iron</mark>.
   PermaBuffDictionary:
     _serializedList:
     - Key: 0

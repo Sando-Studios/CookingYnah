@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Manakish
   itemSprite: {fileID: 21300000, guid: 9d01e28dcf231d44b9d8ab423900e610, type: 3}
   itemDescription: Flatbread topped with minced beef, tomatoes & onions that give
-    Carbohydrates, Protein & Iron.
+    <mark color=#50c87866>Carbohydrates, Protein & Iron</mark>.
   PermaBuffDictionary:
     _serializedList:
     - Key: 0

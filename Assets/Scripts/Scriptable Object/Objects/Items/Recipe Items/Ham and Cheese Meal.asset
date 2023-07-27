@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Ham and Cheese Sandwich
   itemSprite: {fileID: 21300000, guid: b2ee5f46f6f432f4f990117964710ab0, type: 3}
-  itemDescription: Bread with pork ham and cheese that give Carbohydrates & Protein
+  itemDescription: Bread with pork ham and cheese that give <mark color=#50c87866>Carbohydrates
+    & Protein</mark>
   PermaBuffDictionary:
     _serializedList:
     - Key: 1

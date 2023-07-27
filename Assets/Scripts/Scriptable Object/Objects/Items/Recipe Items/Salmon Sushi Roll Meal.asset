@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Salmon Sushi Roll
   itemSprite: {fileID: 21300000, guid: 21dede4adafdd8c48b37f42012558577, type: 3}
-  itemDescription: Salmon & rice wrapped in dried seaweed that gives Carbohydrates
-    & Protein.
+  itemDescription: Salmon & rice wrapped in dried seaweed that gives <mark color=#50c87866>Carbohydrates
+    & Protein</mark>.
   PermaBuffDictionary:
     _serializedList:
     - Key: 0

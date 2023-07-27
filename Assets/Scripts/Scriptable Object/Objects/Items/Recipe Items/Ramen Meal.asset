@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Ramen
   itemSprite: {fileID: 21300000, guid: 8ca3545b7496ac24594b608303e787df, type: 3}
   itemDescription: 'Noodle soup with a savory broth, eggs, green onions & sliced
-    pork that has Carbohydrates, Protein & Iron. '
+    pork that has <mark color=#50c87866>Carbohydrates, Protein & Iron</mark>. '
   PermaBuffDictionary:
     _serializedList:
     - Key: 0

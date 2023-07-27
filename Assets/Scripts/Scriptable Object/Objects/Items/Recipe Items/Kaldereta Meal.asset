@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Kaldereta
   itemSprite: {fileID: 21300000, guid: e914ec7903c60b94cae6481443789185, type: 3}
-  itemDescription: 
+  itemDescription: Beef chunks with a tomato based sauce that give <mark color=#50c87866>Carbohydrates,
+    Protein & Iron</mark>.
   PermaBuffDictionary:
     _serializedList:
     - Key: 1

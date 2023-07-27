@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Beef Kebab
   itemSprite: {fileID: 21300000, guid: 26914d9f186e17d4188bc9aac5630f56, type: 3}
-  itemDescription: Beef chunks with a tomato based sauce that give Carbohydrates,
-    Protein & Iron.
+  itemDescription: Beef chunks with a tomato based sauce that give <mark color=#50c87866>Carbohydrates,
+    Protein & Iron</mark>.
   PermaBuffDictionary:
     _serializedList:
     - Key: 0

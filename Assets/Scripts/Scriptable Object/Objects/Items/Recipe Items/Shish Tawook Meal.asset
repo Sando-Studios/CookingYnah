@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Shish Tawook
   itemSprite: {fileID: 21300000, guid: cca108145d5313547b4731d6bd4b53f5, type: 3}
-  itemDescription: Chicken skewers with side vegetables that give Protein & Potassium
+  itemDescription: Chicken skewers with side vegetables that give <mark color=#50c87866>Protein
+    & Potassium</mark>
   PermaBuffDictionary:
     _serializedList:
     - Key: 1

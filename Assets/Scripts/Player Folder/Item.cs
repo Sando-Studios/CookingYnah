@@ -54,7 +54,7 @@ public class Item : MonoBehaviour
     {
         this.gameObject.GetComponent<Collider>().enabled = false;
 
-        await new WaitForSeconds(2f);
+        await new WaitForSeconds(0.5f);
 
         this.gameObject.GetComponent<Collider>().enabled = true;
     }

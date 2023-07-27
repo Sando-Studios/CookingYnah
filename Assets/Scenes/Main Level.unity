@@ -27495,6 +27495,30 @@ PrefabInstance:
       propertyPath: near clip plane
       value: 0.001
       objectReference: {fileID: 0}
+    - target: {fileID: 8717946973111465617, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: topScaleLimit.x
+      value: 3.229519
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717946973111465617, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: topScaleLimit.y
+      value: 1.794177
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717946973111465617, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: topScaleLimit.z
+      value: 2.474171
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717946973111465617, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: bottomScaleLimit.x
+      value: 0.0144476
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717946973111465617, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: bottomScaleLimit.y
+      value: 0.008026443
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717946973111465617, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: bottomScaleLimit.z
+      value: 0.01106847
+      objectReference: {fileID: 0}
     - target: {fileID: 8717946973411942256, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -27594,6 +27618,10 @@ PrefabInstance:
     - target: {fileID: 8717946974621533108, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717946974649711926, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8717946974700770248, guid: 57e74bd7570059d45b62cd4970ce0ef7, type: 3}
       propertyPath: m_IsActive

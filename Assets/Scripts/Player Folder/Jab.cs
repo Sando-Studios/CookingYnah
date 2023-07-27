@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class Jab : MonoBehaviour
 {
-    [SerializeField] [Min(0)] private float timeBetweenAttacks;
+    [SerializeField][Min(0)] private float timeBetweenAttacks;
 
     private Coroutine timer = null;
 
     [SerializeField] private uint threshold = 3;
-    
-    [Range(0, 500)] [SerializeField] private float range;
 
-    [SerializeField] [Min(0)] private float damage;
-    [Range(1, 100)] [SerializeField] private float damageMultiplier;
+    [Range(0, 500)][SerializeField] private float range;
+
+    [SerializeField][Min(0)] private float damage;
+    [Range(1, 100)][SerializeField] private float damageMultiplier;
 
     [Header("Cooldowns")]
     [SerializeField] private float shortAtkCd;
@@ -25,10 +25,11 @@ public class Jab : MonoBehaviour
     [SerializeField] private OmniAttack sphere;
 
     private Coroutine cdRoutine;
-    
+
     internal uint internalCounter = 0;
 
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer triangle;
+    [SerializeField] private SpriteRenderer circle;
     [SerializeField] private Color activeColor;
     [SerializeField] private Color inactiveColor;
 
@@ -39,12 +40,13 @@ public class Jab : MonoBehaviour
             // On ability cooldown
             return (false, 0);
         }
-        
+
         StartTimer(); // Combo timer
 
         if (internalCounter >= threshold)
         {
             Slow();
+
             internalCounter = 0;
             return (true, threshold);
         }
@@ -56,18 +58,20 @@ public class Jab : MonoBehaviour
     private async void Fast()
     {
         Debug.Log("boom");
-        
+
         cone.DealDamage(Convert.ToInt32(damage));
     }
 
     private void Slow()
     {
         Debug.Log("pow");
-        
+        triangle.gameObject.SetActive(false);
+        circle.gameObject.SetActive(true);
+        StartCoroutine(CooldownColorSwap());
         // Override cooldown
         StopCoroutine(cdRoutine);
         cdRoutine = null;
-        spriteRenderer.color = inactiveColor;
+
         Cooldown(comboAtkCd);
 
         var dmg = damage * damageMultiplier;
@@ -153,7 +157,27 @@ public class Jab : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         cdRoutine = null;
-        spriteRenderer.color = activeColor;
     }
 
+    private IEnumerator CooldownColorSwap()
+    {
+        Debug.Log("CooldownColorSwap");
+        float t = comboAtkCd / 2;
+        float t2 = t / 2;
+
+        yield return new WaitForSeconds(t2);
+
+        triangle.color = inactiveColor;
+        circle.color = inactiveColor;
+
+        yield return new WaitForSeconds(t2);
+
+        triangle.gameObject.SetActive(true);
+        circle.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(t);
+
+        triangle.color = activeColor;
+        circle.color = activeColor;
+    }
 }

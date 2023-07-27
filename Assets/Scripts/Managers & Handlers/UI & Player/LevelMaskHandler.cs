@@ -10,8 +10,6 @@ public class LevelMaskHandler : MonoBehaviour
     public GameObject mask;
     private Material material;
     private int initialMaterialRenderQueue;
-    public Vector3 topScaleLimit;
-    public Vector3 bottomScaleLimit;
 
     private void OnEnable()
     {
@@ -33,7 +31,7 @@ public class LevelMaskHandler : MonoBehaviour
 
         if (maskObject == null)
             maskObject = GameObject.FindGameObjectWithTag("Floor");
-        
+
         foreach (Material m in maskObject.GetComponent<MeshRenderer>().materials)
         {
             if (m.name.Contains("Top"))
@@ -57,7 +55,7 @@ public class LevelMaskHandler : MonoBehaviour
     {
         if (other.gameObject == maskObject)
         {
-            material.renderQueue = initialMaterialRenderQueue;
+
             StartScaling(-1);
         }
     }
@@ -67,20 +65,23 @@ public class LevelMaskHandler : MonoBehaviour
     public float scalingDuration = 1.0f;
 
     private bool isScaling = false;
+    private int scalingDirection = 0; // 1 for scaling up, -1 for scaling down
+    private Vector3 initialScale; // Store the initial scale before scaling down
 
     public void StartScaling(int direction)
     {
-        if (!isScaling)
-        {
-            StartCoroutine(ScaleCoroutine(direction));
-        }
+        scalingDirection = direction;
+        StopAllCoroutines();
+        StartCoroutine(ScaleCoroutine());
+
     }
 
-    private IEnumerator ScaleCoroutine(int direction)
+    private IEnumerator ScaleCoroutine()
     {
         isScaling = true;
-        Vector3 targetScale = (direction == 1) ? maxScale : minScale;
-        Vector3 initialScale = transform.localScale;
+        Vector3 targetScale = (scalingDirection.Equals(1)) ? maxScale : minScale;
+        initialScale = mask.transform.localScale; // Store the initial scale
+
         float elapsedTime = 0f;
 
         while (elapsedTime < scalingDuration)
@@ -91,7 +92,11 @@ public class LevelMaskHandler : MonoBehaviour
         }
 
         mask.transform.localScale = targetScale;
-        if (targetScale.Equals(minScale)) mask.SetActive(false);
+        if (scalingDirection.Equals(-1))
+        {
+            material.renderQueue = initialMaterialRenderQueue;
+            mask.SetActive(false);
+        }
         isScaling = false;
     }
 }

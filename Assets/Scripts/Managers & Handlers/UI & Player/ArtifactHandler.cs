@@ -86,14 +86,19 @@ public class ArtifactHandler : MonoBehaviour
                 case Artifacts.Fire_Meatball:
                     playerGameObject.AddComponent<FireMeatballAbility>();
                     playerGameObject.GetComponent<FireMeatballAbility>().SetAbilityData(obj, slotNum, staminaCost);
+                    playerGameObject.GetComponent<FireMeatballAbility>().SetImage((slotNum.Equals(1)) ? slot1Image : slot2Image);
                     break;
                 case Artifacts.Ground_Wave:
                     playerGameObject.AddComponent<GroundWaveAbility>();
                     playerGameObject.GetComponent<GroundWaveAbility>().SetAbilityData(obj, slotNum, staminaCost);
+                    playerGameObject.GetComponent<GroundWaveAbility>().SetImage((slotNum.Equals(1)) ? slot1Image : slot2Image);
+
                     break;
                 case Artifacts.Axe_Slashes:
                     playerGameObject.AddComponent<OmniSlashAbility>();
                     playerGameObject.GetComponent<OmniSlashAbility>().SetAbilityData(obj, slotNum, staminaCost);
+                    playerGameObject.GetComponent<OmniSlashAbility>().SetImage((slotNum.Equals(1)) ? slot1Image : slot2Image);
+
                     break;
             }
         }

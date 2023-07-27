@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class ArtifactAbility : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public abstract class ArtifactAbility : MonoBehaviour
     [SerializeField] private int slotNum;
     [SerializeField] private int staminaCost = 30;
     protected bool isAbilityActive = false;
+    protected Image uiArtifactImage;
+
+    public static Action<int> OnAbilityFail;
 
     // Update is called once per frame
     protected virtual void Update()
@@ -23,12 +28,14 @@ public abstract class ArtifactAbility : MonoBehaviour
                 UseSpecialAttack();
                 playerData.CurrentStamina -= staminaCost;
                 UIManager.instance.UpdateStaminaBarUI();
-            }   
-            else { /*Play error sound*/ }
+            }
+            else { OnAbilityFail?.Invoke(0); }
 
         }
-    }
 
+        float alpha = (staminaCost <= GetComponent<Player>().GetPlayerData().CurrentStamina) ?  1.0f: 0.5f;
+        uiArtifactImage.color = new Color(uiArtifactImage.color.r, uiArtifactImage.color.g, uiArtifactImage.color.b, alpha);
+    }
     protected abstract void UseSpecialAttack();
 
     public virtual void SetAbilityData(GameObject obj, int slotIndex, int cost)
@@ -36,5 +43,9 @@ public abstract class ArtifactAbility : MonoBehaviour
         attackPrefab = obj;
         slotNum = slotIndex;
         staminaCost = cost;
+    }
+    public virtual void SetImage(Image image)
+    {
+        uiArtifactImage = image;
     }
 }

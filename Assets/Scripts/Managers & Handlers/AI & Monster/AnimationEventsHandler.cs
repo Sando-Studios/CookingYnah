@@ -16,6 +16,12 @@ public class AnimationEventsHandler : MonoBehaviour
 
         majorEnemy.CheckBasicAttackHit();
     }
+    public void TriggerMeleeHitCheck()
+    {
+        MinorEnemy minorEnemy = transform.parent.GetComponent<MinorEnemy>();
+
+        minorEnemy.CheckBasicAttackHit();
+    }
     public void TriggerWave()
     {
         GoatMajorEnemy goatEnemy = transform.parent.GetComponent<GoatMajorEnemy>();

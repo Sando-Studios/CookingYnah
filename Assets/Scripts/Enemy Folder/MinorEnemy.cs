@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class MinorEnemy : Enemy
 {
     protected override void Death(Artifacts artifact, string name) { Debug.Log("yoooooooooooooo"); }
-    
+
     [SerializeField] protected SphereCollider aggroTrigger;
 
     protected virtual void OnEnable()
@@ -34,14 +34,14 @@ public class MinorEnemy : Enemy
         home = homeBase;
         enemyDataInstance.Init(enemyID, unitData);
         aggroTrigger.radius = enemyDataInstance.AggroRange;
-   
+
     }
 
     protected override void Start()
     {
         base.Start();
-        
-        if(MonsterStateManager.Instance.GetIsAiActive())
+
+        if (MonsterStateManager.Instance.GetIsAiActive())
             MonsterStateManager.Instance.AddMonster(this, new PatrolState(MonsterStateManager.Instance, this));
         else
         {
@@ -76,7 +76,7 @@ public class MinorEnemy : Enemy
         return point.position;
     }
 
-    public override async void Hit() 
+    public override async void Hit()
     {
         base.Hit();
         ShowHPBar();
@@ -137,17 +137,20 @@ public class MinorEnemy : Enemy
             Vector3 direction = targetUnit.transform.position - transform.position;
             direction.Normalize();
             spriteTransform.rotation = Quaternion.Euler(new Vector3(0f, direction.x >= 0.08 ? -180f : 0f, 0f));
-
-            AttackTimer(enemyDataInstance.AttackSpeed);
-            DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
         }
+    }
+
+    public virtual void CheckBasicAttackHit()
+    {
+        AttackTimer(enemyDataInstance.AttackSpeed);
+        DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
     }
 
     public virtual void ControlAnimations(MonsterStates state, bool isPlaying)
     {
-        if(!animator)
+        if (!animator)
             Debug.Log("no animator");
-        
+
         ResetAnimatorBool();
 
         var s = state;
@@ -207,7 +210,7 @@ public class MinorEnemy : Enemy
             randomInterval = UnityEngine.Random.Range(1, 10);
             PlaySound(clipName);
             time = 0f;
-        } 
+        }
     }
 
     public void PlaySound(string clipName)

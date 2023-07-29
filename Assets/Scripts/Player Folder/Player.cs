@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     [SerializeField] private SerializedDictionary<int, AudioClip> ynahAttackSound;
 
     [SerializeField] private AudioSource ynahAttackAudio;
+    public AudioSource ynahHurtSound;
 
     private void Awake()
     {

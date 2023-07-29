@@ -66,6 +66,7 @@ public static class DamageHandler
         //Debug.Log($"Ynah's health: {unit.CurrentHealth}");
 
         //UIManager.instance.UpdateHpUI();
+        player.ynahHurtSound.Play();
         UIManager.instance.UpdateHpBarUI();
         //Play Damage animation/sfx
 

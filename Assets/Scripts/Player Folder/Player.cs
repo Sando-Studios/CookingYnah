@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class Player : MonoBehaviour
 {
@@ -32,6 +34,11 @@ public class Player : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private YnahWalkingSounds audioScript;
+
+    [SerializedDictionary("Sound", "Sound File")] 
+    [SerializeField] private SerializedDictionary<int, AudioClip> ynahAttackSound;
+
+    [SerializeField] private AudioSource ynahAttackAudio;
 
     private void Awake()
     {
@@ -134,21 +141,36 @@ public class Player : MonoBehaviour
                 attackParticle.Play();
                 animator.ResetTrigger("Attack Finish");
                 animator.SetTrigger("Attack Start");
+                PlayRandomAttackSound();
                 break;
             case 2:
                 //throw new NotImplementedException("No second attack animation yet");
                 animator.ResetTrigger("Attack Finish");
                 animator.SetTrigger("Attack Start2");
+                PlayRandomAttackSound();
                 break;
             case 3:
                 //throw new NotImplementedException("No slow attack animation yet");
                 animator.ResetTrigger("Attack Finish");
                 animator.SetTrigger("Attack Start3");
+                PlayRandomAttackSound();
                 break;
             default:
                 Debug.LogError("HOW");
                 break;
         }
+    }
+
+    private void PlayRandomAttackSound()
+    {
+        if(ynahAttackSound == null ||  ynahAttackSound.Count == 0)
+            return;
+
+        int randomSoundIndex = Random.Range(0, ynahAttackSound.Count);
+
+        AudioClip randomSlash = ynahAttackSound[randomSoundIndex];
+        
+        ynahAttackAudio.PlayOneShot(randomSlash);
     }
 
     public PlayerInventory GetInventory()

@@ -142,6 +142,8 @@ public class MinorEnemy : Enemy
 
     public virtual void CheckBasicAttackHit()
     {
+        if (!targetUnit) return;
+
         AttackTimer(enemyDataInstance.AttackSpeed);
         DamageHandler.ApplyDamage(targetUnit.GetComponent<Player>(), enemyDataInstance.BasicAttackDamage);
     }

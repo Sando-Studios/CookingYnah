@@ -17,9 +17,18 @@ public abstract class ArtifactAbility : MonoBehaviour
 
     public static Action<int> OnAbilityFail;
 
+    private bool isBoss = true;
+
+    protected virtual void Start()
+    {
+        if (!gameObject.CompareTag("Enemy")) isBoss = false;
+    }
+
     // Update is called once per frame
     protected virtual void Update()
     {
+        if (isBoss) return;
+
         if (slotNum > 0 && Input.GetButtonDown("Artifact " + slotNum.ToString()) && gameObject.GetComponent<Player>())
         {
             PlayerUnitData playerData = GetComponent<Player>().GetPlayerData();

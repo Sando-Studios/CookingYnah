@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private YnahWalkingSounds audioScript;
 
-    [SerializedDictionary("Sound", "Sound File")] 
+    [SerializedDictionary("Sound", "Sound File")]
     [SerializeField] private SerializedDictionary<int, AudioClip> ynahAttackSound;
 
     [SerializeField] private AudioSource ynahAttackAudio;
@@ -92,6 +92,15 @@ public class Player : MonoBehaviour
             isMoving = true;
         }
 
+        if (Input.GetButtonDown("Artifact 1") || Input.GetButtonDown("Artifact 2"))
+        {
+            if (GetComponent<OmniSlashAbility>())
+            {
+                animator.ResetTrigger("TempestTrigger");
+                animator.SetTrigger("TempestTrigger");
+            }
+        }
+
         AnimateMovement();
         PlayMovementSound(isMoving);
     }
@@ -133,7 +142,7 @@ public class Player : MonoBehaviour
         var (attacked, counter) = jab.Attack();
 
         if (!attacked) return;
-        
+
         switch (counter)
         {
             case 0:
@@ -164,13 +173,13 @@ public class Player : MonoBehaviour
 
     private void PlayRandomAttackSound()
     {
-        if(ynahAttackSound == null ||  ynahAttackSound.Count == 0)
+        if (ynahAttackSound == null || ynahAttackSound.Count == 0)
             return;
 
         int randomSoundIndex = Random.Range(0, ynahAttackSound.Count);
 
         AudioClip randomSlash = ynahAttackSound[randomSoundIndex];
-        
+
         ynahAttackAudio.PlayOneShot(randomSlash);
     }
 
@@ -185,7 +194,7 @@ public class Player : MonoBehaviour
         inventory = newInv;
         return i;
     }
-    
+
     public PlayerUnitData GetPlayerData()
     {
         return playerUnitData;

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Debugger : MonoBehaviour
 {
@@ -55,4 +56,11 @@ public class Debugger : MonoBehaviour
 
         trans.transform.position = new Vector3(@ref.x, trans.position.y, @ref.z);
     }
+	
+	public void ExitToMainMenu() {
+		SceneManager.LoadSceneAsync("MainMenu").completed += _ =>
+        {
+            canvas.SetActive(false);
+        };
+	}
 }

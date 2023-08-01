@@ -8,7 +8,7 @@ public class TwitchDebugger : MonoBehaviour
 {
     private Twitch client;
 
-    private Dictionary<string, Action<string>> outcomes;
+    private Dictionary<string, Action<string>> outcomes = new();
 
     public Debugger dbg;
     

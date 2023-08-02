@@ -8,6 +8,7 @@ public class Bocchi : MonoBehaviour
     [SerializeField] private float lifeSpan;
     private int damageValue;
     private float strength;
+    private bool isBoss = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,21 +31,23 @@ public class Bocchi : MonoBehaviour
     public void SetDamageValue(float dmg)
     {
         damageValue = (int)dmg;
+        isBoss = true;
     }
     public void SetDamageValue(float dmg, float strength)
     {
         SetDamageValue((int)dmg);
         this.strength = strength;
+        isBoss = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.isTrigger)
         {
-            if (other.CompareTag("Player"))
+            if (other.CompareTag("Player") && isBoss)
                 DealDamage(other.GetComponent<Player>());
 
-            if (other.gameObject.CompareTag("Enemy"))
+            if (other.gameObject.CompareTag("Enemy") && !isBoss)
                 DealDamage(other.GetComponent<Enemy>());
         }
     }

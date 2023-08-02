@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Omelette
   itemSprite: {fileID: 21300000, guid: 2dd6820b6c8fd4841a1f668eabd58eb4, type: 3}
-  itemDescription: Protein-rich food made from a whole egg & vegetables that give
-    Vit. A,D,B & K.
+  itemDescription: <mark color=#50c87866>Protein-rich</mark> food made from a whole
+    egg & vegetables that give <mark color=#50c87866>Vit. A,D,B & K</mark>.
   PermaBuffDictionary:
     _serializedList:
     - Key: 1

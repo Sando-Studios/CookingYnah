@@ -163,7 +163,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.CookingYnah
+    Standalone: com.Sando-Studios.Cookin-Ynah-The-Food-Fighter
   buildNumber:
     Standalone: 0
     iPhone: 0

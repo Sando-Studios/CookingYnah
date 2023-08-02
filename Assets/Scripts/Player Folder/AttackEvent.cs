@@ -15,5 +15,6 @@ public class AttackEvent : MonoBehaviour
     {
         animator.SetTrigger("Attack Finish");
         animator.ResetTrigger("Attack Start");
+        animator.ResetTrigger("TempestTrigger");
     }
 }

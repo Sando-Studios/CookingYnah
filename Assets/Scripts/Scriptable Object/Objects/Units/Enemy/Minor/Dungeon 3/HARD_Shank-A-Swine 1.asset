@@ -24,7 +24,7 @@ MonoBehaviour:
       Value: 1
     - Key: {fileID: 11400000, guid: f42329cd4b3a1a34f8b861c0bf81763c, type: 2}
       Value: 1
-  basicAttackDmg: 0
+  basicAttackDmg: 2
   wanderSpeed: 5
   chaseSpeed: 7
   attackSpeed: 4

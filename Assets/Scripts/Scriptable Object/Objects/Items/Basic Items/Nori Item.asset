@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Nori
   itemSprite: {fileID: 21300000, guid: 144b3330f9f8b494baf0b2f6e8f2b853, type: 3}
-  itemDescription: Gives Vitamins & Minerals that boost immunity to resist incoming
-    attacks.
+  itemDescription: Gives <mark color=#50c87866>Vitamins & Minerals</mark> that boost
+    immunity to resist incoming attacks.
   PermaBuffDictionary:
     _serializedList: []
   tempBuffDuration: 120

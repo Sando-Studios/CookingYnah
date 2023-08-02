@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Duck
   itemSprite: {fileID: 21300000, guid: aa43b725ec468434285f972ec25c6943, type: 3}
-  itemDescription: 'Helps build muscles that gives you more powerful attacks
-
-'
+  itemDescription: Provides <mark color=#50c87866>Protein</mark> that helps you build
+    muscles that gives you more powerful attacks
   PermaBuffDictionary:
     _serializedList: []
   tempBuffDuration: 120

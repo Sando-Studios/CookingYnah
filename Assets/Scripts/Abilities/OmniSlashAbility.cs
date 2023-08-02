@@ -6,9 +6,10 @@ using UnityEngine;
 public class OmniSlashAbility : ArtifactAbility
 {
     private GameObject cloneRef;
-    
-    private void Start()
+
+    protected override void Start()
     {
+        base.Start();
         cloneRef = Instantiate(attackPrefab, transform.position, Quaternion.identity);
         cloneRef.transform.SetParent(gameObject.transform);
     }

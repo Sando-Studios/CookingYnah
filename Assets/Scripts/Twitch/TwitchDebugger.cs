@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using AYellowpaper.SerializedCollections;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -9,13 +8,30 @@ public class TwitchDebugger : MonoBehaviour
 {
     private Twitch client;
 
-    [SerializeField] [SerializedDictionary("Command", "Action / Event")]
-    private SerializedDictionary<string, Action<string>> outcomes;
+    private Dictionary<string, Action<string>> outcomes = new();
+
+    public Debugger dbg;
+    
+    private event Action callbackQueue;
+    private event Action eventsClone; // Prevents race conditions
+ 
+    void Update()
+    {
+        if (callbackQueue != null)
+        {
+            eventsClone = callbackQueue;
+            callbackQueue = null;
+            eventsClone.Invoke();
+            eventsClone = null;
+        }
+    }
     
     private void Start()
     {
         outcomes.Add("say", Say);
-        outcomes.Add("over9k", Over9000);
+        outcomes.Add("max", Over9000);
+        outcomes.Add("tpboss", TpBoss);
+        outcomes.Add("unlockall", UnlockAll);
         
         client = new Twitch();
         client.OnChat = OnChat;
@@ -33,13 +49,7 @@ public class TwitchDebugger : MonoBehaviour
         
         if (!outcomes.ContainsKey(args[0])) return;
 
-        if (args.Length > 1)
-        {
-            outcomes[args[0]]?.Invoke(args[1]);
-            return;
-        }
-        
-        outcomes[args[0]]?.Invoke(null);
+        callbackQueue += () => outcomes[args[0]]?.Invoke(args.Length > 1 ? args[1] : null);
     }
 
     public void Say([CanBeNull] string arg)
@@ -49,10 +59,19 @@ public class TwitchDebugger : MonoBehaviour
         Debug.Log($"chat said {arg}");
     }
 
+    public void UnlockAll(string arg)
+    {
+        dbg.UnlockArtifacts();
+    }
+
     public void Over9000(string arg)
     {
-        Debug.Log("Vitality changed to 9k");
-        UIManager.instance.player.GetPlayerData().Vitality = 9000;
+        dbg.Max();
+    }
+
+    public void TpBoss(string arg)
+    {
+        dbg.TeleportToChamber();
     }
     
 }

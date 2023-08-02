@@ -9,6 +9,8 @@ public class GoatMajorEnemy : MajorEnemy
     [SerializeField] private float maxChargeDistance = 7.0f;
     private Vector3 chargeEndPoint;
     private bool isCharging = false;
+    [SerializeField] private GameObject chargeIndicator;
+    [SerializeField] private float windUpTime = 2.0f;
 
     // Start is called before the first frame update
     protected void OnTriggerEnter(Collider other)
@@ -25,7 +27,6 @@ public class GoatMajorEnemy : MajorEnemy
     {
         if (!isCharging)
         {
-            isCharging = true;
             Vector3 direction = targetUnit.transform.position - transform.position;
             direction.y = 0f;
             direction.Normalize();
@@ -37,6 +38,9 @@ public class GoatMajorEnemy : MajorEnemy
             chargeEndPoint = point.position;
             agent.enabled = false;
             GetComponent<CapsuleCollider>().isTrigger = true;
+
+            StartCoroutine(WindUp());
+
             PlayAudioClip(GetAudioClipName("Stampede"));
             AddToAttackCount(1);
         }
@@ -85,5 +89,13 @@ public class GoatMajorEnemy : MajorEnemy
             }
         }
         base.Update();
+    }
+
+    private IEnumerator WindUp()
+    {
+        chargeIndicator.SetActive(true);
+        yield return new WaitForSeconds(windUpTime);
+        chargeIndicator.SetActive(false);
+        isCharging = true;
     }
 }

@@ -67,8 +67,19 @@ public class UIManager : MonoBehaviour
     public bool craftingBtnBlock = false;
 
     [Header("UI Audio")]
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource interfaceAudioSource;
     [SerializeField] private SerializedDictionary<AudioName, AudioClip> audioClipDictionary;
+
+    [SerializeField] private AudioSource abilityAudioSource;
+
+    private void OnEnable()
+    {
+        ArtifactAbility.OnAbilityFail += PlayError;
+    }
+    private void OnDisable()
+    {
+        ArtifactAbility.OnAbilityFail -= PlayError;
+    }
 
     public enum AudioName
     {
@@ -80,10 +91,10 @@ public class UIManager : MonoBehaviour
     {
         playerData = player.GetPlayerData();
         playerInventory = player.GetInventory();
-        
+
         _craftingTutorial.Setup();
     }
-    
+
     public void CraftingStartTutorialSequence()
     {
         _craftingTutorial.StartSequences();
@@ -92,7 +103,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         if (craftingBtnBlock) return;
-        
+
         if (Input.GetButtonDown("Inventory"))
         {
             SelectInventory();
@@ -118,7 +129,7 @@ public class UIManager : MonoBehaviour
     public void SelectInventory()
     {
         if (craftingBtnBlock) return;
-        
+
         FlipActivePanel(itemPanel.name);
         UpdateInventoryUI();
     }
@@ -126,7 +137,7 @@ public class UIManager : MonoBehaviour
     public void SelectStats()
     {
         if (craftingBtnBlock) return;
-        
+
         FlipActivePanel(statsPanel.name);
         if (!characterImage.activeInHierarchy.Equals(statsPanel.activeInHierarchy))
             characterImage.SetActive(statsPanel.activeInHierarchy);
@@ -200,10 +211,10 @@ public class UIManager : MonoBehaviour
 
     public PlayerInventory SwapInventory(PlayerInventory inv)
     {
-        var old  = player.Swap(inv);
+        var old = player.Swap(inv);
 
         playerInventory = inv;
-        
+
         return old;
     }
 
@@ -357,9 +368,9 @@ public class UIManager : MonoBehaviour
             Debug.LogError($"{name} doesn't exist in the dictionary.");
             return;
         }
-        
-        audioSource.clip = audioClipDictionary[name];
-        audioSource.Play();
+
+        interfaceAudioSource.clip = audioClipDictionary[name];
+        interfaceAudioSource.Play();
     }
 
     private string currentActivePanel = "Start Mother Fucker";
@@ -391,5 +402,11 @@ public class UIManager : MonoBehaviour
             currentActivePanel = panelNameToBeFlipped;
         }
 
+    }
+
+    private void PlayError(int i)
+    {
+        abilityAudioSource.Stop();
+        abilityAudioSource.Play();
     }
 }

@@ -130,7 +130,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.38
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0.43, z: 0}
 --- !u!114 &1423575849336512078
 MonoBehaviour:
@@ -144,8 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09de5ba7f062704882e4d3f6a62149f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: 
+  itemData: {fileID: 0}
+  itemSprite: {fileID: 0}
   spriteRenderer: {fileID: 8957071437278031937}
-  itemAudioSource: {fileID: 0}
 --- !u!114 &539258215376433456
 MonoBehaviour:
   m_ObjectHideFlags: 0

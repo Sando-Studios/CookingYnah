@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Kibbeh
   itemSprite: {fileID: 21300000, guid: 2349ff1da1cecfa46a744cfdf456b127, type: 3}
-  itemDescription: Ground beef meatballs with spices that contains Protein & Potassium.
+  itemDescription: Ground beef meatballs with spices that contains <mark color=#50c87866>Protein
+    & Potassium</mark>.
   PermaBuffDictionary:
     _serializedList:
     - Key: 1

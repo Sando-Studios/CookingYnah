@@ -4,8 +4,8 @@ Cookin’ Ynah: The Food Fighter is a 2.5D hack-n-slash dungeon crawler game tha
 
 This game was developed by Sando Studios, a team of five students from the Philippines:
 
-Abella, Arthur Dale N. [Lead Artist, Animator]
-Go, Erik Rupert T. [Programmer]
-Portugaliza, Kyle Luis N. [Artist, UI/UX Lead]
-Sanchez, Alexander Gregor Emmanuel T. [Programmer]
-Sanchez, Laurence M. [Project Manager, Programmer]
+- Abella, Arthur Dale N. [Lead Artist, Animator]
+- Go, Erik Rupert T. [Programmer]
+- Portugaliza, Kyle Luis N. [Artist, UI/UX Lead]
+- Sanchez, Alexander Gregor Emmanuel T. [Programmer]
+- Sanchez, Laurence M. [Project Manager, Programmer]

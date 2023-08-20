@@ -6,7 +6,7 @@ using RawNative;
 
 public unsafe class Twitch
 {
-    public static Twitch Instance;
+    public static Dictionary<int, Twitch> clients = new();
     
     private void* runtime;
 
@@ -14,13 +14,14 @@ public unsafe class Twitch
 
     public Twitch()
     {
-        if (Instance != null)
-        {
-            return;
-        }
+        int hash = GetHashCode();
         
-        runtime = RawTwitch.init_runtime(RawListener);
-        Instance = this;
+        UnityEngine.Debug.Log($"Hash code: {hash}");
+        
+        if (clients.ContainsKey(hash)) return;
+        
+        runtime = RawTwitch.init_runtime(hash, RawListener);
+        clients.Add(hash, this);
     }
 
     ~Twitch()
@@ -31,12 +32,12 @@ public unsafe class Twitch
     }
     
     [MonoPInvokeCallback(typeof(RawTwitch.init_runtime_callback_delegate))]
-    private static void RawListener(byte* str)
+    private static void RawListener(byte* str, int identifier)
     {
         var msg = new string((sbyte*)str);
         RawTwitch.free_string(str);
-
-        Instance?.OnChat?.Invoke(msg);
+        
+        clients?[identifier]?.OnChat?.Invoke(msg);
     }
 
     public void JoinChannel(string channelName)
@@ -61,5 +62,7 @@ public unsafe class Twitch
         }
         RawTwitch.free_handle(runtime);
         runtime = null;
+
+        clients.Remove(GetHashCode());
     }
 }

@@ -11,17 +11,18 @@ namespace RawNative
 {
     internal static unsafe partial class RawTwitch
     {
-        #if UNITY_EDITOR
+#if !UNITY_EDITOR
+        const string __DllName = "Cookin Ynah The Food Fighter_Data/Plugins/x86_64/libtwitch_irc.dll";
+#else
         const string __DllName = "Assets/Plugins/Twitch/libtwitch_irc.dll";
-        #else
-        private const string __DllName = "Cookin Ynah The Food Fighter_Data/Plugins/x86_64/libtwitch_irc.dll";
-        #endif
+#endif
+        
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void init_runtime_callback_delegate(byte* @byte);
+        public delegate void init_runtime_callback_delegate(byte* msg, int identifier);
 
         [DllImport(__DllName, EntryPoint = "init_runtime", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void* init_runtime(init_runtime_callback_delegate callback);
+        public static extern void* init_runtime(int identifier, init_runtime_callback_delegate callback);
 
         [DllImport(__DllName, EntryPoint = "free_handle", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void free_handle(void* handle);
@@ -37,7 +38,7 @@ namespace RawNative
 
     }
 
-    
+
 
 }
     

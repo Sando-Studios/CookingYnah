@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
     public async void TempDisablePlayerInputs()
     {
         DisableInputs();
-        await new WaitForSeconds(10);
+        await new WaitForSeconds(5);
         EnableInputs();
     }
 

@@ -184,6 +184,17 @@ MonoBehaviour:
   m_Spacing: {x: 64.12, y: 60.28}
   m_Constraint: 1
   m_ConstraintCount: 4
+--- !u!114 &11568991 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8349921954066577070, guid: c15c97d249dd71a42a336a0e5c2e3f72, type: 3}
+  m_PrefabInstance: {fileID: 235792214}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &20572003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,6 +2093,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 954727790}
     m_Modifications:
+    - target: {fileID: 8349921954066577056, guid: c15c97d249dd71a42a336a0e5c2e3f72, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8349921954066577071, guid: c15c97d249dd71a42a336a0e5c2e3f72, type: 3}
       propertyPath: m_SizeDelta.x
       value: 624.8
@@ -2170,6 +2185,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8349921954315801523, guid: c15c97d249dd71a42a336a0e5c2e3f72, type: 3}
+      propertyPath: box
+      value: 
+      objectReference: {fileID: 11568991}
     - target: {fileID: 8349921954315801523, guid: c15c97d249dd71a42a336a0e5c2e3f72, type: 3}
       propertyPath: outcomes.Array.size
       value: 3

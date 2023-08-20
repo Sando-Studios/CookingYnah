@@ -35,7 +35,10 @@ public class TwitchDebugger : MonoBehaviour
         
         client = new Twitch();
         client.OnChat = OnChat;
-        client.JoinChannel("koolieaid");
+        
+        var channel = PlayerPrefs.GetString("twitch_channel");
+        if (channel == "") return;
+        client.JoinChannel(channel);
     }
 
     private void OnDisable()

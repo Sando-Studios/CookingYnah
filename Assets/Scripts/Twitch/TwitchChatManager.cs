@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Asyncoroutine;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -20,17 +21,28 @@ public class TwitchChatManager : MonoBehaviour
     private float timeLimit;
 
     [SerializeField] private Image bar;
+    [SerializeField] private Image box;
 
     private Coroutine routine;
 
     void Start()
     {
+        var channel = PlayerPrefs.GetString("twitch_channel");
+        if (channel == "")
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
         client = new Twitch();
         client.OnChat = OnChat;
+
+        JoinChannel(channel);
     }
 
     private void OnDisable()
     {
+        if (client == null) return;
         client.ExplicitlyDestroy();
     }
     
@@ -83,6 +95,14 @@ public class TwitchChatManager : MonoBehaviour
         skip:
         
         Reset();
+        Rest(limit);
+    }
+
+    private async void Rest(float limit)
+    {
+        box.gameObject.SetActive(false);
+        await new WaitForSeconds(5);
+        box.gameObject.SetActive(true);
         StartCoroutine(Timer(limit));
     }
 

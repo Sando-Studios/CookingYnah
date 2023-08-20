@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Asyncoroutine;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -62,11 +63,16 @@ public class Player : MonoBehaviour
         if (SceneChangeManager.instance.GetObjectToLoad() != gameObject) { Destroy(gameObject); }
     }
 
+    private void AddForce(Vector3 dir, out bool isMoving)
+    {
+        rb.AddForce(dir * force * Time.deltaTime, ForceMode.Force);
+        isMoving = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
 
-        // TODO: Synchronize animations, since canAttack got replaced
         if (Input.GetButtonDown("Fire1"))
         {
             Attack();
@@ -79,17 +85,13 @@ public class Player : MonoBehaviour
         if (Input.GetButton("Horizontal"))
         {
             var val = Input.GetAxis("Horizontal");
-            rb.AddForce(new Vector3(val, 0, 0) * force * Time.deltaTime, ForceMode.Force);
-
-            isMoving = true;
+            AddForce(Vector3.right * val, out isMoving);
         }
 
         if (Input.GetButton("Vertical"))
         {
             var val = Input.GetAxis("Vertical");
-            rb.AddForce(new Vector3(0, 0, val) * force * Time.deltaTime, ForceMode.Force);
-
-            isMoving = true;
+            AddForce(Vector3.forward * val, out isMoving);
         }
 
         if (Input.GetButtonDown("Artifact 1") || Input.GetButtonDown("Artifact 2"))
@@ -114,6 +116,13 @@ public class Player : MonoBehaviour
     {
         movementEnabled = false;
     }
+    
+    public async void TempDisablePlayerInputs()
+    {
+        DisableInputs();
+        await new WaitForSeconds(10);
+        EnableInputs();
+    }
 
     public bool GetNearStation()
     {
@@ -132,8 +141,7 @@ public class Player : MonoBehaviour
         audioScript.OnPlayerMove(status);
     }
 
-
-    private void Attack()
+    public void Attack()
     {
         canAttack = false;
 
@@ -142,33 +150,12 @@ public class Player : MonoBehaviour
         var (attacked, counter) = jab.Attack();
 
         if (!attacked) return;
-
-        switch (counter)
-        {
-            case 0:
-                break;
-            case 1:
-                attackParticle.Play();
-                animator.ResetTrigger("Attack Finish");
-                animator.SetTrigger("Attack Start");
-                PlayRandomAttackSound();
-                break;
-            case 2:
-                //throw new NotImplementedException("No second attack animation yet");
-                animator.ResetTrigger("Attack Finish");
-                animator.SetTrigger("Attack Start2");
-                PlayRandomAttackSound();
-                break;
-            case 3:
-                //throw new NotImplementedException("No slow attack animation yet");
-                animator.ResetTrigger("Attack Finish");
-                animator.SetTrigger("Attack Start3");
-                PlayRandomAttackSound();
-                break;
-            default:
-                Debug.LogError("HOW");
-                break;
-        }
+        
+        if (counter == 1) attackParticle.Play();
+        var variation = counter == 1 ? "" : counter.ToString();
+        animator.ResetTrigger($"Attack Finish{variation}");
+        animator.SetTrigger($"Attack Start{variation}");
+        PlayRandomAttackSound();
     }
 
     private void PlayRandomAttackSound()

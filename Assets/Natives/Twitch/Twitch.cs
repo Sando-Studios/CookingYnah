@@ -6,7 +6,7 @@ using RawNative;
 
 public unsafe class Twitch
 {
-    public static Dictionary<int, Twitch> clients = new();
+    private static Dictionary<int, Twitch> clients = new();
     
     private void* runtime;
 
@@ -14,9 +14,7 @@ public unsafe class Twitch
 
     public Twitch()
     {
-        int hash = GetHashCode();
-        
-        UnityEngine.Debug.Log($"Hash code: {hash}");
+        var hash = GetHashCode();
         
         if (clients.ContainsKey(hash)) return;
         

@@ -7,7 +7,11 @@ use twitch_irc::{
     ClientConfig as Config, SecureTCPTransport as TCPTransport, TwitchIRCClient as IRC,
 };
 
-pub fn fake_main(receiver: Receiver<String>, identifier: i32, callback: extern "C" fn(*mut c_char, i32) -> ()) {
+pub fn fake_main(
+    receiver: Receiver<String>,
+    identifier: i32,
+    callback: extern "C" fn(*mut c_char, i32) -> (),
+) {
     let r = runtime::Runtime::new().unwrap();
 
     r.block_on(async move {
@@ -19,7 +23,7 @@ pub fn fake_main(receiver: Receiver<String>, identifier: i32, callback: extern "
                 let Privmsg(msg) = msg else {
                     continue;
                 };
-                
+
                 let message = CString::new(msg.message_text.as_str()).unwrap_or_default();
 
                 callback(message.into_raw(), identifier);

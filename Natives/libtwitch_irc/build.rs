@@ -1,38 +1,51 @@
-use std::fs::File;
+use std::{fs::File, ops::Deref, error::Error};
+use serde::Deserialize;
 
 const DLLNAME: &str = "libtwitch_irc.dll";
 const PROJECT_SETTINGS_PATH: &str = "../../ProjectSettings/ProjectSettings.asset";
 
-#[derive(Debug, serde::Deserialize)]
+#[derive(Debug, Deserialize)]
 struct ProjectSettings {
     #[serde(rename(deserialize = "PlayerSettings"))]
     player_settings: PlayerSettings,
 }
 
-#[derive(Debug, serde::Deserialize)]
+#[derive(Debug, Deserialize)]
 struct PlayerSettings {
-    #[allow(dead_code)]
     #[serde(rename(deserialize = "companyName"))]
     company_name: String,
     #[serde(rename(deserialize = "productName"))]
     product_name: String,
 }
 
-impl ProjectSettings {
-    pub fn get_product_name(&self) -> &str {
-        &self.player_settings.product_name
+impl Deref for ProjectSettings {
+    type Target = PlayerSettings;
+    
+    fn deref(&self) -> &Self::Target {
+        &self.player_settings
     }
 }
 
-fn main() {
-    let file = File::open(PROJECT_SETTINGS_PATH).expect("Cannot find project settings path.");
+impl PlayerSettings {
+    pub fn get_product_name(&self) -> &str {
+        &self.product_name
+    }
     
-    let settings: ProjectSettings = serde_yaml::from_reader(file).expect("Unable to read project settings file");
+    #[allow(dead_code)]
+    pub fn get_company_name(&self) -> &str {
+        &self.company_name
+    }
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let file = File::open(PROJECT_SETTINGS_PATH)?;
+    
+    let settings: ProjectSettings = serde_yaml::from_reader(&file)?;
     
     let editor_path = format!("Assets/Plugins/Twitch/{}", DLLNAME);
     let standalone_path = format!("{}_Data/Plugins/x86_64/{}", settings.get_product_name(), DLLNAME);
 
-    let res = csbindgen::Builder::default()
+    csbindgen::Builder::default()
         .input_extern_file("src/lib.rs")
         .csharp_dll_name(&editor_path)
         .csharp_namespace("RawNative")
@@ -42,9 +55,7 @@ fn main() {
         .generate_to_file(
             "../../Assets/Plugins/libtwitch_irc.dll", // This is probably ignored, idk the inner workings of the build lib
             "../../Assets/Natives/Twitch/TwitchRust.cs",
-        );
-        
-    if let Err(e) = res {
-        eprint!("Error generating bindings: {e:?}");
-    }
+        )?;
+    
+    Ok(())
 }

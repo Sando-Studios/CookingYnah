@@ -17,7 +17,7 @@ public unsafe class Twitch
     
     public Twitch(IChatListener listener)
     {
-        var hash = listener.GetHashCode();
+        var hash = GetHashCode();
         
         if (clients.ContainsKey(hash)) return;
         

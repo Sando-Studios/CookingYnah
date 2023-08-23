@@ -4,22 +4,25 @@ using System.Collections.Generic;
 using AOT;
 using RawNative;
 
+public interface IChatListener
+{
+    void OnChat(string message);
+}
+
 public unsafe class Twitch
 {
-    private static Dictionary<int, Twitch> clients = new();
+    private static Dictionary<int, IChatListener> clients = new();
     
     private void* runtime;
-
-    public Action<string> OnChat;
-
-    public Twitch()
+    
+    public Twitch(IChatListener listener)
     {
-        var hash = GetHashCode();
+        var hash = listener.GetHashCode();
         
         if (clients.ContainsKey(hash)) return;
         
         runtime = RawTwitch.init_runtime(hash, RawListener);
-        clients.Add(hash, this);
+        clients.Add(hash, listener);
     }
 
     ~Twitch()
@@ -35,7 +38,7 @@ public unsafe class Twitch
         var msg = new string((sbyte*)str);
         RawTwitch.free_string(str);
         
-        clients?[identifier]?.OnChat?.Invoke(msg);
+        clients?[identifier]?.OnChat(msg);
     }
 
     public void JoinChannel(string channelName)

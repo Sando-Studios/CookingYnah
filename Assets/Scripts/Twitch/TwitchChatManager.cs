@@ -8,7 +8,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using Text = TMPro.TextMeshProUGUI;
 
-public class TwitchChatManager : MonoBehaviour
+public class TwitchChatManager : MonoBehaviour, IChatListener
 {
     private Twitch client;
 
@@ -40,8 +40,7 @@ public class TwitchChatManager : MonoBehaviour
             return;
         }
         
-        client = new Twitch();
-        client.OnChat = OnChat;
+        client = new Twitch(this);
 
         JoinChannel(channel);
     }
@@ -66,7 +65,7 @@ public class TwitchChatManager : MonoBehaviour
         client.ExplicitlyDestroy();
     }
     
-    private void OnChat(string msg)
+    public void OnChat(string msg)
     {
         try
         {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class TwitchDebugger : MonoBehaviour
+public class TwitchDebugger : MonoBehaviour, IChatListener
 {
     private Twitch client;
 
@@ -33,8 +33,7 @@ public class TwitchDebugger : MonoBehaviour
         outcomes.Add("tpboss", TpBoss);
         outcomes.Add("unlockall", UnlockAll);
         
-        client = new Twitch();
-        client.OnChat = OnChat;
+        client = new Twitch(this);
         
         var channel = PlayerPrefs.GetString("twitch_channel");
         if (channel == "") return;
@@ -46,7 +45,7 @@ public class TwitchDebugger : MonoBehaviour
         client.ExplicitlyDestroy();
     }
     
-    private void OnChat(string msg)
+    public void OnChat(string msg)
     {
         var args = msg.Split(" ", 2);
         

@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Asyncoroutine;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Text = TMPro.TextMeshProUGUI;
 
-public class TwitchChatManager : MonoBehaviour
+public class TwitchChatManager : MonoBehaviour, IChatListener
 {
     private Twitch client;
 
@@ -20,21 +22,50 @@ public class TwitchChatManager : MonoBehaviour
     private float timeLimit;
 
     [SerializeField] private Image bar;
+    [SerializeField] private Image box;
+
+    [SerializeField] private Text[] votes;
 
     private Coroutine routine;
 
+    [Header("Jokes")]
+    [SerializeField] private GameObject eggPrefab;
+
     void Start()
     {
-        client = new Twitch();
-        client.OnChat = OnChat;
+        var channel = PlayerPrefs.GetString("twitch_channel");
+        if (channel == "")
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+        client = new Twitch(this);
+
+        JoinChannel(channel);
+    }
+    
+    private event Action callbackQueue;
+    private event Action eventBuffer; // Prevents race conditions
+ 
+    void Update()
+    {
+        if (callbackQueue != null)
+        {
+            eventBuffer = callbackQueue;
+            callbackQueue = null;
+            eventBuffer.Invoke();
+            eventBuffer = null;
+        }
     }
 
     private void OnDisable()
     {
+        if (client == null) return;
         client.ExplicitlyDestroy();
     }
     
-    private void OnChat(string msg)
+    public void OnChat(string msg)
     {
         try
         {
@@ -42,6 +73,8 @@ public class TwitchChatManager : MonoBehaviour
             if (num <= 0 || num > counters.Length) return;
 
             counters[num - 1]++;
+
+            callbackQueue += () => votes[num - 1].text = $"{counters[num - 1].ToString()} votes";
         }
         catch { }
     }
@@ -58,6 +91,7 @@ public class TwitchChatManager : MonoBehaviour
         for (var i = 0; i < counters.Length; i++)
         {
             counters[i] = 0;
+            votes[i].text = "0 votes";
         }
     }
 
@@ -83,6 +117,14 @@ public class TwitchChatManager : MonoBehaviour
         skip:
         
         Reset();
+        Rest(limit);
+    }
+
+    private async void Rest(float limit)
+    {
+        box.gameObject.SetActive(false);
+        await new WaitForSeconds(5);
+        box.gameObject.SetActive(true);
         StartCoroutine(Timer(limit));
     }
 
@@ -104,18 +146,17 @@ public class TwitchChatManager : MonoBehaviour
         }
     }
 
-    public void DebugFunction1()
+    public async void SpawnEgg()
     {
-        Debug.Log("Received! 1");
-    }
-    
-    public void DebugFunction2()
-    {
-        Debug.Log("Received! 2");
-    }
-    
-    public void DebugFunction3()
-    {
-        Debug.Log("Received! 3");
+        var player = UIManager.instance.player;
+
+        for (var i = 0; i < 5; i++)
+        {
+            var egg = Instantiate(eggPrefab, player.gameObject.transform.position + Vector3.up * 3, Quaternion.identity);
+            
+            egg.GetComponent<EggGrenade>().SetExplosionData(200, -1);
+            await new WaitForSeconds(0.3f);
+        }
+
     }
 }

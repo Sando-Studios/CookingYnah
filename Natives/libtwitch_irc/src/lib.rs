@@ -12,14 +12,17 @@ struct Context {
 }
 
 #[no_mangle]
-pub extern "C" fn init_runtime(callback: Option<extern "C" fn(*mut c_char) -> ()>) -> *mut c_void {
+pub extern "C" fn init_runtime(
+    identifier: i32,
+    callback: Option<extern "C" fn(*mut c_char, i32) -> ()>,
+) -> *mut c_void {
     if callback.is_none() {
         return std::ptr::null_mut();
     }
 
     let (sender, receiver) = mpsc::channel::<String>();
 
-    let handle = thread::spawn(move || twitch::fake_main(receiver, callback.unwrap()));
+    let handle = thread::spawn(move || twitch::fake_main(receiver, identifier, callback.unwrap()));
 
     let ctx = Context {
         thread_handle: handle,
@@ -81,9 +84,7 @@ pub unsafe extern "C-unwind" fn join_channel(ctx: *mut c_void, s_ptr: *const u16
 /// It must also be from Rust, not any other language
 #[no_mangle]
 pub unsafe extern "C-unwind" fn free_string(string: *mut c_char) {
-    let cstr = unsafe {
-        CString::from_raw(string)
-    };
+    let cstr = unsafe { CString::from_raw(string) };
     drop(cstr);
 }
 

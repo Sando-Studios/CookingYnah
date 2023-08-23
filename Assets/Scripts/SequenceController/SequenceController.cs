@@ -1,25 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 namespace Tutorial
 {
     /// <summary>
     /// Attach this to a <see cref="GameObject"/> to enable sequenced movement.
-    /// <seealso cref="Sequence"/>
+    /// <seealso cref="ISequence"/>
     /// </summary>
     [AddComponentMenu("Tutorial/Sequence Controller")]
     public class SequenceController : MonoBehaviour
     {
-        private Queue<Sequence> queue = new();
-        private Queue<Sequence> _internalCopy;
+        private Queue<ISequence> queue = new();
+        private Queue<ISequence> _internalCopy;
 
         private void Start()
         {
-            _internalCopy = new Queue<Sequence>(queue);
+            _internalCopy = new Queue<ISequence>(queue);
         }
 
         public void ManualStart()
@@ -71,7 +69,7 @@ namespace Tutorial
         /// <remarks>
         /// It is recommended to use this in Awake instead of Start
         /// </remarks>
-        public SequenceController AddSequence(Sequence s)
+        public SequenceController AddSequence(ISequence s)
         {
             queue.Enqueue(s);
             return this;
@@ -79,7 +77,7 @@ namespace Tutorial
     }
 
     /// <summary>
-    /// Base class for sequences
+    /// Interface for sequences
     /// <list type="Bullet">
     /// <item>
     /// <see cref="WaitSequence"/>
@@ -98,20 +96,8 @@ namespace Tutorial
     /// </item>
     /// </list>
     /// </summary>
-    public abstract class Sequence
+    public interface ISequence
     {
-        protected bool isDone;
-        protected readonly SequenceController _controller;
-
-        /// <summary>
-        /// Constructor for the sequence.
-        /// </summary>
-        /// <param name="controller">Controller for getting</param>
-        protected Sequence(SequenceController controller)
-        {
-            _controller = controller;
-        }
-
         /// <summary>
         /// Checks if the sequence is done
         /// </summary>
@@ -127,10 +113,7 @@ namespace Tutorial
         /// }
         /// </code>
         /// </example>
-        public bool IsDone()
-        {
-            return isDone;
-        }
+        bool IsDone();
 
         /// <summary>
         /// <para>
@@ -140,25 +123,33 @@ namespace Tutorial
         /// </para>
         /// </summary>
         /// <param name="o">GameObject in which the sequence acts upon.</param>
-        public abstract void Execute(GameObject o);
+        void Execute(GameObject o);
     }
 
-    public class WaitSequence : Sequence
+    public class WaitSequence : ISequence
     {
         private readonly float _time;
+        private SequenceController _controller;
+        private bool isDone;
 
         /// <summary>
         /// Waits a set amount of time
         /// </summary>
         /// <param name="time">Time to wait in seconds</param>
-        public WaitSequence(SequenceController controller, float time) : base(controller)
+        public WaitSequence(SequenceController controller, float time)
         {
             _time = time;
+            _controller = controller;
         }
 
-        public override void Execute(GameObject o)
+        public void Execute(GameObject o)
         {
             _controller.StartCoroutine(_wait());
+        }
+
+        public bool IsDone()
+        {
+            return isDone;
         }
 
         private IEnumerator _wait()
@@ -171,11 +162,14 @@ namespace Tutorial
     /*
      * Move to a designated spot with a designated speed
      */
-    public class MoveSequence : Sequence
+    public class MoveSequence : ISequence
     {
         private readonly Vector2 _destination;
         private readonly float _speed;
         private readonly float _tolerance;
+
+        private SequenceController _controller;
+        private bool isDone;
 
         /// <summary>
         /// Sequence to move the object into a designated spot
@@ -184,15 +178,15 @@ namespace Tutorial
         /// <param name="destination">Designated spot</param>
         /// <param name="speed">Speed in which the object is going to</param>
         /// <param name="tolerance">Distance between the object and destination in which the objects stops</param>
-        public MoveSequence(SequenceController controller, Vector2 destination, float speed, float tolerance = 0.1f) :
-            base(controller)
+        public MoveSequence(SequenceController controller, Vector2 destination, float speed, float tolerance = 0.1f)
         {
             _destination = destination;
             _speed = speed;
             _tolerance = tolerance;
+            _controller = controller;
         }
 
-        public override void Execute(GameObject o)
+        public void Execute(GameObject o)
         {
             _controller.StartCoroutine(_loop(o));
         }
@@ -207,14 +201,22 @@ namespace Tutorial
 
             isDone = true;
         }
+
+        public bool IsDone()
+        {
+            return isDone;
+        }
     }
     
-    public class MoveSequenceCanvas : Sequence
+    public class MoveSequenceCanvas : ISequence
     {
         private readonly Vector2 _destination;
         private readonly float _speed;
         private readonly float _tolerance;
         private RectTransform _rectTransform;
+
+        private SequenceController _controller;
+        private bool isDone;
 
         /// <summary>
         /// Sequence to move the object into a designated spot
@@ -227,16 +229,17 @@ namespace Tutorial
         /// <remarks>
         /// Only used for objects that are in a canvas
         /// </remarks>
-        public MoveSequenceCanvas(SequenceController controller, Vector2 destination, float speed, RectTransform rectTransform, float tolerance = 0.1f) :
-            base(controller)
+        public MoveSequenceCanvas(SequenceController controller, Vector2 destination, float speed, RectTransform rectTransform, float tolerance = 0.1f)
         {
             _destination = destination;
             _speed = speed;
             _tolerance = tolerance;
             _rectTransform = rectTransform;
+
+            _controller = controller;
         }
 
-        public override void Execute(GameObject o)
+        public void Execute(GameObject o)
         {
             _controller.StartCoroutine(_loop(o));
         }
@@ -251,13 +254,21 @@ namespace Tutorial
 
             isDone = true;
         }
+
+        public bool IsDone()
+        {
+            return isDone;
+        }
     }
     
-    public class ToolTipSequence : Sequence
+    public class ToolTipSequence : ISequence
     {
         protected ToolTipAdapter _toolTip;
         private string _text;
         private bool _turnOn;
+
+        private SequenceController _controller;
+        private bool isDone;
 
         /// <summary>
         /// Shows a tooltip with a set prefab.
@@ -270,11 +281,13 @@ namespace Tutorial
         /// The other constructor is the same except the offset is default to zero.
         /// The tooltip prefab needs to have <see cref="ToolTipAdapter"/> attached to it.
         /// </remarks>
-        public ToolTipSequence(SequenceController controller, ToolTipAdapter toolTip, string text, bool turnOn = true) : base(controller)
+        public ToolTipSequence(SequenceController controller, ToolTipAdapter toolTip, string text, bool turnOn = true)
         {
             _toolTip = toolTip;
             _text = text;
             _turnOn = turnOn;
+
+            _controller = controller;
         }
 
         /// <summary>
@@ -286,11 +299,16 @@ namespace Tutorial
         {
         }
 
-        public override void Execute(GameObject o)
+        public virtual void Execute(GameObject o)
         {
             _toolTip.SetText(_text);
             _toolTip.gameObject.SetActive(_turnOn);
             isDone = true;
+        }
+
+        public bool IsDone()
+        {
+            return isDone;
         }
     }
 
@@ -327,18 +345,23 @@ namespace Tutorial
         }
     }
 
-    public class CustomSequence : Sequence
+    public class CustomSequence : ISequence
     {
         private Action<CustomSequence, GameObject> _action;
+
+        private SequenceController _controller;
+        private bool isDone;
 
         /// <summary>
         /// Allows the developer to make custom Sequences without deriving from the base class. 
         /// </summary>
         /// <param name="controller">Controller for referencing.</param>
         /// <param name="action">Code to be executed automatically.</param>
-        public CustomSequence(SequenceController controller, Action<CustomSequence, GameObject> action) : base(controller)
+        public CustomSequence(SequenceController controller, Action<CustomSequence, GameObject> action)
         {
             _action = action;
+
+            _controller = controller;
         }
 
         /// <summary>
@@ -383,7 +406,7 @@ namespace Tutorial
             return this;
         }
 
-        public override void Execute(GameObject o)
+        public void Execute(GameObject o)
         {
             _action?.Invoke(this, o);
         }
@@ -396,12 +419,20 @@ namespace Tutorial
         {
             isDone = newStatus;
         }
+
+        public bool IsDone()
+        {
+            return isDone;
+        }
     }
     
-    public class FocusSequence : Sequence
+    public class FocusSequence : ISequence
     {
         private readonly float _duration;
         private readonly GameObject _target;
+
+        private SequenceController _controller;
+        private bool isDone;
         
         /// <summary>
         /// Makes everything dark except for the object in focus.
@@ -410,15 +441,22 @@ namespace Tutorial
         /// <param name="controller">Controller for referencing</param>
         /// <param name="target">Target to focus on.</param>
         /// <param name="duration">How long the focus is going to last.</param>
-        public FocusSequence(SequenceController controller, GameObject target, float duration = 3.0f) : base(controller)
+        public FocusSequence(SequenceController controller, GameObject target, float duration = 3.0f)
         {
             _duration = duration;
             _target = target;
+
+            _controller = controller;
         }
 
-        public override void Execute(GameObject o)
+        public void Execute(GameObject o)
         {
             throw new NotImplementedException();
+        }
+
+        public bool IsDone()
+        {
+            return isDone;
         }
     }
 
@@ -428,13 +466,16 @@ namespace Tutorial
     /// <remarks>
     /// It is advisable to reuse this sequence when adding in the controller.
     /// </remarks>
-    public class UserInputSequence : Sequence
+    public class UserInputSequence : ISequence
     {
-        public UserInputSequence(SequenceController controller) : base(controller)
+        private SequenceController _controller;
+        private bool isDone;
+        
+        public UserInputSequence(SequenceController controller)
         {
         }
         
-        public override void Execute(GameObject o)
+        public void Execute(GameObject o)
         {
         }
 
@@ -454,6 +495,11 @@ namespace Tutorial
         public void Toggle()
         {
             _controller.StartCoroutine(Framework());
+        }
+
+        public bool IsDone()
+        {
+            return isDone;
         }
     }
 

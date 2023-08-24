@@ -6,6 +6,34 @@ using RawNative;
 
 public interface IChatListener
 {
+    /// <summary>
+    /// Method is called when a Twitch chat is received
+    /// </summary>
+    /// <remarks>
+    /// If the implementor is a MonoBehavior, please add the following code:
+    /// 
+    /// <code>
+    /// private event Action callbackQueue;
+    /// private event Action eventBuffer; // Prevents race conditions
+    /// 
+    /// void Update()
+    /// {
+    ///     if (callbackQueue != null)
+    ///     {
+    ///         eventBuffer = callbackQueue;
+    ///         callbackQueue = null;
+    ///         eventBuffer.Invoke();
+    ///         eventBuffer = null;
+    ///     }
+    /// }
+    /// </code>
+    ///
+    /// and to add a callback do callbackQueue += () => Function();
+    ///
+    /// This is all because of Unity not wanting some methods not being executed on the main thread,
+    /// hence we add a queue, and call them later on an Update frame from the main thread.
+    /// </remarks>
+    /// <param name="message"></param>
     void OnChat(string message);
 }
 
@@ -37,8 +65,16 @@ public unsafe class Twitch
     {
         var msg = new string((sbyte*)str);
         RawTwitch.free_string(str);
-        
-        clients?[identifier]?.OnChat(msg);
+
+        try
+        {
+            clients?[identifier]?.OnChat(msg);
+        }
+        catch (Exception e)
+        {
+            var info = "if this is a main thread error, please consult the documentation of \"IChatListener\"";
+            UnityEngine.Debug.LogError($"{e.Message}. \n {info}");
+        }
     }
 
     public void JoinChannel(string channelName)

@@ -15,6 +15,8 @@ namespace Tutorial
         private Queue<ISequence> queue = new();
         private Queue<ISequence> _internalCopy;
 
+        private Coroutine loop;
+
         private void Start()
         {
             _internalCopy = new Queue<ISequence>(queue);
@@ -22,7 +24,7 @@ namespace Tutorial
 
         public void ManualStart()
         {
-            StartCoroutine(Loop());
+            loop = StartCoroutine(Loop());
         }
     
         private IEnumerator Loop()
@@ -73,6 +75,12 @@ namespace Tutorial
         {
             queue.Enqueue(s);
             return this;
+        }
+
+        public void Stop()
+        {
+            StopCoroutine(loop);
+            loop = null;
         }
     }
 

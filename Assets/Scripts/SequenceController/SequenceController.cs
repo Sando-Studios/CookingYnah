@@ -10,7 +10,7 @@ namespace Tutorial
     /// <seealso cref="ISequence"/>
     /// </summary>
     [AddComponentMenu("Tutorial/Sequence Controller")]
-    public class SequenceController : MonoBehaviour
+    public class SequenceController : MonoBehaviour, ISequence
     {
         private Queue<ISequence> queue = new();
         private Queue<ISequence> _internalCopy;
@@ -34,6 +34,10 @@ namespace Tutorial
                 sequence.Execute(gameObject);
                 yield return new WaitUntil(sequence.IsDone);
             }
+
+            isDone = true;
+            yield return new WaitForEndOfFrame();
+            isDone = false;
         }
 
         public int Tasks
@@ -81,6 +85,18 @@ namespace Tutorial
         {
             StopCoroutine(loop);
             loop = null;
+        }
+
+        private bool isDone;
+
+        public bool IsDone()
+        {
+            return isDone;
+        }
+
+        public void Execute(GameObject o)
+        {
+            ManualStart();
         }
     }
 

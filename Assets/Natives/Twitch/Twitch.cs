@@ -68,11 +68,11 @@ public unsafe class Twitch
 
         try
         {
-            clients?[identifier]?.OnChat(msg);
+            clients[identifier]?.OnChat(msg);
         }
         catch (Exception e)
         {
-            var info = "if this is a main thread error, please consult the documentation of \"IChatListener\"";
+            const string info = "if this is a main thread error, please consult the documentation of \"IChatListener\"";
             UnityEngine.Debug.LogError($"{e.Message}. \n {info}");
         }
     }

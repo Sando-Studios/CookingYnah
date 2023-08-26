@@ -17,6 +17,8 @@ namespace Tutorial
 
         private Coroutine loop;
 
+        private bool isDone;
+
         private void Start()
         {
             _internalCopy = new Queue<ISequence>(queue);
@@ -51,11 +53,6 @@ namespace Tutorial
             _internalCopy.Clear();
         }
 
-        public bool Repeat()
-        {
-            throw new NotImplementedException();
-        }
-        
         /// <summary>
         /// <para>
         /// Adds a sequence to the queue of the controller.
@@ -86,8 +83,6 @@ namespace Tutorial
             StopCoroutine(loop);
             loop = null;
         }
-
-        private bool isDone;
 
         public bool IsDone()
         {
@@ -180,6 +175,8 @@ namespace Tutorial
         {
             yield return new WaitForSeconds(_time);
             isDone = true;
+            yield return new WaitForEndOfFrame();
+            isDone = false;
         }
     }
 
@@ -224,6 +221,8 @@ namespace Tutorial
             }
 
             isDone = true;
+            yield return new WaitForEndOfFrame();
+            isDone = false;
         }
 
         public bool IsDone()
@@ -277,6 +276,8 @@ namespace Tutorial
             }
 
             isDone = true;
+            yield return new WaitForEndOfFrame();
+            isDone = false;
         }
 
         public bool IsDone()
@@ -328,11 +329,18 @@ namespace Tutorial
             _toolTip.SetText(_text);
             _toolTip.gameObject.SetActive(_turnOn);
             isDone = true;
+            _controller.StartCoroutine(Toggle());
         }
 
         public bool IsDone()
         {
             return isDone;
+        }
+
+        private IEnumerator Toggle()
+        {
+            yield return new WaitForEndOfFrame();
+            isDone = false;
         }
     }
 
@@ -497,6 +505,7 @@ namespace Tutorial
         
         public UserInputSequence(SequenceController controller)
         {
+            _controller = controller;
         }
         
         public void Execute(GameObject o)

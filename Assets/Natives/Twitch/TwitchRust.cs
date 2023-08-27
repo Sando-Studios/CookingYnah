@@ -7,6 +7,7 @@
 using System;
 using System.Runtime.InteropServices;
 
+
 namespace RawNative
 {
     internal static unsafe partial class RawTwitch
@@ -18,8 +19,10 @@ namespace RawNative
 #endif
         
 
+
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void init_runtime_callback_delegate(byte* msg, int identifier);
+        public delegate void init_runtime_callback_delegate(byte* a, int b);
 
         [DllImport(__DllName, EntryPoint = "init_runtime", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
         public static extern void* init_runtime(int identifier, init_runtime_callback_delegate callback);

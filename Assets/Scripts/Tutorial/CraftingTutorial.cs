@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Tutorial;
@@ -9,6 +10,17 @@ public class CraftingTutorial : MonoBehaviour
     private SequenceController _controller;
 
     [SerializeField] private RectTransform popUp;
+
+    private Vector2 ttOriginalPos;
+
+    [SerializeField] private GameObject skipButton;
+
+    private void Start()
+    {
+        var tt = popUp.GetComponent<ToolTipAdapter>();
+
+        ttOriginalPos = tt.GetComponent<RectTransform>().anchoredPosition;
+    }
 
     public void Setup()
     {
@@ -89,6 +101,8 @@ public class CraftingTutorial : MonoBehaviour
                 tt.gameObject.SetActive(false);
                 tt.GetComponent<RectTransform>().anchoredPosition = originalPos;
                 
+                skipButton.SetActive(false);
+                
                 Reset();
             }));
     }
@@ -99,10 +113,36 @@ public class CraftingTutorial : MonoBehaviour
         Setup();
     }
 
+    private void OnTutorialStop()
+    {
+        UIManager.instance.player.EnableInputs();
+        // UIManager.instance.ForceCloseCraftingPanel();
+        UIManager.instance.craftingBtnBlock = false;
+        // sequence.SetStatus(true);
+
+        var tt = popUp.GetComponent<ToolTipAdapter>();
+
+        tt.gameObject.SetActive(false);
+        tt.GetComponent<RectTransform>().anchoredPosition = ttOriginalPos;
+        
+        skipButton.SetActive(false);
+    }
+
+    public void SkipTutorial()
+    {
+        _controller.Stop();
+        
+        OnTutorialStop();
+        
+        Reset();
+    }
+
     public void StartSequences()
     {
         _controller.gameObject.SetActive(true);
         
         _controller.ManualStart();
+        
+        skipButton.SetActive(true);
     }
 }
